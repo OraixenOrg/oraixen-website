@@ -179,15 +179,15 @@ export function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-16">
             {[{
             label: 'Years Experience',
-            value: '10+'
+            value: '7+'
           }, {
             label: 'Projects Delivered',
-            value: '200+'
+            value: '37+'
           }, {
             label: 'Client Retention',
             value: '98%'
           }, {
-            label: 'Global Awards',
+            label: 'Countries Served',
             value: '15'
           }].map((stat, i) => <m.div key={i} initial={{
             opacity: 0,
