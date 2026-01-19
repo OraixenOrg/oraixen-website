@@ -134,42 +134,8 @@ export function Home() {
                 </Button>
               </div>
             </FadeIn>
-
-            {/* Trust indicators */}
-            <FadeIn delay={0.4}>
-              <div className="flex flex-wrap justify-center gap-8 md:gap-12 text-sm text-gray-500">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-skyblue rounded-full" />
-                  <span>Trusted by 200+ companies</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-skyblue rounded-full" />
-                  <span>98% client retention</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-skyblue rounded-full" />
-                  <span>10+ years of excellence</span>
-                </div>
-              </div>
-            </FadeIn>
           </div>
         </div>
-
-        {/* Scroll Indicator */}
-        <m.div className="absolute bottom-12 left-1/2 -translate-x-1/2" animate={{
-        y: [0, 12, 0]
-      }} transition={{
-        duration: 2,
-        repeat: Infinity,
-        ease: 'easeInOut'
-      }}>
-          <div className="flex flex-col items-center gap-2 text-gray-600">
-            <span className="text-xs uppercase tracking-wider font-medium">
-              Scroll
-            </span>
-            <ArrowRight className="rotate-90" size={20} />
-          </div>
-        </m.div>
       </section>
 
       {/* Trust Strip */}
