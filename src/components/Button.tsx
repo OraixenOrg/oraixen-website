@@ -1,7 +1,8 @@
-import React from 'react';
+import { type ReactNode, type ButtonHTMLAttributes } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+
+interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
   variant?: 'primary' | 'secondary' | 'outline' | 'text';
   size?: 'sm' | 'md' | 'lg';
   href?: string;

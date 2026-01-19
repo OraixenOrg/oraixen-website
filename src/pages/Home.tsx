@@ -1,6 +1,5 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Code, Smartphone, Server, Cpu, CheckCircle, Sparkles, Zap } from 'lucide-react';
+import { ArrowRight, Code, Smartphone, Server, Cpu, CheckCircle, Zap } from 'lucide-react';
 import { Section } from '../components/Section';
 import { Button } from '../components/Button';
 import { Card } from '../components/Card';
@@ -74,7 +73,7 @@ export function Home() {
           <div className="absolute bottom-1/3 right-0 w-96 h-px bg-gradient-to-l from-transparent via-azure/20 to-transparent" />
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="container mx-auto py-5 px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-6xl mx-auto text-center">
             {/* Badge */}
             <FadeIn>
