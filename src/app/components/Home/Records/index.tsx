@@ -7,7 +7,7 @@ import RecordSkeleton from '../../Skeleton/Record'
 
 const Records = () => {
   const [record, setRecord] = useState<RecordType[]>([])
-  const [Loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,9 +15,10 @@ const Records = () => {
         const res = await fetch('/api/data')
         if (!res.ok) throw new Error('Failed to fetch')
         const data = await res.json()
-        setRecord(data.RecordData)
+        setRecord(data.RecordData || [])
       } catch (error) {
         console.error('Error fetching service', error)
+        setRecord([]) // Set empty array on error to prevent crashes
       } finally {
         setLoading(false)
       }
@@ -29,7 +30,7 @@ const Records = () => {
     <section>
       <div className='container'>
         <div className='grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 items-center gap-6'>
-          {Loading
+          {loading
             ? Array.from({ length: 4 }).map((_, i) => (
                 <RecordSkeleton key={i} />
               ))

@@ -2,6 +2,14 @@ export interface ProjectMetric {
   label: string;
   value: string;
 }
+
+export interface ProjectPlatforms {
+  website?: string;
+  playStore?: string;
+  appStore?: string;
+  dashboard?: string;
+}
+
 export interface Project {
   id: string;
   slug: string;
@@ -20,4 +28,5 @@ export interface Project {
   confidential: boolean;
   featured: boolean;
   category: 'Mobile' | 'Web' | 'Platform' | 'Hardware' | 'AI';
+  platforms?: ProjectPlatforms;
 }

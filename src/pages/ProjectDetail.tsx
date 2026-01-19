@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, User, Tag, Lock } from 'lucide-react';
+import { ArrowLeft, Calendar, User, Tag, Lock, ExternalLink, Globe, Smartphone, Monitor } from 'lucide-react';
 import { projects } from '../lib/projects';
 import { Section } from '../components/Section';
 import { FadeIn } from '../components/FadeIn';
@@ -179,6 +179,74 @@ export function ProjectDetail() {
                 </ul>
               </Card>
             </FadeIn>
+
+            {project.platforms && (project.platforms.website || project.platforms.playStore || project.platforms.appStore || project.platforms.dashboard) && (
+              <FadeIn delay={0.5}>
+                <Card className="p-8 bg-gradient-to-br from-white/5 to-white/[0.02] border-white/10">
+                  <h3 className="text-xl font-bold text-white mb-8">
+                    Available Platforms
+                  </h3>
+                  <div className="space-y-3">
+                    {project.platforms.website && (
+                      <a
+                        href={project.platforms.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between p-4 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 hover:border-skyblue/30 transition-all group"
+                      >
+                        <div className="flex items-center gap-3">
+                          <Globe size={20} className="text-skyblue" />
+                          <span className="text-white font-medium">Website</span>
+                        </div>
+                        <ExternalLink size={16} className="text-gray-400 group-hover:text-skyblue transition-colors" />
+                      </a>
+                    )}
+                    {project.platforms.playStore && (
+                      <a
+                        href={project.platforms.playStore}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between p-4 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 hover:border-green-500/30 transition-all group"
+                      >
+                        <div className="flex items-center gap-3">
+                          <Smartphone size={20} className="text-green-400" />
+                          <span className="text-white font-medium">Play Store</span>
+                        </div>
+                        <ExternalLink size={16} className="text-gray-400 group-hover:text-green-400 transition-colors" />
+                      </a>
+                    )}
+                    {project.platforms.appStore && (
+                      <a
+                        href={project.platforms.appStore}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between p-4 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 hover:border-blue-500/30 transition-all group"
+                      >
+                        <div className="flex items-center gap-3">
+                          <Smartphone size={20} className="text-blue-400" />
+                          <span className="text-white font-medium">App Store</span>
+                        </div>
+                        <ExternalLink size={16} className="text-gray-400 group-hover:text-blue-400 transition-colors" />
+                      </a>
+                    )}
+                    {project.platforms.dashboard && (
+                      <a
+                        href={project.platforms.dashboard}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between p-4 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 hover:border-purple-500/30 transition-all group"
+                      >
+                        <div className="flex items-center gap-3">
+                          <Monitor size={20} className="text-purple-400" />
+                          <span className="text-white font-medium">Dashboard</span>
+                        </div>
+                        <ExternalLink size={16} className="text-gray-400 group-hover:text-purple-400 transition-colors" />
+                      </a>
+                    )}
+                  </div>
+                </Card>
+              </FadeIn>
+            )}
           </div>
         </div>
       </Section>

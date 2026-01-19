@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import { ReviewType } from '@/app/types/review'
-import Image from 'next/image'
 import { Icon } from '@iconify/react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
@@ -19,9 +18,10 @@ const Review = () => {
         const res = await fetch('/api/data')
         if (!res.ok) throw new Error('Failed to fetch')
         const data = await res.json()
-        setReview(data.ReviewData)
+        setReview(data.ReviewData || [])
       } catch (error) {
         console.error('Error fetching service', error)
+        setReview([]) // Set empty array on error to prevent crashes
       } finally {
         setLoading(false)
       }
@@ -112,7 +112,7 @@ const Review = () => {
                   <div className='m-3 p-6 bg-white rounded-lg border border-darkazure/10'>
                     <div className='flex items-center gap-4 mb-5'>
                       <div className='relative'>
-                        <Image
+                        <img
                           src={item.imgSrc}
                           alt={item.name}
                           width={48}
@@ -120,7 +120,7 @@ const Review = () => {
                           className='rounded-full'
                         />
                         <div className='absolute bottom-0 right-0'>
-                          <Image
+                          <img
                             src={'/images/banner/greentick.svg'}
                             alt='tick'
                             width={15}

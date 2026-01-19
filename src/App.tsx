@@ -17,7 +17,7 @@ export function App() {
     pathname
   } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [pathname]);
   return <MotionProvider>
       <div className="flex flex-col min-h-screen bg-inkblack text-white font-sans selection:bg-skyblue selection:text-inkblack">

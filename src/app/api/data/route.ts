@@ -1,27 +1,18 @@
 import { NextResponse } from 'next/server'
 
-import { NavLinkType } from '@/app/types/navlink'
-import { ProjectType } from '@/app/types/project'
-import { RecordType } from '@/app/types/record'
-import { ReviewType } from '@/app/types/review'
-import { SpecializeType } from '@/app/types/specialize'
-import { PlanType } from '@/app/types/plan'
-import { CategoryType } from '@/app/types/category'
-import { FooterLinkType } from '@/app/types/footerlinks'
-import { HeroType } from '@/app/types/hero'
+import { NavLinkType } from '../../types/navlink'
+import { ProjectType } from '../../types/project'
+import { RecordType } from '../../types/record'
+import { ReviewType } from '../../types/review'
+import { SpecializeType } from '../../types/specialize'
+import { PlanType } from '../../types/plan'
+import { CategoryType } from '../../types/category'
+import { FooterLinkType } from '../../types/footerlinks'
+import { HeroType } from '../../types/hero'
 
 const HeroData: HeroType[] = [
   {
-    imgSrc: '/images/banner/blogforgeCover.webp',
-  },
-  {
-    imgSrc: '/images/banner/gleamerCover.webp',
-  },
-  {
-    imgSrc: '/images/banner/learnaxisCover.webp',
-  },
-  {
-    imgSrc: '/images/banner/studiovaCover.webp',
+    imgSrc: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1600',
   },
 ]
 
@@ -46,32 +37,290 @@ const NavLinkData: NavLinkType[] = [
 
 const ProjectData: ProjectType[] = [
   {
-    coverImg: '/images/project/blogforge.webp',
-    name: 'Blog Forge',
+    coverImg: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+    name: 'Zewail City',
+    platforms: {
+      website: 'https://zewailcity.edu.eg/',
+    },
   },
   {
-    coverImg: '/images/project/gleamer.webp',
-    name: 'Gleamer',
+    coverImg: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800',
+    name: 'Abdelrhman Mohamed',
+    platforms: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.elshafey.abd',
+      appStore: 'https://apps.apple.com/eg/app/abdelrhman-mohamed/id1600160743',
+    },
   },
   {
-    coverImg: '/images/project/learnaxis.webp',
-    name: 'Learnaxis',
+    coverImg: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=800',
+    name: 'Alkanz',
+    platforms: {
+      website: 'https://kenz.hashtaghostings.com/',
+      playStore: 'https://play.google.com/store/apps/details?id=com.metagate.alkanzz&hl=en',
+      appStore: 'https://apps.apple.com/eg/app/dar-alkahrba/id1597367206',
+    },
   },
   {
-    coverImg: '/images/project/studiova.webp',
-    name: 'Studiova',
+    coverImg: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800',
+    name: 'Dar Alkahraba',
+    platforms: {
+      appStore: 'https://apps.apple.com/eg/app/dar-alkahrba/id1597367206',
+    },
   },
   {
-    coverImg: '/images/project/homely.webp',
-    name: 'Homely',
+    coverImg: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
+    name: 'DU V DU',
+    platforms: {
+      website: 'https://duvdu.com',
+      playStore: 'https://play.google.com/store/apps/details?id=com.duvdu.duvdu',
+      appStore: 'https://apps.apple.com/eg/app/duvdu/id6743176883',
+    },
   },
   {
-    coverImg: '/images/project/awake.webp',
-    name: 'Awake',
+    coverImg: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
+    name: 'Discount Emy',
+    platforms: {
+      website: 'https://emydiscount.com/',
+      playStore: 'https://play.google.com/store/apps/details?id=com.technospace.emy_discount',
+      appStore: 'https://apps.apple.com/eg/app/discount-emy/id1617326763',
+    },
   },
   {
-    coverImg: '/images/project/endeavor.webp',
-    name: 'Endeavor',
+    coverImg: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800',
+    name: 'Order FS',
+    platforms: {
+      website: 'https://www.orderfs.online',
+      dashboard: 'https://dashboard.orderfs.online',
+      playStore: 'https://play.google.com/store/apps/details?id=com.order.order',
+      appStore: 'https://apps.apple.com/eg/app/order-fs/id6450720518',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+    name: 'MAAT',
+    platforms: {
+      website: 'https://maat.vip',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800',
+    name: 'Maqdia',
+    platforms: {
+      dashboard: 'https://maqdya.com/admin',
+      playStore: 'https://play.google.com/store/apps/details?id=com.maqdyya.maqdyya',
+      appStore: 'https://apps.apple.com/eg/app/maqdia/id6753150399',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=800',
+    name: 'CarX',
+    platforms: {
+      website: 'https://carx.asusapps.com/',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800',
+    name: 'M6lob',
+    platforms: {
+      website: 'https://m6lob.org',
+      playStore: 'https://play.google.com/store/apps/details?id=com.jobs.m6lob',
+      appStore: 'https://apps.apple.com/eg/app/mtlob-%D9%85%D8%B7%D9%84%D9%88%D8%A8/id6499473889',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
+    name: 'Goffa',
+    platforms: {
+      website: 'https://goffa-eg.com',
+      playStore: 'https://play.google.com/store/apps/details?id=com.peacode.goffa',
+      appStore: 'https://apps.apple.com/eg/app/goffa/id6479247414',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
+    name: 'Shaaml',
+    platforms: {
+      website: 'https://shaaml.com',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800',
+    name: 'Teens Hangouts',
+    platforms: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.elshafey.hangouts',
+      appStore: 'https://apps.apple.com/us/app/teens-hangouts/id1527844249',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+    name: 'Inovara',
+    platforms: {
+      website: 'https://inovara.net',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800',
+    name: 'Waffar Cash',
+    platforms: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.gao.waffar',
+      appStore: 'https://apps.apple.com/eg/app/waffar-cash/id1626369167',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=800',
+    name: 'Lookfindr',
+    platforms: {
+      website: 'https://www.lookfindr.com/',
+      playStore: 'https://play.google.com/store/apps/details?id=com.naya.lookfindr',
+      appStore: 'https://apps.apple.com/eg/app/lookfindr/id6477915683',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800',
+    name: 'Lookfindr Business',
+    platforms: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.naya.lookfindr.business',
+      appStore: 'https://apps.apple.com/eg/app/lookfindr-business/id6566175689',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
+    name: 'Uzex',
+    platforms: {
+      website: 'https://uzex.org',
+      playStore: 'https://play.google.com/store/apps/details?id=com.uzex.uzexAppApp',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
+    name: 'Teb & Aafya',
+    platforms: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.peacode.tebw3fyaandroid',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800',
+    name: 'Shotreed',
+    platforms: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.hashtag.shotreed',
+      appStore: 'https://apps.apple.com/eg/app/shotreed/id6474687946',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+    name: 'Woodex',
+    platforms: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.hashtag.woodex',
+      appStore: 'https://apps.apple.com/eg/app/woodex/id6466213030',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800',
+    name: 'Montgatk',
+    platforms: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.hashtag.montgatk',
+      appStore: 'https://apps.apple.com/eg/app/montgatk/id6468681893',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=800',
+    name: 'Gefires',
+    platforms: {
+      website: 'https://gefires.com/',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800',
+    name: 'Rosto',
+    platforms: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.rosto.rosto',
+      appStore: 'https://apps.apple.com/eg/app/rosto/id6478112917',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
+    name: 'Vooo Menu',
+    platforms: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.LinkedGates.vooo_',
+      appStore: 'https://apps.apple.com/eg/app/vooo-menu/id1661463351',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
+    name: 'Vending',
+    platforms: {
+      website: 'https://vending.inovara.net',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800',
+    name: 'Shopisonic',
+    platforms: {
+      website: 'https://shopisonic.com/',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+    name: 'M3lesh',
+    platforms: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.goldscrum.m3lesh',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800',
+    name: 'Elmongez',
+    platforms: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.hashtag.elmongez',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=800',
+    name: 'Alkanzz',
+    platforms: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.metagate.alkanzz',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800',
+    name: 'IBDL',
+    platforms: {
+      website: 'https://ibdl.techiesonic.com',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
+    name: 'Hafawa User',
+    platforms: {
+      appStore: 'https://apps.apple.com/eg/app/hafawa/id6745311601',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
+    name: 'Hafawa Business',
+    platforms: {
+      appStore: 'https://apps.apple.com/eg/app/hafawa-business/id6745311661',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800',
+    name: 'Hafawa Delivery',
+    platforms: {
+      appStore: 'https://apps.apple.com/eg/app/hafawa-delivery/id6745311686',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+    name: 'Govet',
+    platforms: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.technospace.govet',
+    },
+  },
+  {
+    coverImg: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800',
+    name: 'Saharad',
+    platforms: {
+      website: 'https://saharadvocates.ae',
+    },
   },
 ]
 

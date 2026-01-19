@@ -18,9 +18,10 @@ const Project = () => {
         const res = await fetch('/api/data')
         if (!res.ok) throw new Error('Failed to fetch')
         const data = await res.json()
-        setProject(data.ProjectData)
+        setProject(data.ProjectData || [])
       } catch (error) {
         console.error('Error fetching service', error)
+        setProject([]) // Set empty array on error to prevent crashes
       } finally {
         setLoading(false)
       }
@@ -87,16 +88,21 @@ const Project = () => {
                 : project.map((item, i) => (
                     <div key={i}>
                       <div className='p-5 bg-white m-3 rounded-lg border border-darkazure/10'>
-                        <div className='w-full mb-4'>
+                        <div className='w-full mb-4 relative aspect-square overflow-hidden rounded-lg bg-gray-200'>
                           <Image
                             src={item.coverImg}
-                            alt={item.coverImg}
+                            alt={item.name || 'Project image'}
                             width={234}
                             height={236}
-                            className='w-full rounded-lg'
+                            className='w-full h-full object-cover rounded-lg'
+                            onError={(e) => {
+                              // Fallback to placeholder on error
+                              const target = e.target as HTMLImageElement;
+                              target.src = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800';
+                            }}
                           />
                         </div>
-                        <div className='flex items-center gap-2'>
+                        <div className='flex items-center gap-2 mb-3'>
                           <Image
                             src={'/images/project/get-nextjs-logo.svg'}
                             alt={'logo'}
@@ -108,6 +114,50 @@ const Project = () => {
                             {item.name}
                           </p>
                         </div>
+                        {item.platforms && (
+                          <div className='flex flex-wrap gap-2'>
+                            {item.platforms.website && (
+                              <a
+                                href={item.platforms.website}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                className='text-xs px-2 py-1 bg-darkazure/10 text-darkblue rounded hover:bg-darkazure/20 transition-colors'
+                              >
+                                Website
+                              </a>
+                            )}
+                            {item.platforms.playStore && (
+                              <a
+                                href={item.platforms.playStore}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                className='text-xs px-2 py-1 bg-darkazure/10 text-darkblue rounded hover:bg-darkazure/20 transition-colors'
+                              >
+                                Play Store
+                              </a>
+                            )}
+                            {item.platforms.appStore && (
+                              <a
+                                href={item.platforms.appStore}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                className='text-xs px-2 py-1 bg-darkazure/10 text-darkblue rounded hover:bg-darkazure/20 transition-colors'
+                              >
+                                App Store
+                              </a>
+                            )}
+                            {item.platforms.dashboard && (
+                              <a
+                                href={item.platforms.dashboard}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                className='text-xs px-2 py-1 bg-darkazure/10 text-darkblue rounded hover:bg-darkazure/20 transition-colors'
+                              >
+                                Dashboard
+                              </a>
+                            )}
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}

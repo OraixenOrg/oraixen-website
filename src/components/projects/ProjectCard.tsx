@@ -1,18 +1,30 @@
-import React from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Lock } from 'lucide-react';
+import { ArrowUpRight, Lock, ExternalLink } from 'lucide-react';
 import { Project } from '../../types/project';
 import { Card } from '../Card';
+
 interface ProjectCardProps {
   project: Project;
 }
+
+const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800';
+
 export function ProjectCard({
   project
 }: ProjectCardProps) {
+  const [imageError, setImageError] = useState(false);
+
   return <Link to={`/projects/${project.slug}`} className="block h-full group">
       <Card interactive className="h-full flex flex-col overflow-hidden">
-        <div className="relative h-64 overflow-hidden">
-          <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+        <div className="relative h-64 overflow-hidden bg-gray-800">
+          <img
+            src={imageError ? FALLBACK_IMAGE : project.imageUrl}
+            alt={project.title}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            onError={() => setImageError(true)}
+            loading="lazy"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-inkblack via-inkblack/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
 
           <div className="absolute top-4 left-4 flex gap-2 z-10">
@@ -46,6 +58,59 @@ export function ProjectCard({
           <p className="text-gray-400 text-sm line-clamp-2 mb-6 flex-1 leading-relaxed">
             {project.description}
           </p>
+
+          {project.platforms && (project.platforms.website || project.platforms.playStore || project.platforms.appStore || project.platforms.dashboard) && (
+            <div className="flex flex-wrap gap-2 mb-4">
+              {project.platforms.website && (
+                <a
+                  href={project.platforms.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-xs px-2.5 py-1 bg-skyblue/10 text-skyblue rounded-md font-medium border border-skyblue/20 hover:bg-skyblue/20 transition-colors flex items-center gap-1"
+                >
+                  <ExternalLink size={12} />
+                  Website
+                </a>
+              )}
+              {project.platforms.playStore && (
+                <a
+                  href={project.platforms.playStore}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-xs px-2.5 py-1 bg-green-500/10 text-green-400 rounded-md font-medium border border-green-500/20 hover:bg-green-500/20 transition-colors flex items-center gap-1"
+                >
+                  <ExternalLink size={12} />
+                  Play Store
+                </a>
+              )}
+              {project.platforms.appStore && (
+                <a
+                  href={project.platforms.appStore}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-xs px-2.5 py-1 bg-blue-500/10 text-blue-400 rounded-md font-medium border border-blue-500/20 hover:bg-blue-500/20 transition-colors flex items-center gap-1"
+                >
+                  <ExternalLink size={12} />
+                  App Store
+                </a>
+              )}
+              {project.platforms.dashboard && (
+                <a
+                  href={project.platforms.dashboard}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-xs px-2.5 py-1 bg-purple-500/10 text-purple-400 rounded-md font-medium border border-purple-500/20 hover:bg-purple-500/20 transition-colors flex items-center gap-1"
+                >
+                  <ExternalLink size={12} />
+                  Dashboard
+                </a>
+              )}
+            </div>
+          )}
 
           <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-white/5">
             {project.techStack.slice(0, 3).map(tech => <span key={tech} className="text-xs text-gray-400 bg-white/5 px-2.5 py-1 rounded-md font-medium border border-white/5">
