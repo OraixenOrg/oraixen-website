@@ -9,6 +9,7 @@ export function Services() {
     id: 'mobile',
     icon: <Smartphone size={32} />,
     title: 'Mobile App Development',
+    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=1200',
     description: 'We build native and cross-platform mobile applications that provide seamless user experiences. From iOS to Android, our apps are designed to be intuitive, fast, and scalable.',
     deliverables: ['iOS & Android Apps', 'React Native / Flutter', 'UI/UX Design', 'App Store Optimization'],
     timeline: '3-6 months',
@@ -17,6 +18,7 @@ export function Services() {
     id: 'web',
     icon: <Code size={32} />,
     title: 'Web Development',
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80&w=1200',
     description: 'Modern, responsive, and high-performance web applications. We use the latest frameworks to build websites that are not only visually stunning but also technically robust.',
     deliverables: ['SaaS Platforms', 'E-commerce Sites', 'Progressive Web Apps', 'CMS Solutions'],
     timeline: '2-5 months',
@@ -25,6 +27,7 @@ export function Services() {
     id: 'platform',
     icon: <Server size={32} />,
     title: 'Corporate Software Platforms',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200',
     description: 'Custom software solutions designed to streamline complex business processes. We build secure, scalable internal tools that increase operational efficiency.',
     deliverables: ['ERP Systems', 'CRM Solutions', 'HR Management Tools', 'Data Dashboards'],
     timeline: '6-12 months',
@@ -33,6 +36,7 @@ export function Services() {
     id: 'hardware',
     icon: <Cpu size={32} />,
     title: 'Hardware + Software + AI',
+    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200',
     description: 'Integrated solutions bridging the physical and digital worlds. We design custom hardware and embed AI models for smart, connected ecosystems.',
     deliverables: ['IoT Devices', 'Embedded Systems', 'Computer Vision', 'Predictive Analytics'],
     timeline: '6-18 months',
@@ -118,31 +122,45 @@ export function Services() {
 
               <div className="flex-1 w-full">
                 <FadeIn delay={0.2}>
-                  <m.div className="relative aspect-video rounded-2xl overflow-hidden bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 group" whileHover={{
-                scale: 1.02
-              }} transition={{
-                duration: 0.3
-              }}>
-                    <div className="absolute inset-0 bg-gradient-to-br from-azure/10 to-skyblue/10" />
+                  <m.div 
+                    className="relative aspect-video rounded-2xl overflow-hidden bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 group" 
+                    whileHover={{
+                      scale: 1.02
+                    }} 
+                    transition={{
+                      duration: 0.3
+                    }}
+                  >
+                    {/* Service Image */}
+                    <img 
+                      src={service.image} 
+                      alt={service.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                    
+                    {/* Overlay Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-inkblack/60 via-inkblack/40 to-inkblack/60" />
+                    
+                    {/* Subtle animated overlay */}
+                    <m.div 
+                      className="absolute inset-0 bg-gradient-to-br from-skyblue/0 via-skyblue/10 to-azure/0" 
+                      animate={{
+                        opacity: [0.2, 0.4, 0.2]
+                      }} 
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: 'easeInOut'
+                      }} 
+                    />
+                    
+                    {/* Service Icon Overlay */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <m.span className="text-white/10 text-[12rem] font-bold select-none" initial={{
-                    opacity: 0.1
-                  }} whileInView={{
-                    opacity: 0.15
-                  }} viewport={{
-                    once: true
-                  }}>
-                        0{index + 1}
-                      </m.span>
+                      <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-skyblue/20 to-azure/20 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+                        {service.icon}
+                      </div>
                     </div>
-
-                    <m.div className="absolute inset-0 bg-gradient-to-br from-skyblue/0 via-skyblue/5 to-azure/0" animate={{
-                  opacity: [0.3, 0.6, 0.3]
-                }} transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: 'easeInOut'
-                }} />
                   </m.div>
                 </FadeIn>
               </div>

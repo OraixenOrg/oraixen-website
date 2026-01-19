@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Twitter, Linkedin, Github, Mail, MapPin, Phone } from 'lucide-react';
+import { Twitter, Linkedin, Github, Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react';
 export function Footer() {
   const currentYear = new Date().getFullYear();
   return <footer className="bg-inkblack border-t border-white/10 pt-20 pb-8">
@@ -14,15 +14,51 @@ export function Footer() {
               Premium technology solutions for forward-thinking businesses.
               Innovation meets precision.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-skyblue hover:bg-skyblue/10 hover:border-skyblue/30 transition-all" aria-label="Twitter">
+            <div className="flex flex-wrap gap-3">
+              <a 
+                href="https://twitter.com/oraixen" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-skyblue hover:bg-skyblue/10 hover:border-skyblue/30 transition-all" 
+                aria-label="Twitter"
+              >
                 <Twitter size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-skyblue hover:bg-skyblue/10 hover:border-skyblue/30 transition-all" aria-label="LinkedIn">
+              <a 
+                href="https://linkedin.com/company/oraixen" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-skyblue hover:bg-skyblue/10 hover:border-skyblue/30 transition-all" 
+                aria-label="LinkedIn"
+              >
                 <Linkedin size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-skyblue hover:bg-skyblue/10 hover:border-skyblue/30 transition-all" aria-label="GitHub">
+              <a 
+                href="https://github.com/oraixen" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-skyblue hover:bg-skyblue/10 hover:border-skyblue/30 transition-all" 
+                aria-label="GitHub"
+              >
                 <Github size={18} />
+              </a>
+              <a 
+                href="https://facebook.com/oraixen" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-skyblue hover:bg-skyblue/10 hover:border-skyblue/30 transition-all" 
+                aria-label="Facebook"
+              >
+                <Facebook size={18} />
+              </a>
+              <a 
+                href="https://instagram.com/oraixen" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-skyblue hover:bg-skyblue/10 hover:border-skyblue/30 transition-all" 
+                aria-label="Instagram"
+              >
+                <Instagram size={18} />
               </a>
             </div>
           </div>
@@ -104,11 +140,15 @@ export function Footer() {
               </li>
               <li className="flex items-center text-gray-400 text-sm">
                 <Phone size={18} className="mr-3 text-skyblue shrink-0" />
-                <span>+13134820813</span>
+                <a href="tel:+13134820813" className="hover:text-white transition-colors">
+                  +13134820813
+                </a>
               </li>
               <li className="flex items-center text-gray-400 text-sm">
                 <Mail size={18} className="mr-3 text-skyblue shrink-0" />
-                <span>support@oraixen.com</span>
+                <a href="mailto:support@oraixen.com" className="hover:text-white transition-colors">
+                  support@oraixen.com
+                </a>
               </li>
             </ul>
           </div>
