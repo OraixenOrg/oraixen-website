@@ -1,0 +1,66 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #56C9E3;
+  --color-secondary: #FFFCFD;
+  --color-lightgrey: #DAD2D8;
+  --color-darkmode: #0F5E70;
+  --color-darklight: #0F5E70;
+  --color-darkblue: #050517;
+  --color-lightdarkblue: #0F5E70;
+  --color-darkazure: #0F5E70;
+  --color-skyblue: #56C9E3;
+  --color-inkblack: #050517;
+  --color-dustgrey: #DAD2D8;
+  --color-softwhite: #FFFCFD;
+
+  /* spacing */
+  --spacing-45: 45%;
+
+  /* breakpoint */
+  --breakpoint-xs: 420px;
+}
+
+@layer utilities {
+  .container {
+    @apply max-w-7xl mx-auto w-full px-4;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  section {
+    @apply py-14;
+  }
+
+  h1 {
+    @apply text-darkblue capitalize md:text-6xl text-5xl font-bold xl:leading-tight leading-tight;
+  }
+
+  h2 {
+    @apply text-darkblue capitalize md:text-5xl text-4xl font-bold;
+  }
+
+  h3 {
+    @apply text-white capitalize text-3xl font-normal
+  }
+
+  h4 {
+    @apply text-darkblue capitalize text-2xl font-medium;
+  }
+
+  h5 {
+    @apply text-darkblue capitalize text-xl font-medium;
+  }
+
+  h6 {
+    @apply text-darkblue capitalize text-lg font-medium;
+  }
+
+  p {
+    @apply text-lightgrey text-base;
+  }
+}

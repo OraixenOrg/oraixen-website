@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://oraixen.com/sitemap.xml
+
+# Disallow admin and API routes
+Disallow: /api/
+Disallow: /admin/
+
+# Allow all other pages
+Allow: /
+Allow: /about
+Allow: /services
+Allow: /projects
+Allow: /process
+Allow: /contact

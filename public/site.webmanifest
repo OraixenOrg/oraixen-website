@@ -1,0 +1,23 @@
+{
+  "name": "Oraixen - Premium Technology Solutions",
+  "short_name": "Oraixen",
+  "description": "Premium technology solutions for mobile app development, web development, corporate software, and AI solutions",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#56c9e3",
+  "background_color": "#0a0a0a",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "orientation": "portrait-primary"
+}
