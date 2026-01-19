@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Twitter, Linkedin, Github, Mail, MapPin, Phone } from 'lucide-react';
 export function Footer() {
@@ -100,18 +99,16 @@ export function Footer() {
               <li className="flex items-start text-gray-400 text-sm">
                 <MapPin size={18} className="mr-3 mt-0.5 text-skyblue shrink-0" />
                 <span>
-                  123 Innovation Blvd,
-                  <br />
-                  Tech District, CA 94043
+                  Toronto, ON, Canada, Ontario
                 </span>
               </li>
               <li className="flex items-center text-gray-400 text-sm">
                 <Phone size={18} className="mr-3 text-skyblue shrink-0" />
-                <span>+1 (555) 123-4567</span>
+                <span>+13134820813</span>
               </li>
               <li className="flex items-center text-gray-400 text-sm">
                 <Mail size={18} className="mr-3 text-skyblue shrink-0" />
-                <span>hello@oraixen.com</span>
+                <span>support@oraixen.com</span>
               </li>
             </ul>
           </div>
