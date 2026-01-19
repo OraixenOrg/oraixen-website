@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from './Button';
@@ -35,7 +35,7 @@ export function Navbar() {
   }];
   return <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-inkblack/95 backdrop-blur-xl border-b border-white/10 py-3 shadow-lg shadow-black/20' : 'bg-transparent py-6'}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        <Link to="/" className="z-50 hover:opacity-80 transition-opacity">
+        <Link to="/" >
           <img src="/logo.svg" alt="Oraixen Logo" className="h-10 w-auto scale-[4.5] pl-[13px]" />
         </Link>
 
