@@ -48,9 +48,6 @@ export function Contact() {
                   </div>
                   <div>
                     <h3 className="text-white font-bold mb-2">Call Us</h3>
-                    <p className="text-gray-400 text-sm mb-1">
-                      +13134820813
-                    </p>
                     <p className="text-gray-500 text-xs">
                       Mon-Fri, 9am - 6pm EST
                     </p>
