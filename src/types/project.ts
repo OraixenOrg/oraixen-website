@@ -25,6 +25,8 @@ export interface Project {
   techStack: string[];
   highlights: string[];
   imageUrl: string;
+  /** Use 'contain' for logos/SVGs so they display with correct aspect ratio and dimensions */
+  imageFit?: 'cover' | 'contain';
   confidential: boolean;
   featured: boolean;
   category: 'Mobile' | 'Web' | 'Platform' | 'Hardware' | 'AI';

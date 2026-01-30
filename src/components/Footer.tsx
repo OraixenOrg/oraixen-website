@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Twitter, Linkedin, Github, Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react';
+import { Linkedin, Github, Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react';
 export function Footer() {
   const currentYear = new Date().getFullYear();
   return <footer className="bg-inkblack border-t border-white/10 pt-20 pb-8">
@@ -15,15 +15,6 @@ export function Footer() {
               Innovation meets precision.
             </p>
             <div className="flex flex-wrap gap-3">
-              <a 
-                href="https://twitter.com/oraixen" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-skyblue hover:bg-skyblue/10 hover:border-skyblue/30 transition-all" 
-                aria-label="Twitter"
-              >
-                <Twitter size={18} />
-              </a>
               <a 
                 href="https://linkedin.com/company/oraixen" 
                 target="_blank" 

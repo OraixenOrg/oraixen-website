@@ -19,9 +19,21 @@ export function ProjectDetail() {
   }
   return <div className="pt-20 min-h-screen bg-inkblack">
       {/* Hero */}
-      <div className="relative h-[70vh] w-full overflow-hidden">
-        <img src={project.imageUrl} alt={project.title} className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-inkblack/60 via-inkblack/80 to-inkblack" />
+      <div className={`relative h-[70vh] w-full overflow-hidden ${
+        project.imageFit === 'contain' ? 'bg-white' : 'bg-inkblack'
+      }`}>
+        <div className={`absolute inset-0 ${project.imageFit === 'contain' ? 'flex items-center justify-center bg-white p-12' : ''}`}>
+          <img
+            src={project.imageUrl}
+            alt={project.title}
+            className={
+              project.imageFit === 'contain'
+                ? 'object-contain w-auto h-auto max-h-[50vh] max-w-[85vw] sm:max-w-[500px]'
+                : 'w-full h-full object-cover'
+            }
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-inkblack/60 via-inkblack/80 to-inkblack pointer-events-none" />
 
         <div className="container mx-auto px-4 h-full flex flex-col justify-end pb-20 relative z-10">
           <FadeIn>

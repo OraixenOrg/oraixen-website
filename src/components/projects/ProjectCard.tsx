@@ -17,11 +17,17 @@ export function ProjectCard({
 
   return <Link to={`/projects/${project.slug}`} className="block h-full group">
       <Card interactive className="h-full flex flex-col overflow-hidden">
-        <div className="relative h-64 overflow-hidden bg-gray-800">
+        <div className={`relative h-64 overflow-hidden flex items-center justify-center ${
+          project.imageFit === 'contain' ? 'bg-white p-8' : 'bg-gray-800 p-6'
+        }`}>
           <img
             src={imageError ? FALLBACK_IMAGE : project.imageUrl}
             alt={project.title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            className={`transition-transform duration-700 group-hover:scale-105 ${
+              project.imageFit === 'contain'
+                ? 'object-contain w-full h-full max-h-[200px] max-w-[280px]'
+                : 'w-full h-full object-cover group-hover:scale-110'
+            }`}
             onError={() => setImageError(true)}
             loading="lazy"
           />
