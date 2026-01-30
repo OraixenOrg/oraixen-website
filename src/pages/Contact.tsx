@@ -44,18 +44,6 @@ export function Contact() {
 
                 <Card className="p-6 flex items-start border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02]">
                   <div className="w-12 h-12 rounded-xl bg-skyblue/10 border border-skyblue/20 flex items-center justify-center mr-4 shrink-0">
-                    <Phone className="text-skyblue" size={20} />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-bold mb-2">Call Us</h3>
-                    <p className="text-gray-500 text-xs">
-                      Mon-Fri, 9am - 6pm EST
-                    </p>
-                  </div>
-                </Card>
-
-                <Card className="p-6 flex items-start border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02]">
-                  <div className="w-12 h-12 rounded-xl bg-skyblue/10 border border-skyblue/20 flex items-center justify-center mr-4 shrink-0">
                     <MapPin className="text-skyblue" size={20} />
                   </div>
                   <div>
