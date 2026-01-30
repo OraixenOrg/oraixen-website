@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Linkedin, Github, Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react';
+import { Linkedin, Github, Facebook, Instagram, Mail, MapPin } from 'lucide-react';
 export function Footer() {
   const currentYear = new Date().getFullYear();
   return <footer className="bg-inkblack border-t border-white/10 pt-20 pb-8">
@@ -128,12 +128,6 @@ export function Footer() {
                 <span>
                   Toronto, ON, Canada, Ontario
                 </span>
-              </li>
-              <li className="flex items-center text-gray-400 text-sm">
-                <Phone size={18} className="mr-3 text-skyblue shrink-0" />
-                <a href="tel:+13134820813" className="hover:text-white transition-colors">
-                  +13134820813
-                </a>
               </li>
               <li className="flex items-center text-gray-400 text-sm">
                 <Mail size={18} className="mr-3 text-skyblue shrink-0" />
