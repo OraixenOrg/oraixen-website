@@ -1,0 +1,30 @@
+{
+  "backLink": "Back to projects",
+  "confidential": "Confidential",
+  "confidentialClient": "Confidential Client",
+  "labels": {
+    "client": "Client",
+    "year": "Year",
+    "category": "Category",
+    "techStack": "Tech Stack"
+  },
+  "sections": {
+    "challenge": "The Challenge",
+    "solution": "The Solution",
+    "impact": "The Impact",
+    "keyMetrics": "Key Metrics",
+    "highlights": "Highlights",
+    "availablePlatforms": "Available Platforms"
+  },
+  "platforms": {
+    "website": "Website",
+    "playStore": "Play Store",
+    "appStore": "App Store",
+    "dashboard": "Dashboard"
+  },
+  "cta": {
+    "title": "Want results like these?",
+    "subtitle": "Tell us about your idea and we'll map out how to build it, ship it, and make it count.",
+    "button": "Start a project like this"
+  }
+}

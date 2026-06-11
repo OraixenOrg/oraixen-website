@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "projects": "Projects",
+    "process": "Process",
+    "contact": "Contact"
+  },
+  "cta": {
+    "primary": "Start your project",
+    "secondary": "View our work",
+    "viewAll": "View all projects",
+    "discuss": "Discuss your project",
+    "letsTalk": "Let's talk",
+    "learnMore": "Learn more",
+    "viewProcess": "View full process",
+    "send": "Send message",
+    "sending": "Sending…",
+    "sendAnother": "Send another message",
+    "backHome": "Back to home",
+    "backProjects": "Back to projects",
+    "contactUs": "Contact us",
+    "startSimilar": "Start a project like this"
+  },
+  "lang": {
+    "label": "العربية",
+    "switchAria": "Switch language to Arabic"
+  },
+  "theme": {
+    "toggleAria": "Toggle light / dark mode"
+  },
+  "footer": {
+    "tagline": "Premium technology solutions for forward-thinking businesses. Innovation meets precision.",
+    "companyTitle": "Company",
+    "servicesTitle": "Services",
+    "contactTitle": "Contact",
+    "links": {
+      "about": "About Us",
+      "services": "Services",
+      "projects": "Projects",
+      "process": "Process",
+      "contact": "Contact"
+    },
+    "services": {
+      "mobile": "Mobile Development",
+      "web": "Web Development",
+      "corporate": "Corporate Software",
+      "hardware": "Hardware & AI"
+    },
+    "location": "Toronto, ON, Canada",
+    "email": "support@oraixen.com",
+    "copyright": "© {{year}} Oraixen Inc. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "socialAria": "Oraixen on {{platform}}"
+  }
+}

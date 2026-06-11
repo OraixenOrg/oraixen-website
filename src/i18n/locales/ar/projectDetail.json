@@ -1,0 +1,30 @@
+{
+  "backLink": "العودة إلى المشاريع",
+  "confidential": "سرّي",
+  "confidentialClient": "عميل سرّي",
+  "labels": {
+    "client": "العميل",
+    "year": "السنة",
+    "category": "الفئة",
+    "techStack": "التقنيات المستخدمة"
+  },
+  "sections": {
+    "challenge": "التحدّي",
+    "solution": "الحل",
+    "impact": "الأثر",
+    "keyMetrics": "أبرز الأرقام",
+    "highlights": "أبرز المميّزات",
+    "availablePlatforms": "المنصّات المتاحة"
+  },
+  "platforms": {
+    "website": "الموقع الإلكتروني",
+    "playStore": "متجر بلاي",
+    "appStore": "آب ستور",
+    "dashboard": "لوحة التحكّم"
+  },
+  "cta": {
+    "title": "تريد نتائج مماثلة؟",
+    "subtitle": "أخبرنا عن فكرتك وسنرسم لك كيف نبنيها ونطلقها ونحقّق منها أثراً ملموساً.",
+    "button": "ابدأ مشروعاً مماثلاً"
+  }
+}

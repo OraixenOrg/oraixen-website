@@ -1,4 +1,25 @@
 import { Project } from "../types/project";
+import { projectsAr } from "./projects.ar";
+
+/**
+ * Returns a copy of the project with Arabic copy applied when lang is 'ar'.
+ * Brand name, client, year, tech stack and links are language-neutral and kept as-is.
+ */
+export function localizeProject(p: Project, lang: string): Project {
+  if (!lang || !lang.startsWith("ar")) return p;
+  const ar = projectsAr[p.slug];
+  if (!ar) return p;
+  return {
+    ...p,
+    industry: ar.industry ?? p.industry,
+    description: ar.description ?? p.description,
+    problem: ar.problem ?? p.problem,
+    solution: ar.solution ?? p.solution,
+    impact: ar.impact ?? p.impact,
+    metrics: ar.metrics ?? p.metrics,
+    highlights: ar.highlights ?? p.highlights,
+  };
+}
 
 function createSlug(name: string): string {
   return name

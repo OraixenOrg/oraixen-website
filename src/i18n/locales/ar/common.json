@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "about": "من نحن",
+    "services": "الخدمات",
+    "projects": "أعمالنا",
+    "process": "آلية العمل",
+    "contact": "تواصل معنا"
+  },
+  "cta": {
+    "primary": "ابدأ مشروعك",
+    "secondary": "شاهد أعمالنا",
+    "viewAll": "عرض كل المشاريع",
+    "discuss": "ناقش مشروعك",
+    "letsTalk": "لنتحدّث",
+    "learnMore": "اعرف المزيد",
+    "viewProcess": "اطّلع على آلية العمل",
+    "send": "إرسال الرسالة",
+    "sending": "جارٍ الإرسال…",
+    "sendAnother": "إرسال رسالة أخرى",
+    "backHome": "العودة للرئيسية",
+    "backProjects": "العودة إلى المشاريع",
+    "contactUs": "تواصل معنا",
+    "startSimilar": "ابدأ مشروعاً مماثلاً"
+  },
+  "lang": {
+    "label": "EN",
+    "switchAria": "تغيير اللغة إلى الإنجليزية"
+  },
+  "theme": {
+    "toggleAria": "التبديل بين الوضع الفاتح والداكن"
+  },
+  "footer": {
+    "tagline": "حلول تكنولوجية متميّزة للشركات الطموحة. حيث يلتقي الابتكار بالإتقان.",
+    "companyTitle": "الشركة",
+    "servicesTitle": "الخدمات",
+    "contactTitle": "تواصل",
+    "links": {
+      "about": "من نحن",
+      "services": "الخدمات",
+      "projects": "أعمالنا",
+      "process": "آلية العمل",
+      "contact": "تواصل معنا"
+    },
+    "services": {
+      "mobile": "تطوير تطبيقات الموبايل",
+      "web": "تطوير الويب",
+      "corporate": "برمجيات الشركات",
+      "hardware": "الأجهزة والذكاء الاصطناعي"
+    },
+    "location": "تورنتو، أونتاريو، كندا",
+    "email": "support@oraixen.com",
+    "copyright": "© {{year}} أوريكسن. جميع الحقوق محفوظة.",
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الخدمة",
+    "socialAria": "أوريكسن على {{platform}}"
+  }
+}

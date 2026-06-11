@@ -1,0 +1,68 @@
+{
+  "hero": {
+    "eyebrow": "أعمالنا",
+    "title": "مشاريع مختارة",
+    "subtitle": "منتجات حقيقية ومستخدمون حقيقيون — 28 مشروعاً في التمويل والرعاية الصحية والتعليم والتجزئة وغيرها."
+  },
+  "loading": "جارٍ تحميل المشاريع…",
+  "search": {
+    "placeholder": "ابحث في المشاريع بالاسم أو العميل أو القطاع أو التقنية…",
+    "ariaLabel": "البحث في المشاريع",
+    "clearAria": "مسح البحث"
+  },
+  "filters": {
+    "all": "الكل",
+    "web": "ويب",
+    "mobile": "موبايل",
+    "platform": "منصّات",
+    "clearAll": "مسح كل عوامل التصفية"
+  },
+  "empty": {
+    "title": "لا توجد مشاريع",
+    "withFilters": "لا توجد مشاريع تطابق هذه التصفية بعد.",
+    "noProjects": "لا توجد مشاريع متاحة في الوقت الحالي.",
+    "viewAll": "عرض كل المشاريع"
+  },
+  "pagination": {
+    "page": "صفحة",
+    "of": "من",
+    "previousAria": "الصفحة السابقة",
+    "nextAria": "الصفحة التالية",
+    "navAria": "ترقيم الصفحات",
+    "pageAria": "صفحة {{page}}",
+    "currentPageAria": "صفحة {{page}}، الصفحة الحالية"
+  },
+  "card": {
+    "confidential": "سرّي",
+    "confidentialClient": "عميل سرّي",
+    "more": "+{{count}} المزيد",
+    "ariaLabel": "{{project}} — منتج {{industry}} من أوريكسن",
+    "platforms": {
+      "website": "موقع إلكتروني",
+      "playStore": "متجر بلاي",
+      "appStore": "آب ستور",
+      "dashboard": "لوحة تحكم"
+    }
+  },
+  "industries": {
+    "eyebrow": "لمن نبني",
+    "title": "موثوقون عبر القطاعات.",
+    "subtitle": "28 منتجاً تم إطلاقها عبر 15 قطاعاً — من التقنية المالية والرعاية الصحية إلى التجارة الإلكترونية والتعليم.",
+    "projectOne": "مشروع واحد",
+    "projectTwo": "مشروعان",
+    "projectOther": "{{count}} مشاريع",
+    "items": [
+      { "key": "education", "name": "التعليم", "count": 2 },
+      { "key": "ecommerce", "name": "التجارة الإلكترونية", "count": 7 },
+      { "key": "finance", "name": "التقنية المالية", "count": 1 },
+      { "key": "food", "name": "الأطعمة والتوصيل", "count": 3 },
+      { "key": "healthcare", "name": "الرعاية الصحية", "count": 1 },
+      { "key": "jobs", "name": "التوظيف", "count": 1 },
+      { "key": "legal", "name": "القانون", "count": 1 },
+      { "key": "utilities", "name": "المرافق", "count": 1 }
+    ]
+  },
+  "related": {
+    "title": "مشاريع ذات صلة"
+  }
+}

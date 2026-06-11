@@ -1,0 +1,129 @@
+{
+  "hero": {
+    "eyebrow": "How we work",
+    "title": "Our Process",
+    "subtitle": "Five steps and weekly demos — so you always know what we're building and why."
+  },
+  "steps": {
+    "items": [
+      {
+        "number": "01",
+        "title": "Discovery & Strategy",
+        "description": "We begin by understanding your business goals, audience, and technical requirements — then define the scope, timeline, and success metrics together.",
+        "items": ["Requirements Gathering", "Market Research", "Technical Feasibility", "Project Roadmap"]
+      },
+      {
+        "number": "02",
+        "title": "Design & Prototyping",
+        "description": "Our designers craft intuitive, high-fidelity prototypes — focused on a user experience that is both functional and beautiful.",
+        "items": ["Wireframing", "UI/UX Design", "Interactive Prototypes", "Design System"]
+      },
+      {
+        "number": "03",
+        "title": "Development",
+        "description": "We build your product with modern, scalable technology and an agile rhythm of weekly progress you can see and steer.",
+        "items": ["Frontend & Backend", "API Integration", "Database Design", "Code Reviews"]
+      },
+      {
+        "number": "04",
+        "title": "Quality Assurance",
+        "description": "A documented QA process — automated and manual testing across devices — to minimize defects and ensure a stable, reliable release.",
+        "items": ["Automated Testing", "Manual Testing", "Security Audits", "Performance Tuning"]
+      },
+      {
+        "number": "05",
+        "title": "Launch & Support",
+        "description": "We handle deployment and stay with you afterward — monitoring, maintenance, and a post-launch support window on every release.",
+        "items": ["Deployment", "Monitoring", "Maintenance", "Feature Updates"]
+      }
+    ]
+  },
+  "why": {
+    "eyebrow": "Why Oraixen",
+    "title": "Why Choose Oraixen",
+    "subtitle": "Our commitment to your success goes beyond delivery.",
+    "cards": [
+      {
+        "title": "Transparent Communication",
+        "desc": "Weekly sprints, live demos, and a dedicated channel — no surprises."
+      },
+      {
+        "title": "Reliability You Can Count On",
+        "desc": "A documented QA process, automated and manual testing, and a post-launch support window on every release."
+      },
+      {
+        "title": "Long-term Support",
+        "desc": "Flexible maintenance plans that grow with your product."
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Answers",
+    "title": "Questions, answered.",
+    "subtitle": "The things clients ask before we start. If yours isn't here, just ask.",
+    "items": [
+      {
+        "q": "How do you price a project, and what does it cost?",
+        "a": "Most engagements start around $10k for a focused build and scale with complexity; larger platforms run $50k–$100k+. We price per fixed scope or as a monthly dedicated team after a short discovery call — you'll always see a clear estimate before any commitment."
+      },
+      {
+        "q": "How long does a project take?",
+        "a": "Most mobile apps ship in 3–6 months; web platforms in 2–5 months; large corporate or hardware+AI systems in 6–18 months. We commit to a roadmap with milestones up front and demo progress weekly."
+      },
+      {
+        "q": "Who owns the code and the IP?",
+        "a": "You do — 100%. Full source code and IP rights transfer to you on final delivery and payment. No lock-in, no hidden licensing."
+      },
+      {
+        "q": "What happens after launch?",
+        "a": "Every release ships with a documented QA process and a post-launch support window to fix any defects we find together. After that, you can continue with a flexible Maintenance & Support retainer."
+      },
+      {
+        "q": "How do you communicate during the project?",
+        "a": "A dedicated channel, a single point of contact, weekly demos of working software, and shared access to the roadmap and progress board. You're never guessing where your project stands."
+      },
+      {
+        "q": "Where is your team based, and how do timezones work?",
+        "a": "We're headquartered in Toronto, Canada, with a strong delivery team across Egypt and the MENA region — overlapping working hours with North America and Europe."
+      },
+      {
+        "q": "Do you sign NDAs and keep projects confidential?",
+        "a": "Yes. We sign an NDA before any detailed discussion, and we can keep client names, brands, and details fully private — several of our builds are confidential by request."
+      },
+      {
+        "q": "Can you work with our existing team or codebase?",
+        "a": "Absolutely. We can join as a dedicated squad building alongside you, augment your team with specific engineers, or take ownership of an existing codebase after a technical audit."
+      }
+    ],
+    "stillHaveQuestion": "Still have a question? Let's talk"
+  },
+  "trust": {
+    "eyebrow": "Security & ownership",
+    "title": "Built on trust and security.",
+    "subtitle": "The safeguards a serious software partner puts in writing — ownership, confidentiality, support, and a secure way of building.",
+    "items": [
+      {
+        "title": "Code & IP ownership",
+        "desc": "You own 100% of the code & IP — full transfer on final payment."
+      },
+      {
+        "title": "NDA & confidentiality",
+        "desc": "NDA on request before any detailed discussion; projects kept private when needed."
+      },
+      {
+        "title": "Support SLA",
+        "desc": "We reply within one business day, and ship a post-launch support window on every release."
+      },
+      {
+        "title": "Security practices",
+        "desc": "Secure SDLC: code reviews, automated and manual QA, and security audits on every build."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready when you are.",
+    "subtitle": "Tell us about your project — we'll reply within one business day with a clear next step.",
+    "primary": "Start your project",
+    "secondary": "View our work"
+  }
+}

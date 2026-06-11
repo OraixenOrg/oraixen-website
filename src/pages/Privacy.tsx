@@ -1,47 +1,69 @@
 import React from 'react';
+import { ShieldCheck } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Section } from '../components/Section';
+import { AuroraBackground, Reveal } from '../components/visual';
+import { Eyebrow } from '../components/ui';
+
+interface LegalSection {
+  heading: string;
+  body: string;
+}
+
 export function Privacy() {
-  return <div className="pt-20 min-h-screen bg-inkblack">
-      <Section>
-        <div className="max-w-3xl mx-auto prose prose-invert">
-          <h1 className="text-4xl font-bold text-white mb-8">Privacy Policy</h1>
-          <p className="text-gray-400 mb-6">Last updated: October 2023</p>
+  const { t } = useTranslation('legal');
+  const sections = t('privacy.sections', { returnObjects: true }) as LegalSection[];
 
-          <h2 className="text-2xl font-bold text-white mt-8 mb-4">
-            1. Introduction
-          </h2>
-          <p className="text-gray-400 mb-4">
-            Oraixen ("we", "our", or "us") is committed to protecting your
-            privacy. This Privacy Policy explains how we collect, use, disclose,
-            and safeguard your information when you visit our website.
-          </p>
+  return (
+    <div className="min-h-screen bg-surface">
+      <div className="relative overflow-hidden">
+        <AuroraBackground intensity="subtle" />
+        <Section>
+          <article className="relative z-10 max-w-3xl mx-auto">
+            <Reveal>
+              <Eyebrow>
+                <ShieldCheck className="w-4 h-4" />
+                {t('privacy.eyebrow')}
+              </Eyebrow>
 
-          <h2 className="text-2xl font-bold text-white mt-8 mb-4">
-            2. Information We Collect
-          </h2>
-          <p className="text-gray-400 mb-4">
-            We may collect personal information that you voluntarily provide to
-            us when you express an interest in obtaining information about us or
-            our products and services, when you participate in activities on the
-            website, or otherwise when you contact us.
-          </p>
+              <h1 className="mt-6 text-4xl md:text-5xl font-bold text-ink">
+                {t('privacy.title')}
+              </h1>
 
-          <h2 className="text-2xl font-bold text-white mt-8 mb-4">
-            3. How We Use Your Information
-          </h2>
-          <p className="text-gray-400 mb-4">
-            We use personal information collected via our website for a variety
-            of business purposes described below:
-          </p>
-          <ul className="list-disc pl-6 text-gray-400 mb-4 space-y-2">
-            <li>To send you administrative information.</li>
-            <li>
-              To respond to your inquiries and solve any potential issues you
-              might have with the use of our services.
-            </li>
-            <li>To send you marketing and promotional communications.</li>
-          </ul>
-        </div>
-      </Section>
-    </div>;
+              <p className="mt-4 text-muted text-sm">
+                {t('lastUpdatedLabel')}: {t('lastUpdated')}
+              </p>
+
+              <p className="mt-3 inline-flex items-center px-3 py-1.5 rounded-lg bg-amber-50 text-amber-700 border border-amber-200 text-xs font-medium">
+                {t('counselNote')}
+              </p>
+
+              {/* TL;DR card */}
+              <div className="mt-8 rounded-2xl bg-surface-muted border border-line p-6">
+                <p className="text-sm font-semibold text-teal mb-2">
+                  {t('tldrLabel')}
+                </p>
+                <p className="text-body leading-relaxed">
+                  {t('privacy.tldr')}
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="mt-10 prose max-w-none">
+              {sections.map((section, index) => (
+                <Reveal key={index} delay={0.04 * index}>
+                  <h2 className="text-2xl font-bold text-ink mt-10 mb-4">
+                    {index + 1}. {section.heading}
+                  </h2>
+                  <p className="text-body leading-relaxed mb-4 whitespace-pre-line">
+                    {section.body}
+                  </p>
+                </Reveal>
+              ))}
+            </div>
+          </article>
+        </Section>
+      </div>
+    </div>
+  );
 }

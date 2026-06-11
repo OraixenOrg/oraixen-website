@@ -1,0 +1,119 @@
+{
+  "hero": {
+    "eyebrow": "Premium Technology Solutions",
+    "headlineLead": "Innovation meets",
+    "headlineHighlight": "Precision",
+    "subhead": "We build premium digital products — mobile apps, web platforms, and AI-powered systems — for teams that refuse to ship anything ordinary.",
+    "ctaPrimary": "Start your project",
+    "ctaSecondary": "View our work",
+    "caption": "Toronto HQ · delivery across the MENA region"
+  },
+  "stats": {
+    "items": [
+      { "value": "Since 2014", "label": "Building since" },
+      { "value": "28+", "label": "Projects Delivered" },
+      { "value": "15", "label": "Industries Served" },
+      { "value": "iOS · Android · Web", "label": "Platforms we ship" }
+    ]
+  },
+  "logos": {
+    "eyebrow": "Teams we've built for",
+    "caption": "Trusted across 15 industries and 28+ shipped products",
+    "items": ["Zewail City", "Order FS", "DU V DU", "Waffar Cash", "M6lob", "Alkanz"]
+  },
+  "services": {
+    "eyebrow": "What we do",
+    "title": "Four ways we ship",
+    "subtitle": "End-to-end technology, delivered as outcomes — not just features.",
+    "learnMore": "Learn more",
+    "items": [
+      {
+        "title": "Mobile App Development",
+        "desc": "iOS & Android apps your users actually keep — built native, tuned for speed."
+      },
+      {
+        "title": "Web Development",
+        "desc": "Fast, scalable web platforms that hold up when traffic spikes."
+      },
+      {
+        "title": "Corporate Software",
+        "desc": "ERP, CRM and dashboards that replace spreadsheets and manual chaos."
+      },
+      {
+        "title": "Hardware & AI",
+        "tag": "Emerging / R&D",
+        "desc": "IoT devices and AI that turn physical operations into live data."
+      }
+    ]
+  },
+  "featured": {
+    "eyebrow": "Selected work",
+    "title": "Products, not slideshows",
+    "subtitle": "Three builds we're proud of — each one live, each one used daily.",
+    "viewAll": "View all projects"
+  },
+  "testimonials": {
+    "eyebrow": "What partners say",
+    "title": "Built for teams that ship",
+    "subtitle": "Placeholder quotes anchored to real projects — final testimonials are being collected before launch.",
+    "placeholderBadge": "Placeholder — to be confirmed",
+    "items": [
+      {
+        "quote": "Oraixen shipped our customer apps, restaurant dashboard, and order system as one tight platform — we now handle 500k+ orders without breaking a sweat, and they delivered on the date they promised.",
+        "name": "[Name]",
+        "role": "Operations Lead",
+        "company": "Order FS"
+      },
+      {
+        "quote": "They rebuilt our entire academic platform and made 10,000+ students' and faculty's daily lives easier. Calm, precise, on time.",
+        "name": "[Name]",
+        "role": "IT Director",
+        "company": "Zewail City"
+      },
+      {
+        "quote": "From idea to 120k+ users and 1M+ transactions, Oraixen handled the hard fintech parts — secure payments, rewards, and scale — so we could focus on growth.",
+        "name": "[Name]",
+        "role": "Founder & CEO",
+        "company": "Waffar Cash"
+      }
+    ]
+  },
+  "process": {
+    "eyebrow": "How we work",
+    "title": "A path, not a black box",
+    "subtitle": "Five steps, weekly demos, and full transparency from kickoff to launch.",
+    "steps": [
+      "Discovery",
+      "Design",
+      "Development",
+      "QA",
+      "Launch & Support"
+    ],
+    "cta": "View full process",
+    "card": {
+      "items": [
+        {
+          "num": "1",
+          "title": "Discovery",
+          "desc": "We dive deep into your business goals and technical requirements."
+        },
+        {
+          "num": "2",
+          "title": "Execution",
+          "desc": "Agile development with weekly demos and full transparency."
+        },
+        {
+          "num": "3",
+          "title": "Launch & Support",
+          "desc": "A flawless launch with clear documentation and ongoing support."
+        }
+      ]
+    }
+  },
+  "cta": {
+    "title": "Have a project worth doing right?",
+    "subtitle": "Tell us what you're building. We'll tell you how we'd ship it.",
+    "primary": "Start your project",
+    "secondary": "View our work"
+  }
+}

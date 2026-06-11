@@ -1,0 +1,68 @@
+{
+  "hero": {
+    "eyebrow": "Our work",
+    "title": "Selected Projects",
+    "subtitle": "Real products, real users — 28 builds across finance, healthcare, education, retail and more."
+  },
+  "loading": "Loading projects…",
+  "search": {
+    "placeholder": "Search projects by name, client, industry, or technology…",
+    "ariaLabel": "Search projects",
+    "clearAria": "Clear search"
+  },
+  "filters": {
+    "all": "All",
+    "web": "Web",
+    "mobile": "Mobile",
+    "platform": "Platform",
+    "clearAll": "Clear all filters"
+  },
+  "empty": {
+    "title": "No projects found",
+    "withFilters": "No projects match this filter yet.",
+    "noProjects": "No projects available at the moment.",
+    "viewAll": "View all projects"
+  },
+  "pagination": {
+    "page": "Page",
+    "of": "of",
+    "previousAria": "Previous page",
+    "nextAria": "Next page",
+    "navAria": "Pagination",
+    "pageAria": "Page {{page}}",
+    "currentPageAria": "Page {{page}}, current page"
+  },
+  "card": {
+    "confidential": "Confidential",
+    "confidentialClient": "Confidential Client",
+    "more": "+{{count}} more",
+    "ariaLabel": "{{project}} — {{industry}} product by Oraixen",
+    "platforms": {
+      "website": "Website",
+      "playStore": "Play Store",
+      "appStore": "App Store",
+      "dashboard": "Dashboard"
+    }
+  },
+  "industries": {
+    "eyebrow": "Who we build for",
+    "title": "Trusted across industries.",
+    "subtitle": "28 products shipped across 15 industries — from fintech and healthcare to e-commerce and education.",
+    "projectOne": "{{count}} project",
+    "projectTwo": "{{count}} projects",
+    "projectOther": "{{count}} projects",
+    "items": [
+      { "key": "education", "name": "Education", "count": 2 },
+      { "key": "ecommerce", "name": "E-commerce", "count": 7 },
+      { "key": "finance", "name": "Fintech", "count": 1 },
+      { "key": "food", "name": "Food & Logistics", "count": 3 },
+      { "key": "healthcare", "name": "Healthcare", "count": 1 },
+      { "key": "jobs", "name": "Jobs", "count": 1 },
+      { "key": "legal", "name": "Legal", "count": 1 },
+      { "key": "utilities", "name": "Utilities", "count": 1 }
+    ]
+  },
+  "related": {
+    "title": "Related Projects"
+  }
+}

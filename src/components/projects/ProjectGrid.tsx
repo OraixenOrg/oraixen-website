@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Project } from '../../types/project';
 import { ProjectCard } from './ProjectCard';
 import { Stagger } from '../Stagger';
@@ -16,18 +17,24 @@ export function ProjectGrid({
   projects,
   itemsPerPage = 9
 }: ProjectGridProps) {
+  const { t } = useTranslation('projects');
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
-  
+
   // Dynamically get categories that have projects
   const availableCategories = useMemo(() => {
     const categorySet = new Set(projects.map(p => p.category));
     return ['All', ...Array.from(categorySet).sort()];
   }, [projects]);
-  
+
+  // Localized label for a category value coming from the data ('All' | 'Web' | 'Mobile' | 'Platform')
+  const categoryLabel = useCallback((category: string) => {
+    return t(`filters.${category.toLowerCase()}`, { defaultValue: category });
+  }, [t]);
+
   const currentFilter = searchParams.get('filter') || 'All';
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
-  
+
   // Update URL when filter or page changes
   const updateURL = useCallback((filter: string, page: number, search: string) => {
     const params = new URLSearchParams();
@@ -36,7 +43,7 @@ export function ProjectGrid({
     if (search) params.set('search', search);
     setSearchParams(params, { replace: true });
   }, [setSearchParams]);
-  
+
   // Validate current filter - reset to All if invalid
   useEffect(() => {
     if (currentFilter !== 'All' && !availableCategories.includes(currentFilter)) {
@@ -112,21 +119,21 @@ export function ProjectGrid({
       {/* Search Bar */}
       <div className="max-w-2xl mx-auto">
         <div className="relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+          <Search className="absolute start-4 top-1/2 -translate-y-1/2 text-faint" size={20} />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => handleSearchChange(e.target.value)}
-            placeholder="Search projects by name, client, industry, or technology..."
-            className="w-full pl-12 pr-12 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-skyblue/50 focus:border-skyblue/50 transition-all"
-            aria-label="Search projects"
+            placeholder={t('search.placeholder')}
+            className="w-full ps-12 pe-12 py-4 bg-card border border-line rounded-xl text-ink placeholder:text-faint focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all"
+            aria-label={t('search.ariaLabel')}
             autoComplete="off"
           />
           {searchQuery && (
             <button
               onClick={handleClearSearch}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
-              aria-label="Clear search"
+              className="absolute end-4 top-1/2 -translate-y-1/2 text-faint hover:text-teal transition-colors"
+              aria-label={t('search.clearAria')}
             >
               <X size={20} />
             </button>
@@ -141,18 +148,18 @@ export function ProjectGrid({
             key={category}
             onClick={() => handleFilterChange(category)}
             className={`
-              px-6 py-2 rounded-full text-sm font-medium transition-all duration-300
+              px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 border
               ${currentFilter === category
-                ? 'bg-skyblue text-inkblack shadow-[0_0_15px_rgba(86,201,227,0.3)]'
-                : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
+                ? 'bg-teal text-onaccent border-teal shadow-glow'
+                : 'bg-card text-body border-line hover:border-teal/40 hover:text-teal'
               }
             `}
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >
-            {category}
+            {categoryLabel(category)}
             {category !== 'All' && (
-              <span className="ml-2 text-xs opacity-75">
+              <span className="ms-2 text-xs opacity-75">
                 ({projects.filter(p => p.category === category).length})
               </span>
             )}
@@ -168,9 +175,9 @@ export function ProjectGrid({
               setSearchQuery('');
               updateURL('All', 1, '');
             }}
-            className="text-sm text-skyblue hover:text-white hover:underline transition-colors"
+            className="text-sm text-teal hover:text-teal-light hover:underline transition-colors"
           >
-            Clear all filters
+            {t('filters.clearAll')}
           </button>
         </div>
       )}
@@ -209,11 +216,11 @@ export function ProjectGrid({
         <div className="text-center py-20">
           <div className="max-w-md mx-auto">
             <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-2xl font-bold text-white mb-2">No projects found</h3>
-            <p className="text-gray-400 mb-6">
+            <h3 className="text-2xl font-bold text-ink mb-2">{t('empty.title')}</h3>
+            <p className="text-body mb-6">
               {searchQuery || currentFilter !== 'All'
-                ? 'Try adjusting your search or filter criteria.'
-                : 'No projects available at the moment.'}
+                ? t('empty.withFilters')
+                : t('empty.noProjects')}
             </p>
             {(searchQuery || currentFilter !== 'All') && (
               <button
@@ -221,9 +228,9 @@ export function ProjectGrid({
                   setSearchQuery('');
                   updateURL('All', 1, '');
                 }}
-                className="px-6 py-3 bg-skyblue text-inkblack rounded-lg font-medium hover:bg-skyblue/90 transition-colors"
+                className="px-6 py-3 bg-teal text-onaccent rounded-lg font-semibold hover:bg-teal-light transition-colors"
               >
-                Clear all filters
+                {t('filters.clearAll')}
               </button>
             )}
           </div>

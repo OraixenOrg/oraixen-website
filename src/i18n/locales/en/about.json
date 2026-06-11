@@ -1,0 +1,89 @@
+{
+  "hero": {
+    "eyebrow": "About Oraixen",
+    "title": "We don't just write code. We engineer products that ship.",
+    "subtitle": "Oraixen is a premium software studio: 28 shipped products across 15 industries, from Toronto to the MENA region."
+  },
+  "story": {
+    "eyebrow": "Our story",
+    "title": "A name built on intent",
+    "p1": {
+      "before": "",
+      "ora": "\"Ora\"",
+      "after": " means a new beginning — a renewed direction toward an elevated technological future."
+    },
+    "p2": {
+      "before": "",
+      "ixen": "\"IXEN\"",
+      "after": " blends Next and Innovation: premium at its core, immaculate in execution, crafted for those who seek distinction."
+    },
+    "p3": "That's the standard we hold every build to — clarity over noise, craft over shortcuts, and a finished product our clients are proud to put their name on.",
+    "imageAlt": "The Oraixen team collaborating in the studio"
+  },
+  "timeline": {
+    "eyebrow": "The journey",
+    "title": "Milestones that shaped us",
+    "subtitle": "From a Toronto studio in 2014 to 28+ products delivered across 15 industries.",
+    "items": [
+      { "year": "2014", "label": "Founded in Toronto" },
+      { "year": "2018", "label": "First mobile product shipped" },
+      { "year": "2022", "label": "Multi-platform era — web, mobile and dashboards" },
+      { "year": "Today", "label": "28+ projects delivered across 15 industries" }
+    ]
+  },
+  "foundation": {
+    "eyebrow": "Our foundation",
+    "title": "Our Foundation",
+    "subtitle": "The principles that drive everything we do.",
+    "items": [
+      {
+        "title": "Mission",
+        "text": "Deliver innovative, high-quality software — crafted with precision, tailored to each client's vision, and delivered on time with full transparency."
+      },
+      {
+        "title": "Vision",
+        "text": "To become one of the region's leading technology companies — known for future-ready, reliable, high-impact software, hardware and AI."
+      },
+      {
+        "title": "Purpose",
+        "text": "Empower businesses with premium, scalable digital products that create real impact and lasting success."
+      }
+    ]
+  },
+  "values": {
+    "eyebrow": "How we operate",
+    "title": "Our Core Values",
+    "subtitle": "The principles that guide every line of code we write.",
+    "items": [
+      {
+        "title": "Innovation",
+        "desc": "We pursue better solutions, not just newer tools."
+      },
+      {
+        "title": "Integrity",
+        "desc": "We do what we said we'd do — and tell you early when plans change."
+      },
+      {
+        "title": "Collaboration",
+        "desc": "We work as your extended team, not a distant vendor."
+      },
+      {
+        "title": "Reliability",
+        "desc": "We ship stable releases and stand behind them."
+      },
+      {
+        "title": "Excellence",
+        "desc": "Good enough is never the brief."
+      },
+      {
+        "title": "Continuous Improvement",
+        "desc": "Every release teaches us something the next one uses."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Want to see how we work?",
+    "primary": "Start your project",
+    "secondary": "View our work"
+  }
+}
