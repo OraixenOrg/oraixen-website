@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Linkedin, Github, Facebook, Instagram, Mail, MapPin } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Logo } from './Logo';
 
 const socials = [
   { key: 'LinkedIn', href: 'https://linkedin.com/company/oraixen', Icon: Linkedin },
@@ -19,8 +20,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand Column */}
           <div>
-            <Link to="/" className="text-2xl font-bold tracking-tighter text-ink mb-6 block hover:text-teal transition-colors">
-              ORAIXEN
+            <Link to="/" className="inline-block mb-6 hover:opacity-80 transition-opacity" aria-label="Oraixen">
+              <Logo className="h-8 w-auto text-teal" />
             </Link>
             <p className="text-body mb-8 max-w-xs leading-relaxed">
               {t('footer.tagline')}

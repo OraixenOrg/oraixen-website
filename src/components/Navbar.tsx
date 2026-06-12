@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Button } from './Button';
+import { Logo } from './Logo';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { m, AnimatePresence } from 'framer-motion';
@@ -87,11 +88,7 @@ export function Navbar() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="z-50 hover:opacity-80 transition-opacity" aria-label={t('nav.home')}>
-          <img
-            src="/logo.svg"
-            alt="Oraixen"
-            className="h-9 md:h-10 w-auto object-contain scale-[3.5] md:scale-[4.5] ps-[8px] md:ps-[13px]"
-          />
+          <Logo className="h-7 md:h-8 w-auto text-teal" />
         </Link>
 
         {/* Desktop Navigation */}
