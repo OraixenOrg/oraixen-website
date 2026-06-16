@@ -76,7 +76,8 @@ i18n
     defaultNS: 'common',
     interpolation: { escapeValue: false },
     detection: {
-      order: ['localStorage', 'navigator', 'htmlTag'],
+      // Default to English on first visit (no 'navigator'); only a stored choice overrides it.
+      order: ['localStorage', 'htmlTag'],
       lookupLocalStorage: 'oraixen_lang',
       caches: ['localStorage'],
     },

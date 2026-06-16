@@ -8,10 +8,8 @@ export function getStoredTheme(): Theme | null {
 }
 
 export function getInitialTheme(): Theme {
-  return (
-    getStoredTheme() ??
-    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-  );
+  // Default to light on first visit; only an explicit choice (stored) overrides it.
+  return getStoredTheme() ?? 'light';
 }
 
 export function applyTheme(theme: Theme): void {
