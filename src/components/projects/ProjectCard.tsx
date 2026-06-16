@@ -20,12 +20,15 @@ export function ProjectCard({
 
   const project = localizeProject(rawProject, i18n.language);
 
-  return <Link
-      to={`/projects/${project.slug}`}
-      className="block h-full group"
-      aria-label={t('card.ariaLabel', { project: project.title, industry: project.industry })}
-    >
-      <Card interactive className="h-full flex flex-col overflow-hidden">
+  return (
+    <Card interactive className="group relative h-full flex flex-col overflow-hidden">
+      {/* Stretched navigation link — covers the whole card without nesting <a> inside <a>.
+          Interactive children (platform links) sit above it via a higher z-index. */}
+      <Link
+        to={`/projects/${project.slug}`}
+        className="absolute inset-0 z-[1]"
+        aria-label={t('card.ariaLabel', { project: project.title, industry: project.industry })}
+      />
         <div className={`relative h-64 overflow-hidden flex items-center justify-center border-b border-line ${
           project.imageFit === 'contain' ? 'bg-white p-8' : 'bg-surface-subtle p-6'
         }`}>
@@ -41,7 +44,7 @@ export function ProjectCard({
             loading="lazy"
           />
 
-          <div className="absolute top-4 start-4 flex gap-2 z-10">
+          <div className="absolute top-4 start-4 flex gap-2 z-10 pointer-events-none">
             <span className="px-3 py-1.5 text-xs font-semibold bg-card/90 text-ink backdrop-blur-md rounded-full border border-line">
               {project.industry}
             </span>
@@ -74,7 +77,7 @@ export function ProjectCard({
           </p>
 
           {project.platforms && (project.platforms.website || project.platforms.playStore || project.platforms.appStore || project.platforms.dashboard) && (
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="relative z-10 flex flex-wrap gap-2 mb-4">
               {project.platforms.website && (
                 <a
                   href={project.platforms.website}
@@ -136,5 +139,5 @@ export function ProjectCard({
           </div>
         </div>
       </Card>
-    </Link>;
+  );
 }
