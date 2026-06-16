@@ -18,6 +18,9 @@ import {
 } from '../components/visual';
 import { SectionHeading, CTASection } from '../components/ui';
 import { m } from 'framer-motion';
+import statsData from '../data/stats.json';
+import clientsData from '../data/clients.json';
+import testimonialsData from '../data/testimonials.json';
 
 const serviceIcons = [
   <Smartphone className="text-teal" size={26} />,
@@ -29,12 +32,14 @@ const serviceIcons = [
 const whyIcons = [Code2, Layers, Workflow, Target, Globe, LifeBuoy];
 
 export function Home() {
-  const { t } = useTranslation('home');
+  const { t, i18n } = useTranslation('home');
+  const lang = i18n.language?.startsWith('ar') ? 'ar' : 'en';
 
-  const stats = t('stats.items', { returnObjects: true }) as Array<{ value: string; label: string }>;
-  const logos = t('logos.items', { returnObjects: true }) as string[];
+  // Business data lives in src/data/*.json (easy to edit, bilingual). UI copy stays in i18n.
+  const stats = statsData[lang] as Array<{ value: string; label: string }>;
+  const logos = clientsData[lang] as string[];
+  const testimonials = testimonialsData[lang] as Array<{ quote: string; name: string; role: string; company: string }>;
   const services = t('services.items', { returnObjects: true }) as Array<{ title: string; desc: string; tag?: string }>;
-  const testimonials = t('testimonials.items', { returnObjects: true }) as Array<{ quote: string; name: string; role: string; company: string }>;
   const processSteps = t('process.steps', { returnObjects: true }) as string[];
   const processCard = t('process.card.items', { returnObjects: true }) as Array<{ num: string; title: string; desc: string }>;
   const whyChoose = t('whyChoose.items', { returnObjects: true }) as Array<{ title: string; desc: string }>;

@@ -2,16 +2,19 @@ import { Link } from 'react-router-dom';
 import { Linkedin, Github, Facebook, Instagram, Mail, MapPin } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Logo } from './Logo';
+import company from '../data/company.json';
 
+// Contact details and social links come from src/data/company.json (easy to edit).
 const socials = [
-  { key: 'LinkedIn', href: 'https://linkedin.com/company/oraixen', Icon: Linkedin },
-  { key: 'GitHub', href: 'https://github.com/oraixen', Icon: Github },
-  { key: 'Facebook', href: 'https://facebook.com/oraixen', Icon: Facebook },
-  { key: 'Instagram', href: 'https://instagram.com/oraixen', Icon: Instagram },
+  { key: 'LinkedIn', href: company.social.linkedin, Icon: Linkedin },
+  { key: 'GitHub', href: company.social.github, Icon: Github },
+  { key: 'Facebook', href: company.social.facebook, Icon: Facebook },
+  { key: 'Instagram', href: company.social.instagram, Icon: Instagram },
 ];
 
 export function Footer() {
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
+  const lang = i18n.language?.startsWith('ar') ? 'ar' : 'en';
   const currentYear = new Date().getFullYear();
 
   return (
@@ -77,12 +80,12 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start text-body text-sm">
                 <MapPin size={18} className="me-3 mt-0.5 text-teal shrink-0" />
-                <span>{t('footer.location')}</span>
+                <span>{company.location[lang]}</span>
               </li>
               <li className="flex items-center text-body text-sm">
                 <Mail size={18} className="me-3 text-teal shrink-0" />
-                <a href="mailto:support@oraixen.com" className="hover:text-ink transition-colors">
-                  {t('footer.email')}
+                <a href={`mailto:${company.email}`} className="hover:text-ink transition-colors" dir="ltr">
+                  {company.email}
                 </a>
               </li>
             </ul>

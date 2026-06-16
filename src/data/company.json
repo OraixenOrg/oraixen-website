@@ -1,0 +1,15 @@
+{
+  "_comment": "Company contact details used in the Footer and Contact page. Update these with your real info. NOTE: the structured data in index.html (the <script type=application/ld+json> blocks) and the social links there must be updated by hand to match — that file is static HTML and cannot read this JSON.",
+  "email": "support@oraixen.com",
+  "phone": "+1-313-482-0813",
+  "location": {
+    "en": "Toronto, ON, Canada",
+    "ar": "تورنتو، أونتاريو، صكندا"
+  },
+  "social": {
+    "linkedin": "https://linkedin.com/company/oraixen",
+    "github": "https://github.com/oraixen",
+    "facebook": "https://facebook.com/oraixen",
+    "instagram": "https://instagram.com/oraixen"
+  }
+}

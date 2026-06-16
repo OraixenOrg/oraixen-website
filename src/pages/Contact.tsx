@@ -7,9 +7,11 @@ import { AuroraBackground, FloatingShapes, SpotlightCard, Reveal } from '../comp
 import { Eyebrow } from '../components/ui';
 import { Seo } from '../components/Seo';
 import { Mail, MapPin, Phone, CheckCircle } from 'lucide-react';
+import company from '../data/company.json';
 
 export function Contact() {
-  const { t } = useTranslation('contact');
+  const { t, i18n } = useTranslation('contact');
+  const lang = i18n.language?.startsWith('ar') ? 'ar' : 'en';
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const handleSubmit = (e: FormEvent) => {
@@ -22,9 +24,9 @@ export function Contact() {
   };
 
   const infoCards = [
-    { icon: Mail, title: t('info.email.label'), value: 'support@oraixen.com', ltr: true },
-    { icon: Phone, title: t('info.phone.label'), value: '+1-313-482-0813', ltr: true },
-    { icon: MapPin, title: t('info.location.label'), value: t('info.location.value'), ltr: false },
+    { icon: Mail, title: t('info.email.label'), value: company.email, ltr: true },
+    { icon: Phone, title: t('info.phone.label'), value: company.phone, ltr: true },
+    { icon: MapPin, title: t('info.location.label'), value: company.location[lang], ltr: false },
   ];
 
   const steps = t('next.steps', { returnObjects: true }) as string[];

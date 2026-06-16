@@ -12,18 +12,9 @@
     "ctaSecondary": "View our work",
     "caption": "Toronto HQ · delivery across the MENA region"
   },
-  "stats": {
-    "items": [
-      { "value": "Since 2014", "label": "Building since" },
-      { "value": "28+", "label": "Projects Delivered" },
-      { "value": "15", "label": "Industries Served" },
-      { "value": "iOS · Android · Web", "label": "Platforms we ship" }
-    ]
-  },
   "logos": {
     "eyebrow": "Teams we've built for",
-    "caption": "Trusted across 15 industries and 28+ shipped products",
-    "items": ["Zewail City", "Order FS", "DU V DU", "Waffar Cash", "M6lob", "Alkanz"]
+    "caption": "Trusted across 15 industries and 28+ shipped products"
   },
   "services": {
     "eyebrow": "What we do",
@@ -91,27 +82,7 @@
     "eyebrow": "What partners say",
     "title": "Built for teams that ship",
     "subtitle": "Placeholder quotes anchored to real projects — final testimonials are being collected before launch.",
-    "placeholderBadge": "Placeholder — to be confirmed",
-    "items": [
-      {
-        "quote": "Oraixen shipped our customer apps, restaurant dashboard, and order system as one tight platform — we now handle 500k+ orders without breaking a sweat, and they delivered on the date they promised.",
-        "name": "[Name]",
-        "role": "Operations Lead",
-        "company": "Order FS"
-      },
-      {
-        "quote": "They rebuilt our entire academic platform and made 10,000+ students' and faculty's daily lives easier. Calm, precise, on time.",
-        "name": "[Name]",
-        "role": "IT Director",
-        "company": "Zewail City"
-      },
-      {
-        "quote": "From idea to 120k+ users and 1M+ transactions, Oraixen handled the hard fintech parts — secure payments, rewards, and scale — so we could focus on growth.",
-        "name": "[Name]",
-        "role": "Founder & CEO",
-        "company": "Waffar Cash"
-      }
-    ]
+    "placeholderBadge": "Placeholder — to be confirmed"
   },
   "process": {
     "eyebrow": "How we work",
