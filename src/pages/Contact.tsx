@@ -14,13 +14,29 @@ export function Contact() {
   const lang = i18n.language?.startsWith('ar') ? 'ar' : 'en';
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const handleSubmit = (e: FormEvent) => {
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    setError(null);
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const res = await fetch('/contact.php', {
+        method: 'POST',
+        body: new FormData(form),
+      });
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data?.ok) {
+        throw new Error(data?.error ?? 'Request failed');
+      }
+      form.reset();
       setSubmitted(true);
-    }, 1500);
+    } catch {
+      setError(t('form.error'));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const infoCards = [
@@ -131,6 +147,17 @@ export function Contact() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Honeypot: hidden from real users; bots that fill it are rejected server-side. */}
+                    <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+                      <label htmlFor="company_website">Don't fill this in</label>
+                      <input
+                        type="text"
+                        id="company_website"
+                        name="company_website"
+                        tabIndex={-1}
+                        autoComplete="off"
+                      />
+                    </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label htmlFor="name" className={labelClasses}>
@@ -139,6 +166,7 @@ export function Contact() {
                         <input
                           type="text"
                           id="name"
+                          name="name"
                           required
                           className={inputClasses}
                           placeholder={t('form.name.placeholder')}
@@ -151,6 +179,7 @@ export function Contact() {
                         <input
                           type="email"
                           id="email"
+                          name="email"
                           required
                           dir="ltr"
                           className={`${inputClasses} text-start`}
@@ -166,6 +195,7 @@ export function Contact() {
                       <input
                         type="text"
                         id="company"
+                        name="company"
                         className={inputClasses}
                         placeholder={t('form.company.placeholder')}
                       />
@@ -178,6 +208,7 @@ export function Contact() {
                         </label>
                         <select
                           id="budget"
+                          name="budget"
                           defaultValue=""
                           className={`${inputClasses} appearance-none cursor-pointer`}
                         >
@@ -197,6 +228,7 @@ export function Contact() {
                         </label>
                         <select
                           id="timeline"
+                          name="timeline"
                           defaultValue=""
                           className={`${inputClasses} appearance-none cursor-pointer`}
                         >
@@ -218,12 +250,22 @@ export function Contact() {
                       </label>
                       <textarea
                         id="message"
+                        name="message"
                         rows={5}
                         required
                         className={`${inputClasses} resize-none`}
                         placeholder={t('form.message.placeholder')}
                       />
                     </div>
+
+                    {error && (
+                      <p
+                        role="alert"
+                        className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-center"
+                      >
+                        {error}
+                      </p>
+                    )}
 
                     <Button
                       type="submit"

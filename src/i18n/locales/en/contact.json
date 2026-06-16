@@ -63,6 +63,7 @@
     },
     "submit": "Send message",
     "submitting": "Sending…",
+    "error": "Couldn't send your message. Please try again, or email us directly at support@oraixen.com.",
     "reassurance": "No spam. We reply within one business day.",
     "privacy": "By sending this, you agree to our Privacy Policy."
   },
