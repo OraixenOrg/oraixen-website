@@ -97,7 +97,7 @@ export function Navbar() {
             <Link
               key={link.key}
               to={link.href}
-              className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-lg ${
+              className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-full ${
                 location.pathname === link.href
                   ? 'text-teal'
                   : 'text-ink/60 hover:text-ink hover:bg-surface-subtle'
@@ -107,7 +107,7 @@ export function Navbar() {
               {location.pathname === link.href && (
                 <m.div
                   layoutId="navbar-indicator"
-                  className="absolute inset-0 bg-teal/10 rounded-lg border border-teal/30"
+                  className="absolute inset-0 bg-teal/10 rounded-full border border-teal/25"
                   transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                 />
               )}
@@ -116,9 +116,13 @@ export function Navbar() {
           <div className="ms-3 flex items-center gap-2">
             <ThemeSwitcher />
             <LanguageSwitcher />
-            <Button href="/contact" variant="primary" size="sm">
+            {/* Refined pill CTA — matches the round switchers; soft brand shadow instead of a heavy glow */}
+            <Link
+              to="/contact"
+              className="shine ms-1 inline-flex items-center rounded-full bg-teal text-onaccent text-sm font-semibold px-5 py-2 transition-all duration-300 hover:bg-teal-light active:scale-[0.97] focus:outline-none focus-visible:ring-2 focus-visible:ring-teal/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface shadow-[0_4px_14px_rgba(15,94,112,0.20)] hover:shadow-[0_6px_20px_rgba(15,94,112,0.30)]"
+            >
               {t('cta.contactUs')}
-            </Button>
+            </Link>
           </div>
         </div>
 
