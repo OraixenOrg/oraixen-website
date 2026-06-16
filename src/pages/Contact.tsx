@@ -5,6 +5,7 @@ import { Button } from '../components/Button';
 import { Card } from '../components/Card';
 import { AuroraBackground, FloatingShapes, SpotlightCard, Reveal } from '../components/visual';
 import { Eyebrow } from '../components/ui';
+import { Seo } from '../components/Seo';
 import { Mail, MapPin, Phone, CheckCircle } from 'lucide-react';
 
 export function Contact() {
@@ -37,6 +38,7 @@ export function Contact() {
 
   return (
     <div className="relative pt-20 min-h-screen overflow-hidden bg-surface">
+      <Seo title={t('seo.title')} description={t('seo.description')} />
       <AuroraBackground intensity="hero" />
       <FloatingShapes />
       {/* Subtle light background: dotted grid + faint teal radial glow */}

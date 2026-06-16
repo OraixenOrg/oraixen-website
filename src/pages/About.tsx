@@ -11,6 +11,7 @@ import { Section } from '../components/Section';
 import { Stagger } from '../components/Stagger';
 import { Reveal, SpotlightCard } from '../components/visual';
 import { PageHero, SectionHeading, CTASection } from '../components/ui';
+import { Seo } from '../components/Seo';
 import { m } from 'framer-motion';
 
 const valueIcons = [Lightbulb, ShieldCheck, Users, BadgeCheck, Sparkles, TrendingUp];
@@ -33,6 +34,7 @@ export function About() {
 
   return (
     <div className="min-h-screen bg-surface">
+      <Seo title={t('seo.title')} description={t('seo.description')} />
       {/* Hero */}
       <PageHero
         eyebrow={t('hero.eyebrow')}

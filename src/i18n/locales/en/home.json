@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "Oraixen — Premium Software Development for Mobile, Web & AI",
+    "description": "Oraixen builds premium mobile apps, web platforms, corporate software and AI systems for ambitious businesses — 28+ products shipped across 15 industries since 2014."
+  },
   "hero": {
     "eyebrow": "Premium Technology Solutions",
     "headlineLead": "Innovation meets",
@@ -51,6 +55,37 @@
     "title": "Products, not slideshows",
     "subtitle": "Three builds we're proud of — each one live, each one used daily.",
     "viewAll": "View all projects"
+  },
+  "whyChoose": {
+    "eyebrow": "Why Oraixen",
+    "title": "The partner teams keep, not replace",
+    "subtitle": "Six reasons companies trust us with the products their business runs on.",
+    "items": [
+      {
+        "title": "Clean, maintainable engineering",
+        "desc": "Readable, well-documented code your next developer can pick up without a rewrite."
+      },
+      {
+        "title": "Architecture that scales",
+        "desc": "Systems designed for the traffic and team you'll have in three years — not just today."
+      },
+      {
+        "title": "A transparent process",
+        "desc": "Weekly demos, a shared roadmap, and honest status — you always know where things stand."
+      },
+      {
+        "title": "Business-focused delivery",
+        "desc": "We optimize for outcomes and revenue, not feature counts or hours billed."
+      },
+      {
+        "title": "Bilingual, international experience",
+        "desc": "Native English and Arabic delivery across North America and the MENA region."
+      },
+      {
+        "title": "Long-term support",
+        "desc": "A post-launch support window on every release and maintenance plans that grow with you."
+      }
+    ]
   },
   "testimonials": {
     "eyebrow": "What partners say",

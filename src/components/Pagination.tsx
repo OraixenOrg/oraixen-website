@@ -76,6 +76,7 @@ export function Pagination({
     >
       {/* Previous Button */}
       <m.button
+        type="button"
         onClick={handlePrevious}
         disabled={currentPage === 1}
         className={`
@@ -115,6 +116,7 @@ export function Pagination({
           return (
             <m.button
               key={pageNum}
+              type="button"
               onClick={() => onPageChange(pageNum)}
               className={`
                 flex items-center justify-center min-w-[40px] h-10 px-3 rounded-lg border
@@ -138,6 +140,7 @@ export function Pagination({
 
       {/* Next Button */}
       <m.button
+        type="button"
         onClick={handleNext}
         disabled={currentPage === totalPages}
         className={`

@@ -18,6 +18,7 @@ import { Stagger } from '../components/Stagger';
 import { ProjectGrid } from '../components/projects/ProjectGrid';
 import { SpotlightCard, AnimatedCounter } from '../components/visual';
 import { PageHero, SectionHeading } from '../components/ui';
+import { Seo } from '../components/Seo';
 import { m } from 'framer-motion';
 import { projects } from '../lib/projects';
 
@@ -79,6 +80,7 @@ export function Projects() {
 
   return (
     <div className="min-h-screen bg-surface">
+      <Seo title={t('seo.title')} description={t('seo.description')} />
       <PageHero
         shapes
         eyebrow={t('hero.eyebrow')}

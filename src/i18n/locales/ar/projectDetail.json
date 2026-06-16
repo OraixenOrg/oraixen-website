@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "suffix": "دراسة حالة",
+    "descriptionFallback": "دراسة حالة من أوريكسن — التحدّي، وحلّنا، والأثر الذي حقّقناه."
+  },
   "backLink": "العودة إلى المشاريع",
   "confidential": "سرّي",
   "confidentialClient": "عميل سرّي",

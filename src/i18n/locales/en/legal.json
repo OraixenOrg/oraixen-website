@@ -4,6 +4,10 @@
   "tldrLabel": "In short",
   "counselNote": "[Review by legal counsel required] — placeholder copy, not legal advice.",
   "privacy": {
+    "seo": {
+      "title": "Privacy Policy | Oraixen",
+      "description": "How Oraixen collects, uses and protects your data. We never sell personal data and you can request access or deletion at any time."
+    },
     "eyebrow": "Privacy Policy",
     "title": "Privacy Policy",
     "tldr": "We only collect what you send us (like your contact-form details) and basic technical data. We never sell your personal data, we keep it only as long as we need it, and you can ask us to access or delete it anytime at support@oraixen.com.",
@@ -63,6 +67,10 @@
     ]
   },
   "terms": {
+    "seo": {
+      "title": "Terms of Service | Oraixen",
+      "description": "The terms that govern your use of oraixen.com and our services, including code ownership, confidentiality, and how engagements work."
+    },
     "eyebrow": "Terms of Service",
     "title": "Terms of Service",
     "tldr": "Use our site fairly, our website content is ours, and any project we build for you is governed by the specific written agreement we sign with you — including who owns the code, what's covered, and how payment works.",

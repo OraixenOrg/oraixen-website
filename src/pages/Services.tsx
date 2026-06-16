@@ -9,6 +9,7 @@ import {
   Reveal,
 } from '../components/visual';
 import { PageHero, SectionHeading, CTASection, Eyebrow } from '../components/ui';
+import { Seo } from '../components/Seo';
 import {
   CheckCircle,
   Smartphone,
@@ -51,6 +52,7 @@ export function Services() {
 
   return (
     <div className="min-h-screen bg-surface">
+      <Seo title={t('seo.title')} description={t('seo.description')} />
       {/* Hero */}
       <PageHero
         eyebrow={t('hero.eyebrow')}

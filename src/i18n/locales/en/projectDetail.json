@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "suffix": "Case Study",
+    "descriptionFallback": "A case study from Oraixen — the challenge, our solution, and the impact we shipped."
+  },
   "backLink": "Back to projects",
   "confidential": "Confidential",
   "confidentialClient": "Confidential Client",

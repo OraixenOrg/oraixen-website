@@ -6,6 +6,7 @@ import { Section } from '../components/Section';
 import { FadeIn } from '../components/FadeIn';
 import { RelatedProjects } from '../components/projects/RelatedProjects';
 import { CTASection } from '../components/ui';
+import { Seo } from '../components/Seo';
 import {
   AuroraBackground,
   AnimatedCounter,
@@ -26,6 +27,10 @@ export function ProjectDetail() {
   }
   const project = localizeProject(rawProject, i18n.language);
   return <div className="pt-20 min-h-screen bg-surface">
+      <Seo
+        title={`${project.title} — ${t('seo.suffix')} | Oraixen`}
+        description={project.description || t('seo.descriptionFallback')}
+      />
       {/* Hero */}
       <div className={`relative h-[70vh] w-full overflow-hidden ${
         project.imageFit === 'contain' ? 'bg-surface' : 'bg-surface-muted'

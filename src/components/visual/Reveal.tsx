@@ -23,11 +23,16 @@ export function Reveal({
 }: RevealProps) {
   const reduce = useReducedMotion();
 
+  // Mirror horizontal slide directions under RTL so "left"/"right" always enter
+  // from the visually-correct side in Arabic.
+  const rtlMul =
+    typeof document !== 'undefined' && document.documentElement.dir === 'rtl' ? -1 : 1;
+
   const offset: Record<Direction, { x?: number; y?: number }> = {
     up: { y: distance },
     down: { y: -distance },
-    left: { x: distance },
-    right: { x: -distance },
+    left: { x: distance * rtlMul },
+    right: { x: -distance * rtlMul },
     none: {},
   };
 

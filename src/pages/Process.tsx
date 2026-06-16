@@ -20,6 +20,7 @@ import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import { Reveal, SpotlightCard } from '../components/visual';
 import { PageHero, SectionHeading, CTASection } from '../components/ui';
+import { Seo } from '../components/Seo';
 
 type Step = {
   number: string;
@@ -181,6 +182,7 @@ export function Process() {
 
   return (
     <div className="min-h-screen bg-surface">
+      <Seo title={t('seo.title')} description={t('seo.description')} />
       {/* Header */}
       <PageHero
         eyebrow={t('hero.eyebrow')}

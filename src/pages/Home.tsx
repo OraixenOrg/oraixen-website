@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, Code, Smartphone, Server, Cpu, CheckCircle, Zap, Quote, ChevronDown } from 'lucide-react';
+import { ArrowRight, Code, Code2, Smartphone, Server, Cpu, CheckCircle, Zap, Quote, ChevronDown, Layers, Workflow, Target, Globe, LifeBuoy } from 'lucide-react';
 import { Section } from '../components/Section';
 import { Button } from '../components/Button';
+import { Seo } from '../components/Seo';
 import { FeaturedProjects } from '../components/projects/FeaturedProjects';
 import { FadeIn } from '../components/FadeIn';
 import { Stagger } from '../components/Stagger';
@@ -25,6 +26,8 @@ const serviceIcons = [
   <Cpu className="text-teal" size={26} />,
 ];
 
+const whyIcons = [Code2, Layers, Workflow, Target, Globe, LifeBuoy];
+
 export function Home() {
   const { t } = useTranslation('home');
 
@@ -34,9 +37,11 @@ export function Home() {
   const testimonials = t('testimonials.items', { returnObjects: true }) as Array<{ quote: string; name: string; role: string; company: string }>;
   const processSteps = t('process.steps', { returnObjects: true }) as string[];
   const processCard = t('process.card.items', { returnObjects: true }) as Array<{ num: string; title: string; desc: string }>;
+  const whyChoose = t('whyChoose.items', { returnObjects: true }) as Array<{ title: string; desc: string }>;
 
   return (
     <div className="min-h-screen">
+      <Seo title={t('seo.title')} description={t('seo.description')} />
       {/* ===================== Hero ===================== */}
       <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-surface">
         <AuroraBackground intensity="hero" />
@@ -224,6 +229,40 @@ export function Home() {
 
       {/* ===================== Featured Projects ===================== */}
       <FeaturedProjects />
+
+      {/* ===================== Why Choose Oraixen ===================== */}
+      <Section>
+        <SectionHeading
+          eyebrow={t('whyChoose.eyebrow')}
+          title={t('whyChoose.title')}
+          subtitle={t('whyChoose.subtitle')}
+        />
+
+        <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {whyChoose.map((item, i) => {
+            const Icon = whyIcons[i % whyIcons.length];
+            return (
+              <m.div
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ delay: i * 0.07, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <SpotlightCard className="h-full">
+                  <div className="p-8 h-full flex flex-col">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-skyblue/15 to-teal/10 border border-teal/15 flex items-center justify-center mb-6">
+                      <Icon className="text-teal" size={24} strokeWidth={1.75} />
+                    </div>
+                    <h3 className="text-lg font-bold text-ink mb-3">{item.title}</h3>
+                    <p className="text-body leading-relaxed text-sm">{item.desc}</p>
+                  </div>
+                </SpotlightCard>
+              </m.div>
+            );
+          })}
+        </Stagger>
+      </Section>
 
       {/* ===================== Process preview ===================== */}
       <Section dark>

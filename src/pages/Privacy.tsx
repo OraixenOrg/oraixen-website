@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Section } from '../components/Section';
 import { AuroraBackground, Reveal } from '../components/visual';
 import { Eyebrow } from '../components/ui';
+import { Seo } from '../components/Seo';
 
 interface LegalSection {
   heading: string;
@@ -16,6 +17,7 @@ export function Privacy() {
 
   return (
     <div className="min-h-screen bg-surface">
+      <Seo title={t('privacy.seo.title')} description={t('privacy.seo.description')} />
       <div className="relative overflow-hidden">
         <AuroraBackground intensity="subtle" />
         <Section>
