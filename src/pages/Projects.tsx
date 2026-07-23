@@ -16,7 +16,7 @@ import {
 import { Section } from '../components/Section';
 import { Stagger } from '../components/Stagger';
 import { ProjectGrid } from '../components/projects/ProjectGrid';
-import { SpotlightCard, AnimatedCounter } from '../components/visual';
+import { SpotlightCard } from '../components/visual';
 import { PageHero, SectionHeading } from '../components/ui';
 import { Seo } from '../components/Seo';
 import { m } from 'framer-motion';
@@ -72,11 +72,6 @@ export function Projects() {
     name: string;
     count: number;
   }>;
-
-  const countLabel = (count: number) => {
-    const suffix = count === 1 ? 'One' : count === 2 ? 'Two' : 'Other';
-    return t(`industries.project${suffix}`, { count });
-  };
 
   return (
     <div className="min-h-screen bg-surface">
@@ -135,13 +130,9 @@ export function Projects() {
                           size={20}
                         />
                       </div>
-                      <h3 className="text-base font-semibold text-ink mb-1 group-hover:text-teal transition-colors">
+                      <h3 className="text-base font-semibold text-ink group-hover:text-teal transition-colors">
                         {item.name}
                       </h3>
-                      <AnimatedCounter
-                        value={countLabel(item.count)}
-                        className="text-sm text-muted"
-                      />
                     </div>
                   </SpotlightCard>
                 </Link>

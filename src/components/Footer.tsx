@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Linkedin, Github, Facebook, Instagram, Mail, MapPin } from 'lucide-react';
+import { Linkedin, Github, Facebook, Instagram, Mail } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Logo } from './Logo';
 import company from '../data/company.json';
@@ -13,8 +13,7 @@ const socials = [
 ];
 
 export function Footer() {
-  const { t, i18n } = useTranslation('common');
-  const lang = i18n.language?.startsWith('ar') ? 'ar' : 'en';
+  const { t } = useTranslation('common');
   const currentYear = new Date().getFullYear();
 
   return (
@@ -78,10 +77,6 @@ export function Footer() {
               {t('footer.contactTitle')}
             </h3>
             <ul className="space-y-4">
-              <li className="flex items-start text-body text-sm">
-                <MapPin size={18} className="me-3 mt-0.5 text-teal shrink-0" />
-                <span>{company.location[lang]}</span>
-              </li>
               <li className="flex items-center text-body text-sm">
                 <Mail size={18} className="me-3 text-teal shrink-0" />
                 <a href={`mailto:${company.email}`} className="hover:text-ink transition-colors" dir="ltr">

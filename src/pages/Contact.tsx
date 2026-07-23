@@ -6,12 +6,11 @@ import { Card } from '../components/Card';
 import { AuroraBackground, FloatingShapes, SpotlightCard, Reveal } from '../components/visual';
 import { Eyebrow } from '../components/ui';
 import { Seo } from '../components/Seo';
-import { Mail, MapPin, Phone, CheckCircle } from 'lucide-react';
+import { Mail, Phone, CheckCircle } from 'lucide-react';
 import company from '../data/company.json';
 
 export function Contact() {
-  const { t, i18n } = useTranslation('contact');
-  const lang = i18n.language?.startsWith('ar') ? 'ar' : 'en';
+  const { t } = useTranslation('contact');
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -42,7 +41,6 @@ export function Contact() {
   const infoCards = [
     { icon: Mail, title: t('info.email.label'), value: company.email, ltr: true },
     { icon: Phone, title: t('info.phone.label'), value: company.phone, ltr: true },
-    { icon: MapPin, title: t('info.location.label'), value: company.location[lang], ltr: false },
   ];
 
   const steps = t('next.steps', { returnObjects: true }) as string[];
