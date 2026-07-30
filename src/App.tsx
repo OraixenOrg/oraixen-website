@@ -14,12 +14,14 @@ import { Process } from './pages/Process';
 import { Contact } from './pages/Contact';
 import { Privacy } from './pages/Privacy';
 import { Terms } from './pages/Terms';
+import { trackPageView } from './lib/analytics';
 export function App() {
   const {
     pathname
   } = useLocation();
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    trackPageView(pathname);
   }, [pathname]);
   return <MotionProvider>
       <div className="flex flex-col min-h-screen bg-surface text-body font-sans selection:bg-skyblue selection:text-ink">
