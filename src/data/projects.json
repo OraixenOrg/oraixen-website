@@ -1,61 +1,5 @@
 [
   {
-    "id": "1",
-    "slug": "zewail-city",
-    "title": "Zewail City",
-    "client": "Zewail City of Science and Technology",
-    "industry": "Education",
-    "year": "2020",
-    "description": "A comprehensive educational platform for one of Egypt's premier science and technology institutions, providing students and faculty with seamless access to academic resources and services.",
-    "problem": "The institution needed a modern, scalable web platform to manage academic operations, student services, and institutional information efficiently.",
-    "solution": "We developed a robust web platform with intuitive navigation, responsive design, and integrated systems for academic management and information dissemination.",
-    "impact": "Improved accessibility to institutional resources and streamlined communication between students, faculty, and administration.",
-    "metrics": [
-      { "label": "Users", "value": "10k+" },
-      { "label": "Uptime", "value": "99.9%" },
-      { "label": "Page Load", "value": "<2s" }
-    ],
-    "techStack": ["Next.js", "React", "TypeScript", "Node.js", "REST API"],
-    "highlights": ["Responsive design", "SEO optimized", "Fast performance"],
-    "imageUrl": "https://zewailcity.edu.eg/Images/zcLogo.svg",
-    "imageFit": "contain",
-    "confidential": false,
-    "featured": true,
-    "category": "Web",
-    "platforms": {
-      "website": "https://zewailcity.edu.eg/"
-    }
-  },
-  {
-    "id": "2",
-    "slug": "alkanz",
-    "title": "Alkanz",
-    "client": "Alkanz",
-    "industry": "E-commerce",
-    "year": "2023",
-    "description": "A comprehensive e-commerce platform with mobile applications, offering seamless shopping experiences across web and mobile platforms.",
-    "problem": "The client required a unified shopping experience across multiple platforms with synchronized inventory and user accounts.",
-    "solution": "We developed a full-stack e-commerce solution with responsive web design and native mobile apps, integrated payment systems, and real-time inventory management.",
-    "impact": "Increased sales conversion rates and provided customers with flexible shopping options across all devices.",
-    "metrics": [
-      { "label": "Products", "value": "10k+" },
-      { "label": "Orders", "value": "100k+" },
-      { "label": "Users", "value": "50k+" }
-    ],
-    "techStack": ["React", "Flutter", "laravel", "MySQL", "REST API"],
-    "highlights": ["Multi-platform", "Payment integration", "Real-time sync"],
-    "imageUrl": "https://play-lh.googleusercontent.com/qkHAqkQZFK3SA-XcNOdK8R-m4hh4fLmBBQc0j2cnfmhTQi14PtcECK1zTXB94We4qfg=w480-h960-rw",
-    "imageFit": "contain",
-    "confidential": false,
-    "featured": true,
-    "category": "Platform",
-    "platforms": {
-      "website": "https://kenz.hashtaghostings.com/",
-      "playStore": "https://play.google.com/store/apps/details?id=com.metagate.alkanzz&hl=en",
-      "appStore": "https://apps.apple.com/eg/app/dar-alkahrba/id1597367206"
-    }
-  },
-  {
     "id": "3",
     "slug": "dar-alkahraba",
     "title": "Dar Alkahraba",
@@ -254,35 +198,6 @@
     }
   },
   {
-    "id": "10",
-    "slug": "goffa",
-    "title": "Goffa",
-    "client": "Goffa",
-    "industry": "E-commerce",
-    "year": "2023",
-    "description": "An e-commerce platform specializing in fashion and lifestyle products, with mobile applications for iOS and Android.",
-    "problem": "The business needed a modern e-commerce presence with mobile apps to reach customers on all devices.",
-    "solution": "We developed a responsive web platform and native mobile apps with seamless shopping experiences, secure payments, and order tracking.",
-    "impact": "Increased mobile sales and improved customer satisfaction with convenient shopping options.",
-    "metrics": [
-      { "label": "Products", "value": "3k+" },
-      { "label": "Orders", "value": "75k+" },
-      { "label": "Users", "value": "40k+" }
-    ],
-    "techStack": ["Flutter", "WooCommerce", "WordPress", "Odoo", "REST API"],
-    "highlights": ["Mobile apps", "Secure payments", "Order tracking"],
-    "imageUrl": "https://play-lh.googleusercontent.com/PbDY_nXGPvv3UEvjSTa7MyWwqbHzGvbhAo9TPYpgvFDzHLjQqDXqmDfxVy8a7DOkzo8=w480-h960-rw",
-    "imageFit": "contain",
-    "confidential": false,
-    "featured": false,
-    "category": "Platform",
-    "platforms": {
-      "website": "https://goffa-eg.com",
-      "playStore": "https://play.google.com/store/apps/details?id=com.peacode.goffa",
-      "appStore": "https://apps.apple.com/eg/app/goffa/id6479247414"
-    }
-  },
-  {
     "id": "11",
     "slug": "teens-hangouts",
     "title": "Teens Hangouts",
@@ -391,90 +306,6 @@
     "platforms": {
       "website": "https://uzex.org",
       "playStore": "https://play.google.com/store/apps/details?id=com.uzex.uzexAppApp"
-    }
-  },
-  {
-    "id": "15",
-    "slug": "teb-aafya",
-    "title": "Teb & Aafya",
-    "client": "Teb & Aafya",
-    "industry": "Healthcare",
-    "year": "2024",
-    "description": "A healthcare mobile application providing medical services, health information, and appointment booking.",
-    "problem": "Patients needed convenient access to healthcare services and information through mobile devices.",
-    "solution": "We developed an Android application with appointment booking, health records, and medical information access.",
-    "impact": "Improved patient access to healthcare services and streamlined appointment management.",
-    "metrics": [
-      { "label": "Users", "value": "70k+" },
-      { "label": "Appointments", "value": "150k+" },
-      { "label": "Rating", "value": "4.5" }
-    ],
-    "techStack": ["Flutter", "React", "Laravel", "MySQL", "REST API"],
-    "highlights": ["Appointment booking", "Health records", "Medical info"],
-    "imageUrl": "https://play-lh.googleusercontent.com/bkNolEF2pftIpFwaRB3uuMfT1GQDd8NhWFAwdXY2cdaWkTrA1Unc8DbXiOOgfKmeR8xM-rdvriQz_mi3-Y0G=w480-h960-rw",
-    "imageFit": "contain",
-    "confidential": false,
-    "featured": false,
-    "category": "Mobile",
-    "platforms": {
-      "playStore": "https://play.google.com/store/apps/details?id=com.peacode.tebw3fyaandroid"
-    }
-  },
-  {
-    "id": "16",
-    "slug": "shotreed",
-    "title": "Shotreed",
-    "client": "Shotreed",
-    "industry": "E-commerce",
-    "year": "2024",
-    "description": "An e-commerce mobile application offering quick shopping experiences with fast delivery options.",
-    "problem": "Customers needed a fast, convenient mobile shopping experience with quick delivery.",
-    "solution": "We developed native mobile applications with streamlined shopping, quick checkout, and delivery tracking.",
-    "impact": "Increased mobile sales and improved customer satisfaction with fast, convenient shopping.",
-    "metrics": [
-      { "label": "Users", "value": "85k+" },
-      { "label": "Orders", "value": "200k+" },
-      { "label": "Rating", "value": "4.6" }
-    ],
-    "techStack": ["Flutter", "WooCommerce", "WordPress", "REST API"],
-    "highlights": ["Quick checkout", "Delivery tracking", "Fast shopping"],
-    "imageUrl": "https://play-lh.googleusercontent.com/AEzLqoXwBcOgewBfl3CbStPkWEXyP7kSxv2UvcDkcOHz_m5OEV9nF_TbAGQepzuNyA=w480-h960-rw",
-    "imageFit": "contain",
-    "confidential": false,
-    "featured": false,
-    "category": "Mobile",
-    "platforms": {
-      "playStore": "https://play.google.com/store/apps/details?id=com.hashtag.shotreed",
-      "appStore": "https://apps.apple.com/eg/app/shotreed/id6474687946"
-    }
-  },
-  {
-    "id": "17",
-    "slug": "woodex",
-    "title": "Woodex",
-    "client": "Woodex",
-    "industry": "E-commerce",
-    "year": "2024",
-    "description": "A specialized e-commerce platform for wood products and furniture, with mobile applications for convenient shopping.",
-    "problem": "Customers needed a mobile-friendly way to browse and purchase wood products and furniture.",
-    "solution": "We developed mobile applications with product catalogs, customization options, and secure payment processing.",
-    "impact": "Increased mobile sales and provided customers with convenient access to wood products.",
-    "metrics": [
-      { "label": "Products", "value": "2k+" },
-      { "label": "Orders", "value": "30k+" },
-      { "label": "Users", "value": "25k+" }
-    ],
-    "techStack": ["Flutter", "WooCommerce", "WordPress", "REST API"],
-    "highlights": ["Product catalog", "Customization", "Secure payments"],
-    "imageUrl": "https://woodex-eg.com/wp-content/uploads/2023/02/woodexlogo.png",
-    "imageFit": "contain",
-    "confidential": false,
-    "featured": false,
-    "category": "Mobile",
-    "platforms": {
-      "website": "https://woodex-eg.com",
-      "playStore": "https://play.google.com/store/apps/details?id=com.hashtag.woodex",
-      "appStore": "https://apps.apple.com/eg/app/woodex/id6466213030"
     }
   },
   {
@@ -639,33 +470,6 @@
     "category": "Mobile",
     "platforms": {
       "playStore": "https://play.google.com/store/apps/details?id=com.goldscrum.m3lesh"
-    }
-  },
-  {
-    "id": "24",
-    "slug": "elmongez",
-    "title": "Elmongez",
-    "client": "Elmongez",
-    "industry": "E-commerce",
-    "year": "2023",
-    "description": "An e-commerce mobile application offering products and services with convenient shopping experiences.",
-    "problem": "The business needed a mobile application to reach customers and provide convenient shopping.",
-    "solution": "We developed an Android application with product browsing, secure checkout, and order tracking.",
-    "impact": "Expanded customer reach and increased sales through mobile channels.",
-    "metrics": [
-      { "label": "Products", "value": "3k+" },
-      { "label": "Orders", "value": "60k+" },
-      { "label": "Users", "value": "35k+" }
-    ],
-    "techStack": ["Flutter", "WooCommerce", "WordPress", "REST API"],
-    "highlights": ["Product browsing", "Secure checkout", "Order tracking"],
-    "imageUrl": "https://play-lh.googleusercontent.com/JIi4G0UT3QIeTisJ1F_iF2kwuSI692zL7uu9AA_PSWezAGMhxQuuYIdhz1ssVi2lHA=w480-h960-rw",
-    "imageFit": "contain",
-    "confidential": false,
-    "featured": false,
-    "category": "Mobile",
-    "platforms": {
-      "playStore": "https://play.google.com/store/apps/details?id=com.hashtag.elmongez"
     }
   },
   {
