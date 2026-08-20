@@ -21,9 +21,9 @@ export function Footer() {
   return (
     <footer className="bg-surface-subtle border-t border-line pt-20 pb-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-16">
           {/* Brand Column */}
-          <div>
+          <div className="col-span-2 lg:col-span-1">
             <Link to="/" className="inline-block mb-6 hover:opacity-80 transition-opacity" aria-label="Oraixen">
               <Logo className="h-10 w-auto text-teal" />
             </Link>
@@ -76,7 +76,7 @@ export function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
+          <div className="col-span-2 lg:col-span-1">
             <h3 className="text-ink font-bold mb-6 text-sm uppercase tracking-wider">
               {t('footer.contactTitle')}
             </h3>
