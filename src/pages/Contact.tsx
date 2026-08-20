@@ -59,11 +59,11 @@ export function Contact() {
   const timelineOptions = t('form.timeline.options', { returnObjects: true }) as Array<{ value: string; label: string }>;
 
   const inputClasses =
-    'w-full bg-card border border-line rounded-xl px-4 py-3 text-ink placeholder:text-faint focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all';
+    'w-full bg-card border border-line rounded-xl px-4 py-3 text-ink placeholder:text-faint focus:outline-none focus-visible:border-teal focus-visible:ring-2 focus-visible:ring-teal/20 transition-all';
   const labelClasses = 'block text-sm font-semibold text-ink mb-2';
 
   return (
-    <div className="relative pt-20 min-h-screen overflow-hidden bg-surface">
+    <div className="relative pt-24 sm:pt-28 min-h-screen overflow-hidden bg-surface">
       <Seo title={t('seo.title')} description={t('seo.description')} />
       <AuroraBackground intensity="hero" />
       <FloatingShapes />
@@ -72,7 +72,7 @@ export function Contact() {
         <div
           className="absolute inset-0 opacity-[0.5]"
           style={{
-            backgroundImage: 'radial-gradient(#E2E8F0 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(rgb(var(--line)) 1px, transparent 1px)',
             backgroundSize: '22px 22px',
           }}
         />
@@ -84,10 +84,10 @@ export function Contact() {
           <div>
             <Reveal>
               <Eyebrow>{t('eyebrow')}</Eyebrow>
-              <h1 className="mt-6 text-4xl md:text-6xl font-extrabold text-ink mb-6 leading-tight">
+              <h1 className="page-hero-title mt-6 mb-4 font-extrabold text-ink sm:mb-6">
                 {t('title')}
               </h1>
-              <p className="text-xl text-body mb-12 leading-relaxed">
+              <p className="page-hero-sub mb-10 text-body sm:mb-12">
                 {t('subtitle')}
               </p>
 
@@ -164,8 +164,8 @@ export function Contact() {
               <Card className="p-8 md:p-10">
                 {submitted ? (
                   <div className="text-center py-16">
-                    <div className="w-20 h-20 bg-green-50 border border-green-200 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                      <CheckCircle size={40} className="text-green-600" />
+                    <div className="w-20 h-20 bg-teal/10 border border-teal/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                      <CheckCircle size={40} className="text-teal" />
                     </div>
                     <h3 className="text-2xl font-bold text-ink mb-4">
                       {t('success.title')}
@@ -293,7 +293,7 @@ export function Contact() {
                     {error && (
                       <p
                         role="alert"
-                        className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-center"
+                        className="text-sm text-red-700 dark:text-red-300 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/50 rounded-xl px-4 py-3 text-center"
                       >
                         {error}
                       </p>

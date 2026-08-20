@@ -19,7 +19,7 @@ export function AuroraBackground({ className = '', intensity = 'hero' }: AuroraB
         }}
       />
       <div
-        className="aurora-blob aurora-a hidden md:block absolute -top-1/4 start-1/2 -translate-x-1/2 w-[70vw] h-[70vw] max-w-[720px] max-h-[720px] rounded-full"
+        className="aurora-blob aurora-a hidden md:block absolute -top-1/4 left-1/2 -translate-x-1/2 w-[70vw] h-[70vw] max-w-[720px] max-h-[720px] rounded-full"
         style={{ background: `radial-gradient(circle, rgba(86,201,227,${0.18 * o}), transparent 62%)` }}
       />
       <div

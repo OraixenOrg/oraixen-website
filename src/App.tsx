@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { MotionProvider } from './components/MotionProvider';
@@ -15,9 +16,21 @@ const Process = lazy(() => import('./pages/Process').then((m) => ({ default: m.P
 const Contact = lazy(() => import('./pages/Contact').then((m) => ({ default: m.Contact })));
 const Privacy = lazy(() => import('./pages/Privacy').then((m) => ({ default: m.Privacy })));
 const Terms = lazy(() => import('./pages/Terms').then((m) => ({ default: m.Terms })));
+const NotFound = lazy(() => import('./pages/NotFound').then((m) => ({ default: m.NotFound })));
+
+function PageFallback() {
+  const { t } = useTranslation('common');
+  return (
+    <div className="min-h-[70vh] flex items-center justify-center" role="status" aria-live="polite">
+      <span className="sr-only">{t('a11y.loading')}</span>
+      <div className="h-8 w-8 rounded-full border-2 border-line border-t-teal animate-spin" aria-hidden="true" />
+    </div>
+  );
+}
 
 export function App() {
   const { pathname } = useLocation();
+  const { t } = useTranslation('common');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -27,10 +40,13 @@ export function App() {
   return (
     <MotionProvider>
       <div className="flex flex-col min-h-screen bg-surface text-body font-sans selection:bg-skyblue selection:text-ink">
+        <a href="#main-content" className="skip-link">
+          {t('a11y.skipToContent')}
+        </a>
         <ScrollProgress />
         <Navbar />
-        <main className="flex-grow">
-          <Suspense fallback={null}>
+        <main id="main-content" tabIndex={-1} className="flex-grow outline-none">
+          <Suspense fallback={<PageFallback />}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
@@ -41,6 +57,7 @@ export function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </main>

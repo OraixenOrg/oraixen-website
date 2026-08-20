@@ -1,4 +1,4 @@
-import { type ReactNode, type ButtonHTMLAttributes } from 'react';
+import { type ReactNode, type ButtonHTMLAttributes, type MouseEventHandler } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
@@ -9,6 +9,7 @@ interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'chi
   icon?: boolean;
   children: ReactNode;
 }
+
 export function Button({
   variant = 'primary',
   size = 'md',
@@ -16,9 +17,11 @@ export function Button({
   icon = false,
   className = '',
   children,
+  onClick,
+  type = 'button',
   ...props
 }: ButtonProps) {
-  const baseStyles = 'inline-flex items-center justify-center font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2 focus:ring-offset-surface disabled:opacity-50 disabled:cursor-not-allowed active:scale-95';
+  const baseStyles = 'inline-flex items-center justify-center font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:opacity-50 disabled:cursor-not-allowed active:scale-95';
   const variants = {
     primary: 'shine bg-teal text-onaccent hover:bg-teal-light shadow-glow hover:shadow-[0_0_30px_rgba(86,201,227,0.45)]',
     secondary: 'bg-card text-teal border border-teal/50 hover:bg-surface-subtle hover:border-teal',
@@ -36,11 +39,19 @@ export function Button({
       {icon && <ArrowRight className="ms-2 h-4 w-4 transition-transform group-hover:translate-x-1 rtl-flip" />}
     </>;
   if (href) {
-    return <Link to={href} className={`${classes} group`}>
+    return (
+      <Link
+        to={href}
+        className={`${classes} group`}
+        onClick={onClick as MouseEventHandler<HTMLAnchorElement> | undefined}
+      >
         {content}
-      </Link>;
+      </Link>
+    );
   }
-  return <button className={`${classes} group`} {...props}>
+  return (
+    <button type={type} className={`${classes} group`} onClick={onClick} {...props}>
       {content}
-    </button>;
+    </button>
+  );
 }

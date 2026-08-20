@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import { AuroraBackground, FloatingShapes, Reveal } from '../visual';
+import { AuroraBackground, FloatingShapes } from '../visual';
 import { Eyebrow } from './Eyebrow';
 
 interface PageHeroProps {
@@ -20,7 +20,7 @@ interface PageHeroProps {
 export function PageHero({ eyebrow, title, subtitle, children, shapes = false, align = 'center' }: PageHeroProps) {
   const isCenter = align === 'center';
   return (
-    <section className="relative overflow-hidden bg-surface pt-32 pb-16 md:pt-40 md:pb-24">
+    <section className="relative overflow-hidden bg-surface pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-36 md:pb-20 lg:pt-40 lg:pb-24">
       <AuroraBackground intensity="subtle" />
       {shapes && <FloatingShapes />}
       <div
@@ -34,30 +34,24 @@ export function PageHero({ eyebrow, title, subtitle, children, shapes = false, a
         }}
       />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className={isCenter ? 'max-w-4xl mx-auto text-center' : 'max-w-4xl'}>
+        <div className={isCenter ? 'max-w-3xl mx-auto text-center sm:max-w-4xl' : 'max-w-4xl'}>
           {eyebrow && (
-            <Reveal instant>
-              <Eyebrow className="mb-6">{eyebrow}</Eyebrow>
-            </Reveal>
+            <div className="hero-rise">
+              <Eyebrow className="mb-4 sm:mb-6">{eyebrow}</Eyebrow>
+            </div>
           )}
-          <Reveal instant>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-ink leading-[1.05]">
-              {title}
-            </h1>
-          </Reveal>
+          <h1 className="page-hero-title font-extrabold tracking-tight text-ink text-balance">
+            {title}
+          </h1>
           {subtitle && (
-            <Reveal instant>
-              <p className={`mt-6 text-xl md:text-2xl text-body leading-relaxed ${isCenter ? 'max-w-3xl mx-auto' : 'max-w-2xl'}`}>
-                {subtitle}
-              </p>
-            </Reveal>
+            <p className={`hero-rise hero-rise-2 page-hero-sub mt-4 sm:mt-6 text-body ${isCenter ? 'max-w-2xl mx-auto md:max-w-3xl' : 'max-w-2xl'}`}>
+              {subtitle}
+            </p>
           )}
           {children && (
-            <Reveal instant>
-              <div className={`mt-10 flex flex-col sm:flex-row gap-4 ${isCenter ? 'justify-center' : ''} items-center`}>
-                {children}
-              </div>
-            </Reveal>
+            <div className={`hero-rise hero-rise-3 mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 ${isCenter ? 'justify-center' : ''} items-stretch sm:items-center`}>
+              {children}
+            </div>
           )}
         </div>
       </div>

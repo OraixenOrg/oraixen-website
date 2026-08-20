@@ -182,7 +182,7 @@ export function Process() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative py-8 lg:py-12">
             {/* Center connector line (teal hairline + node motif) */}
-            <div className="hidden lg:block absolute start-1/2 top-12 bottom-12 w-px bg-gradient-to-b from-teal/50 via-teal/30 to-teal/10 -translate-x-1/2 rtl:translate-x-1/2" />
+            <div className="hidden lg:block absolute left-1/2 top-12 bottom-12 w-px bg-gradient-to-b from-teal/50 via-teal/30 to-teal/10 -translate-x-1/2" />
 
             <div className="space-y-20 md:space-y-24 lg:space-y-28">
               {steps.map((step, index) => {

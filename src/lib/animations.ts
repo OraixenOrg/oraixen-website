@@ -1,7 +1,7 @@
 import { Variants } from 'framer-motion';
 
 export const EASE = [0.16, 1, 0.3, 1] as const;
-export const DURATION = 0.2;
+export const DURATION = 0.32;
 
 export const fadeIn: Variants = {
   hidden: {
@@ -25,7 +25,7 @@ export const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0,
+      staggerChildren: 0.05,
       delayChildren: 0,
     },
   },

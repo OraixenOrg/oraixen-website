@@ -1,24 +1,22 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, Code, Code2, Smartphone, Server, Cpu, CheckCircle, Zap, Quote, ChevronDown, Layers, Workflow, Target, Globe, LifeBuoy, BrainCircuit, RefreshCw } from 'lucide-react';
+import { ArrowRight, Code, Code2, Smartphone, Server, Cpu, CheckCircle, Zap, Quote, Layers, Workflow, Target, Globe, LifeBuoy, BrainCircuit, RefreshCw } from 'lucide-react';
 import { Section } from '../components/Section';
 import { Button } from '../components/Button';
 import { Seo } from '../components/Seo';
 import { FeaturedProjects } from '../components/projects/FeaturedProjects';
-import { FadeIn } from '../components/FadeIn';
+import { ProjectLogoStrip } from '../components/projects/ProjectLogoStrip';
 import { Stagger } from '../components/Stagger';
 import {
   AuroraBackground,
   FloatingShapes,
   HeroShowcase,
-  Marquee,
   AnimatedCounter,
   SpotlightCard,
   Reveal,
 } from '../components/visual';
 import { SectionHeading, CTASection } from '../components/ui';
 import statsData from '../data/stats.json';
-import clientsData from '../data/clients.json';
 import testimonialsData from '../data/testimonials.json';
 
 const serviceIcons = [
@@ -34,11 +32,11 @@ const whyIcons = [Code2, Layers, Workflow, Target, Globe, LifeBuoy];
 
 export function Home() {
   const { t, i18n } = useTranslation('home');
+  const { t: tc } = useTranslation('common');
   const lang = i18n.language?.startsWith('ar') ? 'ar' : 'en';
 
   // Business data lives in src/data/*.json (easy to edit, bilingual). UI copy stays in i18n.
   const stats = statsData[lang] as Array<{ value: string; label: string }>;
-  const logos = clientsData[lang] as string[];
   const testimonials = testimonialsData[lang] as Array<{ quote: string; name: string; role: string; company: string }>;
   const services = t('services.items', { returnObjects: true }) as Array<{ title: string; desc: string; tag?: string }>;
   const processSteps = t('process.steps', { returnObjects: true }) as string[];
@@ -49,7 +47,7 @@ export function Home() {
     <div className="min-h-screen">
       <Seo title={t('seo.title')} description={t('seo.description')} />
       {/* ===================== Hero ===================== */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-surface">
+      <section className="relative flex min-h-[100svh] flex-col overflow-hidden bg-surface">
         <AuroraBackground intensity="hero" />
         <FloatingShapes />
         <HeroShowcase />
@@ -65,69 +63,62 @@ export function Home() {
           }}
         />
 
-        <div className="container mx-auto py-5 px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-6xl mx-auto text-center">
-            {/* Eyebrow */}
-            <Reveal instant>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card/70 backdrop-blur-sm text-teal border border-teal/20 text-sm font-semibold mb-10 shadow-card">
-                <span className="relative flex h-2 w-2">
+        <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-4 pt-24 pb-6 sm:px-6 sm:pt-28 md:pt-32 lg:px-8">
+          <div className="mx-auto w-full max-w-5xl text-center">
+            <div className="hero-rise mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-teal/20 bg-card/70 px-3 py-1.5 text-xs font-semibold text-teal shadow-card backdrop-blur-sm sm:mb-7 sm:px-4 sm:py-2 sm:text-sm">
+                <span className="relative flex h-2 w-2 shrink-0">
                   <span className="absolute inline-flex h-full w-full rounded-full bg-skyblue opacity-60 animate-ping" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-teal" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-teal" />
                 </span>
-                <Zap className="text-teal" size={15} />
-                <span className="tracking-wide">{t('hero.eyebrow')}</span>
+                <Zap className="shrink-0 text-teal" size={14} />
+                <span className="truncate tracking-wide">{t('hero.eyebrow')}</span>
               </div>
-            </Reveal>
 
-            {/* Headline */}
-            <Reveal instant>
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-ink mb-8 leading-[1.05]">
+            <h1 className="hero-title mb-4 font-extrabold tracking-tight text-ink text-balance sm:mb-6">
                 {t('hero.headlineLead')}{' '}
                 <span className="relative inline-block">
-                  <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-skyblue via-teal to-azure">
+                  <span className="relative z-10 bg-gradient-to-r from-skyblue via-teal to-azure bg-clip-text text-transparent">
                     {t('hero.headlineHighlight')}
                   </span>
                   <span
-                    className="absolute -inset-x-3 -inset-y-1 -z-0 rounded-full blur-2xl opacity-50"
+                    className="absolute -inset-x-3 -inset-y-1 -z-0 rounded-full opacity-50 blur-2xl"
                     style={{ background: 'linear-gradient(90deg, rgba(86,201,227,0.35), rgba(15,94,112,0.30))' }}
                     aria-hidden="true"
                   />
                 </span>
               </h1>
-            </Reveal>
 
-            {/* Subheadline */}
-            <Reveal instant>
-              <p className="text-xl sm:text-2xl md:text-3xl text-body mb-12 max-w-4xl mx-auto leading-relaxed font-light">
+            <p className="hero-rise hero-rise-2 hero-sub mx-auto mb-7 max-w-2xl font-light text-body sm:mb-9 md:max-w-3xl">
                 {t('hero.subhead')}
               </p>
-            </Reveal>
 
-            {/* CTAs */}
-            <Reveal instant>
-              <div className="flex flex-col sm:flex-row gap-5 justify-center items-center mb-8">
-                <Button href="/contact" variant="primary" size="lg" icon>
+            <div className="hero-rise hero-rise-3 flex w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
+                <Button href="/contact" variant="primary" size="md" icon className="w-full sm:w-auto">
                   {t('hero.ctaPrimary')}
                 </Button>
-                <Button href="/projects" variant="outline" size="lg">
+                <Button href="/projects" variant="outline" size="md" className="w-full sm:w-auto">
                   {t('hero.ctaSecondary')}
                 </Button>
               </div>
-            </Reveal>
           </div>
         </div>
 
-        {/* Scroll cue */}
-        <div
-          className="float-y absolute bottom-8 start-1/2 -translate-x-1/2 text-muted"
-          aria-hidden="true"
+        <a
+          href="#home-next"
+          className="hero-scroll relative z-10 mx-auto mb-5 mt-2 flex flex-col items-center gap-2 text-muted outline-none sm:mb-7"
+          aria-label={tc('a11y.scrollDown')}
         >
-          <ChevronDown size={24} />
-        </div>
+          <span className="hero-scroll-mouse" aria-hidden="true">
+            <span className="hero-scroll-wheel" />
+          </span>
+          <span className="text-[11px] font-semibold uppercase tracking-[0.18em] sm:text-xs">
+            {t('hero.scroll')}
+          </span>
+        </a>
       </section>
 
       {/* ===================== Stats ===================== */}
-      <div className="relative bg-surface-muted border-y border-line py-20 overflow-hidden">
+      <div id="home-next" className="relative bg-surface-muted border-y border-line py-12 sm:py-16 md:py-20 overflow-hidden scroll-mt-20">
         <AuroraBackground intensity="subtle" />
         <div className="container mx-auto px-4 relative z-10">
           <Stagger className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
@@ -136,37 +127,17 @@ export function Home() {
                 key={stat.label}
                 className="rounded-2xl bg-card/70 backdrop-blur-sm border border-line shadow-card px-4 py-7 text-center hover:border-teal/40 hover:shadow-hover transition-all duration-200"
               >
-                <div className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-2 text-transparent bg-clip-text bg-gradient-to-br from-skyblue to-teal">
+                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-2 text-transparent bg-clip-text bg-gradient-to-br from-skyblue to-teal">
                   <AnimatedCounter value={stat.value} />
                 </div>
-                <div className="text-sm text-muted uppercase tracking-wider font-semibold">{stat.label}</div>
+                <div className="text-xs sm:text-sm text-muted uppercase tracking-wider font-semibold">{stat.label}</div>
               </div>
             ))}
           </Stagger>
         </div>
       </div>
 
-      {/* ===================== Client logos marquee ===================== */}
-      <div className="relative bg-surface border-b border-line py-16 overflow-hidden">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <p className="text-center text-sm font-semibold text-muted uppercase tracking-wider mb-2">
-              {t('logos.eyebrow')}
-            </p>
-            <p className="text-center text-faint text-sm mb-10">{t('logos.caption')}</p>
-          </FadeIn>
-          <Marquee speed={34}>
-            {logos.map((name, i) => (
-              <span
-                key={i}
-                className="text-lg md:text-xl font-bold text-faint hover:text-teal transition-colors duration-300 whitespace-nowrap"
-              >
-                {name}
-              </span>
-            ))}
-          </Marquee>
-        </div>
-      </div>
+      <ProjectLogoStrip />
 
       {/* ===================== Services ===================== */}
       <Section>
@@ -317,9 +288,6 @@ export function Home() {
                     <p className="text-muted text-sm">
                       {item.role} · {item.company}
                     </p>
-                    <span className="inline-block mt-3 text-[11px] font-semibold px-2.5 py-1 rounded-full bg-surface-muted text-muted border border-line">
-                      {t('testimonials.placeholderBadge')}
-                    </span>
                   </div>
                 </div>
               </SpotlightCard>

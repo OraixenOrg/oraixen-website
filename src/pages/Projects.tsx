@@ -1,8 +1,6 @@
-import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import {
-  Loader2,
   ArrowUpRight,
   GraduationCap,
   ShoppingCart,
@@ -19,7 +17,7 @@ import { ProjectGrid } from '../components/projects/ProjectGrid';
 import { SpotlightCard } from '../components/visual';
 import { PageHero, SectionHeading } from '../components/ui';
 import { Seo } from '../components/Seo';
-import { projects } from '../lib/projects';
+import { matchesIndustryKey, projects } from '../lib/projects';
 
 type IndustryKey =
   | 'education'
@@ -42,35 +40,15 @@ const INDUSTRY_ICONS: Record<IndustryKey, typeof GraduationCap> = {
   utilities: Zap,
 };
 
-const INDUSTRY_FILTER: Record<IndustryKey, string> = {
-  education: 'education',
-  ecommerce: 'ecommerce',
-  finance: 'finance',
-  food: 'food',
-  healthcare: 'healthcare',
-  jobs: 'jobs',
-  legal: 'legal',
-  utilities: 'utilities',
-};
-
 export function Projects() {
   const { t } = useTranslation('projects');
-  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    // Simulate loading for better UX (remove if data is already loaded)
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 300);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  const industryItems = t('industries.items', { returnObjects: true }) as Array<{
-    key: IndustryKey;
-    name: string;
-    count: number;
-  }>;
+  const industryItems = (
+    t('industries.items', { returnObjects: true }) as Array<{
+      key: IndustryKey;
+      name: string;
+    }>
+  ).filter((item) => projects.some((project) => matchesIndustryKey(project, item.key)));
 
   return (
     <div className="min-h-screen bg-surface">
@@ -83,19 +61,9 @@ export function Projects() {
       />
 
       <Section>
-        {isLoading ? (
-          <div className="flex items-center justify-center py-20">
-            <div className="text-center">
-              <Loader2 className="w-12 h-12 text-teal animate-spin mx-auto mb-4" />
-              <p className="text-muted">{t('loading')}</p>
-            </div>
-          </div>
-        ) : (
-          <ProjectGrid projects={projects} itemsPerPage={9} />
-        )}
+        <ProjectGrid projects={projects} itemsPerPage={9} />
       </Section>
 
-      {/* Industries we serve */}
       <Section dark>
         <SectionHeading
           eyebrow={t('industries.eyebrow')}
@@ -108,27 +76,27 @@ export function Projects() {
             const Icon = INDUSTRY_ICONS[item.key];
             return (
               <Link
-                  key={item.key}
-                  to={`/projects?industry=${INDUSTRY_FILTER[item.key]}`}
-                  className="group block h-full"
-                >
-                  <SpotlightCard className="h-full">
-                    <div className="p-6 h-full">
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-skyblue/15 to-teal/10 border border-teal/15 flex items-center justify-center">
-                          <Icon className="text-teal" size={26} />
-                        </div>
-                        <ArrowUpRight
-                          className="text-faint opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:text-teal transition-all duration-300 rtl-flip"
-                          size={20}
-                        />
+                key={item.key}
+                to={`/projects?industry=${item.key}#project-grid`}
+                className="group block h-full"
+              >
+                <SpotlightCard className="h-full">
+                  <div className="p-6 h-full">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-skyblue/15 to-teal/10 border border-teal/15 flex items-center justify-center">
+                        <Icon className="text-teal" size={26} />
                       </div>
-                      <h3 className="text-base font-semibold text-ink group-hover:text-teal transition-colors">
-                        {item.name}
-                      </h3>
+                      <ArrowUpRight
+                        className="text-faint opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:text-teal transition-all duration-300 rtl-flip"
+                        size={20}
+                      />
                     </div>
-                  </SpotlightCard>
-                </Link>
+                    <h3 className="text-base font-semibold text-ink group-hover:text-teal transition-colors">
+                      {item.name}
+                    </h3>
+                  </div>
+                </SpotlightCard>
+              </Link>
             );
           })}
         </Stagger>

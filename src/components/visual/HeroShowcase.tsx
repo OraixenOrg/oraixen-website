@@ -4,7 +4,7 @@
  */
 export function HeroShowcase({ className = '' }: { className?: string }) {
   return (
-    <div className={`pointer-events-none absolute inset-0 hidden lg:block ${className}`} aria-hidden="true">
+    <div className={`pointer-events-none absolute inset-0 hidden xl:block ${className}`} aria-hidden="true">
       <div className="float-y absolute top-[16%] start-[3%] w-60 rounded-2xl border border-line bg-card/70 backdrop-blur-md shadow-hover p-4 -rotate-3">
         <div className="flex items-center gap-1.5 mb-3">
           <span className="w-2 h-2 rounded-full bg-skyblue/70" />

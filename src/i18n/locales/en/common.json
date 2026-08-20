@@ -30,6 +30,22 @@
   "theme": {
     "toggleAria": "Toggle light or dark mode"
   },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "primaryNav": "Primary",
+    "mobileNav": "Mobile",
+    "menuLabel": "Menu",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "loading": "Loading",
+    "scrollDown": "Scroll to next section"
+  },
+  "notFound": {
+    "seoTitle": "Page not found | Oraixen",
+    "eyebrow": "404",
+    "title": "Page not found",
+    "subtitle": "That page doesn’t exist or has moved. Head home or browse the work."
+  },
   "footer": {
     "tagline": "Software, platforms, and AI systems for teams that care about quality and outcomes.",
     "companyTitle": "Company",

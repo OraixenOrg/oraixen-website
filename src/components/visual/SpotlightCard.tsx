@@ -32,7 +32,7 @@ export function SpotlightCard({ children, className = '', radius = 240 }: Spotli
     <div
       ref={ref}
       onMouseMove={handleMove}
-      className={`group relative h-full overflow-hidden rounded-2xl border border-line bg-card shadow-card transition-shadow duration-200 hover:border-teal/40 hover:shadow-hover ${className}`}
+      className={`group relative h-full overflow-hidden rounded-2xl border border-line bg-card shadow-card transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-1 hover:border-teal/40 hover:shadow-hover ${className}`}
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100 hidden md:block"

@@ -35,7 +35,7 @@ export function Terms() {
                 {t('lastUpdatedLabel')}: {t('lastUpdated')}
               </p>
 
-              <p className="mt-3 inline-flex items-center px-3 py-1.5 rounded-lg bg-amber-50 text-amber-700 border border-amber-200 text-xs font-medium">
+              <p className="mt-3 inline-flex items-center px-3 py-1.5 rounded-lg bg-surface-muted text-muted border border-line text-xs font-medium">
                 {t('counselNote')}
               </p>
 

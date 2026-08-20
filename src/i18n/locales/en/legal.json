@@ -2,7 +2,7 @@
   "lastUpdatedLabel": "Last updated",
   "lastUpdated": "June 2026",
   "tldrLabel": "In short",
-  "counselNote": "[Review by legal counsel required] — placeholder copy, not legal advice.",
+  "counselNote": "This page is for general information and is not legal advice.",
   "privacy": {
     "seo": {
       "title": "Privacy Policy | Oraixen",
@@ -26,11 +26,11 @@
       },
       {
         "heading": "Legal Basis for Processing",
-        "body": "Where EU, EEA, or UK law applies, we process personal data on one or more of the following legal bases: your consent, our legitimate interests, the performance of a contract, or compliance with a legal obligation. [Placeholder — bases to be confirmed by counsel.]"
+        "body": "Where EU, EEA, or UK law applies, we process personal data on one or more of the following legal bases: your consent, our legitimate interests, the performance of a contract, or compliance with a legal obligation."
       },
       {
         "heading": "Cookies & Analytics",
-        "body": "We use essential cookies to run the site and analytics cookies to understand how it is used. You can manage or disable cookies in your browser settings. Where required, a consent banner lets you accept or reject non-essential cookies. [Placeholder — specific providers to be listed once confirmed.]"
+        "body": "We use essential cookies to run the site and Google Analytics to understand how it is used. You can manage or disable cookies in your browser settings."
       },
       {
         "heading": "How We Share Your Information",
@@ -38,11 +38,11 @@
       },
       {
         "heading": "International Data Transfers",
-        "body": "Your data may be processed in Egypt and the MENA region, or by our international service providers. Where required by law, we apply appropriate safeguards for cross-border transfers, such as Standard Contractual Clauses. [Placeholder — transfer mechanism to be confirmed by counsel.]"
+        "body": "Your data may be processed in Egypt and the MENA region, or by our international service providers. Where required by law, we apply appropriate safeguards for cross-border transfers, such as Standard Contractual Clauses."
       },
       {
         "heading": "Data Retention",
-        "body": "We keep your personal data only as long as needed for the purpose it was collected for, and to satisfy legal and accounting requirements. When it is no longer needed, we delete or anonymize it. [Placeholder — specific retention periods to be set with counsel.]"
+        "body": "We keep your personal data only as long as needed for the purpose it was collected for, and to satisfy legal and accounting requirements. When it is no longer needed, we delete or anonymize it."
       },
       {
         "heading": "Data Security",
@@ -89,7 +89,7 @@
       },
       {
         "heading": "Payment Terms",
-        "body": "Fees, milestones, invoicing schedules, and payment methods are set out in each signed agreement. Invoices are due on the agreed dates, and late payments may pause ongoing work. [Placeholder — late-fee and currency terms to be confirmed by counsel.]"
+        "body": "Fees, milestones, invoicing schedules, and payment methods are set out in each signed agreement. Invoices are due on the agreed dates, and late payments may pause ongoing work."
       },
       {
         "heading": "Client Responsibilities",
@@ -105,7 +105,7 @@
       },
       {
         "heading": "Limitation of Liability",
-        "body": "To the maximum extent permitted by law, we are not liable for any indirect, incidental, or consequential damages. Our total liability is limited as set out in the signed agreement, or, absent one, to the amounts you paid us for the relevant service. [Placeholder — liability cap to be set by counsel.]"
+        "body": "To the maximum extent permitted by law, we are not liable for any indirect, incidental, or consequential damages. Our total liability is limited as set out in the signed agreement, or, absent one, to the amounts you paid us for the relevant service."
       },
       {
         "heading": "Third-Party Links & Services",
@@ -117,7 +117,7 @@
       },
       {
         "heading": "Governing Law & Disputes",
-        "body": "These Terms are governed by the laws of the Arab Republic of Egypt, and the parties submit to the courts of Cairo, unless a signed agreement specifies otherwise. [Placeholder — to be confirmed by counsel.]"
+        "body": "These Terms are governed by the laws of the Arab Republic of Egypt, and the parties submit to the courts of Cairo, unless a signed agreement specifies otherwise."
       },
       {
         "heading": "Changes to These Terms",

@@ -156,7 +156,7 @@ export function Services() {
                         className="absolute inset-0 opacity-[0.5]"
                         style={{
                           backgroundImage:
-                            'radial-gradient(circle, #E2E8F0 1px, transparent 1px)',
+                            'radial-gradient(circle, rgb(var(--line)) 1px, transparent 1px)',
                           backgroundSize: '24px 24px',
                         }}
                       />

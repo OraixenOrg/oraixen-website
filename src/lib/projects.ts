@@ -46,3 +46,21 @@ export function localizeProject(p: Project, lang: string): Project {
     highlights: ar.highlights ?? p.highlights,
   };
 }
+
+const INDUSTRY_NEEDLES: Record<string, string[]> = {
+  education: ["education"],
+  ecommerce: ["e-commerce", "ecommerce", "e commerce"],
+  finance: ["finance", "fintech"],
+  food: ["food"],
+  healthcare: ["health", "medical"],
+  jobs: ["job"],
+  legal: ["legal"],
+  utilities: ["utilit"],
+};
+
+/** True when a project's industry belongs to an industry-card key (education, ecommerce, …). */
+export function matchesIndustryKey(project: Project, key: string): boolean {
+  const industry = project.industry.toLowerCase();
+  const needles = INDUSTRY_NEEDLES[key.toLowerCase()] ?? [key.toLowerCase()];
+  return needles.some((needle) => industry.includes(needle));
+}

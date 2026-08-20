@@ -29,8 +29,8 @@ export function ProjectCard({
         className="absolute inset-0 z-[1]"
         aria-label={t('card.ariaLabel', { project: project.title, industry: project.industry })}
       />
-        <div className={`relative h-64 overflow-hidden flex items-center justify-center border-b border-line ${
-          project.imageFit === 'contain' ? 'bg-white p-8' : 'bg-surface-subtle p-6'
+        <div         className={`relative h-64 overflow-hidden flex items-center justify-center border-b border-line ${
+          project.imageFit === 'contain' ? 'bg-card p-8' : 'bg-surface-subtle p-6'
         }`}>
           <img
             src={imageError ? FALLBACK_IMAGE : project.imageUrl}

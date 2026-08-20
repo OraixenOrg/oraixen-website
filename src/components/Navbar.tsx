@@ -17,6 +17,11 @@ const navLinks = [
   { key: 'process', href: '/process' },
 ];
 
+function isNavActive(href: string, pathname: string) {
+  if (href === '/') return pathname === '/';
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export function Navbar() {
   const { t } = useTranslation('common');
   const [isOpen, setIsOpen] = useState(false);
@@ -35,6 +40,14 @@ export function Navbar() {
   useEffect(() => {
     setIsOpen(false);
   }, [location]);
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.matchMedia('(min-width: 768px)').matches) setIsOpen(false);
+    };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -94,23 +107,27 @@ export function Navbar() {
             <Logo className="h-8 sm:h-9 md:h-10 w-auto text-teal" />
           </Link>
 
-          <nav className="hidden md:flex items-center justify-center gap-1" aria-label="Primary">
-            {navLinks.map((link) => (
-              <Link
-                key={link.key}
-                to={link.href}
-                className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-full ${
-                  location.pathname === link.href
-                    ? 'text-teal'
-                    : 'text-ink/60 hover:text-ink hover:bg-surface-subtle'
-                }`}
-              >
-                {t(`nav.${link.key}`)}
-                {location.pathname === link.href && (
-                  <span className="absolute inset-0 bg-teal/10 rounded-full border border-teal/25" />
-                )}
-              </Link>
-            ))}
+          <nav className="hidden md:flex items-center justify-center gap-1" aria-label={t('a11y.primaryNav')}>
+            {navLinks.map((link) => {
+              const active = isNavActive(link.href, location.pathname);
+              return (
+                <Link
+                  key={link.key}
+                  to={link.href}
+                  aria-current={active ? 'page' : undefined}
+                  className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-full ${
+                    active
+                      ? 'text-teal'
+                      : 'text-ink/60 hover:text-ink hover:bg-surface-subtle'
+                  }`}
+                >
+                  {t(`nav.${link.key}`)}
+                  {active && (
+                    <span className="absolute inset-0 bg-teal/10 rounded-full border border-teal/25" />
+                  )}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="flex items-center justify-end gap-1.5 sm:gap-2 shrink-0">
@@ -125,7 +142,7 @@ export function Navbar() {
             <button
               className="md:hidden text-ink p-2 -me-1 hover:bg-surface-subtle active:bg-surface-muted rounded-lg transition-colors touch-manipulation"
               onClick={toggleMenu}
-              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+              aria-label={isOpen ? t('a11y.menuClose') : t('a11y.menuOpen')}
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
               type="button"
@@ -144,7 +161,7 @@ export function Navbar() {
                 id="mobile-menu"
                 role="dialog"
                 aria-modal="true"
-                aria-label={t('nav.home')}
+                aria-label={t('a11y.menuLabel')}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -153,20 +170,24 @@ export function Navbar() {
               >
                 <nav
                   className="h-full w-full overflow-y-auto flex flex-col items-center justify-center gap-7 px-6 pt-24 pb-10"
-                  aria-label="Mobile"
+                  aria-label={t('a11y.mobileNav')}
                 >
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.key}
-                      to={link.href}
-                      onClick={closeMenu}
-                      className={`text-2xl font-semibold py-1 transition-colors ${
-                        location.pathname === link.href ? 'text-teal' : 'text-ink/80 hover:text-ink'
-                      }`}
-                    >
-                      {t(`nav.${link.key}`)}
-                    </Link>
-                  ))}
+                  {navLinks.map((link) => {
+                    const active = isNavActive(link.href, location.pathname);
+                    return (
+                      <Link
+                        key={link.key}
+                        to={link.href}
+                        onClick={closeMenu}
+                        aria-current={active ? 'page' : undefined}
+                        className={`text-2xl font-semibold py-1 transition-colors ${
+                          active ? 'text-teal' : 'text-ink/80 hover:text-ink'
+                        }`}
+                      >
+                        {t(`nav.${link.key}`)}
+                      </Link>
+                    );
+                  })}
                   <Button href="/contact" variant="primary" size="lg" onClick={closeMenu}>
                     {t('cta.contactUs')}
                   </Button>

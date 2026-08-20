@@ -1,4 +1,5 @@
-import { type ReactNode } from 'react';
+import { type ReactNode, useRef } from 'react';
+import { useInView, useReducedMotion } from 'framer-motion';
 
 interface StaggerProps {
   children: ReactNode;
@@ -6,10 +7,20 @@ interface StaggerProps {
   delay?: number;
 }
 
-/** Layout wrapper. Children render immediately — no stagger delay. */
+/** One in-view observer + CSS stagger. Opacity/transform only — no per-child JS. */
 export function Stagger({
   children,
   className = '',
 }: StaggerProps) {
-  return <div className={className}>{children}</div>;
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  const inView = useInView(ref, { once: true, amount: 0.12 });
+
+  const motionClass = reduce ? '' : inView ? 'stagger-in' : 'stagger-wait';
+
+  return (
+    <div ref={ref} className={`${className} ${motionClass}`.trim()}>
+      {children}
+    </div>
+  );
 }
