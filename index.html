@@ -55,11 +55,14 @@
     <meta name="twitter:creator" content="@oraixen" />
     <meta name="twitter:site" content="@oraixen" />
     
-    <!-- Performance & Preconnect -->
+    <!-- Fonts: non-blocking, display=swap, only the weights we use. Arabic font loads on demand. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Aleo:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aleo:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aleo:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+    </noscript>
     
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -74,18 +77,27 @@
       "foundingDate": "2014",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Toronto",
-        "addressRegion": "ON",
-        "addressCountry": "CA"
+        "streetAddress": "El Nasr, New Cairo",
+        "addressLocality": "Cairo",
+        "addressCountry": "EG"
       },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+1-313-482-0813",
-        "contactType": "Customer Service",
-        "email": "support@oraixen.com",
-        "areaServed": "Worldwide",
-        "availableLanguage": ["English", "Arabic"]
-      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+201062374445",
+          "contactType": "Customer Service",
+          "email": "support@oraixen.com",
+          "areaServed": "Worldwide",
+          "availableLanguage": ["English", "Arabic"]
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": "+201004753538",
+          "contactType": "Customer Service",
+          "areaServed": "Worldwide",
+          "availableLanguage": ["English", "Arabic"]
+        }
+      ],
       "sameAs": [
         "https://twitter.com/oraixen",
         "https://linkedin.com/company/oraixen",
@@ -115,12 +127,12 @@
       "name": "Oraixen",
       "description": "Premium technology solutions for mobile app development, web development, corporate software, and AI solutions.",
       "url": "https://oraixen.com",
-      "telephone": "+1-313-482-0813",
+      "telephone": "+201062374445",
       "email": "support@oraixen.com",
       "priceRange": "$$$",
       "areaServed": {
         "@type": "Country",
-        "name": "Canada"
+        "name": "Egypt"
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -131,7 +143,7 @@
             "itemOffered": {
               "@type": "Service",
               "name": "Mobile App Development",
-              "description": "Premium mobile application development for iOS and Android"
+              "description": "Native and cross-platform mobile application development for iOS and Android"
             }
           },
           {
@@ -139,15 +151,7 @@
             "itemOffered": {
               "@type": "Service",
               "name": "Web Development",
-              "description": "Custom web applications and websites"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Corporate Software",
-              "description": "Enterprise software solutions and platforms"
+              "description": "Custom web applications, SaaS platforms, and websites"
             }
           },
           {
@@ -155,7 +159,31 @@
             "itemOffered": {
               "@type": "Service",
               "name": "AI Solutions",
-              "description": "Integrated hardware, software, and AI solutions"
+              "description": "Practical AI systems and product features for automation and insight"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Business Platforms & Custom Software",
+              "description": "ERP, CRM, internal platforms, and custom products built around business needs"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Hardware",
+              "description": "IoT and embedded systems connected to live software"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Digital Transformation",
+              "description": "Modernizing systems and workflows for scalable operations"
             }
           }
         ]

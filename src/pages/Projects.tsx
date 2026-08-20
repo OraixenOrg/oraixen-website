@@ -19,7 +19,6 @@ import { ProjectGrid } from '../components/projects/ProjectGrid';
 import { SpotlightCard } from '../components/visual';
 import { PageHero, SectionHeading } from '../components/ui';
 import { Seo } from '../components/Seo';
-import { m } from 'framer-motion';
 import { projects } from '../lib/projects';
 
 type IndustryKey =
@@ -105,17 +104,11 @@ export function Projects() {
         />
 
         <Stagger className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {industryItems.map((item, i) => {
+          {industryItems.map((item) => {
             const Icon = INDUSTRY_ICONS[item.key];
             return (
-              <m.div
-                key={item.key}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ delay: i * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <Link
+              <Link
+                  key={item.key}
                   to={`/projects?industry=${INDUSTRY_FILTER[item.key]}`}
                   className="group block h-full"
                 >
@@ -136,7 +129,6 @@ export function Projects() {
                     </div>
                   </SpotlightCard>
                 </Link>
-              </m.div>
             );
           })}
         </Stagger>

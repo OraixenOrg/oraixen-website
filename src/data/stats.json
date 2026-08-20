@@ -1,15 +1,15 @@
 {
   "_comment": "The four headline stats on the home page. 'value' is the big number, 'label' is the caption under it. Keep 'en' and 'ar' the same length and in the same order.",
   "en": [
-    { "value": "Since 2014", "label": "Building since" },
-    { "value": "28+", "label": "Projects Delivered" },
-    { "value": "15", "label": "Industries Served" },
-    { "value": "iOS · Android · Web", "label": "Platforms we ship" }
+    { "value": "7+", "label": "Years of experience" },
+    { "value": "21+", "label": "Projects delivered" },
+    { "value": "98%", "label": "Client retention" },
+    { "value": "15", "label": "Countries served" }
   ],
   "ar": [
-    { "value": "منذ 2014", "label": "نعمل منذ" },
-    { "value": "أكثر من 28", "label": "مشروعاً مُنجزاً" },
-    { "value": "15", "label": "قطاعاً نخدمه" },
-    { "value": "iOS · أندرويد · ويب", "label": "المنصّات التي نطوّرها" }
+    { "value": "7+", "label": "سنوات خبرة" },
+    { "value": "21+", "label": "مشروعاً منجزاً" },
+    { "value": "98%", "label": "عملاء مستمرون معنا" },
+    { "value": "15", "label": "دولة نخدمها" }
   ]
 }

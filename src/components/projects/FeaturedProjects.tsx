@@ -22,7 +22,7 @@ export function FeaturedProjects() {
             {t('featured.subtitle')}
           </p>
         </FadeIn>
-        <FadeIn delay={0.2}>
+        <FadeIn>
           <Button href="/projects" variant="outline" icon>
             {t('featured.viewAll')}
           </Button>

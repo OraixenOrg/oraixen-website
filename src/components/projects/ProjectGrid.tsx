@@ -6,7 +6,6 @@ import { ProjectCard } from './ProjectCard';
 import { Stagger } from '../Stagger';
 import { Pagination } from '../Pagination';
 import { Search, X } from 'lucide-react';
-import { m, AnimatePresence } from 'framer-motion';
 
 interface ProjectGridProps {
   projects: Project[];
@@ -144,18 +143,16 @@ export function ProjectGrid({
       {/* Filters */}
       <div className="flex flex-wrap justify-center gap-2 md:gap-4">
         {availableCategories.map(category => (
-          <m.button
+          <button
             key={category}
             onClick={() => handleFilterChange(category)}
             className={`
-              px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 border
+              px-6 py-2 rounded-full text-sm font-semibold transition-colors duration-200 border
               ${currentFilter === category
                 ? 'bg-teal text-onaccent border-teal shadow-glow'
                 : 'bg-card text-body border-line hover:border-teal/40 hover:text-teal'
               }
             `}
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
           >
             {categoryLabel(category)}
             {category !== 'All' && (
@@ -163,7 +160,7 @@ export function ProjectGrid({
                 ({projects.filter(p => p.category === category).length})
               </span>
             )}
-          </m.button>
+          </button>
         ))}
       </div>
 
@@ -186,20 +183,9 @@ export function ProjectGrid({
       {paginatedProjects.length > 0 ? (
         <>
           <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <AnimatePresence mode="popLayout">
-              {paginatedProjects.map(project => (
-                <m.div
-                  key={project.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9, y: -20 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <ProjectCard project={project} />
-                </m.div>
-              ))}
-            </AnimatePresence>
+            {paginatedProjects.map(project => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
           </Stagger>
 
           {/* Pagination */}

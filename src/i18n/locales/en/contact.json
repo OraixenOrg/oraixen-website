@@ -1,29 +1,29 @@
 {
   "seo": {
-    "title": "Contact Oraixen — Start Your Project",
-    "description": "Tell us about your project and we'll reply within one business day. Start a custom software, web, mobile or AI build with Oraixen."
+    "title": "Contact Oraixen — Start a Project",
+    "description": "Tell us about your project. We reply within one business day. Mobile, web, corporate software, and AI engagements with Oraixen."
   },
-  "eyebrow": "Contact us",
-  "title": "Let's build something extraordinary.",
-  "subtitle": "Tell us about your project. We reply within one business day.",
+  "eyebrow": "Contact",
+  "title": "Let’s talk about your project.",
+  "subtitle": "Share a few details. We reply within one business day.",
   "info": {
     "email": {
       "label": "Email"
     },
     "phone": {
-      "label": "Call us"
+      "label": "Phone"
     },
     "location": {
-      "label": "Visit us",
-      "value": "Toronto, ON, Canada"
+      "label": "Office",
+      "value": "El Nasr, New Cairo, Egypt"
     }
   },
   "next": {
     "eyebrow": "What happens next",
     "steps": [
-      "We reply within 24 hours.",
-      "A 30-min scoping call to understand your goals.",
-      "You receive a tailored proposal & timeline."
+      "We reply within one business day.",
+      "A 30-minute scoping call to align on goals.",
+      "You receive a tailored proposal and timeline."
     ]
   },
   "form": {
@@ -63,13 +63,13 @@
     },
     "submit": "Send message",
     "submitting": "Sending…",
-    "error": "Couldn't send your message. Please try again, or email us directly at support@oraixen.com.",
+    "error": "We couldn’t send your message. Please try again, or email support@oraixen.com.",
     "reassurance": "No spam. We reply within one business day.",
-    "privacy": "By sending this, you agree to our Privacy Policy."
+    "privacy": "By sending this form, you agree to our Privacy Policy."
   },
   "success": {
-    "title": "Message sent.",
-    "body": "Thanks for reaching out — our team will reply within one business day.",
+    "title": "Message sent",
+    "body": "Thanks for reaching out. Our team will reply within one business day.",
     "again": "Send another message"
   }
 }

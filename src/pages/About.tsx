@@ -12,7 +12,6 @@ import { Stagger } from '../components/Stagger';
 import { Reveal, SpotlightCard } from '../components/visual';
 import { PageHero, SectionHeading, CTASection } from '../components/ui';
 import { Seo } from '../components/Seo';
-import { m } from 'framer-motion';
 
 const valueIcons = [Lightbulb, ShieldCheck, Users, BadgeCheck, Sparkles, TrendingUp];
 
@@ -55,6 +54,8 @@ export function About() {
             />
             <Reveal direction="right">
               <div className="space-y-6 text-body leading-relaxed text-lg">
+                <p>{t('story.intro')}</p>
+                <p>{t('story.history')}</p>
                 <p>
                   {t('story.p1.before')}
                   <span className="text-teal font-semibold">{t('story.p1.ora')}</span>
@@ -65,17 +66,27 @@ export function About() {
                   <span className="text-teal font-semibold">{t('story.p2.ixen')}</span>
                   {t('story.p2.after')}
                 </p>
-                <p>{t('story.p3')}</p>
+                <p>
+                  {t('story.p3.before')}
+                  <span className="text-teal font-semibold">{t('story.p3.en')}</span>
+                  {t('story.p3.after')}
+                </p>
+                <p>{t('story.closing')}</p>
+                <p className="text-ink font-semibold text-xl tracking-tight">
+                  {t('story.tagline')}
+                </p>
               </div>
             </Reveal>
           </div>
 
-          <Reveal delay={0.2} direction="left">
+          <Reveal direction="left">
             <div className="relative h-full min-h-[480px] rounded-3xl overflow-hidden shadow-hover group border border-line">
               <img
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1600"
                 alt={t('story.imageAlt')}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
               />
               {/* Subtle teal duotone wash */}
               <div className="absolute inset-0 bg-gradient-to-br from-skyblue/10 to-teal/10 mix-blend-multiply" />
@@ -103,7 +114,6 @@ export function About() {
             {milestones.map((item, i) => (
               <Reveal
                 key={i}
-                delay={i * 0.08}
                 className="relative text-center lg:text-start"
               >
                 {/* Node */}
@@ -131,21 +141,13 @@ export function About() {
 
         <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {foundation.map((item, i) => (
-            <m.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <SpotlightCard className="h-full">
+            <SpotlightCard key={i} className="h-full">
                 <div className="p-8 h-full">
                   <div className="w-12 h-1 bg-gradient-to-r from-skyblue to-teal rounded-full mb-6" />
                   <h3 className="text-2xl font-bold text-ink mb-4">{item.title}</h3>
                   <p className="text-body leading-relaxed">{item.text}</p>
                 </div>
               </SpotlightCard>
-            </m.div>
           ))}
         </Stagger>
       </Section>
@@ -163,14 +165,7 @@ export function About() {
           {values.map((value, i) => {
             const Icon = valueIcons[i % valueIcons.length];
             return (
-              <m.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ delay: i * 0.05 }}
-              >
-                <SpotlightCard className="h-full">
+              <SpotlightCard key={i} className="h-full">
                   <div className="p-8 h-full">
                     <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-skyblue/15 to-teal/10 border border-teal/15 flex items-center justify-center mb-5">
                       <Icon className="text-teal" size={24} strokeWidth={1.75} />
@@ -179,7 +174,6 @@ export function About() {
                     <p className="text-body leading-relaxed text-sm">{value.desc}</p>
                   </div>
                 </SpotlightCard>
-              </m.div>
             );
           })}
         </Stagger>

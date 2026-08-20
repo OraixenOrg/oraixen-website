@@ -1,7 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -40,10 +36,6 @@
   --accent-light: 132 223 242;
   --on-accent: 5 5 23;           /* Ink Black */
   color-scheme: dark;
-}
-
-* {
-  scroll-behavior: smooth;
 }
 
 html {
@@ -106,14 +98,61 @@ html[lang='ar'] h4, html[lang='ar'] h5, html[lang='ar'] h6,
   outline-offset: 2px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  * { transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
-}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes oraixen-aurora-a {
+  0%, 100% { transform: translate3d(-6%, -3%, 0) scale(1); }
+  50% { transform: translate3d(6%, 6%, 0) scale(1.08); }
+}
+@keyframes oraixen-aurora-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(10%, -8%, 0) scale(1.1); }
+}
+@keyframes oraixen-aurora-c {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); }
+  50% { transform: translate3d(-8%, 6%, 0) scale(1); }
+}
+@keyframes oraixen-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -12px, 0); }
+}
+@keyframes oraixen-float-slow {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, 14px, 0); }
+}
+@keyframes oraixen-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+.aurora-blob {
+  filter: blur(64px);
+  will-change: transform;
+}
+.aurora-a { animation: oraixen-aurora-a 22s ease-in-out infinite; }
+.aurora-b { animation: oraixen-aurora-b 28s ease-in-out infinite; }
+.aurora-c { animation: oraixen-aurora-c 26s ease-in-out infinite; }
+.float-y { animation: oraixen-float 7s ease-in-out infinite; will-change: transform; }
+.float-y-slow { animation: oraixen-float-slow 9s ease-in-out infinite; will-change: transform; }
+.float-y-fast { animation: oraixen-float 5s ease-in-out infinite; will-change: transform; }
+.marquee-track {
+  animation: oraixen-marquee 32s linear infinite;
+  will-change: transform;
+}
+.marquee-reverse { animation-direction: reverse; }
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-a, .aurora-b, .aurora-c,
+  .float-y, .float-y-slow, .float-y-fast,
+  .marquee-track {
+    animation: none !important;
+    will-change: auto;
   }
 }
 

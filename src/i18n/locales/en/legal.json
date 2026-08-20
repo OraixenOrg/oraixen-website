@@ -10,11 +10,11 @@
     },
     "eyebrow": "Privacy Policy",
     "title": "Privacy Policy",
-    "tldr": "We only collect what you send us (like your contact-form details) and basic technical data. We never sell your personal data, we keep it only as long as we need it, and you can ask us to access or delete it anytime at support@oraixen.com.",
+    "tldr": "We only collect what you send us (such as contact-form details) and basic technical data. We never sell your personal data, keep it only as long as needed, and you can ask to access or delete it anytime at support@oraixen.com.",
     "sections": [
       {
         "heading": "Introduction & Who We Are",
-        "body": "Oraixen (\"we\", \"our\", or \"us\") is a software studio headquartered in Toronto, Ontario, Canada, with a delivery team across Egypt and the wider MENA region. This Privacy Policy explains how we handle personal data we collect through oraixen.com and when you contact us. For the purposes of applicable data-protection law, Oraixen is the data controller. Questions about this policy can be sent to support@oraixen.com."
+        "body": "Oraixen (\"we\", \"our\", or \"us\") is a software studio based in Cairo, Egypt, serving clients across the MENA region and beyond. This Privacy Policy explains how we handle personal data we collect through oraixen.com and when you contact us. For the purposes of applicable data-protection law, Oraixen is the data controller. Questions about this policy can be sent to support@oraixen.com."
       },
       {
         "heading": "Information We Collect",
@@ -38,7 +38,7 @@
       },
       {
         "heading": "International Data Transfers",
-        "body": "Your data may be processed in Canada, in Egypt and the MENA region, or by our international service providers. Where required by law, we apply appropriate safeguards for cross-border transfers, such as Standard Contractual Clauses. [Placeholder — transfer mechanism to be confirmed by counsel.]"
+        "body": "Your data may be processed in Egypt and the MENA region, or by our international service providers. Where required by law, we apply appropriate safeguards for cross-border transfers, such as Standard Contractual Clauses. [Placeholder — transfer mechanism to be confirmed by counsel.]"
       },
       {
         "heading": "Data Retention",
@@ -50,7 +50,7 @@
       },
       {
         "heading": "Your Privacy Rights",
-        "body": "Depending on where you live (for example under GDPR or PIPEDA), you may have the right to access, correct, delete, restrict, or object to the processing of your personal data, to data portability, and to withdraw consent. To exercise these rights, email support@oraixen.com. You may also lodge a complaint with your local authority — in Canada, the Office of the Privacy Commissioner."
+        "body": "Depending on where you live (for example under GDPR or applicable Egyptian data-protection law), you may have the right to access, correct, delete, restrict, or object to the processing of your personal data, to data portability, and to withdraw consent. To exercise these rights, email support@oraixen.com. You may also lodge a complaint with your local authority."
       },
       {
         "heading": "Children's Privacy",
@@ -62,7 +62,7 @@
       },
       {
         "heading": "Contact Us",
-        "body": "If you have any questions about this Privacy Policy or your personal data, contact us at: Oraixen, support@oraixen.com, +1-313-482-0813, Toronto, Ontario, Canada."
+        "body": "If you have any questions about this Privacy Policy or your personal data, contact us at: Oraixen, support@oraixen.com, +201062374445 / +201004753538, El Nasr, New Cairo, Egypt."
       }
     ]
   },
@@ -73,7 +73,7 @@
     },
     "eyebrow": "Terms of Service",
     "title": "Terms of Service",
-    "tldr": "Use our site fairly, our website content is ours, and any project we build for you is governed by the specific written agreement we sign with you — including who owns the code, what's covered, and how payment works.",
+    "tldr": "Use this website lawfully and in good faith. Its content belongs to us. Any project we build for you is governed by the written agreement we sign with you — including code ownership, scope, and payment terms.",
     "sections": [
       {
         "heading": "Acceptance of These Terms",
@@ -81,7 +81,7 @@
       },
       {
         "heading": "Our Services",
-        "body": "We provide software development, web development, corporate-platform engineering, and hardware-plus-AI solutions. The exact scope, deliverables, timeline, and price of any engagement are defined in a separate signed proposal or contract. We may update or discontinue features of this website at any time."
+        "body": "We provide mobile app development, web development, AI solutions, business platforms and custom software, hardware systems, and digital transformation. The exact scope, deliverables, timeline, and price of any engagement are defined in a separate signed proposal or contract. We may update or discontinue features of this website at any time."
       },
       {
         "heading": "Intellectual Property & Ownership of Deliverables",
@@ -117,7 +117,7 @@
       },
       {
         "heading": "Governing Law & Disputes",
-        "body": "These Terms are governed by the laws of the Province of Ontario, Canada, and the parties submit to its courts, unless a signed agreement specifies otherwise. [Placeholder — to be confirmed by counsel.]"
+        "body": "These Terms are governed by the laws of the Arab Republic of Egypt, and the parties submit to the courts of Cairo, unless a signed agreement specifies otherwise. [Placeholder — to be confirmed by counsel.]"
       },
       {
         "heading": "Changes to These Terms",
@@ -125,7 +125,7 @@
       },
       {
         "heading": "Contact Us",
-        "body": "If you have any questions about these Terms, contact us at: Oraixen, support@oraixen.com, +1-313-482-0813, Toronto, Ontario, Canada."
+        "body": "If you have any questions about these Terms, contact us at: Oraixen, support@oraixen.com, +201062374445 / +201004753538, El Nasr, New Cairo, Egypt."
       }
     ]
   }

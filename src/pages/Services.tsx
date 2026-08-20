@@ -19,8 +19,9 @@ import {
   Layers,
   Users,
   LifeBuoy,
+  BrainCircuit,
+  RefreshCw,
 } from 'lucide-react';
-import { m } from 'framer-motion';
 
 type ServiceItem = {
   title: string;
@@ -39,7 +40,7 @@ type EngagementItem = {
   cta: string;
 };
 
-const serviceIcons = [Smartphone, Code, Server, Cpu];
+const serviceIcons = [Smartphone, Code, BrainCircuit, Server, Cpu, RefreshCw];
 const engagementIcons = [Layers, Users, LifeBuoy];
 
 export function Services() {
@@ -146,11 +147,9 @@ export function Services() {
 
                 {/* Media side — branded tile placeholder (no fabricated UI) */}
                 <div className="flex-1 w-full">
-                  <Reveal delay={0.15} direction={reversed ? 'right' : 'left'}>
-                    <m.div
+                  <Reveal direction={reversed ? 'right' : 'left'}>
+                    <div
                       className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-gradient-to-br from-skyblue/10 to-teal/5 border border-line shadow-card"
-                      whileHover={{ scale: 1.01 }}
-                      transition={{ duration: 0.3 }}
                     >
                       <AuroraBackground intensity="subtle" />
                       {/* faint dotted grid */}
@@ -168,7 +167,7 @@ export function Services() {
                           <Icon size={44} className="text-teal" />
                         </div>
                       </div>
-                    </m.div>
+                    </div>
                   </Reveal>
                 </div>
               </div>
@@ -182,8 +181,7 @@ export function Services() {
         <AuroraBackground intensity="subtle" />
         <div className="relative z-10">
           <SectionHeading
-            eyebrow={t('engagement.eyebrow')}
-            title={t('engagement.title')}
+            title={t('engagement.eyebrow')}
             subtitle={t('engagement.subtitle')}
           />
 
@@ -192,16 +190,9 @@ export function Services() {
               const Icon = engagementIcons[i] ?? Layers;
               const highlighted = i === 1;
               return (
-                <m.div
+                <SpotlightCard
                   key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ delay: i * 0.08 }}
-                  className="h-full"
-                >
-                  <SpotlightCard
-                    className={`h-full ${
+                  className={`h-full ${
                       highlighted ? 'border-teal/40 shadow-hover lg:-translate-y-2' : ''
                     }`}
                   >
@@ -238,9 +229,6 @@ export function Services() {
                         ))}
                       </ul>
                       <div className="mt-auto">
-                        <p className="text-xs text-muted mb-1">
-                          {t('engagement.startingFrom')}
-                        </p>
                         <p className="text-2xl font-bold text-teal mb-6">
                           {model.price}
                         </p>
@@ -255,7 +243,6 @@ export function Services() {
                       </div>
                     </div>
                   </SpotlightCard>
-                </m.div>
               );
             })}
           </Stagger>
@@ -263,7 +250,7 @@ export function Services() {
           {/* What happens next strip */}
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6">
             {steps.map((step, i) => (
-              <Reveal key={i} delay={i * 0.08}>
+              <Reveal key={i}>
                 <SpotlightCard className="h-full">
                   <div className="p-6 md:p-7 h-full flex items-start gap-4">
                     <div className="w-9 h-9 rounded-full bg-teal/10 text-teal border border-teal/20 flex items-center justify-center font-bold text-sm shrink-0">

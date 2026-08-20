@@ -83,6 +83,15 @@ i18n
     },
   });
 
+function loadArabicFont(): void {
+  if (document.getElementById('oraixen-font-ar')) return;
+  const link = document.createElement('link');
+  link.id = 'oraixen-font-ar';
+  link.rel = 'stylesheet';
+  link.href = 'https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap';
+  document.head.appendChild(link);
+}
+
 /** Keep <html dir/lang> in sync with the active language. */
 function applyDocumentDirection(lng: string): void {
   const dir = i18n.dir(lng);
@@ -90,6 +99,7 @@ function applyDocumentDirection(lng: string): void {
   const el = document.documentElement;
   el.setAttribute('dir', dir);
   el.setAttribute('lang', lang);
+  if (lang === 'ar') loadArabicFont();
 }
 
 applyDocumentDirection(i18n.language || 'en');

@@ -13,7 +13,6 @@ import {
   SpotlightCard,
   Reveal,
 } from '../components/visual';
-import { m } from 'framer-motion';
 export function ProjectDetail() {
   const { t, i18n } = useTranslation('projectDetail');
   const {
@@ -39,6 +38,8 @@ export function ProjectDetail() {
           <img
             src={project.imageUrl}
             alt={project.title}
+            fetchPriority="high"
+            decoding="async"
             className={
               project.imageFit === 'contain'
                 ? 'object-contain w-auto h-auto max-h-[50vh] max-w-[85vw] sm:max-w-[500px]'
@@ -97,17 +98,8 @@ export function ProjectDetail() {
           icon: <Tag size={20} />,
           label: t('labels.category'),
           value: project.category
-        }].map((item, i) => <m.div key={i} initial={{
-          opacity: 0,
-          y: 20
-        }} whileInView={{
-          opacity: 1,
-          y: 0
-        }} viewport={{
-          once: true
-        }} transition={{
-          delay: i * 0.1
-        }}>
+        }].map((item, i) => (
+          <div key={i}>
               <div className="flex items-center text-teal mb-3">
                 {item.icon}
                 <span className="text-xs font-bold uppercase tracking-wider ms-2">
@@ -117,19 +109,10 @@ export function ProjectDetail() {
               <div className="text-ink font-semibold text-lg">
                 {item.value}
               </div>
-            </m.div>)}
+            </div>
+          ))}
 
-          <m.div initial={{
-          opacity: 0,
-          y: 20
-        }} whileInView={{
-          opacity: 1,
-          y: 0
-        }} viewport={{
-          once: true
-        }} transition={{
-          delay: 0.3
-        }}>
+          <div>
             <div className="text-teal mb-3">
               <span className="text-xs font-bold uppercase tracking-wider">
                 {t('labels.techStack')}
@@ -140,7 +123,7 @@ export function ProjectDetail() {
                   {tech}
                 </span>)}
             </div>
-          </m.div>
+          </div>
         </div>
         </div>
       </section>
@@ -159,7 +142,7 @@ export function ProjectDetail() {
               </p>
             </Reveal>
 
-            <Reveal delay={0.1}>
+            <Reveal>
               <div className="w-12 h-1 bg-gradient-to-r from-skyblue to-teal rounded-full mb-6" />
               <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
                 {t('sections.solution')}
@@ -169,7 +152,7 @@ export function ProjectDetail() {
               </p>
             </Reveal>
 
-            <Reveal delay={0.2}>
+            <Reveal>
               <div className="w-12 h-1 bg-gradient-to-r from-skyblue to-teal rounded-full mb-6" />
               <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6">
                 {t('sections.impact')}
@@ -181,7 +164,7 @@ export function ProjectDetail() {
           </div>
 
           <div className="lg:col-span-1 space-y-8">
-            <Reveal delay={0.3}>
+            <Reveal>
               <SpotlightCard className="h-full">
                 <div className="p-8">
                   <h3 className="text-xl font-bold text-ink mb-8">
@@ -201,7 +184,7 @@ export function ProjectDetail() {
               </SpotlightCard>
             </Reveal>
 
-            <Reveal delay={0.4}>
+            <Reveal>
               <SpotlightCard className="h-full">
                 <div className="p-8">
                   <h3 className="text-xl font-bold text-ink mb-8">
@@ -218,7 +201,7 @@ export function ProjectDetail() {
             </Reveal>
 
             {project.platforms && (project.platforms.website || project.platforms.playStore || project.platforms.appStore || project.platforms.dashboard) && (
-              <Reveal delay={0.5}>
+              <Reveal>
                 <SpotlightCard className="h-full">
                   <div className="p-8">
                   <h3 className="text-xl font-bold text-ink mb-8">

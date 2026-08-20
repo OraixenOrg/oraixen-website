@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, Code, Code2, Smartphone, Server, Cpu, CheckCircle, Zap, Quote, ChevronDown, Layers, Workflow, Target, Globe, LifeBuoy } from 'lucide-react';
+import { ArrowRight, Code, Code2, Smartphone, Server, Cpu, CheckCircle, Zap, Quote, ChevronDown, Layers, Workflow, Target, Globe, LifeBuoy, BrainCircuit, RefreshCw } from 'lucide-react';
 import { Section } from '../components/Section';
 import { Button } from '../components/Button';
 import { Seo } from '../components/Seo';
@@ -17,7 +17,6 @@ import {
   Reveal,
 } from '../components/visual';
 import { SectionHeading, CTASection } from '../components/ui';
-import { m } from 'framer-motion';
 import statsData from '../data/stats.json';
 import clientsData from '../data/clients.json';
 import testimonialsData from '../data/testimonials.json';
@@ -25,8 +24,10 @@ import testimonialsData from '../data/testimonials.json';
 const serviceIcons = [
   <Smartphone className="text-teal" size={26} />,
   <Code className="text-teal" size={26} />,
+  <BrainCircuit className="text-teal" size={26} />,
   <Server className="text-teal" size={26} />,
   <Cpu className="text-teal" size={26} />,
+  <RefreshCw className="text-teal" size={26} />,
 ];
 
 const whyIcons = [Code2, Layers, Workflow, Target, Globe, LifeBuoy];
@@ -67,7 +68,7 @@ export function Home() {
         <div className="container mx-auto py-5 px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-6xl mx-auto text-center">
             {/* Eyebrow */}
-            <Reveal>
+            <Reveal instant>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card/70 backdrop-blur-sm text-teal border border-teal/20 text-sm font-semibold mb-10 shadow-card">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full rounded-full bg-skyblue opacity-60 animate-ping" />
@@ -79,18 +80,16 @@ export function Home() {
             </Reveal>
 
             {/* Headline */}
-            <Reveal delay={0.08}>
+            <Reveal instant>
               <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-ink mb-8 leading-[1.05]">
                 {t('hero.headlineLead')}{' '}
                 <span className="relative inline-block">
                   <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-skyblue via-teal to-azure">
                     {t('hero.headlineHighlight')}
                   </span>
-                  <m.span
-                    className="absolute -inset-x-3 -inset-y-1 -z-0 rounded-full blur-2xl"
+                  <span
+                    className="absolute -inset-x-3 -inset-y-1 -z-0 rounded-full blur-2xl opacity-50"
                     style={{ background: 'linear-gradient(90deg, rgba(86,201,227,0.35), rgba(15,94,112,0.30))' }}
-                    animate={{ opacity: [0.4, 0.75, 0.4], scale: [0.96, 1.04, 0.96] }}
-                    transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
                     aria-hidden="true"
                   />
                 </span>
@@ -98,14 +97,14 @@ export function Home() {
             </Reveal>
 
             {/* Subheadline */}
-            <Reveal delay={0.16}>
+            <Reveal instant>
               <p className="text-xl sm:text-2xl md:text-3xl text-body mb-12 max-w-4xl mx-auto leading-relaxed font-light">
                 {t('hero.subhead')}
               </p>
             </Reveal>
 
             {/* CTAs */}
-            <Reveal delay={0.24}>
+            <Reveal instant>
               <div className="flex flex-col sm:flex-row gap-5 justify-center items-center mb-8">
                 <Button href="/contact" variant="primary" size="lg" icon>
                   {t('hero.ctaPrimary')}
@@ -115,22 +114,16 @@ export function Home() {
                 </Button>
               </div>
             </Reveal>
-
-            <Reveal delay={0.32}>
-              <p className="text-sm text-muted font-medium">{t('hero.caption')}</p>
-            </Reveal>
           </div>
         </div>
 
         {/* Scroll cue */}
-        <m.div
-          className="absolute bottom-8 start-1/2 -translate-x-1/2 text-muted"
-          animate={{ y: [0, 8, 0], opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+        <div
+          className="float-y absolute bottom-8 start-1/2 -translate-x-1/2 text-muted"
           aria-hidden="true"
         >
           <ChevronDown size={24} />
-        </m.div>
+        </div>
       </section>
 
       {/* ===================== Stats ===================== */}
@@ -138,20 +131,16 @@ export function Home() {
         <AuroraBackground intensity="subtle" />
         <div className="container mx-auto px-4 relative z-10">
           <Stagger className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
-            {stats.map((stat, i) => (
-              <m.div
-                key={i}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="rounded-2xl bg-card/70 backdrop-blur-sm border border-line shadow-card px-4 py-7 text-center hover:border-teal/40 hover:shadow-hover transition-all duration-300"
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded-2xl bg-card/70 backdrop-blur-sm border border-line shadow-card px-4 py-7 text-center hover:border-teal/40 hover:shadow-hover transition-all duration-200"
               >
                 <div className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-2 text-transparent bg-clip-text bg-gradient-to-br from-skyblue to-teal">
                   <AnimatedCounter value={stat.value} />
                 </div>
                 <div className="text-sm text-muted uppercase tracking-wider font-semibold">{stat.label}</div>
-              </m.div>
+              </div>
             ))}
           </Stagger>
         </div>
@@ -187,26 +176,13 @@ export function Home() {
           subtitle={t('services.subtitle')}
         />
 
-        <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, i) => (
-            <m.div
-              key={i}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: i * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <SpotlightCard className="h-full">
+            <SpotlightCard key={i} className="h-full">
                 <div className="p-8 h-full group">
                   <div className="relative mb-6 w-14 h-14">
-                    <m.div
-                      className="absolute inset-0 rounded-2xl border border-teal/20"
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
-                      aria-hidden="true"
-                    />
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-skyblue/15 to-teal/10 border border-teal/15 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      {serviceIcons[i]}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-skyblue/15 to-teal/10 border border-teal/15 flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                      {serviceIcons[i] ?? serviceIcons[0]}
                     </div>
                   </div>
                   <div className="flex items-center gap-2 mb-3 flex-wrap">
@@ -227,7 +203,6 @@ export function Home() {
                   </Link>
                 </div>
               </SpotlightCard>
-            </m.div>
           ))}
         </Stagger>
       </Section>
@@ -247,14 +222,7 @@ export function Home() {
           {whyChoose.map((item, i) => {
             const Icon = whyIcons[i % whyIcons.length];
             return (
-              <m.div
-                key={i}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ delay: i * 0.07, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <SpotlightCard className="h-full">
+              <SpotlightCard key={i} className="h-full">
                   <div className="p-8 h-full flex flex-col">
                     <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-skyblue/15 to-teal/10 border border-teal/15 flex items-center justify-center mb-6">
                       <Icon className="text-teal" size={24} strokeWidth={1.75} />
@@ -263,7 +231,6 @@ export function Home() {
                     <p className="text-body leading-relaxed text-sm">{item.desc}</p>
                   </div>
                 </SpotlightCard>
-              </m.div>
             );
           })}
         </Stagger>
@@ -280,19 +247,15 @@ export function Home() {
             <p className="text-body mb-10 text-lg leading-relaxed">{t('process.subtitle')}</p>
             <div className="space-y-4 mb-10">
               {processSteps.map((step, i) => (
-                <m.div
+                <div
                   key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
                   className="flex items-center group"
                 >
                   <div className="w-8 h-8 rounded-full bg-teal/5 border border-teal/30 flex items-center justify-center me-4 group-hover:bg-teal/10 transition-colors shrink-0">
                     <CheckCircle className="text-teal" size={18} />
                   </div>
                   <span className="text-ink font-medium">{step}</span>
-                </m.div>
+                </div>
               ))}
             </div>
             <Button href="/process" variant="secondary" size="lg">
@@ -300,11 +263,9 @@ export function Home() {
             </Button>
           </Reveal>
 
-          <Reveal delay={0.15} direction="left" className="relative">
-            <m.div
+          <Reveal direction="left" className="relative">
+            <div
               className="absolute inset-0 bg-gradient-to-br from-skyblue/15 to-teal/15 blur-3xl rounded-full opacity-50"
-              animate={{ opacity: [0.35, 0.6, 0.35], scale: [0.95, 1.05, 0.95] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
               aria-hidden="true"
             />
             <div className="relative p-10 rounded-2xl bg-card border border-line shadow-card">
@@ -347,14 +308,7 @@ export function Home() {
 
         <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((item, i) => (
-            <m.div
-              key={i}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <SpotlightCard className="h-full">
+              <SpotlightCard key={i} className="h-full">
                 <div className="p-8 h-full flex flex-col">
                   <Quote className="text-teal mb-5 rtl-flip" size={28} />
                   <p className="text-body leading-relaxed mb-6 flex-1">{item.quote}</p>
@@ -369,7 +323,6 @@ export function Home() {
                   </div>
                 </div>
               </SpotlightCard>
-            </m.div>
           ))}
         </Stagger>
       </Section>

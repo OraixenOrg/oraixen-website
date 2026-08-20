@@ -1,5 +1,4 @@
 import { type ReactNode } from 'react';
-import { m } from 'framer-motion';
 import { Button } from '../Button';
 import { Reveal } from '../visual';
 
@@ -22,11 +21,9 @@ interface CTASectionProps {
 export function CTASection({ title, subtitle, primary, secondary }: CTASectionProps) {
   return (
     <section className="relative py-24 md:py-32 bg-gradient-to-br from-azure to-inkblack overflow-hidden">
-      <m.div
-        className="absolute top-0 end-1/4 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] rounded-full blur-3xl"
+      <div
+        className="absolute top-0 end-1/4 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] rounded-full blur-3xl opacity-40"
         style={{ background: 'radial-gradient(circle, rgba(86,201,227,0.30), transparent 60%)' }}
-        animate={{ opacity: [0.3, 0.55, 0.3], scale: [1, 1.2, 1] }}
-        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
         aria-hidden="true"
       />
       <div

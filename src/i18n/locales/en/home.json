@@ -1,125 +1,131 @@
 {
   "seo": {
-    "title": "Oraixen — Premium Software Development for Mobile, Web & AI",
-    "description": "Oraixen builds premium mobile apps, web platforms, corporate software and AI systems for ambitious businesses — 28+ products shipped across 15 industries since 2014."
+    "title": "Oraixen — Mobile, Web, AI & Custom Software",
+    "description": "Oraixen builds mobile apps, web platforms, AI solutions, custom business software, hardware, and digital transformation solutions for companies in Egypt and worldwide."
   },
   "hero": {
-    "eyebrow": "Premium Technology Solutions",
+    "eyebrow": "Premium technology solutions",
     "headlineLead": "Innovation meets",
     "headlineHighlight": "Precision",
-    "subhead": "We build premium digital products — mobile apps, web platforms, and AI-powered systems — for teams that refuse to ship anything ordinary.",
-    "ctaPrimary": "Start your project",
-    "ctaSecondary": "View our work",
-    "caption": "Toronto HQ · delivery across the MENA region"
+    "subhead": "We design and build mobile apps, web platforms, AI solutions, and custom software for companies that expect careful engineering — not just delivery.",
+    "ctaPrimary": "Start a project",
+    "ctaSecondary": "See our work"
   },
   "logos": {
-    "eyebrow": "Teams we've built for",
-    "caption": "Trusted across 15 industries and 28+ shipped products"
+    "eyebrow": "Selected clients & partners",
+    "caption": "21+ products delivered for clients across 15 countries"
   },
   "services": {
-    "eyebrow": "What we do",
-    "title": "Four ways we ship",
-    "subtitle": "End-to-end technology, delivered as outcomes — not just features.",
+    "eyebrow": "Specialties",
+    "title": "What we specialize in",
+    "subtitle": "Six capabilities — from mobile and web to AI, hardware, and digital transformation.",
     "learnMore": "Learn more",
     "items": [
       {
-        "title": "Mobile App Development",
-        "desc": "iOS & Android apps your users actually keep — built native, tuned for speed."
+        "title": "Mobile app development",
+        "desc": "Native and cross-platform iOS & Android apps built for speed, clarity, and retention."
       },
       {
-        "title": "Web Development",
-        "desc": "Fast, scalable web platforms that hold up when traffic spikes."
+        "title": "Web development",
+        "desc": "Web apps and SaaS platforms engineered to stay fast as you grow."
       },
       {
-        "title": "Corporate Software",
-        "desc": "ERP, CRM and dashboards that replace spreadsheets and manual chaos."
+        "title": "AI solutions",
+        "desc": "Practical AI features and systems that improve products, operations, and decision-making."
       },
       {
-        "title": "Hardware & AI",
-        "tag": "Emerging / R&D",
-        "desc": "IoT devices and AI that turn physical operations into live data."
+        "title": "Business platforms & custom software",
+        "desc": "ERP, CRM, internal platforms, and custom products built around your processes and goals."
+      },
+      {
+        "title": "Hardware",
+        "desc": "IoT and embedded systems that connect physical operations to live software."
+      },
+      {
+        "title": "Digital transformation",
+        "desc": "Modernize systems and workflows so teams work faster, clearer, and with less friction."
       }
     ]
   },
   "featured": {
     "eyebrow": "Selected work",
-    "title": "Products, not slideshows",
-    "subtitle": "Three builds we're proud of — each one live, each one used daily.",
-    "viewAll": "View all projects"
+    "title": "Live products",
+    "subtitle": "Three projects our clients rely on every day.",
+    "viewAll": "Browse all projects"
   },
   "whyChoose": {
     "eyebrow": "Why Oraixen",
-    "title": "The partner teams keep, not replace",
-    "subtitle": "Six reasons companies trust us with the products their business runs on.",
+    "title": "A partner who stays after launch",
+    "subtitle": "What clients value most when they trust us with products their business depends on.",
     "items": [
       {
-        "title": "Clean, maintainable engineering",
-        "desc": "Readable, well-documented code your next developer can pick up without a rewrite."
+        "title": "Clean, maintainable code",
+        "desc": "Well-structured, documented engineering your next team can extend without starting over."
       },
       {
         "title": "Architecture that scales",
-        "desc": "Systems designed for the traffic and team you'll have in three years — not just today."
+        "desc": "Systems designed for the traffic and team you’ll have in a few years — not only next month."
       },
       {
-        "title": "A transparent process",
-        "desc": "Weekly demos, a shared roadmap, and honest status — you always know where things stand."
+        "title": "Transparent delivery",
+        "desc": "Weekly demos, a shared roadmap, and clear status — you always know where things stand."
       },
       {
-        "title": "Business-focused delivery",
-        "desc": "We optimize for outcomes and revenue, not feature counts or hours billed."
+        "title": "Business-first outcomes",
+        "desc": "We prioritize impact and reliability over feature count or billable hours."
       },
       {
-        "title": "Bilingual, international experience",
-        "desc": "Native English and Arabic delivery across North America and the MENA region."
+        "title": "Bilingual delivery",
+        "desc": "Native English and Arabic across Egypt and the wider MENA region."
       },
       {
-        "title": "Long-term support",
-        "desc": "A post-launch support window on every release and maintenance plans that grow with you."
+        "title": "Support after launch",
+        "desc": "A post-launch support window on every release, plus maintenance plans that grow with you."
       }
     ]
   },
   "testimonials": {
-    "eyebrow": "What partners say",
-    "title": "Built for teams that ship",
-    "subtitle": "Placeholder quotes anchored to real projects — final testimonials are being collected before launch.",
-    "placeholderBadge": "Placeholder — to be confirmed"
+    "eyebrow": "Client feedback",
+    "title": "What our partners say",
+    "subtitle": "Notes from teams we’ve built with. More stories as current projects wrap.",
+    "placeholderBadge": "Pending final approval"
   },
   "process": {
     "eyebrow": "How we work",
-    "title": "A path, not a black box",
-    "subtitle": "Five steps, weekly demos, and full transparency from kickoff to launch.",
+    "title": "A clear path from idea to launch",
+    "subtitle": "Five phases, weekly demos, and full visibility from kickoff through go-live.",
     "steps": [
       "Discovery",
       "Design",
       "Development",
       "QA",
-      "Launch & Support"
+      "Launch & support"
     ],
-    "cta": "View full process",
+    "cta": "See how we work",
     "card": {
       "items": [
         {
           "num": "1",
           "title": "Discovery",
-          "desc": "We dive deep into your business goals and technical requirements."
+          "desc": "We align on goals, constraints, success metrics, and the right technical path."
         },
         {
           "num": "2",
-          "title": "Execution",
-          "desc": "Agile development with weekly demos and full transparency."
+          "title": "Build",
+          "desc": "Agile sprints with working software every week — and room to steer."
         },
         {
           "num": "3",
-          "title": "Launch & Support",
-          "desc": "A flawless launch with clear documentation and ongoing support."
+          "title": "Launch & support",
+          "desc": "Careful release, clear documentation, and support that continues after go-live."
         }
       ]
     }
   },
   "cta": {
-    "title": "Have a project worth doing right?",
-    "subtitle": "Tell us what you're building. We'll tell you how we'd ship it.",
-    "primary": "Start your project",
-    "secondary": "View our work"
+    "title": "Have a project in mind?",
+    "subtitle": "Tell us what you’re planning. We’ll outline how we’d design, build, and launch it.",
+    "primary": "Start a project",
+    "secondary": "See our work"
   }
 }

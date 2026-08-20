@@ -1,16 +1,16 @@
 {
   "seo": {
     "title": "Projects — Selected Work | Oraixen",
-    "description": "Real products, real users: 28 builds across finance, healthcare, education, retail and more. Explore selected work from Oraixen."
+    "description": "Explore 21+ products across finance, healthcare, education, retail, and more. Selected work from Oraixen."
   },
   "hero": {
     "eyebrow": "Our work",
-    "title": "Selected Projects",
-    "subtitle": "Real products, real users — 28 builds across finance, healthcare, education, retail and more."
+    "title": "Selected projects",
+    "subtitle": "Products in production — across finance, healthcare, education, retail, and more."
   },
   "loading": "Loading projects…",
   "search": {
-    "placeholder": "Search projects by name, client, industry, or technology…",
+    "placeholder": "Search by name, client, industry, or technology…",
     "ariaLabel": "Search projects",
     "clearAria": "Clear search"
   },
@@ -19,13 +19,13 @@
     "web": "Web",
     "mobile": "Mobile",
     "platform": "Platform",
-    "clearAll": "Clear all filters"
+    "clearAll": "Clear filters"
   },
   "empty": {
     "title": "No projects found",
-    "withFilters": "No projects match this filter yet.",
-    "noProjects": "No projects available at the moment.",
-    "viewAll": "View all projects"
+    "withFilters": "Nothing matches these filters yet.",
+    "noProjects": "No projects to show right now.",
+    "viewAll": "Browse all projects"
   },
   "pagination": {
     "page": "Page",
@@ -38,7 +38,7 @@
   },
   "card": {
     "confidential": "Confidential",
-    "confidentialClient": "Confidential Client",
+    "confidentialClient": "Confidential client",
     "more": "+{{count}} more",
     "ariaLabel": "{{project}} — {{industry}} product by Oraixen",
     "platforms": {
@@ -49,9 +49,9 @@
     }
   },
   "industries": {
-    "eyebrow": "Who we build for",
-    "title": "Trusted across industries.",
-    "subtitle": "28 products shipped across 15 industries — from fintech and healthcare to e-commerce and education.",
+    "eyebrow": "Industries",
+    "title": "Built across markets",
+    "subtitle": "21+ products across fintech, healthcare, e-commerce, education, and other industries.",
     "projectOne": "{{count}} project",
     "projectTwo": "{{count}} projects",
     "projectOther": "{{count}} projects",
@@ -59,7 +59,7 @@
       { "key": "education", "name": "Education", "count": 2 },
       { "key": "ecommerce", "name": "E-commerce", "count": 7 },
       { "key": "finance", "name": "Fintech", "count": 1 },
-      { "key": "food", "name": "Food & Logistics", "count": 3 },
+      { "key": "food", "name": "Food & logistics", "count": 3 },
       { "key": "healthcare", "name": "Healthcare", "count": 1 },
       { "key": "jobs", "name": "Jobs", "count": 1 },
       { "key": "legal", "name": "Legal", "count": 1 },
@@ -67,6 +67,6 @@
     ]
   },
   "related": {
-    "title": "Related Projects"
+    "title": "Related projects"
   }
 }

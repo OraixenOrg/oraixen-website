@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Linkedin, Github, Facebook, Instagram, Mail } from 'lucide-react';
+import { Linkedin, Github, Facebook, Instagram, Mail, Phone, MapPin } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Logo } from './Logo';
 import company from '../data/company.json';
@@ -13,8 +13,10 @@ const socials = [
 ];
 
 export function Footer() {
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
+  const lang = i18n.language?.startsWith('ar') ? 'ar' : 'en';
   const currentYear = new Date().getFullYear();
+  const phones = (company.phones ?? [company.phone]).filter(Boolean) as string[];
 
   return (
     <footer className="bg-surface-subtle border-t border-line pt-20 pb-8">
@@ -66,8 +68,10 @@ export function Footer() {
             <ul className="space-y-4">
               <li><Link to="/services" className="text-body hover:text-ink transition-colors text-sm">{t('footer.services.mobile')}</Link></li>
               <li><Link to="/services" className="text-body hover:text-ink transition-colors text-sm">{t('footer.services.web')}</Link></li>
+              <li><Link to="/services" className="text-body hover:text-ink transition-colors text-sm">{t('footer.services.ai')}</Link></li>
               <li><Link to="/services" className="text-body hover:text-ink transition-colors text-sm">{t('footer.services.corporate')}</Link></li>
               <li><Link to="/services" className="text-body hover:text-ink transition-colors text-sm">{t('footer.services.hardware')}</Link></li>
+              <li><Link to="/services" className="text-body hover:text-ink transition-colors text-sm">{t('footer.services.transformation')}</Link></li>
             </ul>
           </div>
 
@@ -82,6 +86,18 @@ export function Footer() {
                 <a href={`mailto:${company.email}`} className="hover:text-ink transition-colors" dir="ltr">
                   {company.email}
                 </a>
+              </li>
+              {phones.map((phone) => (
+                <li key={phone} className="flex items-center text-body text-sm">
+                  <Phone size={18} className="me-3 text-teal shrink-0" />
+                  <a href={`tel:${phone}`} className="hover:text-ink transition-colors" dir="ltr">
+                    {phone}
+                  </a>
+                </li>
+              ))}
+              <li className="flex items-start text-body text-sm">
+                <MapPin size={18} className="me-3 mt-0.5 text-teal shrink-0" />
+                <span>{company.location[lang]}</span>
               </li>
             </ul>
           </div>

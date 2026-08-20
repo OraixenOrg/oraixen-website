@@ -1,82 +1,103 @@
 {
   "seo": {
-    "title": "Services — Mobile, Web, Corporate Software & AI | Oraixen",
-    "description": "Mobile and web app development, corporate software platforms, and hardware + AI solutions — delivered as fixed-scope projects, dedicated teams, or ongoing support."
+    "title": "Services — Mobile, Web, AI, Hardware & Digital Transformation | Oraixen",
+    "description": "Oraixen specializes in mobile apps, web development, AI solutions, business platforms and custom software, hardware, and digital transformation."
   },
   "hero": {
-    "eyebrow": "What we do",
-    "title": "Our Services",
-    "subtitle": "Four ways we turn ambitious ideas into reliable, shipped software."
+    "eyebrow": "Specialties",
+    "title": "How we can help",
+    "subtitle": "Six specialties that turn clear requirements into reliable, production-ready solutions."
   },
   "labels": {
     "deliverables": "Deliverables",
-    "timeline": "Timeline",
-    "bestFor": "Best For",
-    "cta": "Discuss your project"
+    "timeline": "Typical timeline",
+    "bestFor": "Best for",
+    "cta": "Talk through your project"
   },
   "services": {
     "items": [
       {
-        "title": "Mobile App Development",
-        "description": "Native and cross-platform apps with seamless UX — built to be kept, not deleted.",
+        "title": "Mobile app development",
+        "description": "Native and cross-platform apps with a polished UX — designed for retention, not one-time installs.",
         "deliverables": [
-          "iOS & Android Apps",
+          "iOS & Android apps",
           "React Native / Flutter",
-          "UI/UX Design",
-          "App Store Optimization"
+          "UI/UX design",
+          "App Store optimization"
         ],
         "timeline": "3–6 months",
         "bestFor": "Startups, consumer brands, enterprise tools"
       },
       {
-        "title": "Web Development",
-        "description": "Modern, responsive, high-performance web apps and platforms that scale.",
+        "title": "Web development",
+        "description": "Modern, high-performance web apps and platforms designed to scale with your traffic.",
         "deliverables": [
-          "SaaS Platforms",
+          "SaaS platforms",
           "E-commerce",
-          "Progressive Web Apps",
-          "CMS Solutions"
+          "Progressive web apps",
+          "CMS solutions"
         ],
         "timeline": "2–5 months",
         "bestFor": "SaaS, e-commerce, corporate portals"
       },
       {
-        "title": "Corporate Software Platforms",
-        "description": "Custom software that streamlines complex operations and replaces manual chaos.",
+        "title": "AI solutions",
+        "description": "Practical AI systems and product features that automate work, surface insights, and support better decisions.",
         "deliverables": [
-          "ERP Systems",
-          "CRM Solutions",
-          "HR Tools",
-          "Data Dashboards"
+          "ML / LLM integrations",
+          "Computer vision",
+          "Predictive analytics",
+          "Intelligent automation"
         ],
-        "timeline": "6–12 months",
-        "bestFor": "Enterprises, logistics, finance, healthcare"
+        "timeline": "2–8 months",
+        "bestFor": "Product teams, operations, data-driven businesses"
       },
       {
-        "title": "Hardware + Software + AI",
-        "badge": "Emerging / R&D",
-        "description": "Integrated IoT, embedded systems, and AI that turn physical operations into live data.",
+        "title": "Business platforms & custom software",
+        "description": "Custom systems and products built around your operations, users, and goals.",
         "deliverables": [
-          "IoT Devices",
-          "Embedded Systems",
-          "Computer Vision",
-          "Predictive Analytics"
+          "ERP systems",
+          "CRM solutions",
+          "Custom platforms",
+          "API & integrations"
         ],
-        "timeline": "6–18 months",
-        "bestFor": "Manufacturing, smart cities, MedTech, AgTech"
+        "timeline": "3–12 months",
+        "bestFor": "Startups, SMBs, and enterprises with unique workflows"
+      },
+      {
+        "title": "Hardware",
+        "description": "IoT and embedded systems that connect devices, sensors, and field operations to live software.",
+        "deliverables": [
+          "IoT devices",
+          "Embedded systems",
+          "Device connectivity",
+          "Monitoring dashboards"
+        ],
+        "timeline": "4–12 months",
+        "bestFor": "Manufacturing, logistics, MedTech, smart operations"
+      },
+      {
+        "title": "Digital transformation",
+        "description": "Modernize legacy tools and fragmented processes into connected systems teams can actually use.",
+        "deliverables": [
+          "Process assessment",
+          "System modernization",
+          "Workflow automation",
+          "Change & training support"
+        ],
+        "timeline": "3–12 months",
+        "bestFor": "Growing companies ready to scale operations"
       }
     ]
   },
   "engagement": {
-    "eyebrow": "Engagement",
-    "title": "How we work together.",
-    "subtitle": "Three ways to engage Oraixen — pick the one that fits your stage. All start with a conversation, never a contract.",
+    "eyebrow": "Ways to work together",
+    "subtitle": "Three clear ways to start — each begins with a conversation.",
     "popular": "Most popular",
-    "startingFrom": "Starting from",
     "items": [
       {
-        "title": "Fixed-Scope Project",
-        "description": "A defined product with clear requirements — fixed scope, milestones, and a fixed price.",
+        "title": "Fixed-scope project",
+        "description": "A defined product with clear requirements — fixed scope, milestones, and price.",
         "includes": [
           "Discovery & roadmap",
           "Fixed price & timeline",
@@ -84,11 +105,11 @@
           "QA + handover"
         ],
         "price": "From $10k",
-        "cta": "Discuss your project"
+        "cta": "Talk through your project"
       },
       {
-        "title": "Dedicated Team",
-        "description": "A cross-functional squad working as your extended team, billed monthly.",
+        "title": "Dedicated team",
+        "description": "A cross-functional squad embedded with you, billed monthly.",
         "includes": [
           "Cross-functional squad",
           "Monthly billing",
@@ -99,8 +120,8 @@
         "cta": "Build a team"
       },
       {
-        "title": "Maintenance & Support",
-        "description": "Keep a live product healthy — monitoring, updates, and a post-launch support window.",
+        "title": "Maintenance & support",
+        "description": "Keep a live product healthy — monitoring, updates, and post-launch support.",
         "includes": [
           "Monitoring & uptime",
           "Bug fixes & updates",
@@ -112,18 +133,18 @@
       }
     ],
     "steps": [
-      "We reply within 24 hours.",
+      "We reply within one business day.",
       "A 30-minute scoping call.",
-      "A tailored proposal & timeline."
+      "A tailored proposal and timeline."
     ]
   },
   "tech": {
-    "eyebrow": "Built with",
+    "eyebrow": "Stack we build with",
     "items": ["React", "Next.js", "Flutter", "Laravel", "Node.js", "Firebase"]
   },
   "cta": {
-    "title": "Not sure which service you need?",
-    "subtitle": "Tell us the problem. We'll recommend the path.",
-    "button": "Start your project"
+    "title": "Not sure which specialty fits?",
+    "subtitle": "Describe the problem. We’ll recommend the right path.",
+    "button": "Start a project"
   }
 }

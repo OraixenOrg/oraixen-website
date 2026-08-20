@@ -87,27 +87,14 @@ function StepContent({ step, align = 'start' }: { step: Step; align?: 'start' | 
 function CenterIndicator() {
   return (
     <div className="relative z-10 flex justify-center">
-      {/* gentle pulsing teal glow behind the node */}
-      <m.div
-        className="pointer-events-none absolute inset-0 m-auto w-16 h-16 sm:w-20 sm:h-20 rounded-full blur-xl"
+      <div
+        className="pointer-events-none absolute inset-0 m-auto w-16 h-16 sm:w-20 sm:h-20 rounded-full blur-xl opacity-50"
         style={{ background: 'radial-gradient(circle, rgba(86,201,227,0.35), transparent 65%)' }}
-        animate={{ opacity: [0.35, 0.7, 0.35], scale: [0.9, 1.15, 0.9] }}
-        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
         aria-hidden="true"
       />
-      <m.div
-        className="relative flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-skyblue to-teal shadow-glow border border-teal/15"
-        initial={{ scale: 0.8, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
-        viewport={{ once: true, margin: '-50px' }}
-        transition={{ delay: 0.15, duration: 0.45, ease: 'easeOut' }}
-      >
-        <m.div
-          className="w-4 h-4 sm:w-5 sm:h-5 bg-onaccent rounded-full shadow-md"
-          animate={{ scale: [1, 1.18, 1], opacity: [0.85, 1, 0.85] }}
-          transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-        />
-      </m.div>
+      <div className="relative flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-skyblue to-teal shadow-glow border border-teal/15">
+        <div className="w-4 h-4 sm:w-5 sm:h-5 bg-onaccent rounded-full shadow-md" />
+      </div>
     </div>
   );
 }
@@ -242,14 +229,7 @@ export function Process() {
 
           <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
             {whyCards.map((item, i) => (
-              <m.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ delay: i * 0.1, duration: 0.4, ease: 'easeOut' }}
-              >
-                <SpotlightCard className="h-full">
+              <SpotlightCard key={i} className="h-full">
                   <div className="p-8 md:p-10 text-center h-full">
                     <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-skyblue/15 to-teal/10 border border-teal/15 flex items-center justify-center text-teal mx-auto mb-5 md:mb-6">
                       {whyIcons[i]}
@@ -260,7 +240,6 @@ export function Process() {
                     <p className="text-sm md:text-base text-body leading-relaxed">{item.desc}</p>
                   </div>
                 </SpotlightCard>
-              </m.div>
             ))}
           </Stagger>
         </div>
@@ -277,21 +256,13 @@ export function Process() {
 
           <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {trustItems.map((item, i) => (
-              <m.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ delay: i * 0.08, duration: 0.4, ease: 'easeOut' }}
-              >
-                <Card className="p-6 md:p-7 h-full text-start">
+              <Card key={i} className="p-6 md:p-7 h-full text-start">
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-skyblue/15 to-teal/10 border border-teal/15 flex items-center justify-center text-teal mb-5">
                     {trustIcons[i]}
                   </div>
                   <h3 className="text-base md:text-lg font-bold text-ink mb-2">{item.title}</h3>
                   <p className="text-sm text-body leading-relaxed">{item.desc}</p>
                 </Card>
-              </m.div>
             ))}
           </Stagger>
         </div>
@@ -308,15 +279,7 @@ export function Process() {
 
           <Stagger className="space-y-4">
             {faqItems.map((item, i) => (
-              <m.div
-                key={i}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ delay: i * 0.05, duration: 0.35, ease: 'easeOut' }}
-              >
-                <FaqItem q={item.q} a={item.a} defaultOpen={i === 0} />
-              </m.div>
+              <FaqItem key={i} q={item.q} a={item.a} defaultOpen={i === 0} />
             ))}
           </Stagger>
 

@@ -35,13 +35,14 @@ export function ProjectCard({
           <img
             src={imageError ? FALLBACK_IMAGE : project.imageUrl}
             alt={project.title}
-            className={`transition-transform duration-700 group-hover:scale-105 ${
+            className={`transition-transform duration-500 group-hover:scale-105 ${
               project.imageFit === 'contain'
                 ? 'object-contain w-full h-full max-h-[200px] max-w-[280px]'
                 : 'w-full h-full object-cover group-hover:scale-110'
             }`}
             onError={() => setImageError(true)}
             loading="lazy"
+            decoding="async"
           />
 
           <div className="absolute top-4 start-4 flex gap-2 z-10 pointer-events-none">

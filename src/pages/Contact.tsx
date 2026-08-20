@@ -6,11 +6,12 @@ import { Card } from '../components/Card';
 import { AuroraBackground, FloatingShapes, SpotlightCard, Reveal } from '../components/visual';
 import { Eyebrow } from '../components/ui';
 import { Seo } from '../components/Seo';
-import { Mail, Phone, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, CheckCircle } from 'lucide-react';
 import company from '../data/company.json';
 
 export function Contact() {
-  const { t } = useTranslation('contact');
+  const { t, i18n } = useTranslation('contact');
+  const lang = i18n.language?.startsWith('ar') ? 'ar' : 'en';
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -38,9 +39,18 @@ export function Contact() {
     }
   };
 
-  const infoCards = [
-    { icon: Mail, title: t('info.email.label'), value: company.email, ltr: true },
-    { icon: Phone, title: t('info.phone.label'), value: company.phone, ltr: true },
+  const phones = (company.phones ?? [company.phone]).filter(Boolean) as string[];
+  const infoCards: Array<{
+    icon: typeof Mail;
+    title: string;
+    value?: string;
+    values?: string[];
+    hrefPrefix?: 'mailto' | 'tel';
+    ltr?: boolean;
+  }> = [
+    { icon: Mail, title: t('info.email.label'), value: company.email, hrefPrefix: 'mailto', ltr: true },
+    { icon: Phone, title: t('info.phone.label'), values: phones, hrefPrefix: 'tel', ltr: true },
+    { icon: MapPin, title: t('info.location.label'), value: company.location[lang] },
   ];
 
   const steps = t('next.steps', { returnObjects: true }) as string[];
@@ -92,12 +102,36 @@ export function Contact() {
                         </div>
                         <div>
                           <h3 className="text-ink font-bold mb-1">{card.title}</h3>
-                          <p
-                            className="text-body text-sm"
-                            dir={card.ltr ? 'ltr' : undefined}
-                          >
-                            {card.value}
-                          </p>
+                          {card.values ? (
+                            <ul className="space-y-1">
+                              {card.values.map((v) => (
+                                <li key={v}>
+                                  <a
+                                    href={card.hrefPrefix ? `${card.hrefPrefix}:${v.replace(/\s/g, '')}` : undefined}
+                                    className="text-body text-sm hover:text-ink transition-colors"
+                                    dir={card.ltr ? 'ltr' : undefined}
+                                  >
+                                    {v}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          ) : card.hrefPrefix && card.value ? (
+                            <a
+                              href={`${card.hrefPrefix}:${card.value.replace(/\s/g, '')}`}
+                              className="text-body text-sm hover:text-ink transition-colors"
+                              dir={card.ltr ? 'ltr' : undefined}
+                            >
+                              {card.value}
+                            </a>
+                          ) : (
+                            <p
+                              className="text-body text-sm"
+                              dir={card.ltr ? 'ltr' : undefined}
+                            >
+                              {card.value}
+                            </p>
+                          )}
                         </div>
                       </div>
                     </SpotlightCard>
@@ -107,7 +141,7 @@ export function Contact() {
             </Reveal>
 
             {/* What happens next */}
-            <Reveal delay={0.12} className="mt-12">
+            <Reveal className="mt-12">
               <span className="text-sm font-semibold text-teal uppercase tracking-wide">
                 {t('next.eyebrow')}
               </span>
@@ -126,7 +160,7 @@ export function Contact() {
 
           {/* Form */}
           <div>
-            <Reveal delay={0.2} direction="left">
+            <Reveal direction="left">
               <Card className="p-8 md:p-10">
                 {submitted ? (
                   <div className="text-center py-16">

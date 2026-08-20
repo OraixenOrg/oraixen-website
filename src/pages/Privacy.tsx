@@ -1,4 +1,3 @@
-import React from 'react';
 import { ShieldCheck } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Section } from '../components/Section';
@@ -53,7 +52,7 @@ export function Privacy() {
 
             <div className="mt-10 prose max-w-none">
               {sections.map((section, index) => (
-                <Reveal key={index} delay={0.04 * index}>
+                <Reveal key={index}>
                   <h2 className="text-2xl font-bold text-ink mt-10 mb-4">
                     {index + 1}. {section.heading}
                   </h2>

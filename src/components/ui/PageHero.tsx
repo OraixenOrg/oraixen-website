@@ -36,24 +36,24 @@ export function PageHero({ eyebrow, title, subtitle, children, shapes = false, a
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className={isCenter ? 'max-w-4xl mx-auto text-center' : 'max-w-4xl'}>
           {eyebrow && (
-            <Reveal>
+            <Reveal instant>
               <Eyebrow className="mb-6">{eyebrow}</Eyebrow>
             </Reveal>
           )}
-          <Reveal delay={0.08}>
+          <Reveal instant>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-ink leading-[1.05]">
               {title}
             </h1>
           </Reveal>
           {subtitle && (
-            <Reveal delay={0.16}>
+            <Reveal instant>
               <p className={`mt-6 text-xl md:text-2xl text-body leading-relaxed ${isCenter ? 'max-w-3xl mx-auto' : 'max-w-2xl'}`}>
                 {subtitle}
               </p>
             </Reveal>
           )}
           {children && (
-            <Reveal delay={0.24}>
+            <Reveal instant>
               <div className={`mt-10 flex flex-col sm:flex-row gap-4 ${isCenter ? 'justify-center' : ''} items-center`}>
                 {children}
               </div>

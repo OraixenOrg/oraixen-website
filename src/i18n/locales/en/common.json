@@ -8,49 +8,52 @@
     "contact": "Contact"
   },
   "cta": {
-    "primary": "Start your project",
-    "secondary": "View our work",
-    "viewAll": "View all projects",
-    "discuss": "Discuss your project",
+    "primary": "Start a project",
+    "secondary": "See our work",
+    "viewAll": "Browse all projects",
+    "discuss": "Talk through your project",
     "letsTalk": "Let's talk",
     "learnMore": "Learn more",
-    "viewProcess": "View full process",
+    "viewProcess": "See how we work",
     "send": "Send message",
     "sending": "Sending…",
     "sendAnother": "Send another message",
     "backHome": "Back to home",
     "backProjects": "Back to projects",
     "contactUs": "Contact us",
-    "startSimilar": "Start a project like this"
+    "startSimilar": "Start a similar project"
   },
   "lang": {
     "label": "العربية",
     "switchAria": "Switch language to Arabic"
   },
   "theme": {
-    "toggleAria": "Toggle light / dark mode"
+    "toggleAria": "Toggle light or dark mode"
   },
   "footer": {
-    "tagline": "Premium technology solutions for forward-thinking businesses. Innovation meets precision.",
+    "tagline": "Software, platforms, and AI systems for teams that care about quality and outcomes.",
     "companyTitle": "Company",
     "servicesTitle": "Services",
     "contactTitle": "Contact",
     "links": {
-      "about": "About Us",
+      "about": "About us",
       "services": "Services",
       "projects": "Projects",
       "process": "Process",
       "contact": "Contact"
     },
     "services": {
-      "mobile": "Mobile Development",
-      "web": "Web Development",
-      "corporate": "Corporate Software",
-      "hardware": "Hardware & AI"
+      "mobile": "Mobile app development",
+      "web": "Web development",
+      "ai": "AI solutions",
+      "corporate": "Business platforms & custom software",
+      "hardware": "Hardware",
+      "custom": "Custom software development",
+      "transformation": "Digital transformation"
     },
-    "location": "Toronto, ON, Canada",
+    "location": "El Nasr, New Cairo, Egypt",
     "email": "support@oraixen.com",
-    "copyright": "© {{year}} Oraixen Inc. All rights reserved.",
+    "copyright": "© {{year}} Oraixen. All rights reserved.",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "socialAria": "Oraixen on {{platform}}"
