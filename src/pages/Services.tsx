@@ -36,7 +36,6 @@ type EngagementItem = {
   title: string;
   description: string;
   includes: string[];
-  price: string;
   cta: string;
 };
 
@@ -228,10 +227,7 @@ export function Services() {
                           </li>
                         ))}
                       </ul>
-                      <div className="mt-auto">
-                        <p className="text-2xl font-bold text-teal mb-6">
-                          {model.price}
-                        </p>
+                      <div className="mt-auto pt-2">
                         <Button
                           href="/contact"
                           variant={highlighted ? 'primary' : 'outline'}

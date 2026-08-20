@@ -104,7 +104,6 @@
           "Full design + build",
           "QA + handover"
         ],
-        "price": "From $10k",
         "cta": "Talk through your project"
       },
       {
@@ -116,7 +115,6 @@
           "Flexible scope",
           "Weekly demos"
         ],
-        "price": "From $8k/mo",
         "cta": "Build a team"
       },
       {
@@ -128,7 +126,6 @@
           "Small feature work",
           "Priority response"
         ],
-        "price": "From $1.5k/mo",
         "cta": "Get a support plan"
       }
     ],

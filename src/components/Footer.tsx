@@ -25,7 +25,7 @@ export function Footer() {
           {/* Brand Column */}
           <div>
             <Link to="/" className="inline-block mb-6 hover:opacity-80 transition-opacity" aria-label="Oraixen">
-              <Logo className="h-8 w-auto text-teal" />
+              <Logo className="h-10 w-auto text-teal" />
             </Link>
             <p className="text-body mb-8 max-w-xs leading-relaxed">
               {t('footer.tagline')}
