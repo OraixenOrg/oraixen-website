@@ -1,0 +1,133 @@
+{
+  "seo": {
+    "title": "Our Process — How Oraixen Builds Software",
+    "description": "Discovery, design, development, QA, and launch with ongoing support. Transparent delivery with weekly demos from kickoff to go-live."
+  },
+  "hero": {
+    "eyebrow": "How we work",
+    "title": "Our process",
+    "subtitle": "Five phases and weekly demos — so you always know what we’re building and why."
+  },
+  "steps": {
+    "items": [
+      {
+        "number": "01",
+        "title": "Discovery & strategy",
+        "description": "We learn your goals, audience, and constraints — then agree on scope, timeline, and how success will be measured.",
+        "items": ["Requirements gathering", "Market research", "Technical feasibility", "Project roadmap"]
+      },
+      {
+        "number": "02",
+        "title": "Design & prototyping",
+        "description": "High-fidelity prototypes and interfaces focused on clarity — useful first, polished throughout.",
+        "items": ["Wireframing", "UI/UX design", "Interactive prototypes", "Design system"]
+      },
+      {
+        "number": "03",
+        "title": "Development",
+        "description": "Modern, scalable engineering with an agile rhythm — progress you can see and steer every week.",
+        "items": ["Frontend & backend", "API integration", "Database design", "Code reviews"]
+      },
+      {
+        "number": "04",
+        "title": "Quality assurance",
+        "description": "Documented QA across automated and manual testing — fewer defects, more stable releases.",
+        "items": ["Automated testing", "Manual testing", "Security audits", "Performance tuning"]
+      },
+      {
+        "number": "05",
+        "title": "Launch & support",
+        "description": "We handle deployment and stay after go-live — monitoring, maintenance, and a post-launch support window.",
+        "items": ["Deployment", "Monitoring", "Maintenance", "Feature updates"]
+      }
+    ]
+  },
+  "why": {
+    "eyebrow": "Why Oraixen",
+    "title": "What you get beyond delivery",
+    "subtitle": "The practices that keep projects clear, predictable, and on track.",
+    "cards": [
+      {
+        "title": "Transparent communication",
+        "desc": "Weekly demos, a shared channel, and no surprise status updates."
+      },
+      {
+        "title": "Reliable release quality",
+        "desc": "Documented QA, automated and manual testing, and support after every launch."
+      },
+      {
+        "title": "Long-term partnership",
+        "desc": "Flexible maintenance plans that grow with your product."
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Common questions",
+    "subtitle": "What clients ask before we start. If yours isn’t here, ask us directly.",
+    "items": [
+      {
+        "q": "How do you price projects?",
+        "a": "We price fixed-scope or as a monthly dedicated team after a short discovery call — you always see a clear estimate before committing."
+      },
+      {
+        "q": "How long does a project take?",
+        "a": "Most mobile apps launch in 3–6 months; web platforms in 2–5 months; larger corporate or hardware+AI systems in 6–18 months. We set milestones up front and demo progress weekly."
+      },
+      {
+        "q": "Who owns the code and IP?",
+        "a": "You do — fully. Source code and IP transfer to you on final delivery and payment. No lock-in, no hidden licensing."
+      },
+      {
+        "q": "What happens after launch?",
+        "a": "Every release includes a post-launch support window for defects we find together. After that, you can continue with a Maintenance & Support retainer."
+      },
+      {
+        "q": "How do you communicate during the project?",
+        "a": "One dedicated channel, a single point of contact, weekly demos of working software, and shared roadmap access. You never have to guess where things stand."
+      },
+      {
+        "q": "Where is your team based?",
+        "a": "We’re based in Cairo, Egypt, with delivery across the MENA region — overlapping hours with Europe, the Gulf, and beyond."
+      },
+      {
+        "q": "Do you sign NDAs?",
+        "a": "Yes. We sign NDAs before detailed discussions, and we can keep client names and project details private when needed."
+      },
+      {
+        "q": "Can you work with our existing team or codebase?",
+        "a": "Yes. We can embed as a dedicated squad, augment your team with specialists, or take ownership of an existing codebase after a technical audit."
+      }
+    ],
+    "stillHaveQuestion": "Still have a question? Let's talk"
+  },
+  "trust": {
+    "eyebrow": "Security & ownership",
+    "title": "Clear commitments",
+    "subtitle": "Ownership, confidentiality, support, and secure delivery — stated up front.",
+    "items": [
+      {
+        "title": "Code & IP ownership",
+        "desc": "You own 100% of the custom code and IP — full transfer on final payment."
+      },
+      {
+        "title": "NDA & confidentiality",
+        "desc": "NDA available before detailed discussion; projects kept private on request."
+      },
+      {
+        "title": "Support commitment",
+        "desc": "We reply within one business day and include a post-launch support window on every release."
+      },
+      {
+        "title": "Security practices",
+        "desc": "Secure development with code reviews, automated and manual QA, and security audits."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready when you are",
+    "subtitle": "Tell us about your project — we reply within one business day with a clear next step.",
+    "primary": "Start a project",
+    "secondary": "See our work"
+  }
+}

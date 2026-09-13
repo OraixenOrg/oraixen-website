@@ -1,0 +1,101 @@
+{
+  "seo": {
+    "title": "About Oraixen — Custom Software for Growing Businesses",
+    "description": "Oraixen designs and builds mobile apps, web platforms, corporate software, and hardware + AI solutions. From a freelance team in 2019 to Oraixen in 2025 — transparent delivery and support past launch."
+  },
+  "hero": {
+    "eyebrow": "About us",
+    "title": "Software built to perform — and grow with your business.",
+    "subtitle": "We help growing businesses turn operational problems and product ideas into reliable custom software."
+  },
+  "story": {
+    "eyebrow": "Our story",
+    "title": "How Oraixen came to be",
+    "intro": "Oraixen works across six specialties: mobile app development, web development, AI solutions, business platforms and custom software, hardware, and digital transformation — for startups, SMBs, and enterprises.",
+    "history": "We started as a freelance team in 2019, working closely with early clients to build clean, dependable products. In 2025 we became Oraixen — the same team, the same standards, now under one name.",
+    "p1": {
+      "before": "The name reflects how we work. ",
+      "ora": "Orai",
+      "after": ", from \"origin,\" because we aim to be the starting point of each client's success story."
+    },
+    "p2": {
+      "before": "",
+      "ixen": "The X",
+      "after": " represents the connection between the markets we serve — Egypt, China, Canada, Europe, MENA, and the USA."
+    },
+    "p3": {
+      "before": "",
+      "en": "The “en” ending",
+      "after": " represents continuity, because our role continues well beyond launch."
+    },
+    "closing": "We build for education, healthcare, e-commerce, finance, services, and technology — with full transparency, realistic timelines, and support that doesn't end at delivery.",
+    "tagline": "Build the future. Build with Oraixen.",
+    "imageAlt": "Oraixen team collaborating in the studio"
+  },
+  "timeline": {
+    "eyebrow": "Milestones",
+    "title": "How we got here",
+    "subtitle": "From a close-knit freelance team to a named studio serving clients across markets.",
+    "items": [
+      { "year": "2019", "label": "Started as a freelance team" },
+      { "year": "2022", "label": "Expanded into web, mobile, and platforms" },
+      { "year": "2025", "label": "Became Oraixen" },
+      { "year": "Today", "label": "Building across education, healthcare, commerce, and more" }
+    ]
+  },
+  "foundation": {
+    "eyebrow": "Foundation",
+    "title": "Mission, vision, purpose",
+    "subtitle": "What guides how we choose work and how we deliver it.",
+    "items": [
+      {
+        "title": "Mission",
+        "text": "Turn operational problems and digital product ideas into reliable custom software — with clear communication and realistic timelines."
+      },
+      {
+        "title": "Vision",
+        "text": "Be the starting point of lasting success stories for clients across Egypt, China, Canada, Europe, MENA, and the USA."
+      },
+      {
+        "title": "Purpose",
+        "text": "Build products that keep delivering after launch — with support that doesn't stop at handover."
+      }
+    ]
+  },
+  "values": {
+    "eyebrow": "How we work",
+    "title": "Core values",
+    "subtitle": "What shows up in every engagement.",
+    "items": [
+      {
+        "title": "Transparency",
+        "desc": "Clear status, honest estimates, and no surprises."
+      },
+      {
+        "title": "Reliability",
+        "desc": "Clean engineering and products teams can depend on."
+      },
+      {
+        "title": "Partnership",
+        "desc": "We work beside you — not at arm's length."
+      },
+      {
+        "title": "Craft",
+        "desc": "Thoughtful design and code that holds up over time."
+      },
+      {
+        "title": "Accountability",
+        "desc": "We commit carefully, then deliver what we promised."
+      },
+      {
+        "title": "Continuity",
+        "desc": "Support continues after launch — because products need to keep working."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready to build with us?",
+    "primary": "Start a project",
+    "secondary": "See our work"
+  }
+}

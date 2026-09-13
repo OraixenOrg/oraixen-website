@@ -1,0 +1,147 @@
+{
+  "seo": {
+    "title": "Services — Mobile, Web, AI, Hardware & Digital Transformation | Oraixen",
+    "description": "Oraixen specializes in mobile apps, web development, AI solutions, business platforms and custom software, hardware, and digital transformation."
+  },
+  "hero": {
+    "eyebrow": "Specialties",
+    "title": "How we can help",
+    "subtitle": "Six specialties that turn clear requirements into reliable, production-ready solutions."
+  },
+  "labels": {
+    "deliverables": "Deliverables",
+    "timeline": "Typical timeline",
+    "bestFor": "Best for",
+    "cta": "Talk through your project"
+  },
+  "services": {
+    "items": [
+      {
+        "title": "Mobile app development",
+        "description": "Native and cross-platform apps with a polished UX — designed for retention, not one-time installs.",
+        "deliverables": [
+          "iOS & Android apps",
+          "React Native / Flutter",
+          "UI/UX design",
+          "App Store optimization"
+        ],
+        "timeline": "3–6 months",
+        "bestFor": "Startups, consumer brands, enterprise tools"
+      },
+      {
+        "title": "Web development",
+        "description": "Modern, high-performance web apps and platforms designed to scale with your traffic.",
+        "deliverables": [
+          "SaaS platforms",
+          "E-commerce",
+          "Progressive web apps",
+          "CMS solutions"
+        ],
+        "timeline": "2–5 months",
+        "bestFor": "SaaS, e-commerce, corporate portals"
+      },
+      {
+        "title": "AI solutions",
+        "description": "Practical AI systems and product features that automate work, surface insights, and support better decisions.",
+        "deliverables": [
+          "ML / LLM integrations",
+          "Computer vision",
+          "Predictive analytics",
+          "Intelligent automation"
+        ],
+        "timeline": "2–8 months",
+        "bestFor": "Product teams, operations, data-driven businesses"
+      },
+      {
+        "title": "Business platforms & custom software",
+        "description": "Custom systems and products built around your operations, users, and goals.",
+        "deliverables": [
+          "ERP systems",
+          "CRM solutions",
+          "Custom platforms",
+          "API & integrations"
+        ],
+        "timeline": "3–12 months",
+        "bestFor": "Startups, SMBs, and enterprises with unique workflows"
+      },
+      {
+        "title": "Hardware",
+        "description": "IoT and embedded systems that connect devices, sensors, and field operations to live software.",
+        "deliverables": [
+          "IoT devices",
+          "Embedded systems",
+          "Device connectivity",
+          "Monitoring dashboards"
+        ],
+        "timeline": "4–12 months",
+        "bestFor": "Manufacturing, logistics, MedTech, smart operations"
+      },
+      {
+        "title": "Digital transformation",
+        "description": "Modernize legacy tools and fragmented processes into connected systems teams can actually use.",
+        "deliverables": [
+          "Process assessment",
+          "System modernization",
+          "Workflow automation",
+          "Change & training support"
+        ],
+        "timeline": "3–12 months",
+        "bestFor": "Growing companies ready to scale operations"
+      }
+    ]
+  },
+  "engagement": {
+    "eyebrow": "Ways to work together",
+    "subtitle": "Three clear ways to start — each begins with a conversation.",
+    "popular": "Most popular",
+    "items": [
+      {
+        "title": "Fixed-scope project",
+        "description": "A defined product with clear requirements — fixed scope, milestones, and price.",
+        "includes": [
+          "Discovery & roadmap",
+          "Fixed price & timeline",
+          "Full design + build",
+          "QA + handover"
+        ],
+        "cta": "Talk through your project"
+      },
+      {
+        "title": "Dedicated team",
+        "description": "A cross-functional squad embedded with you, billed monthly.",
+        "includes": [
+          "Cross-functional squad",
+          "Monthly billing",
+          "Flexible scope",
+          "Weekly demos"
+        ],
+        "cta": "Build a team"
+      },
+      {
+        "title": "Maintenance & support",
+        "description": "Keep a live product healthy — monitoring, updates, and post-launch support.",
+        "includes": [
+          "Monitoring & uptime",
+          "Bug fixes & updates",
+          "Small feature work",
+          "Priority response"
+        ],
+        "cta": "Get a support plan"
+      }
+    ],
+    "steps": [
+      "We reply within one business day.",
+      "A 30-minute scoping call.",
+      "A tailored proposal and timeline."
+    ]
+  },
+  "tech": {
+    "eyebrow": "Stack we build with",
+    "items": ["React", "Next.js", "Flutter", "Laravel", "Node.js", "Firebase"]
+  },
+  "cta": {
+    "title": "Not sure which specialty fits?",
+    "subtitle": "Describe the problem. We’ll recommend the right path.",
+    "button": "Start a project"
+  }
+}

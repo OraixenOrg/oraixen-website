@@ -1,0 +1,131 @@
+{
+  "seo": {
+    "title": "Oraixen — Mobile, Web, AI & Custom Software",
+    "description": "Oraixen builds mobile apps, web platforms, AI solutions, custom business software, hardware, and digital transformation solutions for companies in Egypt and worldwide."
+  },
+  "hero": {
+    "eyebrow": "Premium technology solutions",
+    "headlineLead": "Innovation meets",
+    "headlineHighlight": "Precision",
+    "subhead": "We design and build mobile apps, web platforms, AI solutions, and custom software for companies that expect careful engineering — not just delivery.",
+    "ctaPrimary": "Start a project",
+    "ctaSecondary": "See our work",
+    "scroll": "Scroll down"
+  },
+  "logos": {
+    "eyebrow": "Selected clients & partners",
+    "caption": "21+ products delivered for clients across 15 countries"
+  },
+  "services": {
+    "eyebrow": "Specialties",
+    "title": "What we specialize in",
+    "subtitle": "Six specialties that turn clear requirements into reliable, production-ready solutions.",
+    "learnMore": "Learn more",
+    "items": [
+      {
+        "title": "Mobile app development",
+        "desc": "Native and cross-platform iOS & Android apps built for speed, clarity, and retention."
+      },
+      {
+        "title": "Web development",
+        "desc": "Web apps and SaaS platforms engineered to stay fast as you grow."
+      },
+      {
+        "title": "AI solutions",
+        "desc": "Practical AI features and systems that improve products, operations, and decision-making."
+      },
+      {
+        "title": "Business platforms & custom software",
+        "desc": "ERP, CRM, internal platforms, and custom products built around your processes and goals."
+      },
+      {
+        "title": "Hardware",
+        "desc": "IoT and embedded systems that connect physical operations to live software."
+      },
+      {
+        "title": "Digital transformation",
+        "desc": "Modernize systems and workflows so teams work faster, clearer, and with less friction."
+      }
+    ]
+  },
+  "featured": {
+    "eyebrow": "Selected work",
+    "title": "Live products",
+    "subtitle": "Three projects our clients rely on every day.",
+    "viewAll": "Browse all projects"
+  },
+  "whyChoose": {
+    "eyebrow": "Why Oraixen",
+    "title": "A partner who stays after launch",
+    "subtitle": "What clients value most when they trust us with products their business depends on.",
+    "items": [
+      {
+        "title": "Clean, maintainable code",
+        "desc": "Well-structured, documented engineering your next team can extend without starting over."
+      },
+      {
+        "title": "Architecture that scales",
+        "desc": "Systems designed for the traffic and team you’ll have in a few years — not only next month."
+      },
+      {
+        "title": "Transparent delivery",
+        "desc": "Weekly demos, a shared roadmap, and clear status — you always know where things stand."
+      },
+      {
+        "title": "Business-first outcomes",
+        "desc": "We prioritize impact and reliability over feature count or billable hours."
+      },
+      {
+        "title": "Bilingual delivery",
+        "desc": "Native English and Arabic across Egypt and the wider MENA region."
+      },
+      {
+        "title": "Support after launch",
+        "desc": "A post-launch support window on every release, plus maintenance plans that grow with you."
+      }
+    ]
+  },
+  "testimonials": {
+    "eyebrow": "Client feedback",
+    "title": "What our partners say",
+    "subtitle": "Notes from teams we’ve built with. More stories as current projects wrap."
+  },
+  "process": {
+    "eyebrow": "How we work",
+    "title": "A clear path from idea to launch",
+    "subtitle": "Five phases, weekly demos, and full visibility from kickoff through go-live.",
+    "steps": [
+      "Discovery",
+      "Design",
+      "Development",
+      "QA",
+      "Launch & support"
+    ],
+    "cta": "See how we work",
+    "card": {
+      "items": [
+        {
+          "num": "1",
+          "title": "Discovery",
+          "desc": "We align on goals, constraints, success metrics, and the right technical path."
+        },
+        {
+          "num": "2",
+          "title": "Build",
+          "desc": "Agile sprints with working software every week — and room to steer."
+        },
+        {
+          "num": "3",
+          "title": "Launch & support",
+          "desc": "Careful release, clear documentation, and support that continues after go-live."
+        }
+      ]
+    }
+  },
+  "cta": {
+    "title": "Have a project in mind?",
+    "subtitle": "Tell us what you’re planning. We’ll outline how we’d design, build, and launch it.",
+    "primary": "Start a project",
+    "secondary": "See our work"
+  }
+}

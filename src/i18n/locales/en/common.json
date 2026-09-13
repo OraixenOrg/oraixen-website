@@ -1,0 +1,78 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "projects": "Projects",
+    "process": "Process",
+    "contact": "Contact"
+  },
+  "cta": {
+    "primary": "Start a project",
+    "secondary": "See our work",
+    "viewAll": "Browse all projects",
+    "discuss": "Talk through your project",
+    "letsTalk": "Let's talk",
+    "learnMore": "Learn more",
+    "viewProcess": "See how we work",
+    "send": "Send message",
+    "sending": "Sending…",
+    "sendAnother": "Send another message",
+    "backHome": "Back to home",
+    "backProjects": "Back to projects",
+    "contactUs": "Contact us",
+    "startSimilar": "Start a similar project"
+  },
+  "lang": {
+    "label": "العربية",
+    "switchAria": "Switch language to Arabic",
+    "selectAria": "Choose site version"
+  },
+  "theme": {
+    "toggleAria": "Toggle light or dark mode"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "primaryNav": "Primary",
+    "mobileNav": "Mobile",
+    "menuLabel": "Menu",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "loading": "Loading",
+    "scrollDown": "Scroll to next section"
+  },
+  "notFound": {
+    "seoTitle": "Page not found | Oraixen",
+    "eyebrow": "404",
+    "title": "Page not found",
+    "subtitle": "That page doesn’t exist or has moved. Head home or browse the work."
+  },
+  "footer": {
+    "tagline": "Software, platforms, and AI systems for teams that care about quality and outcomes.",
+    "companyTitle": "Company",
+    "servicesTitle": "Services",
+    "contactTitle": "Contact",
+    "links": {
+      "about": "About us",
+      "services": "Services",
+      "projects": "Projects",
+      "process": "Process",
+      "contact": "Contact"
+    },
+    "services": {
+      "mobile": "Mobile app development",
+      "web": "Web development",
+      "ai": "AI solutions",
+      "corporate": "Business platforms & custom software",
+      "hardware": "Hardware",
+      "custom": "Custom software development",
+      "transformation": "Digital transformation"
+    },
+    "location": "El Nasr, New Cairo, Egypt",
+    "email": "support@oraixen.com",
+    "copyright": "© {{year}} Oraixen. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "socialAria": "Oraixen on {{platform}}"
+  }
+}

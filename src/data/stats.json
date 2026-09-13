@@ -1,0 +1,15 @@
+{
+  "_comment": "The four headline stats on the home page. 'value' is the big number, 'label' is the caption under it. Keep 'en' and 'ar' the same length and in the same order.",
+  "en": [
+    { "value": "7+", "label": "Years of experience" },
+    { "value": "21+", "label": "Projects delivered" },
+    { "value": "98%", "label": "Client retention" },
+    { "value": "15", "label": "Countries served" }
+  ],
+  "ar": [
+    { "value": "7+", "label": "سنوات خبرة" },
+    { "value": "21+", "label": "مشروعاً منجزاً" },
+    { "value": "98%", "label": "عملاء مستمرون معنا" },
+    { "value": "15", "label": "دولة نخدمها" }
+  ]
+}

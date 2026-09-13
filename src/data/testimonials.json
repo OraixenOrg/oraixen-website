@@ -1,0 +1,43 @@
+{
+  "_comment": "Client reviews shown on the home page. Names are real clients provided by Oraixen; the quote wording below is a professional DRAFT — confirm the exact wording with each client, then remove the badge text in src/i18n/locales/en|ar/home.json -> testimonials.placeholderBadge. The 'role' is an assumed title — adjust per client. Keep 'en' and 'ar' the same length and order.",
+  "en": [
+    {
+      "quote": "Oraixen brought our customer apps, restaurant dashboard, and order system together into one platform that just works. We handle a huge volume of orders now — and they delivered exactly on the date they promised.",
+      "name": "Abu Ghazi",
+      "role": "Founder",
+      "company": "Order FS"
+    },
+    {
+      "quote": "We came to Oraixen with an idea for a social platform, and they turned it into a polished product across web and mobile — real-time messaging, content sharing, and an experience built to scale.",
+      "name": "Omar Bassiouni",
+      "role": "Founder",
+      "company": "DU V DU"
+    },
+    {
+      "quote": "Oraixen delivered our services app exactly as we imagined it — simple for users to browse and request services, and solid from day one. A calm, professional team that does what it says.",
+      "name": "Abdullah Mohamed",
+      "role": "Founder",
+      "company": "Hafawa"
+    }
+  ],
+  "ar": [
+    {
+      "quote": "جمعت أوريكسن تطبيقات العملاء ولوحة تحكم المطاعم ونظام الطلبات في منصة واحدة مستقرة. أصبحنا نتعامل مع حجم كبير من الطلبات، وتم التسليم في الموعد المتفق عليه.",
+      "name": "أبو غازي",
+      "role": "المؤسس",
+      "company": "Order FS"
+    },
+    {
+      "quote": "بدأنا مع أوريكسن بفكرة لمنصة اجتماعية، وحوّلوها إلى منتج متكامل على الويب والموبايل، يضم المراسلة الفورية ومشاركة المحتوى وقابلية التوسع.",
+      "name": "عمر بسيوني",
+      "role": "المؤسس",
+      "company": "DU V DU"
+    },
+    {
+      "quote": "سلّمتنا أوريكسن تطبيق الخدمات كما تصورناه: سهل الاستخدام ومستقر منذ اليوم الأول. فريق محترف وملتزم بما يعد به.",
+      "name": "عبدالله محمد",
+      "role": "المؤسس",
+      "company": "حفاوة"
+    }
+  ]
+}

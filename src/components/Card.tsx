@@ -1,4 +1,4 @@
-import React from 'react';
+import { type ReactNode } from 'react';
 interface CardProps {
   children: ReactNode;
   className?: string;
@@ -13,7 +13,7 @@ export function Card({
 }: CardProps) {
   // Only apply hover effects if explicitly set to true OR if interactive is true
   const shouldHover = hover || interactive;
-  return <div className={`bg-white/5 border border-white/10 rounded-xl overflow-hidden backdrop-blur-sm ${shouldHover ? 'transition-all duration-300 hover:border-skyblue/50 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(86,201,227,0.15)] hover:-translate-y-1' : ''} ${className}`}>
+  return <div className={`bg-card border border-line rounded-2xl overflow-hidden shadow-card ${shouldHover ? 'transition-all duration-300 hover:border-teal/40 hover:shadow-hover hover:-translate-y-1' : ''} ${className}`}>
       {children}
     </div>;
 }

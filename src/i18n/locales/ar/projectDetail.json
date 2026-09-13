@@ -1,0 +1,34 @@
+{
+  "seo": {
+    "suffix": "دراسة حالة",
+    "descriptionFallback": "دراسة حالة من أوريكسن تستعرض التحدي والحل والأثر الذي حققناه."
+  },
+  "backLink": "العودة إلى المشاريع",
+  "confidential": "سرّي",
+  "confidentialClient": "عميل سرّي",
+  "labels": {
+    "client": "العميل",
+    "year": "السنة",
+    "category": "التصنيف",
+    "techStack": "التقنيات"
+  },
+  "sections": {
+    "challenge": "التحدي",
+    "solution": "الحل",
+    "impact": "الأثر",
+    "keyMetrics": "أرقام مهمة",
+    "highlights": "أبرز النقاط",
+    "availablePlatforms": "المنصات المتاحة"
+  },
+  "platforms": {
+    "website": "موقع إلكتروني",
+    "playStore": "متجر بلاي",
+    "appStore": "آب ستور",
+    "dashboard": "لوحة تحكم"
+  },
+  "cta": {
+    "title": "هل تخطط لمنتج مشابه؟",
+    "subtitle": "أخبرنا بما تعمل عليه، وسنوضّح مسار تصميمه وإطلاقه وقياس أثره.",
+    "button": "ابدأ مشروعاً مماثلاً"
+  }
+}

@@ -1,48 +1,70 @@
-import React from 'react';
+import { FileText } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Section } from '../components/Section';
+import { AuroraBackground, Reveal } from '../components/visual';
+import { Eyebrow } from '../components/ui';
+import { Seo } from '../components/Seo';
+
+interface LegalSection {
+  heading: string;
+  body: string;
+}
+
 export function Terms() {
-  return <div className="pt-20 min-h-screen bg-inkblack">
-      <Section>
-        <div className="max-w-3xl mx-auto prose prose-invert">
-          <h1 className="text-4xl font-bold text-white mb-8">
-            Terms of Service
-          </h1>
-          <p className="text-gray-400 mb-6">Last updated: October 2023</p>
+  const { t } = useTranslation('legal');
+  const sections = t('terms.sections', { returnObjects: true }) as LegalSection[];
 
-          <h2 className="text-2xl font-bold text-white mt-8 mb-4">
-            1. Agreement to Terms
-          </h2>
-          <p className="text-gray-400 mb-4">
-            These Terms of Service constitute a legally binding agreement made
-            between you, whether personally or on behalf of an entity ("you")
-            and Oraixen ("we," "us" or "our"), concerning your access to and use
-            of the website as well as any other media form, media channel,
-            mobile website or mobile application related, linked, or otherwise
-            connected thereto.
-          </p>
+  return (
+    <div className="min-h-screen bg-surface">
+      <Seo title={t('terms.seo.title')} description={t('terms.seo.description')} />
+      <div className="relative overflow-hidden">
+        <AuroraBackground intensity="subtle" />
+        <Section>
+          <article className="relative z-10 max-w-3xl mx-auto">
+            <Reveal>
+              <Eyebrow>
+                <FileText className="w-4 h-4" />
+                {t('terms.eyebrow')}
+              </Eyebrow>
 
-          <h2 className="text-2xl font-bold text-white mt-8 mb-4">
-            2. Intellectual Property Rights
-          </h2>
-          <p className="text-gray-400 mb-4">
-            Unless otherwise indicated, the Site is our proprietary property and
-            all source code, databases, functionality, software, website
-            designs, audio, video, text, photographs, and graphics on the Site
-            (collectively, the "Content") and the trademarks, service marks, and
-            logos contained therein (the "Marks") are owned or controlled by us
-            or licensed to us.
-          </p>
+              <h1 className="mt-6 text-4xl md:text-5xl font-bold text-ink">
+                {t('terms.title')}
+              </h1>
 
-          <h2 className="text-2xl font-bold text-white mt-8 mb-4">
-            3. User Representations
-          </h2>
-          <p className="text-gray-400 mb-4">
-            By using the Site, you represent and warrant that: (1) all
-            registration information you submit will be true, accurate, current,
-            and complete; (2) you will maintain the accuracy of such information
-            and promptly update such registration information as necessary.
-          </p>
-        </div>
-      </Section>
-    </div>;
+              <p className="mt-4 text-muted text-sm">
+                {t('lastUpdatedLabel')}: {t('lastUpdated')}
+              </p>
+
+              <p className="mt-3 inline-flex items-center px-3 py-1.5 rounded-lg bg-surface-muted text-muted border border-line text-xs font-medium">
+                {t('counselNote')}
+              </p>
+
+              {/* TL;DR card */}
+              <div className="mt-8 rounded-2xl bg-surface-muted border border-line p-6">
+                <p className="text-sm font-semibold text-teal mb-2">
+                  {t('tldrLabel')}
+                </p>
+                <p className="text-body leading-relaxed">
+                  {t('terms.tldr')}
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="mt-10 prose max-w-none">
+              {sections.map((section, index) => (
+                <Reveal key={index}>
+                  <h2 className="text-2xl font-bold text-ink mt-10 mb-4">
+                    {index + 1}. {section.heading}
+                  </h2>
+                  <p className="text-body leading-relaxed mb-4 whitespace-pre-line">
+                    {section.body}
+                  </p>
+                </Reveal>
+              ))}
+            </div>
+          </article>
+        </Section>
+      </div>
+    </div>
+  );
 }

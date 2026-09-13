@@ -1,27 +1,26 @@
-import React from 'react';
-import { m } from 'framer-motion';
-import { fadeIn } from '../lib/animations';
+import { type ReactNode } from 'react';
+
 interface SectionProps {
   children: ReactNode;
   className?: string;
   id?: string;
   dark?: boolean;
 }
+
 export function Section({
   children,
   className = '',
   id,
   dark = false
 }: SectionProps) {
-  return <section id={id} className={`relative py-16 md:py-24 lg:py-32 w-full overflow-hidden ${dark ? 'bg-inkblack' : 'bg-inkblack'} ${className}`}>
-      {/* Background Elements could go here */}
+  return (
+    <section
+      id={id}
+      className={`relative py-16 md:py-24 lg:py-32 w-full overflow-hidden ${dark ? 'bg-surface-subtle' : 'bg-surface'} ${className}`}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <m.div initial="hidden" whileInView="visible" viewport={{
-        once: true,
-        amount: 0.1
-      }} variants={fadeIn}>
-          {children}
-        </m.div>
+        {children}
       </div>
-    </section>;
+    </section>
+  );
 }

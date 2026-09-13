@@ -1,0 +1,57 @@
+# Oraixen website — three-market SPA routing + static SEO shells.
+#
+# Public URL spaces:
+#   /en/*      English
+#   /ar-eg/*   Arabic — Egypt
+#   /ar-sa/*   Arabic — Saudi Arabia
+#
+# The eight core routes in each market are served a generated HTML shell that
+# already carries that market's <title>/description/canonical/hreflang/OG tags
+# (see scripts/generate-static-seo.mjs), so crawlers and link previews are
+# correct before React runs. Those rewrites are INTERNAL — the visible URL stays
+# /ar-sa/about. Dynamic routes such as /en/projects/:slug use the SPA fallback.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 1. The generated shells must not be reachable as their own public URLs, or
+  #    they would be a second indexable copy of every page. THE_REQUEST holds
+  #    the ORIGINAL request line, so this matches a browser asking for
+  #    /__seo/en/about.html while leaving Apache's internal rewrites alone.
+  RewriteCond %{THE_REQUEST} \s/+__seo/ [NC]
+  RewriteRule ^ - [R=404,L]
+
+  # 2. The bare root must be handled BEFORE the real-file rule below, because
+  #    the document root is itself a real directory and would otherwise be
+  #    served by DirectoryIndex instead of redirecting. TEMPORARY 302 (see 4).
+  RewriteRule ^$ /en [R=302,L]
+
+  # 3. Real files and folders win before any localization — /contact.php,
+  #    /assets/*, /sitemap.xml, /robots.txt, /logo.svg, /icon.png.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # 4. Exact localized routes -> their generated shell (internal, URL unchanged).
+  #    Anchored with $ so /en/projects/some-slug does NOT match /en/projects.
+  RewriteRule ^(en|ar-eg|ar-sa)/?$                                              __seo/$1/index.html [L]
+  RewriteRule ^(en|ar-eg|ar-sa)/(about|services|projects|process|contact|privacy|terms)/?$  __seo/$1/$2.html [L]
+
+  # 5. TEMPORARY: locale-less application routes go to English. 302, never 301 —
+  #    Issue 13 replaces this with preference/country-aware selection, so the
+  #    destination must not be cached as permanent. Query strings are preserved
+  #    by [R,QSA]; fragments are client-side and never reach Apache.
+  RewriteRule ^(about|services|projects|process|contact|privacy|terms)(/.*)?$ /en/$1$2 [R=302,L,QSA]
+
+  # 6. Everything else (incl. /en/projects/:slug) -> the SPA shell.
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Long-cache the fingerprinted build assets (filenames change every build).
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+</IfModule>

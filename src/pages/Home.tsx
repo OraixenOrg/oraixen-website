@@ -1,355 +1,335 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Code, Smartphone, Server, Cpu, CheckCircle, Zap } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+// TODO: Re-add `Quote` to this import after testimonial wording is approved by the clients.
+// import { ..., Quote, ... } from 'lucide-react';
+import { ArrowRight, Code, Code2, Smartphone, Server, Cpu, CheckCircle, Zap, Layers, Workflow, Target, Globe, LifeBuoy, BrainCircuit, RefreshCw } from 'lucide-react';
 import { Section } from '../components/Section';
 import { Button } from '../components/Button';
-import { Card } from '../components/Card';
+import { Seo } from '../components/Seo';
 import { FeaturedProjects } from '../components/projects/FeaturedProjects';
-import { FadeIn } from '../components/FadeIn';
+import { ProjectLogoStrip } from '../components/projects/ProjectLogoStrip';
 import { Stagger } from '../components/Stagger';
-import { m } from 'framer-motion';
+import {
+  AuroraBackground,
+  FloatingShapes,
+  HeroShowcase,
+  AnimatedCounter,
+  SpotlightCard,
+  Reveal,
+} from '../components/visual';
+import { SectionHeading, CTASection } from '../components/ui';
+import { trackCtaClick } from '../lib/analytics';
+import statsData from '../data/stats.json';
+// TODO: Re-enable after testimonial wording is approved by the clients.
+// import testimonialsData from '../data/testimonials.json';
+
+const serviceIcons = [
+  <Smartphone className="text-teal" size={26} />,
+  <Code className="text-teal" size={26} />,
+  <BrainCircuit className="text-teal" size={26} />,
+  <Server className="text-teal" size={26} />,
+  <Cpu className="text-teal" size={26} />,
+  <RefreshCw className="text-teal" size={26} />,
+];
+
+const whyIcons = [Code2, Layers, Workflow, Target, Globe, LifeBuoy];
+
 export function Home() {
-  return <div className="min-h-screen">
-      {/* Hero Section - Enhanced */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-inkblack">
-        {/* Animated Background Grid */}
-        <div className="absolute inset-0">
-          {/* Main gradient orbs */}
-          <m.div className="absolute top-0 right-1/4 w-[800px] h-[800px] rounded-full opacity-20" style={{
-          background: 'radial-gradient(circle, rgba(86,201,227,0.4) 0%, rgba(15,94,112,0.2) 50%, transparent 100%)'
-        }} animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.2, 0.3, 0.2]
-        }} transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: 'easeInOut'
-        }} />
-          <m.div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] rounded-full opacity-15" style={{
-          background: 'radial-gradient(circle, rgba(15,94,112,0.4) 0%, rgba(86,201,227,0.2) 50%, transparent 100%)'
-        }} animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.15, 0.25, 0.15]
-        }} transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: 'easeInOut',
-          delay: 1
-        }} />
+  const { t, i18n } = useTranslation('home');
+  const { t: tc } = useTranslation('common');
+  const lang = i18n.language?.startsWith('ar') ? 'ar' : 'en';
 
-          {/* Animated grid pattern */}
-          <div className="absolute inset-0 opacity-[0.03]">
-            <div className="absolute inset-0" style={{
-            backgroundImage: `
-                linear-gradient(rgba(86,201,227,0.5) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(86,201,227,0.5) 1px, transparent 1px)
-              `,
-            backgroundSize: '80px 80px',
-            maskImage: 'radial-gradient(ellipse 100% 60% at 50% 50%, black 40%, transparent 100%)',
-            WebkitMaskImage: 'radial-gradient(ellipse 100% 60% at 50% 50%, black 40%, transparent 100%)'
-          }} />
-          </div>
+  // Business data lives in src/data/*.json (easy to edit, bilingual). UI copy stays in i18n.
+  const stats = statsData[lang] as Array<{ value: string; label: string }>;
+  // TODO: Re-enable after testimonial wording is approved by the clients.
+  // const testimonials = testimonialsData[lang] as Array<{ quote: string; name: string; role: string; company: string }>;
+  const services = t('services.items', { returnObjects: true }) as Array<{ title: string; desc: string; tag?: string }>;
+  const processSteps = t('process.steps', { returnObjects: true }) as string[];
+  const processCard = t('process.card.items', { returnObjects: true }) as Array<{ num: string; title: string; desc: string }>;
+  const whyChoose = t('whyChoose.items', { returnObjects: true }) as Array<{ title: string; desc: string }>;
 
-          {/* Floating geometric shapes */}
-          <m.div className="absolute top-1/4 left-1/3 w-32 h-32 border border-skyblue/10 rounded-2xl rotate-12" animate={{
-          y: [0, -30, 0],
-          rotate: [12, 24, 12]
-        }} transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: 'easeInOut'
-        }} />
-          <m.div className="absolute bottom-1/3 right-1/4 w-24 h-24 border border-azure/10 rounded-full" animate={{
-          y: [0, 40, 0],
-          scale: [1, 1.1, 1]
-        }} transition={{
-          duration: 7,
-          repeat: Infinity,
-          ease: 'easeInOut',
-          delay: 0.5
-        }} />
+  return (
+    <div className="min-h-screen">
+      <Seo title={t('seo.title')} description={t('seo.description')} />
+      {/* ===================== Hero ===================== */}
+      <section className="relative flex min-h-[100svh] flex-col overflow-hidden bg-surface">
+        <AuroraBackground intensity="hero" />
+        <FloatingShapes />
+        <HeroShowcase />
+        {/* dotted grid */}
+        <div
+          className="absolute inset-0"
+          aria-hidden="true"
+          style={{
+            backgroundImage: 'radial-gradient(rgb(var(--accent) / 0.10) 1px, transparent 1px)',
+            backgroundSize: '34px 34px',
+            maskImage: 'radial-gradient(ellipse 85% 60% at 50% 45%, black 30%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 85% 60% at 50% 45%, black 30%, transparent 100%)',
+          }}
+        />
 
-          {/* Accent lines */}
-          <div className="absolute top-1/3 left-0 w-64 h-px bg-gradient-to-r from-transparent via-skyblue/20 to-transparent" />
-          <div className="absolute bottom-1/3 right-0 w-96 h-px bg-gradient-to-l from-transparent via-azure/20 to-transparent" />
-        </div>
-
-        <div className="container mx-auto py-5 px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-6xl mx-auto text-center">
-            {/* Badge */}
-            <FadeIn>
-              <m.div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-skyblue/10 to-azure/10 border border-skyblue/20 mb-10 backdrop-blur-sm" whileHover={{
-              scale: 1.05
-            }} transition={{
-              duration: 0.2
-            }}>
-                <Zap className="text-skyblue" size={16} />
-                <span className="text-sm font-semibold text-skyblue tracking-wide">
-                  Premium Technology Solutions
+        <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-4 pt-24 pb-6 sm:px-6 sm:pt-28 md:pt-32 lg:px-8">
+          <div className="mx-auto w-full max-w-5xl text-center">
+            <div className="hero-rise mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-teal/20 bg-card/70 px-3 py-1.5 text-xs font-semibold text-teal shadow-card backdrop-blur-sm sm:mb-7 sm:px-4 sm:py-2 sm:text-sm">
+                <span className="relative flex h-2 w-2 shrink-0">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-skyblue opacity-60 animate-ping" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-teal" />
                 </span>
-              </m.div>
-            </FadeIn>
+                <Zap className="shrink-0 text-teal" size={14} />
+                <span className="truncate tracking-wide">{t('hero.eyebrow')}</span>
+              </div>
 
-            {/* Main Headline */}
-            <FadeIn delay={0.1}>
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-8 leading-[1.05]">
-                Innovation meets{' '}
+            <h1 className="hero-title mb-4 font-extrabold tracking-tight text-ink text-balance sm:mb-6">
+                {t('hero.headlineLead')}{' '}
                 <span className="relative inline-block">
-                  <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-skyblue via-skyblue-light to-azure">
-                    Precision
+                  <span className="relative z-10 bg-gradient-to-r from-skyblue via-teal to-azure bg-clip-text text-transparent">
+                    {t('hero.headlineHighlight')}
                   </span>
-                  {/* Animated glow effect */}
-                  <m.div className="absolute -inset-2 bg-gradient-to-r from-skyblue/30 to-azure/30 blur-2xl -z-10" animate={{
-                  opacity: [0.4, 0.7, 0.4],
-                  scale: [0.95, 1.05, 0.95]
-                }} transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: 'easeInOut'
-                }} />
+                  <span
+                    className="absolute -inset-x-3 -inset-y-1 -z-0 rounded-full opacity-50 blur-2xl"
+                    style={{ background: 'linear-gradient(90deg, rgba(86,201,227,0.35), rgba(15,94,112,0.30))' }}
+                    aria-hidden="true"
+                  />
                 </span>
               </h1>
-            </FadeIn>
 
-            {/* Subheadline */}
-            <FadeIn delay={0.2}>
-              <p className="text-xl sm:text-2xl md:text-3xl text-gray-400 mb-12 max-w-4xl mx-auto leading-relaxed font-light">
-                Oraixen delivers{' '}
-                <span className="text-white font-medium">
-                  premium technology solutions
-                </span>{' '}
-                for forward-thinking businesses. We craft flawless digital
-                products, from mobile apps to AI-powered hardware systems.
+            <p className="hero-rise hero-rise-2 hero-sub mx-auto mb-7 max-w-2xl font-light text-body sm:mb-9 md:max-w-3xl">
+                {t('hero.subhead')}
               </p>
-            </FadeIn>
 
-            {/* CTAs */}
-            <FadeIn delay={0.3}>
-              <div className="flex flex-col sm:flex-row gap-5 justify-center items-center mb-20">
-                <Button href="/projects" variant="primary" size="lg" icon>
-                  View Our Work
+            <div className="hero-rise hero-rise-3 flex w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
+                <Button
+                  href="/contact"
+                  variant="primary"
+                  size="md"
+                  icon
+                  className="w-full sm:w-auto"
+                  onClick={() => trackCtaClick('home_hero_start_project', 'home_hero', '/contact')}
+                >
+                  {t('hero.ctaPrimary')}
                 </Button>
-                <Button href="/contact" variant="outline" size="lg">
-                  Start a Project
+                <Button
+                  href="/projects"
+                  variant="outline"
+                  size="md"
+                  className="w-full sm:w-auto"
+                  onClick={() => trackCtaClick('home_hero_view_projects', 'home_hero', '/projects')}
+                >
+                  {t('hero.ctaSecondary')}
                 </Button>
               </div>
-            </FadeIn>
           </div>
         </div>
+
+        <a
+          href="#home-next"
+          className="hero-scroll relative z-10 mx-auto mb-5 mt-2 flex flex-col items-center gap-2 text-muted outline-none sm:mb-7"
+          aria-label={tc('a11y.scrollDown')}
+        >
+          <span className="hero-scroll-mouse" aria-hidden="true">
+            <span className="hero-scroll-wheel" />
+          </span>
+          <span className="text-[11px] font-semibold uppercase tracking-[0.18em] sm:text-xs">
+            {t('hero.scroll')}
+          </span>
+        </a>
       </section>
 
-      {/* Trust Strip */}
-      <div className="relative bg-inkblack-light border-y border-white/10 py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-skyblue/5 to-transparent" />
+      {/* ===================== Stats ===================== */}
+      <div id="home-next" className="relative bg-surface-muted border-y border-line py-12 sm:py-16 md:py-20 overflow-hidden scroll-mt-20">
+        <AuroraBackground intensity="subtle" />
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-16">
-            {[{
-            label: 'Years Experience',
-            value: '7+'
-          }, {
-            label: 'Projects Delivered',
-            value: '37+'
-          }, {
-            label: 'Client Retention',
-            value: '98%'
-          }, {
-            label: 'Countries Served',
-            value: '15'
-          }].map((stat, i) => <m.div key={i} initial={{
-            opacity: 0,
-            y: 20
-          }} whileInView={{
-            opacity: 1,
-            y: 0
-          }} viewport={{
-            once: true
-          }} transition={{
-            delay: i * 0.1
-          }} className="text-center group">
-                <m.div className="text-4xl md:text-5xl lg:text-6xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-gray-400" whileHover={{
-              scale: 1.05
-            }} transition={{
-              duration: 0.2
-            }}>
-                  {stat.value}
-                </m.div>
-                <div className="text-sm text-gray-500 uppercase tracking-wider font-semibold">
-                  {stat.label}
+          <Stagger className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded-2xl bg-card/70 backdrop-blur-sm border border-line shadow-card px-4 py-7 text-center hover:border-teal/40 hover:shadow-hover transition-all duration-200"
+              >
+                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-2 text-transparent bg-clip-text bg-gradient-to-br from-skyblue to-teal">
+                  <AnimatedCounter value={stat.value} />
                 </div>
-              </m.div>)}
-          </div>
+                <div className="text-xs sm:text-sm text-muted uppercase tracking-wider font-semibold">{stat.label}</div>
+              </div>
+            ))}
+          </Stagger>
         </div>
       </div>
 
-      {/* Services Overview */}
-      <Section>
-        <div className="text-center mb-20">
-          <FadeIn>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Our Expertise
-            </h2>
-            <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto">
-              We provide end-to-end technology solutions tailored to your
-              specific needs.
-            </p>
-          </FadeIn>
-        </div>
+      <ProjectLogoStrip />
 
-        <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[{
-          icon: <Smartphone className="text-skyblue" size={32} />,
-          title: 'Mobile Development',
-          desc: 'Native iOS and Android apps with fluid animations and premium UX.'
-        }, {
-          icon: <Code className="text-skyblue" size={32} />,
-          title: 'Web Development',
-          desc: 'Scalable, high-performance web applications and platforms.'
-        }, {
-          icon: <Server className="text-skyblue" size={32} />,
-          title: 'Corporate Software',
-          desc: 'Enterprise-grade software solutions for complex business processes.'
-        }, {
-          icon: <Cpu className="text-skyblue" size={32} />,
-          title: 'Hardware & AI',
-          desc: 'Integrated IoT hardware systems powered by advanced AI models.'
-        }].map((service, i) => <m.div key={i} initial={{
-          opacity: 0,
-          y: 20
-        }} whileInView={{
-          opacity: 1,
-          y: 0
-        }} viewport={{
-          once: true,
-          amount: 0.3
-        }} transition={{
-          delay: i * 0.1
-        }}>
-              <Card className="p-8 h-full group">
-                <div className="mb-6 bg-gradient-to-br from-skyblue/10 to-azure/10 w-16 h-16 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  {service.icon}
+      {/* ===================== Services ===================== */}
+      <Section>
+        <SectionHeading
+          eyebrow={t('services.eyebrow')}
+          title={t('services.title')}
+          subtitle={t('services.subtitle')}
+        />
+
+        <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service, i) => (
+            <SpotlightCard key={i} className="h-full">
+                <div className="p-8 h-full group">
+                  <div className="relative mb-6 w-14 h-14">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-skyblue/15 to-teal/10 border border-teal/15 flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                      {serviceIcons[i] ?? serviceIcons[0]}
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 mb-3 flex-wrap">
+                    <h3 className="text-xl font-bold text-ink group-hover:text-teal transition-colors">{service.title}</h3>
+                    {service.tag && (
+                      <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-teal/5 text-teal border border-teal/15">
+                        {service.tag}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-body mb-6 leading-relaxed">{service.desc}</p>
+                  <Link
+                    to="/services"
+                    className="inline-flex items-center text-teal text-sm font-semibold hover:text-teal-light transition-colors group/link"
+                  >
+                    {t('services.learnMore')}
+                    <ArrowRight size={16} className="ms-1 group-hover/link:translate-x-1 transition-transform rtl-flip" />
+                  </Link>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-gray-400 mb-6 leading-relaxed">
-                  {service.desc}
-                </p>
-                <Link to="/services" className="inline-flex items-center text-skyblue text-sm font-semibold hover:text-skyblue-light transition-colors group">
-                  Learn more
-                  <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Card>
-            </m.div>)}
+              </SpotlightCard>
+          ))}
         </Stagger>
       </Section>
 
-      {/* Featured Projects */}
+      {/* ===================== Featured Projects ===================== */}
       <FeaturedProjects />
 
-      {/* Process Preview */}
-      <Section className="bg-gradient-to-b from-inkblack via-inkblack-light to-inkblack">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <FadeIn>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              How We Work
-            </h2>
-            <p className="text-gray-400 mb-10 text-lg leading-relaxed">
-              Our process is built on transparency, collaboration, and rigorous
-              quality assurance. We don't just build software; we build
-              partnerships.
-            </p>
-            <div className="space-y-4 mb-10">
-              {['Discovery & Strategy', 'Design & Prototyping', 'Development & Testing', 'Launch & Support'].map((step, i) => <m.div key={i} initial={{
-              opacity: 0,
-              x: -20
-            }} whileInView={{
-              opacity: 1,
-              x: 0
-            }} viewport={{
-              once: true
-            }} transition={{
-              delay: i * 0.1
-            }} className="flex items-center group">
-                  <div className="w-8 h-8 rounded-full bg-skyblue/10 border border-skyblue/30 flex items-center justify-center mr-4 group-hover:bg-skyblue/20 transition-colors">
-                    <CheckCircle className="text-skyblue" size={18} />
+      {/* ===================== Why Choose Oraixen ===================== */}
+      <Section>
+        <SectionHeading
+          eyebrow={t('whyChoose.eyebrow')}
+          title={t('whyChoose.title')}
+          subtitle={t('whyChoose.subtitle')}
+        />
+
+        <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {whyChoose.map((item, i) => {
+            const Icon = whyIcons[i % whyIcons.length];
+            return (
+              <SpotlightCard key={i} className="h-full">
+                  <div className="p-8 h-full flex flex-col">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-skyblue/15 to-teal/10 border border-teal/15 flex items-center justify-center mb-6">
+                      <Icon className="text-teal" size={24} strokeWidth={1.75} />
+                    </div>
+                    <h3 className="text-lg font-bold text-ink mb-3">{item.title}</h3>
+                    <p className="text-body leading-relaxed text-sm">{item.desc}</p>
                   </div>
-                  <span className="text-white font-medium">{step}</span>
-                </m.div>)}
+                </SpotlightCard>
+            );
+          })}
+        </Stagger>
+      </Section>
+
+      {/* ===================== Process preview ===================== */}
+      <Section dark>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <Reveal direction="right">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal/5 text-teal border border-teal/15 text-sm font-semibold mb-6">
+              {t('process.eyebrow')}
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-ink mb-6">{t('process.title')}</h2>
+            <p className="text-body mb-10 text-lg leading-relaxed">{t('process.subtitle')}</p>
+            <div className="space-y-4 mb-10">
+              {processSteps.map((step, i) => (
+                <div
+                  key={i}
+                  className="flex items-center group"
+                >
+                  <div className="w-8 h-8 rounded-full bg-teal/5 border border-teal/30 flex items-center justify-center me-4 group-hover:bg-teal/10 transition-colors shrink-0">
+                    <CheckCircle className="text-teal" size={18} />
+                  </div>
+                  <span className="text-ink font-medium">{step}</span>
+                </div>
+              ))}
             </div>
             <Button href="/process" variant="secondary" size="lg">
-              View Full Process
+              {t('process.cta')}
             </Button>
-          </FadeIn>
+          </Reveal>
 
-          <FadeIn delay={0.2} className="relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-skyblue/20 to-azure/20 blur-3xl rounded-full opacity-30" />
-            <Card className="relative p-10 bg-gradient-to-br from-white/5 to-white/[0.02] border-white/10">
+          <Reveal direction="left" className="relative">
+            <div
+              className="absolute inset-0 bg-gradient-to-br from-skyblue/15 to-teal/15 blur-3xl rounded-full opacity-50"
+              aria-hidden="true"
+            />
+            <div className="relative p-10 rounded-2xl bg-card border border-line shadow-card">
               <div className="space-y-10">
-                {[{
-                num: '1',
-                title: 'Discovery',
-                desc: 'We dive deep into your business goals and technical requirements.',
-                active: true
-              }, {
-                num: '2',
-                title: 'Execution',
-                desc: 'Agile development with bi-weekly sprints and regular updates.',
-                active: false
-              }, {
-                num: '3',
-                title: 'Delivery',
-                desc: 'Flawless launch with comprehensive documentation and training.',
-                active: false
-              }].map((step, i) => <div key={i}>
+                {processCard.map((step, i) => (
+                  <div key={i}>
                     <div className="flex gap-5">
-                      <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-white font-bold text-lg shrink-0 ${step.active ? 'bg-gradient-to-br from-skyblue to-azure shadow-lg shadow-skyblue/30' : 'bg-white/5 border border-white/10'}`}>
+                      <div
+                        className={`w-14 h-14 rounded-2xl flex items-center justify-center font-bold text-lg shrink-0 ${
+                          i === 0
+                            ? 'bg-gradient-to-br from-skyblue to-teal text-onaccent shadow-glow'
+                            : 'bg-surface-subtle border border-line text-muted'
+                        }`}
+                      >
                         {step.num}
                       </div>
                       <div>
-                        <h4 className="text-white font-bold text-lg mb-2">
-                          {step.title}
-                        </h4>
-                        <p className="text-gray-400 text-sm leading-relaxed">
-                          {step.desc}
-                        </p>
+                        <h4 className="text-ink font-bold text-lg mb-2">{step.title}</h4>
+                        <p className="text-body text-sm leading-relaxed">{step.desc}</p>
                       </div>
                     </div>
-                    {i < 2 && <div className="w-0.5 h-8 bg-gradient-to-b from-white/20 to-transparent ml-7 my-2" />}
-                  </div>)}
+                    {i < processCard.length - 1 && (
+                      <div className="w-0.5 h-8 bg-gradient-to-b from-teal/40 to-transparent ms-7 my-2" />
+                    )}
+                  </div>
+                ))}
               </div>
-            </Card>
-          </FadeIn>
+            </div>
+          </Reveal>
         </div>
       </Section>
 
-      {/* CTA Banner */}
-      <section className="relative py-32 bg-gradient-to-br from-azure via-azure-dark to-inkblack overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5" />
-        <div className="absolute inset-0 bg-gradient-to-t from-inkblack/50 to-transparent" />
+      {/*
+        ===================== Testimonials =====================
+        TEMPORARILY DISABLED:
+        These testimonials contain draft wording that must be confirmed
+        by the respective clients before being published publicly.
+        Re-enable this section only after client approval, together with the
+        `Quote` icon import, the `testimonialsData` import and the
+        `testimonials` variable at the top of this file.
 
-        {/* Animated Orbs */}
-        <m.div className="absolute top-10 right-10 w-64 h-64 bg-skyblue/20 rounded-full blur-3xl" animate={{
-        scale: [1, 1.2, 1],
-        opacity: [0.3, 0.5, 0.3]
-      }} transition={{
-        duration: 4,
-        repeat: Infinity,
-        ease: 'easeInOut'
-      }} />
+        <Section>
+          <SectionHeading
+            eyebrow={t('testimonials.eyebrow')}
+            title={t('testimonials.title')}
+            subtitle={t('testimonials.subtitle')}
+          />
 
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <FadeIn>
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Ready to build the future?
-            </h2>
-            <p className="text-white/90 text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed">
-              Let's discuss how Oraixen can help you achieve your digital goals
-              with precision and excellence.
-            </p>
-            <Button href="/contact" variant="primary" size="lg" className="bg-white text-azure hover:bg-gray-100 shadow-2xl shadow-black/20" icon>
-              Start Your Project
-            </Button>
-          </FadeIn>
-        </div>
-      </section>
-    </div>;
+          <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((item, i) => (
+                <SpotlightCard key={i} className="h-full">
+                  <div className="p-8 h-full flex flex-col">
+                    <Quote className="text-teal mb-5 rtl-flip" size={28} />
+                    <p className="text-body leading-relaxed mb-6 flex-1">{item.quote}</p>
+                    <div className="pt-5 border-t border-line">
+                      <p className="text-ink font-bold">{item.name}</p>
+                      <p className="text-muted text-sm">
+                        {item.role} · {item.company}
+                      </p>
+                    </div>
+                  </div>
+                </SpotlightCard>
+            ))}
+          </Stagger>
+        </Section>
+      */}
+
+      {/* ===================== Final CTA banner ===================== */}
+      <CTASection
+        title={t('cta.title')}
+        subtitle={t('cta.subtitle')}
+        ctaLocation="home_final_cta"
+        primary={{ label: t('cta.primary'), href: '/contact', ctaId: 'home_final_start_project' }}
+        secondary={{ label: t('cta.secondary'), href: '/projects', ctaId: 'home_final_view_projects' }}
+      />
+    </div>
+  );
 }

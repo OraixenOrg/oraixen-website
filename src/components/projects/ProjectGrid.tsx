@@ -1,11 +1,12 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Project } from '../../types/project';
 import { ProjectCard } from './ProjectCard';
 import { Stagger } from '../Stagger';
 import { Pagination } from '../Pagination';
 import { Search, X } from 'lucide-react';
-import { m, AnimatePresence } from 'framer-motion';
+import { matchesIndustryKey } from '../../lib/projects';
 
 interface ProjectGridProps {
   projects: Project[];
@@ -16,46 +17,57 @@ export function ProjectGrid({
   projects,
   itemsPerPage = 9
 }: ProjectGridProps) {
+  const { t } = useTranslation('projects');
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
-  
-  // Dynamically get categories that have projects
+  const skipScrollOnMount = useRef(true);
+
+  const industryItems = t('industries.items', { returnObjects: true }) as Array<{
+    key: string;
+    name: string;
+  }>;
+
   const availableCategories = useMemo(() => {
     const categorySet = new Set(projects.map(p => p.category));
     return ['All', ...Array.from(categorySet).sort()];
   }, [projects]);
-  
+
+  const categoryLabel = useCallback((category: string) => {
+    return t(`filters.${category.toLowerCase()}`, { defaultValue: category });
+  }, [t]);
+
   const currentFilter = searchParams.get('filter') || 'All';
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
-  
-  // Update URL when filter or page changes
-  const updateURL = useCallback((filter: string, page: number, search: string) => {
+  const currentIndustry = searchParams.get('industry') || '';
+
+  const industryLabel = industryItems.find((item) => item.key === currentIndustry)?.name;
+
+  const updateURL = useCallback((filter: string, page: number, search: string, industry = currentIndustry) => {
     const params = new URLSearchParams();
     if (filter !== 'All') params.set('filter', filter);
     if (page > 1) params.set('page', page.toString());
     if (search) params.set('search', search);
+    if (industry) params.set('industry', industry);
     setSearchParams(params, { replace: true });
-  }, [setSearchParams]);
-  
-  // Validate current filter - reset to All if invalid
+  }, [setSearchParams, currentIndustry]);
+
   useEffect(() => {
     if (currentFilter !== 'All' && !availableCategories.includes(currentFilter)) {
-      const params = new URLSearchParams();
-      if (searchQuery) params.set('search', searchQuery);
-      setSearchParams(params, { replace: true });
+      updateURL('All', 1, searchQuery, currentIndustry);
     }
-  }, [currentFilter, availableCategories, searchQuery, setSearchParams]);
+  }, [currentFilter, availableCategories, searchQuery, currentIndustry, updateURL]);
 
-  // Filter and search projects
   const filteredProjects = useMemo(() => {
     let filtered = projects;
 
-    // Apply category filter
     if (currentFilter !== 'All') {
       filtered = filtered.filter(p => p.category === currentFilter);
     }
 
-    // Apply search query
+    if (currentIndustry) {
+      filtered = filtered.filter(p => matchesIndustryKey(p, currentIndustry));
+    }
+
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase().trim();
       filtered = filtered.filter(
@@ -69,64 +81,71 @@ export function ProjectGrid({
     }
 
     return filtered;
-  }, [projects, currentFilter, searchQuery]);
+  }, [projects, currentFilter, currentIndustry, searchQuery]);
 
-  // Calculate pagination
   const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const paginatedProjects = filteredProjects.slice(startIndex, endIndex);
+  const paginatedProjects = filteredProjects.slice(startIndex, startIndex + itemsPerPage);
 
-  // Reset to page 1 when filter or search changes
   useEffect(() => {
     if (currentPage > totalPages && totalPages > 0) {
-      updateURL(currentFilter, 1, searchQuery);
+      updateURL(currentFilter, 1, searchQuery, currentIndustry);
     }
-  }, [currentFilter, searchQuery, totalPages, currentPage, updateURL]);
+  }, [currentFilter, searchQuery, currentIndustry, totalPages, currentPage, updateURL]);
 
-  // Scroll to top when page changes
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [currentPage, currentFilter, searchQuery]);
+    if (skipScrollOnMount.current) {
+      skipScrollOnMount.current = false;
+      return;
+    }
+    document.getElementById('project-grid')?.scrollIntoView({ block: 'start' });
+  }, [currentPage, currentFilter, currentIndustry]);
 
   const handleFilterChange = (filter: string) => {
-    updateURL(filter, 1, searchQuery);
+    updateURL(filter, 1, searchQuery, currentIndustry);
   };
 
   const handlePageChange = (page: number) => {
-    updateURL(currentFilter, page, searchQuery);
+    updateURL(currentFilter, page, searchQuery, currentIndustry);
   };
 
   const handleSearchChange = (value: string) => {
     setSearchQuery(value);
-    updateURL(currentFilter, 1, value);
+    updateURL(currentFilter, 1, value, currentIndustry);
   };
 
   const handleClearSearch = () => {
     setSearchQuery('');
-    updateURL(currentFilter, 1, '');
+    updateURL(currentFilter, 1, '', currentIndustry);
   };
 
+  const handleClearAll = () => {
+    setSearchQuery('');
+    updateURL('All', 1, '', '');
+  };
+
+  const hasActiveFilters = currentFilter !== 'All' || Boolean(searchQuery) || Boolean(currentIndustry);
+
   return (
-    <div className="space-y-12">
-      {/* Search Bar */}
+    <div id="project-grid" className="space-y-12 scroll-mt-24">
       <div className="max-w-2xl mx-auto">
         <div className="relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+          <Search className="absolute start-4 top-1/2 -translate-y-1/2 text-faint" size={20} />
           <input
-            type="text"
+            type="search"
             value={searchQuery}
             onChange={(e) => handleSearchChange(e.target.value)}
-            placeholder="Search projects by name, client, industry, or technology..."
-            className="w-full pl-12 pr-12 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-skyblue/50 focus:border-skyblue/50 transition-all"
-            aria-label="Search projects"
+            placeholder={t('search.placeholder')}
+            className="w-full ps-12 pe-12 py-4 bg-card border border-line rounded-xl text-ink placeholder:text-faint focus:outline-none focus-visible:border-teal focus-visible:ring-2 focus-visible:ring-teal/20 transition-all"
+            aria-label={t('search.ariaLabel')}
             autoComplete="off"
           />
           {searchQuery && (
             <button
+              type="button"
               onClick={handleClearSearch}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
-              aria-label="Clear search"
+              className="absolute end-4 top-1/2 -translate-y-1/2 text-faint hover:text-teal transition-colors"
+              aria-label={t('search.clearAria')}
             >
               <X size={20} />
             </button>
@@ -134,68 +153,56 @@ export function ProjectGrid({
         </div>
       </div>
 
-      {/* Filters */}
       <div className="flex flex-wrap justify-center gap-2 md:gap-4">
         {availableCategories.map(category => (
-          <m.button
+          <button
             key={category}
+            type="button"
             onClick={() => handleFilterChange(category)}
+            aria-pressed={currentFilter === category}
             className={`
-              px-6 py-2 rounded-full text-sm font-medium transition-all duration-300
+              px-6 py-2 rounded-full text-sm font-semibold transition-colors duration-200 border
               ${currentFilter === category
-                ? 'bg-skyblue text-inkblack shadow-[0_0_15px_rgba(86,201,227,0.3)]'
-                : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
+                ? 'bg-teal text-onaccent border-teal shadow-glow'
+                : 'bg-card text-body border-line hover:border-teal/40 hover:text-teal'
               }
             `}
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
           >
-            {category}
+            {categoryLabel(category)}
             {category !== 'All' && (
-              <span className="ml-2 text-xs opacity-75">
+              <span className="ms-2 text-xs opacity-75">
                 ({projects.filter(p => p.category === category).length})
               </span>
             )}
-          </m.button>
+          </button>
         ))}
       </div>
 
-      {/* Clear Filters Button (only show when filters are active) */}
-      {(currentFilter !== 'All' || searchQuery) && filteredProjects.length > 0 && (
-        <div className="text-center">
+      {hasActiveFilters && filteredProjects.length > 0 && (
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          {industryLabel && (
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium bg-teal/10 text-teal border border-teal/20">
+              {industryLabel}
+            </span>
+          )}
           <button
-            onClick={() => {
-              setSearchQuery('');
-              updateURL('All', 1, '');
-            }}
-            className="text-sm text-skyblue hover:text-white hover:underline transition-colors"
+            type="button"
+            onClick={handleClearAll}
+            className="text-sm text-teal hover:text-teal-light hover:underline transition-colors"
           >
-            Clear all filters
+            {t('filters.clearAll')}
           </button>
         </div>
       )}
 
-      {/* Grid */}
       {paginatedProjects.length > 0 ? (
         <>
           <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <AnimatePresence mode="popLayout">
-              {paginatedProjects.map(project => (
-                <m.div
-                  key={project.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9, y: -20 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <ProjectCard project={project} />
-                </m.div>
-              ))}
-            </AnimatePresence>
+            {paginatedProjects.map(project => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
           </Stagger>
 
-          {/* Pagination */}
           {totalPages > 1 && (
             <Pagination
               currentPage={currentPage}
@@ -208,22 +215,17 @@ export function ProjectGrid({
       ) : (
         <div className="text-center py-20">
           <div className="max-w-md mx-auto">
-            <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-2xl font-bold text-white mb-2">No projects found</h3>
-            <p className="text-gray-400 mb-6">
-              {searchQuery || currentFilter !== 'All'
-                ? 'Try adjusting your search or filter criteria.'
-                : 'No projects available at the moment.'}
+            <h3 className="text-2xl font-bold text-ink mb-2">{t('empty.title')}</h3>
+            <p className="text-body mb-6">
+              {hasActiveFilters ? t('empty.withFilters') : t('empty.noProjects')}
             </p>
-            {(searchQuery || currentFilter !== 'All') && (
+            {hasActiveFilters && (
               <button
-                onClick={() => {
-                  setSearchQuery('');
-                  updateURL('All', 1, '');
-                }}
-                className="px-6 py-3 bg-skyblue text-inkblack rounded-lg font-medium hover:bg-skyblue/90 transition-colors"
+                type="button"
+                onClick={handleClearAll}
+                className="px-6 py-3 bg-teal text-onaccent rounded-lg font-semibold hover:bg-teal-light transition-colors"
               >
-                Clear all filters
+                {t('filters.clearAll')}
               </button>
             )}
           </div>

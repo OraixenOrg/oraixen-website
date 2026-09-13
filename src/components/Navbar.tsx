@@ -1,48 +1,95 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Button } from './Button';
+import { Logo } from './Logo';
+import { LanguageSwitcher } from './LanguageSwitcher';
+import { ThemeSwitcher } from './ThemeSwitcher';
 import { m, AnimatePresence } from 'framer-motion';
+import { trackCtaClick } from '../lib/analytics';
 
 const navLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
-  { name: 'Services', href: '/services' },
-  { name: 'Projects', href: '/projects' },
-  { name: 'Process', href: '/process' },
+  { key: 'home', href: '/' },
+  { key: 'about', href: '/about' },
+  { key: 'services', href: '/services' },
+  { key: 'projects', href: '/projects' },
+  { key: 'process', href: '/process' },
 ];
 
+/** Controls the mobile dialog can hand keyboard focus to, in DOM order. */
+const FOCUSABLE_SELECTOR = [
+  'a[href]',
+  'button:not([disabled])',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(',');
+
+/** Visible, enabled, focusable descendants of `container`, in DOM order. */
+function getFocusableElements(container: HTMLElement): HTMLElement[] {
+  const nodes = Array.from(container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR));
+  return nodes.filter(
+    (el) =>
+      !el.hasAttribute('disabled') &&
+      el.getAttribute('aria-hidden') !== 'true' &&
+      (el.offsetWidth > 0 || el.offsetHeight > 0 || el.getClientRects().length > 0)
+  );
+}
+
+function isNavActive(href: string, pathname: string) {
+  if (href === '/') return pathname === '/';
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export function Navbar() {
+  const { t } = useTranslation('common');
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
-  // Handle scroll detection
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  /**
+   * Set only when the menu is closed by an explicit dismissal (Escape or the
+   * dialog's close button); those hand focus back to the opener. Closing after
+   * a navigation, or because the viewport grew to desktop, deliberately leaves
+   * focus wherever the new context put it.
+   */
+  const restoreFocusRef = useRef(false);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Check initial state
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close menu on route change
   useEffect(() => {
     setIsOpen(false);
   }, [location]);
 
-  // Optimized scroll lock - instant, no delay
+  useEffect(() => {
+    const onResize = () => {
+      if (window.matchMedia('(min-width: 768px)').matches) setIsOpen(false);
+    };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  // Scroll lock. Key handling lives in the focus-management effect below.
   useEffect(() => {
     if (!isOpen) return;
-    
+
     const body = document.body;
     const html = document.documentElement;
-    
-    // Get scroll position immediately before any changes
     const scrollY = window.scrollY;
-    
-    // Apply lock instantly (synchronous for immediate effect)
+
     body.style.position = 'fixed';
     body.style.top = `-${scrollY}px`;
     body.style.left = '0';
@@ -50,9 +97,8 @@ export function Navbar() {
     body.style.width = '100%';
     body.style.overflow = 'hidden';
     html.style.overflow = 'hidden';
-    
+
     return () => {
-      // Restore scroll position
       const savedScrollY = Math.abs(parseInt(body.style.top || '0', 10));
       body.style.position = '';
       body.style.top = '';
@@ -61,149 +107,215 @@ export function Navbar() {
       body.style.width = '';
       body.style.overflow = '';
       html.style.overflow = '';
-      
-      // Restore scroll position on next frame to avoid layout shift
       requestAnimationFrame(() => {
         window.scrollTo(0, savedScrollY || scrollY);
       });
     };
   }, [isOpen]);
 
-  // Optimized toggle - immediate state update
-  const toggleMenu = () => {
-    setIsOpen(prev => !prev);
-  };
-  
-  const closeMenu = () => {
+  /** Dismissal: closes the menu and returns focus to the opener. */
+  const dismissMenu = useCallback(() => {
+    restoreFocusRef.current = true;
     setIsOpen(false);
-  };
+  }, []);
+
+  // Modal focus management: initial focus, a Tab/Shift+Tab trap, Escape, and
+  // focus restoration on dismissal.
+  useEffect(() => {
+    if (!isOpen) return;
+
+    // The hamburger is always mounted (hidden at md+ via CSS only), so this
+    // node stays valid for the lifetime of the effect and is safe to use in
+    // cleanup.
+    const opener = menuButtonRef.current;
+
+    // Predictable, visible starting point inside the dialog. preventScroll
+    // keeps focusing from fighting the scroll-lock restore.
+    closeButtonRef.current?.focus({ preventScroll: true });
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        dismissMenu();
+        return;
+      }
+      if (e.key !== 'Tab') return;
+
+      const dialog = dialogRef.current;
+      if (!dialog) return;
+
+      const focusable = getFocusableElements(dialog);
+      if (focusable.length === 0) {
+        // Nothing to land on — keep focus from escaping into the background.
+        e.preventDefault();
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+      const outside = !(active instanceof Node) || !dialog.contains(active);
+
+      if (e.shiftKey) {
+        if (outside || active === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else if (outside || active === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      if (restoreFocusRef.current) {
+        restoreFocusRef.current = false;
+        opener?.focus({ preventScroll: true });
+      }
+    };
+  }, [isOpen, dismissMenu]);
+
+  const toggleMenu = () => setIsOpen((prev) => !prev);
+  const closeMenu = () => setIsOpen(false);
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-inkblack/95 backdrop-blur-xl border-b border-white/10 py-3 shadow-lg shadow-black/20' 
-          : 'bg-transparent py-6'
-      }`}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="z-50 hover:opacity-80 transition-opacity">
-          <img 
-            src="/logo.svg" 
-            alt="Oraixen Logo" 
-            className="h-9 md:h-10 w-auto object-contain scale-[3.5] md:scale-[4.5] pl-[8px] md:pl-[13px]" 
-          />
-        </Link>
+    <>
+      <header
+        className={`fixed top-0 inset-x-0 z-50 transition-colors duration-200 ${
+          scrolled || isOpen
+            ? 'bg-surface border-b border-line py-3 shadow-card'
+            : 'bg-transparent py-3 md:py-6'
+        }`}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 md:grid md:grid-cols-[1fr_auto_1fr] md:gap-4">
+          <Link
+            to="/"
+            className="shrink-0 justify-self-start hover:opacity-80 transition-opacity"
+            aria-label={t('nav.home')}
+            onClick={closeMenu}
+          >
+            <Logo className="h-8 sm:h-9 md:h-10 w-auto text-teal" />
+          </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-1">
-          {navLinks.map(link => (
-            <Link 
-              key={link.name} 
-              to={link.href} 
-              className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-lg ${
-                location.pathname === link.href 
-                  ? 'text-skyblue bg-skyblue/10' 
-                  : 'text-white/70 hover:text-white hover:bg-white/5'
-              }`}
+          <nav className="hidden md:flex items-center justify-center gap-1" aria-label={t('a11y.primaryNav')}>
+            {navLinks.map((link) => {
+              const active = isNavActive(link.href, location.pathname);
+              return (
+                <Link
+                  key={link.key}
+                  to={link.href}
+                  aria-current={active ? 'page' : undefined}
+                  className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-full ${
+                    active
+                      ? 'text-teal'
+                      : 'text-ink/60 hover:text-ink hover:bg-surface-subtle'
+                  }`}
+                >
+                  {t(`nav.${link.key}`)}
+                  {active && (
+                    <span className="absolute inset-0 bg-teal/10 rounded-full border border-teal/25" />
+                  )}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="flex items-center justify-end gap-1.5 sm:gap-2 shrink-0">
+            <ThemeSwitcher />
+            <LanguageSwitcher />
+            <Link
+              to="/contact"
+              onClick={() => trackCtaClick('navbar_contact', 'navbar', '/contact')}
+              className="shine hidden md:inline-flex ms-1 items-center rounded-full bg-teal text-onaccent text-sm font-semibold px-5 py-2 transition-all duration-300 hover:bg-teal-light active:scale-[0.97] focus:outline-none focus-visible:ring-2 focus-visible:ring-teal/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface shadow-[0_4px_14px_rgba(15,94,112,0.20)] hover:shadow-[0_6px_20px_rgba(15,94,112,0.30)]"
             >
-              {link.name}
-              {location.pathname === link.href && (
-                <m.div 
-                  layoutId="navbar-indicator" 
-                  className="absolute inset-0 bg-skyblue/10 rounded-lg border border-skyblue/30" 
-                  transition={{
-                    type: 'spring',
-                    bounce: 0.2,
-                    duration: 0.6
-                  }} 
-                />
-              )}
+              {t('cta.contactUs')}
             </Link>
-          ))}
-          <div className="ml-4">
-            <Button href="/contact" variant="primary" size="sm">
-              Contact Us
-            </Button>
+            <button
+              ref={menuButtonRef}
+              className="md:hidden text-ink p-2 -me-1 hover:bg-surface-subtle active:bg-surface-muted rounded-lg transition-colors touch-manipulation"
+              onClick={toggleMenu}
+              aria-label={isOpen ? t('a11y.menuClose') : t('a11y.menuOpen')}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+              type="button"
+            >
+              {isOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
           </div>
         </div>
+      </header>
 
-        {/* Mobile Menu Button */}
-        <button 
-          className="md:hidden text-white z-[60] relative focus:outline-none p-2 hover:bg-white/10 active:bg-white/20 rounded-lg transition-colors touch-manipulation" 
-          onClick={toggleMenu}
-          onTouchStart={(e) => {
-            // Prevent double-tap zoom on mobile
-            e.currentTarget.style.touchAction = 'manipulation';
-          }}
-          aria-label={isOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={isOpen}
-          type="button"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-
-        {/* Mobile Menu Overlay */}
-        <AnimatePresence mode="wait">
-          {isOpen && (
-            <m.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.15, ease: 'easeOut' }}
-              className="fixed inset-0 bg-inkblack z-[55] flex flex-col items-center justify-center space-y-8 md:hidden"
-              style={{ willChange: 'opacity' }}
-              onClick={(e) => {
-                if (e.target === e.currentTarget) {
-                  closeMenu();
-                }
-              }}
-            >
-              {navLinks.map((link, index) => (
-                <m.div 
-                  key={link.name} 
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ 
-                    delay: index * 0.08, 
-                    duration: 0.25,
-                    ease: 'easeOut'
-                  }}
-                  style={{ willChange: 'opacity, transform' }}
-                >
-                  <Link 
-                    to={link.href} 
-                    onClick={closeMenu}
-                    className={`text-2xl font-semibold transition-colors ${
-                      location.pathname === link.href 
-                        ? 'text-skyblue' 
-                        : 'text-white/80 hover:text-white'
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                </m.div>
-              ))}
-              <m.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ 
-                  delay: 0.4, 
-                  duration: 0.25,
-                  ease: 'easeOut'
-                }}
-                style={{ willChange: 'opacity, transform' }}
-                onClick={closeMenu}
+      {typeof document !== 'undefined' &&
+        createPortal(
+          <AnimatePresence>
+            {isOpen && (
+              <m.div
+                ref={dialogRef}
+                id="mobile-menu"
+                role="dialog"
+                aria-modal="true"
+                aria-label={t('a11y.menuLabel')}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.15 }}
+                className="fixed inset-0 z-[70] bg-surface md:hidden"
               >
-                <Button href="/contact" variant="primary" size="lg">
-                  Contact Us
-                </Button>
+                {/* Mirrors the header bar's geometry so this close button lands
+                    exactly where the hamburger sits, and covers it. */}
+                <div className="absolute top-0 inset-x-0 py-3">
+                  <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-end">
+                    <button
+                      ref={closeButtonRef}
+                      type="button"
+                      onClick={dismissMenu}
+                      aria-label={t('a11y.menuClose')}
+                      className="text-ink p-2 -me-1 hover:bg-surface-subtle active:bg-surface-muted rounded-lg transition-colors touch-manipulation focus:outline-none focus-visible:ring-2 focus-visible:ring-teal/40"
+                    >
+                      <X size={22} />
+                    </button>
+                  </div>
+                </div>
+
+                <nav
+                  className="h-full w-full overflow-y-auto flex flex-col items-center justify-center gap-7 px-6 pt-24 pb-10"
+                  aria-label={t('a11y.mobileNav')}
+                >
+                  {navLinks.map((link) => {
+                    const active = isNavActive(link.href, location.pathname);
+                    return (
+                      <Link
+                        key={link.key}
+                        to={link.href}
+                        onClick={closeMenu}
+                        aria-current={active ? 'page' : undefined}
+                        className={`text-2xl font-semibold py-1 transition-colors ${
+                          active ? 'text-teal' : 'text-ink/80 hover:text-ink'
+                        }`}
+                      >
+                        {t(`nav.${link.key}`)}
+                      </Link>
+                    );
+                  })}
+                  <Button
+                    href="/contact"
+                    variant="primary"
+                    size="lg"
+                    onClick={() => {
+                      trackCtaClick('mobile_nav_contact', 'mobile_nav', '/contact');
+                      closeMenu();
+                    }}
+                  >
+                    {t('cta.contactUs')}
+                  </Button>
+                </nav>
               </m.div>
-            </m.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </nav>
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
+    </>
   );
 }
