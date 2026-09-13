@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -17,6 +17,27 @@ const navLinks = [
   { key: 'process', href: '/process' },
 ];
 
+/** Controls the mobile dialog can hand keyboard focus to, in DOM order. */
+const FOCUSABLE_SELECTOR = [
+  'a[href]',
+  'button:not([disabled])',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(',');
+
+/** Visible, enabled, focusable descendants of `container`, in DOM order. */
+function getFocusableElements(container: HTMLElement): HTMLElement[] {
+  const nodes = Array.from(container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR));
+  return nodes.filter(
+    (el) =>
+      !el.hasAttribute('disabled') &&
+      el.getAttribute('aria-hidden') !== 'true' &&
+      (el.offsetWidth > 0 || el.offsetHeight > 0 || el.getClientRects().length > 0)
+  );
+}
+
 function isNavActive(href: string, pathname: string) {
   if (href === '/') return pathname === '/';
   return pathname === href || pathname.startsWith(`${href}/`);
@@ -27,6 +48,17 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  /**
+   * Set only when the menu is closed by an explicit dismissal (Escape or the
+   * dialog's close button); those hand focus back to the opener. Closing after
+   * a navigation, or because the viewport grew to desktop, deliberately leaves
+   * focus wherever the new context put it.
+   */
+  const restoreFocusRef = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,13 +81,9 @@ export function Navbar() {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
+  // Scroll lock. Key handling lives in the focus-management effect below.
   useEffect(() => {
     if (!isOpen) return;
-
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsOpen(false);
-    };
-    window.addEventListener('keydown', onKey);
 
     const body = document.body;
     const html = document.documentElement;
@@ -70,7 +98,6 @@ export function Navbar() {
     html.style.overflow = 'hidden';
 
     return () => {
-      window.removeEventListener('keydown', onKey);
       const savedScrollY = Math.abs(parseInt(body.style.top || '0', 10));
       body.style.position = '';
       body.style.top = '';
@@ -84,6 +111,70 @@ export function Navbar() {
       });
     };
   }, [isOpen]);
+
+  /** Dismissal: closes the menu and returns focus to the opener. */
+  const dismissMenu = useCallback(() => {
+    restoreFocusRef.current = true;
+    setIsOpen(false);
+  }, []);
+
+  // Modal focus management: initial focus, a Tab/Shift+Tab trap, Escape, and
+  // focus restoration on dismissal.
+  useEffect(() => {
+    if (!isOpen) return;
+
+    // The hamburger is always mounted (hidden at md+ via CSS only), so this
+    // node stays valid for the lifetime of the effect and is safe to use in
+    // cleanup.
+    const opener = menuButtonRef.current;
+
+    // Predictable, visible starting point inside the dialog. preventScroll
+    // keeps focusing from fighting the scroll-lock restore.
+    closeButtonRef.current?.focus({ preventScroll: true });
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        dismissMenu();
+        return;
+      }
+      if (e.key !== 'Tab') return;
+
+      const dialog = dialogRef.current;
+      if (!dialog) return;
+
+      const focusable = getFocusableElements(dialog);
+      if (focusable.length === 0) {
+        // Nothing to land on — keep focus from escaping into the background.
+        e.preventDefault();
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+      const outside = !(active instanceof Node) || !dialog.contains(active);
+
+      if (e.shiftKey) {
+        if (outside || active === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else if (outside || active === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      if (restoreFocusRef.current) {
+        restoreFocusRef.current = false;
+        opener?.focus({ preventScroll: true });
+      }
+    };
+  }, [isOpen, dismissMenu]);
 
   const toggleMenu = () => setIsOpen((prev) => !prev);
   const closeMenu = () => setIsOpen(false);
@@ -140,6 +231,7 @@ export function Navbar() {
               {t('cta.contactUs')}
             </Link>
             <button
+              ref={menuButtonRef}
               className="md:hidden text-ink p-2 -me-1 hover:bg-surface-subtle active:bg-surface-muted rounded-lg transition-colors touch-manipulation"
               onClick={toggleMenu}
               aria-label={isOpen ? t('a11y.menuClose') : t('a11y.menuOpen')}
@@ -158,6 +250,7 @@ export function Navbar() {
           <AnimatePresence>
             {isOpen && (
               <m.div
+                ref={dialogRef}
                 id="mobile-menu"
                 role="dialog"
                 aria-modal="true"
@@ -166,8 +259,24 @@ export function Navbar() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.15 }}
-                className="fixed inset-0 z-40 bg-surface md:hidden"
+                className="fixed inset-0 z-[70] bg-surface md:hidden"
               >
+                {/* Mirrors the header bar's geometry so this close button lands
+                    exactly where the hamburger sits, and covers it. */}
+                <div className="absolute top-0 inset-x-0 py-3">
+                  <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-end">
+                    <button
+                      ref={closeButtonRef}
+                      type="button"
+                      onClick={dismissMenu}
+                      aria-label={t('a11y.menuClose')}
+                      className="text-ink p-2 -me-1 hover:bg-surface-subtle active:bg-surface-muted rounded-lg transition-colors touch-manipulation focus:outline-none focus-visible:ring-2 focus-visible:ring-teal/40"
+                    >
+                      <X size={22} />
+                    </button>
+                  </div>
+                </div>
+
                 <nav
                   className="h-full w-full overflow-y-auto flex flex-col items-center justify-center gap-7 px-6 pt-24 pb-10"
                   aria-label={t('a11y.mobileNav')}
