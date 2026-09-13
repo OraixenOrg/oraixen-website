@@ -87,11 +87,16 @@ export function isCountryContext(value: unknown): value is CountryContext {
 /**
  * Markets the selector should offer. The active market is always included, so
  * a Saudi visitor who opened /ar-eg/about directly can still see and keep it.
+ *
+ * While the country is still unknown (null) only the active market is listed —
+ * showing all three would flash Egyptian and Saudi options at each other's
+ * visitors before the real context arrives.
  */
 export function visibleMarkets(
-  context: CountryContext,
+  context: CountryContext | null,
   active: MarketLocale
 ): MarketLocale[] {
+  if (context === null) return [active];
   const allowed = COUNTRY_MARKETS[context];
   return MARKET_LOCALES.filter((locale) => allowed.includes(locale) || locale === active);
 }
@@ -243,15 +248,21 @@ function writePreference(key: string, value: MarketLocale): void {
  */
 export function persistMarketPreference(
   locale: MarketLocale,
-  context?: CountryContext
+  context: CountryContext | null
 ): void {
   if (typeof window === 'undefined') return;
+
+  // A null context means the country is still unknown. Writing a bucket now
+  // would guess wrong — a Saudi visitor would get oraixen_market_other and
+  // never oraixen_market_sa — so callers must wait for it to resolve. The
+  // selector enforces that by staying disabled until then.
+  if (context === null) return;
 
   writePreference(MARKET_PREFERENCE_KEY, locale);
 
   // Only record the country-scoped answer when the market is actually valid
   // there, so the server never has to second-guess its own whitelist.
-  if (context && COUNTRY_MARKETS[context].includes(locale)) {
+  if (COUNTRY_MARKETS[context].includes(locale)) {
     writePreference(COUNTRY_PREFERENCE_KEYS[context], locale);
   }
 }

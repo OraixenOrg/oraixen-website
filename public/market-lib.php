@@ -75,6 +75,21 @@ function market_country_context(): string
 }
 
 /**
+ * Strict RFC 7231 qvalue check.
+ *
+ *   qvalue = ( "0" [ "." 0*3DIGIT ] ) / ( "1" [ "." 0*3("0") ] )
+ *
+ * So 0, 0., 0.1, 0.12, 0.123, 1, 1., 1.0, 1.00 and 1.000 are valid, while
+ * q=2, q=1.1, q=1.0001, q=-0.5, q=.9, q=0.1234, q=abc and an empty q are not.
+ * Out-of-range values are rejected rather than clamped: clamping q=2 to 1 would
+ * let a malformed entry beat a well-formed one.
+ */
+function market_is_valid_qvalue(string $raw): bool
+{
+    return (bool) preg_match('/^(?:0(?:\.[0-9]{0,3})?|1(?:\.0{0,3})?)$/', $raw);
+}
+
+/**
  * Does the visitor prefer Arabic over English?
  *
  * Proper RFC 7231 Accept-Language handling: each comma-separated range is split
@@ -113,6 +128,7 @@ function market_prefers_arabic(?string $header): bool
             continue; // A language the site does not publish.
         }
 
+        // q defaults to 1 when the parameter is absent.
         $q = 1.0;
         foreach ($bits as $bit) {
             $bit = trim($bit);
@@ -120,8 +136,9 @@ function market_prefers_arabic(?string $header): bool
                 continue;
             }
             $raw = trim(substr($bit, 2));
-            // A malformed q is treated as unusable rather than as 1.0.
-            if ($raw === '' || !is_numeric($raw)) {
+            // Anything outside the grammar is unusable for this entry — never
+            // clamped into range, so q=2 and q=1.1 cannot outrank a valid 0.8.
+            if (!market_is_valid_qvalue($raw)) {
                 $q = 0.0;
                 break;
             }
@@ -129,10 +146,7 @@ function market_prefers_arabic(?string $header): bool
         }
 
         if ($q <= 0) {
-            continue; // q=0 means unacceptable.
-        }
-        if ($q > 1) {
-            $q = 1.0;
+            continue; // q=0, or an unusable q, means unacceptable.
         }
 
         // Keep the highest q; on a tie keep the one that appeared first.
