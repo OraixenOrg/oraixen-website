@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, Code, Code2, Smartphone, Server, Cpu, CheckCircle, Zap, Quote, Layers, Workflow, Target, Globe, LifeBuoy, BrainCircuit, RefreshCw } from 'lucide-react';
+// TODO: Re-add `Quote` to this import after testimonial wording is approved by the clients.
+// import { ..., Quote, ... } from 'lucide-react';
+import { ArrowRight, Code, Code2, Smartphone, Server, Cpu, CheckCircle, Zap, Layers, Workflow, Target, Globe, LifeBuoy, BrainCircuit, RefreshCw } from 'lucide-react';
 import { Section } from '../components/Section';
 import { Button } from '../components/Button';
 import { Seo } from '../components/Seo';
@@ -17,7 +19,8 @@ import {
 } from '../components/visual';
 import { SectionHeading, CTASection } from '../components/ui';
 import statsData from '../data/stats.json';
-import testimonialsData from '../data/testimonials.json';
+// TODO: Re-enable after testimonial wording is approved by the clients.
+// import testimonialsData from '../data/testimonials.json';
 
 const serviceIcons = [
   <Smartphone className="text-teal" size={26} />,
@@ -37,7 +40,8 @@ export function Home() {
 
   // Business data lives in src/data/*.json (easy to edit, bilingual). UI copy stays in i18n.
   const stats = statsData[lang] as Array<{ value: string; label: string }>;
-  const testimonials = testimonialsData[lang] as Array<{ quote: string; name: string; role: string; company: string }>;
+  // TODO: Re-enable after testimonial wording is approved by the clients.
+  // const testimonials = testimonialsData[lang] as Array<{ quote: string; name: string; role: string; company: string }>;
   const services = t('services.items', { returnObjects: true }) as Array<{ title: string; desc: string; tag?: string }>;
   const processSteps = t('process.steps', { returnObjects: true }) as string[];
   const processCard = t('process.card.items', { returnObjects: true }) as Array<{ num: string; title: string; desc: string }>;
@@ -269,31 +273,40 @@ export function Home() {
         </div>
       </Section>
 
-      {/* ===================== Testimonials ===================== */}
-      <Section>
-        <SectionHeading
-          eyebrow={t('testimonials.eyebrow')}
-          title={t('testimonials.title')}
-          subtitle={t('testimonials.subtitle')}
-        />
+      {/*
+        ===================== Testimonials =====================
+        TEMPORARILY DISABLED:
+        These testimonials contain draft wording that must be confirmed
+        by the respective clients before being published publicly.
+        Re-enable this section only after client approval, together with the
+        `Quote` icon import, the `testimonialsData` import and the
+        `testimonials` variable at the top of this file.
 
-        <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((item, i) => (
-              <SpotlightCard key={i} className="h-full">
-                <div className="p-8 h-full flex flex-col">
-                  <Quote className="text-teal mb-5 rtl-flip" size={28} />
-                  <p className="text-body leading-relaxed mb-6 flex-1">{item.quote}</p>
-                  <div className="pt-5 border-t border-line">
-                    <p className="text-ink font-bold">{item.name}</p>
-                    <p className="text-muted text-sm">
-                      {item.role} · {item.company}
-                    </p>
+        <Section>
+          <SectionHeading
+            eyebrow={t('testimonials.eyebrow')}
+            title={t('testimonials.title')}
+            subtitle={t('testimonials.subtitle')}
+          />
+
+          <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((item, i) => (
+                <SpotlightCard key={i} className="h-full">
+                  <div className="p-8 h-full flex flex-col">
+                    <Quote className="text-teal mb-5 rtl-flip" size={28} />
+                    <p className="text-body leading-relaxed mb-6 flex-1">{item.quote}</p>
+                    <div className="pt-5 border-t border-line">
+                      <p className="text-ink font-bold">{item.name}</p>
+                      <p className="text-muted text-sm">
+                        {item.role} · {item.company}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </SpotlightCard>
-          ))}
-        </Stagger>
-      </Section>
+                </SpotlightCard>
+            ))}
+          </Stagger>
+        </Section>
+      */}
 
       {/* ===================== Final CTA banner ===================== */}
       <CTASection
