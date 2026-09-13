@@ -29,13 +29,9 @@ module.exports = {
     'dist/',
     'build/',
     'coverage/',
-    // Next.js build cache left over from the pre-Vite stack.
+    // Next.js build cache. No longer tracked by Git, but it can still be
+    // regenerated locally, so keep it out of the lint run.
     '.next/',
-    // Legacy Next.js-era source. Excluded here to stay consistent with
-    // tsconfig.json, which already lists "src/app" under "exclude". It is not
-    // part of the active Vite app and is not type-checked; it should be deleted
-    // during repository cleanup, at which point this entry can go too.
-    'src/app/',
   ],
   rules: {
     // Vite Fast Refresh only works when a module exports components and
