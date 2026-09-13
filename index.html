@@ -10,7 +10,11 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-JT8H9HJ01C');
+      // Pageviews are owned by React Router (see src/lib/analytics.ts), so the
+      // config call must not send one of its own.
+      gtag('config', 'G-JT8H9HJ01C', {
+        send_page_view: false
+      });
     </script>
     
     <!-- Primary Meta Tags -->
