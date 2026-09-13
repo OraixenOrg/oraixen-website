@@ -1,12 +1,39 @@
-# Oraixen website — SPA routing.
-# Sends every request that is NOT a real file or folder to index.html, so the
-# client-side routes (e.g. /about, /projects/...) work on refresh and direct links.
+# Oraixen website — SPA routing + static SEO shells.
+#
+# Direct requests for the eight static public routes are served a generated
+# HTML shell that carries that route's own <title>/description/canonical/OG
+# tags (see scripts/generate-static-seo.mjs), so crawlers and link previews get
+# correct metadata before React runs. The rewrite is INTERNAL: the visible URL
+# stays /about, /services, etc. Everything else — including /projects/:slug —
+# still falls back to index.html for client-side routing.
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # 1. The generated shells must not be reachable as their own public URLs, or
+  #    they would be a second indexable copy of every page. THE_REQUEST holds
+  #    the ORIGINAL request line, so this matches a browser asking for
+  #    /__seo/about.html while leaving Apache's internal rewrites below alone.
+  RewriteCond %{THE_REQUEST} \s/+__seo/ [NC]
+  RewriteRule ^ - [R=404,L]
+
+  # 2. Exact static routes -> their generated SEO shell (internal, URL unchanged).
+  #    Anchored with $ so /projects/some-slug does NOT match /projects.
+  RewriteRule ^about/?$    __seo/about.html    [L]
+  RewriteRule ^services/?$ __seo/services.html [L]
+  RewriteRule ^projects/?$ __seo/projects.html [L]
+  RewriteRule ^process/?$  __seo/process.html  [L]
+  RewriteRule ^contact/?$  __seo/contact.html  [L]
+  RewriteRule ^privacy/?$  __seo/privacy.html  [L]
+  RewriteRule ^terms/?$    __seo/terms.html    [L]
+
+  # 3. Real files and folders win — /contact.php, /assets/*, /sitemap.xml,
+  #    /robots.txt and the generated shells reached by the rewrites above.
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
+
+  # 4. Everything else (incl. /projects/:slug) -> the SPA shell.
   RewriteRule ^ index.html [L]
 </IfModule>
 
