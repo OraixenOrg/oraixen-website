@@ -53,5 +53,11 @@ module.exports = {
       files: ['vite.config.ts', 'tailwind.config.js', 'postcss.config.js', '.eslintrc.cjs'],
       env: { browser: false, node: true },
     },
+    {
+      // Build scripts are plain Node ES modules (process, fs, URL globals).
+      files: ['scripts/**/*.mjs'],
+      env: { browser: false, node: true, es2022: true },
+      parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+    },
   ],
 };

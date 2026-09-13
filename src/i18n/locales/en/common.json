@@ -25,7 +25,8 @@
   },
   "lang": {
     "label": "العربية",
-    "switchAria": "Switch language to Arabic"
+    "switchAria": "Switch language to Arabic",
+    "selectAria": "Choose site version"
   },
   "theme": {
     "toggleAria": "Toggle light or dark mode"

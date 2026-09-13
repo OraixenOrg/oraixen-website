@@ -7,6 +7,10 @@ import { MotionProvider } from './components/MotionProvider';
 import { ScrollProgress } from './components/visual';
 import { Home } from './pages/Home';
 import { startScrollDepthTracking, trackPageView } from './lib/analytics';
+import { applyLocalePrefix, parseMarketFromPath } from './lib/marketLocale';
+
+// Market for this page load; the basename cannot change without a full reload.
+const ACTIVE_MARKET = parseMarketFromPath(window.location.pathname);
 
 const About = lazy(() => import('./pages/About').then((m) => ({ default: m.About })));
 const Services = lazy(() => import('./pages/Services').then((m) => ({ default: m.Services })));
@@ -32,13 +36,17 @@ export function App() {
   const { pathname } = useLocation();
   const { t } = useTranslation('common');
 
+  // useLocation() strips the router basename, so re-apply the market prefix to
+  // report the PUBLIC path (/en/about, /ar-eg/about, /ar-sa/about) to GA4.
+  const publicPath = ACTIVE_MARKET ? applyLocalePrefix(pathname, ACTIVE_MARKET) : pathname;
+
   useEffect(() => {
     window.scrollTo(0, 0);
-    trackPageView(pathname);
+    trackPageView(publicPath);
     // Fresh scroll-depth milestones per route visit; the cleanup removes the
     // listener on navigation and on StrictMode's extra mount.
-    return startScrollDepthTracking(pathname);
-  }, [pathname]);
+    return startScrollDepthTracking(publicPath);
+  }, [publicPath]);
 
   return (
     <MotionProvider>

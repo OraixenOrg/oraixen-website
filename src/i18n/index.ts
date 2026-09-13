@@ -1,6 +1,11 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
+import {
+  DEFAULT_MARKET,
+  getMarketConfig,
+  parseMarketFromPath,
+  type MarketLocale,
+} from '../lib/marketLocale';
 
 import enCommon from './locales/en/common.json';
 import arCommon from './locales/ar/common.json';
@@ -63,11 +68,21 @@ export const resources = {
   },
 } as const;
 
+/**
+ * The URL is the single authority for language.
+ *
+ * i18next-browser-languagedetector is deliberately NOT used: a stale
+ * `oraixen_lang` value in localStorage must never win over /en, /ar-eg or
+ * /ar-sa. There is no navigator-language and no country detection here.
+ */
+const initialMarket: MarketLocale =
+  parseMarketFromPath(typeof window === 'undefined' ? '/' : window.location.pathname) ?? DEFAULT_MARKET;
+
 i18n
-  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources,
+    lng: getMarketConfig(initialMarket).language,
     fallbackLng: 'en',
     supportedLngs: ['en', 'ar'],
     nonExplicitSupportedLngs: true,
@@ -75,12 +90,6 @@ i18n
     ns: NAMESPACES as unknown as string[],
     defaultNS: 'common',
     interpolation: { escapeValue: false },
-    detection: {
-      // Default to English on first visit (no 'navigator'); only a stored choice overrides it.
-      order: ['localStorage', 'htmlTag'],
-      lookupLocalStorage: 'oraixen_lang',
-      caches: ['localStorage'],
-    },
   });
 
 function loadArabicFont(): void {
@@ -92,17 +101,19 @@ function loadArabicFont(): void {
   document.head.appendChild(link);
 }
 
-/** Keep <html dir/lang> in sync with the active language. */
-function applyDocumentDirection(lng: string): void {
-  const dir = i18n.dir(lng);
-  const lang = lng.startsWith('ar') ? 'ar' : 'en';
+/**
+ * Keeps <html lang/dir> in sync with the ACTIVE MARKET, so a regional Arabic URL
+ * reports lang="ar-EG"/"ar-SA" rather than a generic "ar".
+ */
+export function applyDocumentLocale(market: MarketLocale): void {
+  const { htmlLang, dir } = getMarketConfig(market);
   const el = document.documentElement;
   el.setAttribute('dir', dir);
-  el.setAttribute('lang', lang);
-  if (lang === 'ar') loadArabicFont();
+  el.setAttribute('lang', htmlLang);
+  if (dir === 'rtl') loadArabicFont();
 }
 
-applyDocumentDirection(i18n.language || 'en');
-i18n.on('languageChanged', applyDocumentDirection);
+// Applied before first render so a direct Arabic URL is RTL immediately.
+applyDocumentLocale(initialMarket);
 
 export default i18n;
