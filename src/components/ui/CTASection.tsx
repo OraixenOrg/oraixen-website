@@ -1,10 +1,17 @@
 import { type ReactNode } from 'react';
 import { Button } from '../Button';
 import { Reveal } from '../visual';
+import { trackCtaClick } from '../../lib/analytics';
 
 interface CTALink {
   label: ReactNode;
   href: string;
+  /**
+   * Stable, machine-readable analytics id (e.g. 'home_final_start_project').
+   * Optional: omit it and this CTA simply stays untracked, so existing callers
+   * keep working unchanged. Never derived from the translated label.
+   */
+  ctaId?: string;
 }
 
 interface CTASectionProps {
@@ -12,13 +19,21 @@ interface CTASectionProps {
   subtitle?: ReactNode;
   primary: CTALink;
   secondary?: CTALink;
+  /** Where this band lives, e.g. 'home_final_cta'. Required for CTA tracking. */
+  ctaLocation?: string;
 }
 
 /**
  * The single, consistent closing call-to-action band used at the bottom of pages.
  * Fixed deep brand gradient (works in both themes) with an animated sky glow.
  */
-export function CTASection({ title, subtitle, primary, secondary }: CTASectionProps) {
+export function CTASection({ title, subtitle, primary, secondary, ctaLocation }: CTASectionProps) {
+  // Only tracks when the caller supplied both a location and a stable id.
+  const handleCtaClick = (link: CTALink) => () => {
+    if (!ctaLocation || !link.ctaId) return;
+    trackCtaClick(link.ctaId, ctaLocation, link.href);
+  };
+
   return (
     <section className="relative py-24 md:py-32 bg-gradient-to-br from-azure to-inkblack overflow-hidden">
       <div
@@ -49,6 +64,7 @@ export function CTASection({ title, subtitle, primary, secondary }: CTASectionPr
               size="lg"
               className="bg-white !text-azure hover:bg-white/90 shadow-2xl shadow-black/20"
               icon
+              onClick={handleCtaClick(primary)}
             >
               {primary.label}
             </Button>
@@ -58,6 +74,7 @@ export function CTASection({ title, subtitle, primary, secondary }: CTASectionPr
                 variant="outline"
                 size="lg"
                 className="border-white/40 !text-white hover:bg-white/10 hover:border-white"
+                onClick={handleCtaClick(secondary)}
               >
                 {secondary.label}
               </Button>

@@ -8,6 +8,7 @@ import { Logo } from './Logo';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { m, AnimatePresence } from 'framer-motion';
+import { trackCtaClick } from '../lib/analytics';
 
 const navLinks = [
   { key: 'home', href: '/' },
@@ -226,6 +227,7 @@ export function Navbar() {
             <LanguageSwitcher />
             <Link
               to="/contact"
+              onClick={() => trackCtaClick('navbar_contact', 'navbar', '/contact')}
               className="shine hidden md:inline-flex ms-1 items-center rounded-full bg-teal text-onaccent text-sm font-semibold px-5 py-2 transition-all duration-300 hover:bg-teal-light active:scale-[0.97] focus:outline-none focus-visible:ring-2 focus-visible:ring-teal/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface shadow-[0_4px_14px_rgba(15,94,112,0.20)] hover:shadow-[0_6px_20px_rgba(15,94,112,0.30)]"
             >
               {t('cta.contactUs')}
@@ -297,7 +299,15 @@ export function Navbar() {
                       </Link>
                     );
                   })}
-                  <Button href="/contact" variant="primary" size="lg" onClick={closeMenu}>
+                  <Button
+                    href="/contact"
+                    variant="primary"
+                    size="lg"
+                    onClick={() => {
+                      trackCtaClick('mobile_nav_contact', 'mobile_nav', '/contact');
+                      closeMenu();
+                    }}
+                  >
                     {t('cta.contactUs')}
                   </Button>
                 </nav>

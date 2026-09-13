@@ -18,6 +18,7 @@ import {
   Reveal,
 } from '../components/visual';
 import { SectionHeading, CTASection } from '../components/ui';
+import { trackCtaClick } from '../lib/analytics';
 import statsData from '../data/stats.json';
 // TODO: Re-enable after testimonial wording is approved by the clients.
 // import testimonialsData from '../data/testimonials.json';
@@ -97,10 +98,23 @@ export function Home() {
               </p>
 
             <div className="hero-rise hero-rise-3 flex w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
-                <Button href="/contact" variant="primary" size="md" icon className="w-full sm:w-auto">
+                <Button
+                  href="/contact"
+                  variant="primary"
+                  size="md"
+                  icon
+                  className="w-full sm:w-auto"
+                  onClick={() => trackCtaClick('home_hero_start_project', 'home_hero', '/contact')}
+                >
                   {t('hero.ctaPrimary')}
                 </Button>
-                <Button href="/projects" variant="outline" size="md" className="w-full sm:w-auto">
+                <Button
+                  href="/projects"
+                  variant="outline"
+                  size="md"
+                  className="w-full sm:w-auto"
+                  onClick={() => trackCtaClick('home_hero_view_projects', 'home_hero', '/projects')}
+                >
                   {t('hero.ctaSecondary')}
                 </Button>
               </div>
@@ -312,8 +326,9 @@ export function Home() {
       <CTASection
         title={t('cta.title')}
         subtitle={t('cta.subtitle')}
-        primary={{ label: t('cta.primary'), href: '/contact' }}
-        secondary={{ label: t('cta.secondary'), href: '/projects' }}
+        ctaLocation="home_final_cta"
+        primary={{ label: t('cta.primary'), href: '/contact', ctaId: 'home_final_start_project' }}
+        secondary={{ label: t('cta.secondary'), href: '/projects', ctaId: 'home_final_view_projects' }}
       />
     </div>
   );

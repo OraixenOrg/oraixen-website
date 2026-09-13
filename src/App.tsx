@@ -6,7 +6,7 @@ import { Footer } from './components/Footer';
 import { MotionProvider } from './components/MotionProvider';
 import { ScrollProgress } from './components/visual';
 import { Home } from './pages/Home';
-import { trackPageView } from './lib/analytics';
+import { startScrollDepthTracking, trackPageView } from './lib/analytics';
 
 const About = lazy(() => import('./pages/About').then((m) => ({ default: m.About })));
 const Services = lazy(() => import('./pages/Services').then((m) => ({ default: m.Services })));
@@ -35,6 +35,9 @@ export function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
     trackPageView(pathname);
+    // Fresh scroll-depth milestones per route visit; the cleanup removes the
+    // listener on navigation and on StrictMode's extra mount.
+    return startScrollDepthTracking(pathname);
   }, [pathname]);
 
   return (

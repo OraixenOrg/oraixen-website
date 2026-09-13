@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent, type SyntheticEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Section } from '../components/Section';
 import { Button } from '../components/Button';
@@ -8,6 +8,29 @@ import { Eyebrow } from '../components/ui';
 import { Seo } from '../components/Seo';
 import { Mail, Phone, MapPin, CheckCircle } from 'lucide-react';
 import company from '../data/company.json';
+import { trackContactMethodClick, trackEvent } from '../lib/analytics';
+
+/** Stable analytics id for the lead form — never a translated string. */
+const FORM_ID = 'contact_lead_form';
+
+type FormStage = 'identity' | 'qualification' | 'message';
+
+/**
+ * Maps real form fields to funnel stages. Acts as the analytics allowlist too:
+ * anything not listed here — notably the `company_website` honeypot — can never
+ * produce an event.
+ */
+const FIELD_STAGES: Record<string, FormStage> = {
+  name: 'identity',
+  email: 'identity',
+  company: 'qualification',
+  budget: 'qualification',
+  timeline: 'qualification',
+  message: 'message',
+};
+
+/** Controlled, low-cardinality failure categories. Never server text. */
+type LeadErrorType = 'network_error' | 'http_error' | 'invalid_response' | 'application_error';
 
 export function Contact() {
   const { t, i18n } = useTranslation('contact');
@@ -16,27 +39,114 @@ export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Per-form-instance analytics dedupe. Cleared whenever a new blank form is
+  // shown so a second enquiry reports its own full funnel.
+  const startedRef = useRef(false);
+  const stagesRef = useRef<Set<FormStage>>(new Set());
+  const invalidFieldsRef = useRef<Set<string>>(new Set());
+
+  useEffect(() => {
+    if (submitted) return;
+    startedRef.current = false;
+    stagesRef.current.clear();
+    invalidFieldsRef.current.clear();
+  }, [submitted]);
+
+  /**
+   * First genuine interaction with a real field opens the funnel and records
+   * the deepest stage reached. Only the field's stable name is ever read —
+   * never its value.
+   */
+  const handleFieldInteraction = (e: SyntheticEvent) => {
+    const target = e.target;
+    if (
+      !(target instanceof HTMLInputElement) &&
+      !(target instanceof HTMLSelectElement) &&
+      !(target instanceof HTMLTextAreaElement)
+    ) {
+      return;
+    }
+
+    const stage = FIELD_STAGES[target.name];
+    if (!stage) return; // honeypot, buttons, anything unrecognised
+
+    if (!startedRef.current) {
+      startedRef.current = true;
+      trackEvent('lead_form_start', { form_id: FORM_ID });
+    }
+    if (!stagesRef.current.has(stage)) {
+      stagesRef.current.add(stage);
+      trackEvent('lead_form_progress', { form_id: FORM_ID, form_stage: stage });
+    }
+  };
+
+  /**
+   * Native HTML validation failure. Records which field blocked the visitor,
+   * once per field per form instance — never the value or validationMessage.
+   */
+  const handleInvalid = (e: SyntheticEvent) => {
+    const target = e.target;
+    if (
+      !(target instanceof HTMLInputElement) &&
+      !(target instanceof HTMLSelectElement) &&
+      !(target instanceof HTMLTextAreaElement)
+    ) {
+      return;
+    }
+
+    const fieldName = target.name;
+    if (!FIELD_STAGES[fieldName]) return;
+    if (invalidFieldsRef.current.has(fieldName)) return;
+
+    invalidFieldsRef.current.add(fieldName);
+    trackEvent('lead_form_validation_error', { form_id: FORM_ID, field_name: fieldName });
+  };
+
+  const trackLeadFormError = (errorType: LeadErrorType, httpStatus?: number) => {
+    trackEvent('lead_form_error', {
+      form_id: FORM_ID,
+      error_type: errorType,
+      ...(httpStatus === undefined ? {} : { http_status: httpStatus }),
+    });
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     setError(null);
     setIsSubmitting(true);
+    // Native validation has already passed, so this is a real attempt.
+    trackEvent('lead_form_submit_attempt', { form_id: FORM_ID });
+
+    // Classify once, so a single failed attempt produces exactly one event.
+    let failure: { type: LeadErrorType; status?: number } | null = null;
     try {
       const res = await fetch('/contact.php', {
         method: 'POST',
         body: new FormData(form),
       });
-      const data = await res.json().catch(() => null);
-      if (!res.ok || !data?.ok) {
-        throw new Error(data?.error ?? 'Request failed');
+      const data: { ok?: unknown } | null = await res.json().catch(() => null);
+      if (!res.ok) {
+        failure = { type: 'http_error', status: res.status };
+      } else if (data === null || typeof data.ok !== 'boolean') {
+        failure = { type: 'invalid_response', status: res.status };
+      } else if (!data.ok) {
+        failure = { type: 'application_error', status: res.status };
       }
+    } catch {
+      failure = { type: 'network_error' };
+    }
+
+    if (failure) {
+      trackLeadFormError(failure.type, failure.status);
+      setError(t('form.error'));
+    } else {
+      // Backend-confirmed lead only.
+      trackEvent('generate_lead', { form_id: FORM_ID, lead_source: 'website_contact_form' });
       form.reset();
       setSubmitted(true);
-    } catch {
-      setError(t('form.error'));
-    } finally {
-      setIsSubmitting(false);
     }
+    setIsSubmitting(false);
   };
 
   const phones = (company.phones ?? [company.phone]).filter(Boolean) as string[];
@@ -52,6 +162,12 @@ export function Contact() {
     { icon: Phone, title: t('info.phone.label'), values: phones, hrefPrefix: 'tel', ltr: true },
     { icon: MapPin, title: t('info.location.label'), value: company.location[lang] },
   ];
+
+  /** Records only which channel was used — never the address or number. */
+  const trackContactMethod = (hrefPrefix?: 'mailto' | 'tel') => {
+    if (!hrefPrefix) return;
+    trackContactMethodClick(hrefPrefix === 'mailto' ? 'email' : 'phone', 'contact_page');
+  };
 
   const steps = t('next.steps', { returnObjects: true }) as string[];
 
@@ -108,6 +224,7 @@ export function Contact() {
                                 <li key={v}>
                                   <a
                                     href={card.hrefPrefix ? `${card.hrefPrefix}:${v.replace(/\s/g, '')}` : undefined}
+                                    onClick={() => trackContactMethod(card.hrefPrefix)}
                                     className="text-body text-sm hover:text-ink transition-colors"
                                     dir={card.ltr ? 'ltr' : undefined}
                                   >
@@ -119,6 +236,7 @@ export function Contact() {
                           ) : card.hrefPrefix && card.value ? (
                             <a
                               href={`${card.hrefPrefix}:${card.value.replace(/\s/g, '')}`}
+                              onClick={() => trackContactMethod(card.hrefPrefix)}
                               className="text-body text-sm hover:text-ink transition-colors"
                               dir={card.ltr ? 'ltr' : undefined}
                             >
@@ -178,7 +296,14 @@ export function Contact() {
                     </Button>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form
+                    id="contact-lead-form"
+                    onSubmit={handleSubmit}
+                    onFocusCapture={handleFieldInteraction}
+                    onChange={handleFieldInteraction}
+                    onInvalidCapture={handleInvalid}
+                    className="space-y-6"
+                  >
                     {/* Honeypot: hidden from real users; bots that fill it are rejected server-side. */}
                     <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
                       <label htmlFor="company_website">Don't fill this in</label>
