@@ -48,8 +48,53 @@ export const SITE_URL = 'https://oraixen.com';
 /** Used for legacy/unprefixed paths and as the x-default target. */
 export const DEFAULT_MARKET: MarketLocale = 'en';
 
-/** localStorage key and cookie name for an explicit user choice. */
+/** localStorage key and cookie name for the current/general market choice. */
 export const MARKET_PREFERENCE_KEY = 'oraixen_market';
+
+/**
+ * Which country the visitor is browsing from, as reported by the server. The
+ * URL cannot tell us this — someone on /en may be sitting in Cairo or Riyadh.
+ */
+export type CountryContext = 'sa' | 'eg' | 'other';
+
+export const DEFAULT_COUNTRY_CONTEXT: CountryContext = 'other';
+
+/**
+ * Country-scoped preference keys. A single global preference is not enough: a
+ * device that saved ar-eg in Egypt must not be sent to Egyptian Arabic after it
+ * travels to Saudi Arabia, so each country remembers its own answer.
+ */
+export const COUNTRY_PREFERENCE_KEYS: Record<CountryContext, string> = {
+  sa: 'oraixen_market_sa',
+  eg: 'oraixen_market_eg',
+  other: 'oraixen_market_other',
+};
+
+/**
+ * Markets each country context may resolve to. The server whitelists against
+ * the same table, so a value outside it is ignored rather than trusted.
+ */
+export const COUNTRY_MARKETS: Record<CountryContext, readonly MarketLocale[]> = {
+  sa: ['en', 'ar-sa'],
+  eg: ['en', 'ar-eg'],
+  other: ['en', 'ar-eg', 'ar-sa'],
+};
+
+export function isCountryContext(value: unknown): value is CountryContext {
+  return value === 'sa' || value === 'eg' || value === 'other';
+}
+
+/**
+ * Markets the selector should offer. The active market is always included, so
+ * a Saudi visitor who opened /ar-eg/about directly can still see and keep it.
+ */
+export function visibleMarkets(
+  context: CountryContext,
+  active: MarketLocale
+): MarketLocale[] {
+  const allowed = COUNTRY_MARKETS[context];
+  return MARKET_LOCALES.filter((locale) => allowed.includes(locale) || locale === active);
+}
 
 export const MARKET_LOCALES: readonly MarketLocale[] = ['en', 'ar-eg', 'ar-sa'];
 
@@ -168,18 +213,10 @@ export function buildMarketUrls(routePath: string): Record<MarketLocale, string>
   };
 }
 
-/**
- * Persists an explicit market choice.
- *
- * Written to localStorage for the client and to a first-party cookie so the
- * planned server-side market routing can read it before React runs. Stores only
- * the chosen market id — no identifiers, no geography, no IP.
- */
-export function persistMarketPreference(locale: MarketLocale): void {
-  if (typeof window === 'undefined') return;
-
+/** Writes one functional preference to localStorage and a first-party cookie. */
+function writePreference(key: string, value: MarketLocale): void {
   try {
-    window.localStorage.setItem(MARKET_PREFERENCE_KEY, locale);
+    window.localStorage.setItem(key, value);
   } catch {
     // Private mode or storage disabled — the cookie below is still attempted.
   }
@@ -187,10 +224,58 @@ export function persistMarketPreference(locale: MarketLocale): void {
   try {
     const oneYearSeconds = 60 * 60 * 24 * 365;
     const secure = window.location.protocol === 'https:' ? '; Secure' : '';
-    document.cookie =
-      `${MARKET_PREFERENCE_KEY}=${locale}; Path=/; Max-Age=${oneYearSeconds}; SameSite=Lax${secure}`;
+    document.cookie = `${key}=${value}; Path=/; Max-Age=${oneYearSeconds}; SameSite=Lax${secure}`;
   } catch {
     // Cookies unavailable; the localStorage value above is still useful.
+  }
+}
+
+/**
+ * Persists an explicit market choice.
+ *
+ * Writes the general current-market value and, when the server told us which
+ * country the visitor is in, the preference scoped to that country. The server
+ * reads the country-scoped COOKIE on later locale-less visits — localStorage is
+ * for client state only.
+ *
+ * Stores just the chosen market id: no identifier, no IP, no city, no
+ * coordinates, no country history.
+ */
+export function persistMarketPreference(
+  locale: MarketLocale,
+  context?: CountryContext
+): void {
+  if (typeof window === 'undefined') return;
+
+  writePreference(MARKET_PREFERENCE_KEY, locale);
+
+  // Only record the country-scoped answer when the market is actually valid
+  // there, so the server never has to second-guess its own whitelist.
+  if (context && COUNTRY_MARKETS[context].includes(locale)) {
+    writePreference(COUNTRY_PREFERENCE_KEYS[context], locale);
+  }
+}
+
+/**
+ * Asks the server which country the visitor is in. Country comes only from the
+ * server's GeoIP lookup; the browser never geolocates and no third-party
+ * service is contacted. Any failure resolves to 'other', which shows all three
+ * markets rather than hiding one.
+ */
+export async function fetchCountryContext(signal?: AbortSignal): Promise<CountryContext> {
+  try {
+    const response = await fetch('/market-context.php', {
+      signal,
+      credentials: 'same-origin',
+      headers: { Accept: 'application/json' },
+    });
+    if (!response.ok) return DEFAULT_COUNTRY_CONTEXT;
+
+    const data: unknown = await response.json();
+    const value = (data as { context?: unknown } | null)?.context;
+    return isCountryContext(value) ? value : DEFAULT_COUNTRY_CONTEXT;
+  } catch {
+    return DEFAULT_COUNTRY_CONTEXT;
   }
 }
 

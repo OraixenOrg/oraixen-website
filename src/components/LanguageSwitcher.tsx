@@ -3,11 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { Check, ChevronDown, Globe } from 'lucide-react';
 import { EgyptFlag, SaudiFlag } from './MarketFlags';
 import {
+  DEFAULT_COUNTRY_CONTEXT,
   DEFAULT_MARKET,
-  MARKET_LOCALES,
   applyLocalePrefix,
+  fetchCountryContext,
   parseMarketFromPath,
   persistMarketPreference,
+  visibleMarkets,
+  type CountryContext,
   type MarketLocale,
 } from '../lib/marketLocale';
 
@@ -59,11 +62,29 @@ export function LanguageSwitcher({ className = '' }: LanguageSwitcherProps) {
   const current: MarketLocale = parseMarketFromPath(window.location.pathname) ?? DEFAULT_MARKET;
 
   const [open, setOpen] = useState(false);
+  const [context, setContext] = useState<CountryContext>(DEFAULT_COUNTRY_CONTEXT);
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const itemRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
-  const currentIndex = Math.max(MARKET_LOCALES.indexOf(current), 0);
+  // Country comes from the server's GeoIP lookup, asked for once on mount.
+  // Never blocks rendering: until it answers — or if it fails — the context
+  // stays 'other', which offers all three markets rather than hiding one.
+  useEffect(() => {
+    const controller = new AbortController();
+    let active = true;
+    fetchCountryContext(controller.signal).then((value) => {
+      if (active) setContext(value);
+    });
+    return () => {
+      active = false;
+      controller.abort();
+    };
+  }, []);
+
+  // Only the markets relevant to this country, plus whatever is active now.
+  const options = visibleMarkets(context, current);
+  const currentIndex = Math.max(options.indexOf(current), 0);
 
   const closeAndRestoreFocus = useCallback(() => {
     setOpen(false);
@@ -88,8 +109,9 @@ export function LanguageSwitcher({ className = '' }: LanguageSwitcherProps) {
 
   const select = (next: MarketLocale) => {
     // Recorded even when the market is unchanged: an explicit confirmation is
-    // still a preference the next visit should honour.
-    persistMarketPreference(next);
+    // still a preference the next visit should honour. Saved against the
+    // current country so the server can honour it on later locale-less visits.
+    persistMarketPreference(next, context);
 
     if (next === current) {
       closeAndRestoreFocus();
@@ -114,7 +136,7 @@ export function LanguageSwitcher({ className = '' }: LanguageSwitcherProps) {
       case 'ArrowUp': {
         event.preventDefault();
         const delta = event.key === 'ArrowDown' ? 1 : -1;
-        const next = (index + delta + MARKET_LOCALES.length) % MARKET_LOCALES.length;
+        const next = (index + delta + options.length) % options.length;
         itemRefs.current[next]?.focus();
         break;
       }
@@ -124,7 +146,7 @@ export function LanguageSwitcher({ className = '' }: LanguageSwitcherProps) {
         break;
       case 'End':
         event.preventDefault();
-        itemRefs.current[MARKET_LOCALES.length - 1]?.focus();
+        itemRefs.current[options.length - 1]?.focus();
         break;
       case 'Escape':
         event.preventDefault();
@@ -179,7 +201,7 @@ export function LanguageSwitcher({ className = '' }: LanguageSwitcherProps) {
           aria-label={t('lang.selectAria')}
           className="absolute top-full end-0 z-50 mt-2 min-w-[14rem] rounded-xl border border-line bg-card p-1.5 shadow-card"
         >
-          {MARKET_LOCALES.map((locale, index) => {
+          {options.map((locale, index) => {
             const { label, Mark } = MARKET_UI[locale];
             const isActive = locale === current;
             return (

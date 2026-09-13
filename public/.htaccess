@@ -10,6 +10,16 @@
 # (see scripts/generate-static-seo.mjs), so crawlers and link previews are
 # correct before React runs. Those rewrites are INTERNAL — the visible URL stays
 # /ar-sa/about. Dynamic routes such as /en/projects/:slug use the SPA fallback.
+#
+# Locale-less URLs are handed to market-router.php, which picks a market from
+# country + saved preference + Accept-Language and 302s to the same page there.
+
+# Hostinger's mod_geoip, verified working on this production host: it exposes
+# GEOIP_COUNTRY_CODE to PHP from the connecting address. Deliberately not
+# wrapped in <IfModule>: Hostinger publishes no module identifier, and a wrong
+# guess would silently disable country detection and route everyone to English.
+GeoIPEnable On
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
@@ -23,11 +33,12 @@
 
   # 2. The bare root must be handled BEFORE the real-file rule below, because
   #    the document root is itself a real directory and would otherwise be
-  #    served by DirectoryIndex instead of redirecting. TEMPORARY 302 (see 4).
-  RewriteRule ^$ /en [R=302,L]
+  #    served by DirectoryIndex instead of reaching the router.
+  RewriteRule ^$ market-router.php [L]
 
   # 3. Real files and folders win before any localization — /contact.php,
-  #    /assets/*, /sitemap.xml, /robots.txt, /logo.svg, /icon.png.
+  #    /market-router.php, /market-context.php, /assets/*, /flags/*,
+  #    /sitemap.xml, /robots.txt, /logo.svg, /icon.png.
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
@@ -37,11 +48,11 @@
   RewriteRule ^(en|ar-eg|ar-sa)/?$                                              __seo/$1/index.html [L]
   RewriteRule ^(en|ar-eg|ar-sa)/(about|services|projects|process|contact|privacy|terms)/?$  __seo/$1/$2.html [L]
 
-  # 5. TEMPORARY: locale-less application routes go to English. 302, never 301 —
-  #    Issue 13 replaces this with preference/country-aware selection, so the
-  #    destination must not be cached as permanent. Query strings are preserved
-  #    by [R,QSA]; fragments are client-side and never reach Apache.
-  RewriteRule ^(about|services|projects|process|contact|privacy|terms)(/.*)?$ /en/$1$2 [R=302,L,QSA]
+  # 5. Locale-less application routes -> the market router, which reads the
+  #    original path from REQUEST_URI and 302s to the same page in the chosen
+  #    market. Internal rewrite, so /market-router.php never appears in the
+  #    browser. Fragments are client-side and never reach the server.
+  RewriteRule ^(about|services|projects|process|contact|privacy|terms)(/.*)?$ market-router.php [L,QSA]
 
   # 6. Everything else (incl. /en/projects/:slug) -> the SPA shell.
   RewriteRule ^ index.html [L]
