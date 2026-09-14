@@ -65,10 +65,9 @@ GeoIPEnable On
 # a missing module fails loudly rather than silently routing everyone to /en).
 #
 # Deliberately NOT here: Content-Security-Policy (the platform already sends
-# `upgrade-insecure-requests`, and a real policy needs its own source inventory),
-# Strict-Transport-Security (persistent browser state, needs HTTP->HTTPS and
-# subdomain verification first), and COOP/COEP/CORP (can break third-party
-# integrations for no benefit at this baseline). Each is its own issue.
+# `upgrade-insecure-requests`, and a real policy needs its own source inventory)
+# and COOP/COEP/CORP (can break third-party integrations for no benefit at this
+# baseline). Each is its own issue.
 <IfModule mod_headers.c>
   # Stop browsers from MIME-sniffing a response into a different type — the
   # classic route from "uploaded text file" to "executed script".
@@ -95,6 +94,18 @@ GeoIPEnable On
   # browsers and, where it survives, its filtering has itself been a source of
   # vulnerabilities. 0 disables it; 1;mode=block would re-enable that risk.
   Header always set X-XSS-Protection "0"
+
+  # HSTS canary — 5 minutes only.
+  # Do not add includeSubDomains: known Oraixen subdomains are not all
+  # HTTPS-safe yet. Do not add preload.
+  #
+  # Audit evidence (Issue 16): ftp.oraixen.com does not currently provide usable
+  # HTTPS, and autodiscover.oraixen.com presents a non-matching certificate while
+  # serving plain HTTP today. The Let's Encrypt certificate covers only oraixen.com
+  # and www.oraixen.com. includeSubDomains would therefore make known subdomains
+  # unreachable for HSTS-aware browsers. Keep max-age at 300s until production
+  # verification succeeds.
+  Header always set Strict-Transport-Security "max-age=300" "expr=%{HTTPS} == 'on'"
 
   # Hostinger's PHP currently advertises its exact version (x-powered-by:
   # PHP/8.4.21) on every PHP response. Removing it costs nothing and gives
