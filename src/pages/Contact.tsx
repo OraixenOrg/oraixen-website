@@ -8,6 +8,7 @@ import { Eyebrow } from '../components/ui';
 import { Seo } from '../components/Seo';
 import { Mail, Phone, MapPin, CheckCircle } from 'lucide-react';
 import company from '../data/company.json';
+import { getContentScript, marketFromLanguage } from '../lib/marketLocale';
 import { trackContactMethodClick, trackEvent } from '../lib/analytics';
 
 /** Stable analytics id for the lead form — never a translated string. */
@@ -34,7 +35,8 @@ type LeadErrorType = 'network_error' | 'http_error' | 'invalid_response' | 'appl
 
 export function Contact() {
   const { t, i18n } = useTranslation('contact');
-  const lang = i18n.language?.startsWith('ar') ? 'ar' : 'en';
+  // Factual address, one form per writing system (see Footer).
+  const script = getContentScript(marketFromLanguage(i18n.language));
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -160,7 +162,7 @@ export function Contact() {
   }> = [
     { icon: Mail, title: t('info.email.label'), value: company.email, hrefPrefix: 'mailto', ltr: true },
     { icon: Phone, title: t('info.phone.label'), values: phones, hrefPrefix: 'tel', ltr: true },
-    { icon: MapPin, title: t('info.location.label'), value: company.location[lang] },
+    { icon: MapPin, title: t('info.location.label'), value: company.location[script] },
   ];
 
   /** Records only which channel was used — never the address or number. */

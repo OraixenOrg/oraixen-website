@@ -8,7 +8,7 @@
     "contact": "Contact"
   },
   "cta": {
-    "primary": "Start a project",
+    "primary": "Discuss your project",
     "secondary": "See our work",
     "viewAll": "Browse all projects",
     "discuss": "Talk through your project",
@@ -60,16 +60,13 @@
       "contact": "Contact"
     },
     "services": {
-      "mobile": "Mobile app development",
-      "web": "Web development",
-      "ai": "AI solutions",
-      "corporate": "Business platforms & custom software",
-      "hardware": "Hardware",
-      "custom": "Custom software development",
-      "transformation": "Digital transformation"
+      "systems": "Custom business systems",
+      "web": "Web platforms & e-commerce",
+      "mobile": "Mobile applications",
+      "ai": "AI solutions & automation",
+      "hardware": "Hardware + software systems",
+      "modernization": "System modernization & integrations"
     },
-    "location": "El Nasr, New Cairo, Egypt",
-    "email": "support@oraixen.com",
     "copyright": "© {{year}} Oraixen. All rights reserved.",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",

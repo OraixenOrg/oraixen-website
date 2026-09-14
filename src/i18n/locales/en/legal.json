@@ -18,7 +18,7 @@
       },
       {
         "heading": "Information We Collect",
-        "body": "(a) Information you give us — through our contact form: your name, email, company, budget range, project timeline, and message, plus anything else you choose to email us. (b) Information collected automatically — your IP address, browser and device type, the pages you view, and your approximate location, gathered through standard server logs and analytics. We do not intentionally collect sensitive categories of personal data."
+        "body": "(a) Information you give us through our contact form: your name, email, company, budget range, project timeline, and message, plus anything else you choose to email us. (b) Information collected automatically: your IP address, browser and device type, the pages you view, and your approximate location, gathered through standard server logs and analytics. We do not intentionally collect sensitive categories of personal data."
       },
       {
         "heading": "How We Use Your Information",
@@ -34,7 +34,7 @@
       },
       {
         "heading": "How We Share Your Information",
-        "body": "We share your information only with vetted service providers and processors — for hosting, email, analytics, and form handling — under confidentiality and data-processing terms, or where we are required to do so by law. We do not sell or rent your personal data."
+        "body": "We share your information only with vetted service providers and processors (for hosting, email, analytics, and form handling) under confidentiality and data-processing terms, or where we are required to do so by law. We do not sell or rent your personal data."
       },
       {
         "heading": "International Data Transfers",
@@ -73,7 +73,7 @@
     },
     "eyebrow": "Terms of Service",
     "title": "Terms of Service",
-    "tldr": "Use this website lawfully and in good faith. Its content belongs to us. Any project we build for you is governed by the written agreement we sign with you — including code ownership, scope, and payment terms.",
+    "tldr": "Use this website lawfully and in good faith. Its content belongs to us. Any project we build for you is governed by the written agreement we sign with you, including code ownership, scope, and payment terms.",
     "sections": [
       {
         "heading": "Acceptance of These Terms",
@@ -81,11 +81,11 @@
       },
       {
         "heading": "Our Services",
-        "body": "We provide mobile app development, web development, AI solutions, business platforms and custom software, hardware systems, and digital transformation. The exact scope, deliverables, timeline, and price of any engagement are defined in a separate signed proposal or contract. We may update or discontinue features of this website at any time."
+        "body": "We provide custom business systems, web platforms and e-commerce, mobile applications, AI solutions and automation, hardware and software systems, and system modernization and integrations. The scope, deliverables, timeline, and price of any engagement are defined in a separate signed proposal or contract. We may update or discontinue features of this website at any time."
       },
       {
         "heading": "Intellectual Property & Ownership of Deliverables",
-        "body": "(a) On full payment, the client owns the final custom code and deliverables, with full intellectual-property transfer as set out in the signed agreement. (b) Our pre-existing tools, frameworks, and reusable components remain ours, and are licensed to you as needed. (c) The content of this website — including our name, logo, text, designs, and code — is owned by Oraixen."
+        "body": "(a) On full payment, the client owns the final custom code and deliverables, with full intellectual-property transfer as set out in the signed agreement. (b) Our pre-existing tools, frameworks, and reusable components remain ours, and are licensed to you as needed. (c) The content of this website, including our name, logo, text, designs, and code, is owned by Oraixen."
       },
       {
         "heading": "Payment Terms",
@@ -101,7 +101,7 @@
       },
       {
         "heading": "Warranties & Disclaimers",
-        "body": "We perform our services with professional skill and care, supported by a documented QA process. Project-specific warranties — such as a post-launch support window — are defined in the signed agreement. Otherwise, this website is provided \"as is\", without warranties of any kind, and we do not promise that it will be error-free or uninterrupted."
+        "body": "We perform our services with professional skill and care, supported by a documented QA process. Project-specific warranties, such as a post-launch support window, are defined in the signed agreement. Otherwise, this website is provided \"as is\", without warranties of any kind, and we do not promise that it will be error-free or uninterrupted."
       },
       {
         "heading": "Limitation of Liability",
@@ -113,7 +113,7 @@
       },
       {
         "heading": "Termination",
-        "body": "We may suspend or terminate access to the website for misuse. Project engagements end in line with the signed agreement; surviving sections — such as intellectual property, confidentiality, and payment for work already done — continue to apply."
+        "body": "We may suspend or terminate access to the website for misuse. Project engagements end in line with the signed agreement; surviving sections, such as intellectual property, confidentiality, and payment for work already done, continue to apply."
       },
       {
         "heading": "Governing Law & Disputes",

@@ -11,9 +11,9 @@
  * 8 core routes x 3 markets = 24 localized shells, plus the normalized
  * dist/index.html that remains the SPA fallback for dynamic routes.
  *
- * Titles and descriptions come from the existing locale files. Both Arabic
- * markets deliberately share src/i18n/locales/ar — the market lives in the URL,
- * not in a duplicated translation tree.
+ * Titles and descriptions come from the locale files. Each market reads its own
+ * tree — src/i18n/locales/{en,ar-eg,ar-sa} — so Egyptian and Saudi shells carry
+ * independently written metadata and neither can be generated from the other.
  *
  * Runs automatically via the "postbuild" npm script. Node built-ins only.
  */
@@ -34,9 +34,9 @@ const SITE_URL = 'https://oraixen.com';
  * keep these values identical to it.
  */
 const MARKETS = {
-  en:      { prefix: '/en',    localeDir: 'en', htmlLang: 'en',    dir: 'ltr', hreflang: 'en',    ogLocale: 'en_US', metaLanguage: 'English' },
-  'ar-eg': { prefix: '/ar-eg', localeDir: 'ar', htmlLang: 'ar-EG', dir: 'rtl', hreflang: 'ar-EG', ogLocale: 'ar_EG', metaLanguage: 'Arabic' },
-  'ar-sa': { prefix: '/ar-sa', localeDir: 'ar', htmlLang: 'ar-SA', dir: 'rtl', hreflang: 'ar-SA', ogLocale: 'ar_SA', metaLanguage: 'Arabic' },
+  en:      { prefix: '/en',    localeDir: 'en',    htmlLang: 'en',    dir: 'ltr', hreflang: 'en',    ogLocale: 'en_US', metaLanguage: 'English' },
+  'ar-eg': { prefix: '/ar-eg', localeDir: 'ar-eg', htmlLang: 'ar-EG', dir: 'rtl', hreflang: 'ar-EG', ogLocale: 'ar_EG', metaLanguage: 'Arabic' },
+  'ar-sa': { prefix: '/ar-sa', localeDir: 'ar-sa', htmlLang: 'ar-SA', dir: 'rtl', hreflang: 'ar-SA', ogLocale: 'ar_SA', metaLanguage: 'Arabic' },
 };
 const MARKET_IDS = ['en', 'ar-eg', 'ar-sa'];
 const DEFAULT_MARKET = 'en';

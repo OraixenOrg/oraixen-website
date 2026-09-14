@@ -1,15 +1,37 @@
 {
-  "_comment": "The four headline stats on the home page. 'value' is the big number, 'label' is the caption under it. Keep 'en' and 'ar' the same length and in the same order.",
-  "en": [
-    { "value": "7+", "label": "Years of experience" },
-    { "value": "21+", "label": "Projects delivered" },
-    { "value": "98%", "label": "Client retention" },
-    { "value": "15", "label": "Countries served" }
-  ],
-  "ar": [
-    { "value": "7+", "label": "سنوات خبرة" },
-    { "value": "21+", "label": "مشروعاً منجزاً" },
-    { "value": "98%", "label": "عملاء مستمرون معنا" },
-    { "value": "15", "label": "دولة نخدمها" }
+  "_comment": "The four headline stats on the home page. 'value' is the big number and is a FACT: it is stated once here and is identical in every market. 'label' is the caption under it and is market copy, so it has one entry per market id (en / ar-eg / ar-sa). Keep the four items in this order. All four figures are owner-confirmed public claims; do not change them without owner sign-off.",
+  "items": [
+    {
+      "value": "2019",
+      "label": {
+        "en": "Software delivery since",
+        "ar-eg": "بنطوّر البرمجيات من سنة",
+        "ar-sa": "نطوّر البرمجيات منذ عام"
+      }
+    },
+    {
+      "value": "15+",
+      "label": {
+        "en": "Projects delivered",
+        "ar-eg": "مشروع سلّمناه",
+        "ar-sa": "مشروعاً منجزاً"
+      }
+    },
+    {
+      "value": "90%",
+      "label": {
+        "en": "Client retention",
+        "ar-eg": "من العملاء استمروا معانا",
+        "ar-sa": "معدل الاحتفاظ بالعملاء"
+      }
+    },
+    {
+      "value": "8+",
+      "label": {
+        "en": "Countries served",
+        "ar-eg": "دول بنخدمها",
+        "ar-sa": "دول نخدمها"
+      }
+    }
   ]
 }

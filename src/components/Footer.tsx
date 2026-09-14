@@ -3,6 +3,7 @@ import { Linkedin, Github, Facebook, Instagram, Mail, Phone, MapPin } from 'luci
 import { useTranslation } from 'react-i18next';
 import { Logo } from './Logo';
 import company from '../data/company.json';
+import { getContentScript, marketFromLanguage } from '../lib/marketLocale';
 
 // Contact details and social links come from src/data/company.json (easy to edit).
 const socials = [
@@ -14,7 +15,9 @@ const socials = [
 
 export function Footer() {
   const { t, i18n } = useTranslation('common');
-  const lang = i18n.language?.startsWith('ar') ? 'ar' : 'en';
+  // The Cairo street address is a FACT with one form per writing system, not
+  // market copy: it reads identically in /ar-eg and /ar-sa.
+  const script = getContentScript(marketFromLanguage(i18n.language));
   const currentYear = new Date().getFullYear();
   const phones = (company.phones ?? [company.phone]).filter(Boolean) as string[];
 
@@ -66,12 +69,12 @@ export function Footer() {
               {t('footer.servicesTitle')}
             </h3>
             <ul className="space-y-4">
-              <li><Link to="/services" className="text-body hover:text-ink transition-colors text-sm">{t('footer.services.mobile')}</Link></li>
+              <li><Link to="/services" className="text-body hover:text-ink transition-colors text-sm">{t('footer.services.systems')}</Link></li>
               <li><Link to="/services" className="text-body hover:text-ink transition-colors text-sm">{t('footer.services.web')}</Link></li>
+              <li><Link to="/services" className="text-body hover:text-ink transition-colors text-sm">{t('footer.services.mobile')}</Link></li>
               <li><Link to="/services" className="text-body hover:text-ink transition-colors text-sm">{t('footer.services.ai')}</Link></li>
-              <li><Link to="/services" className="text-body hover:text-ink transition-colors text-sm">{t('footer.services.corporate')}</Link></li>
               <li><Link to="/services" className="text-body hover:text-ink transition-colors text-sm">{t('footer.services.hardware')}</Link></li>
-              <li><Link to="/services" className="text-body hover:text-ink transition-colors text-sm">{t('footer.services.transformation')}</Link></li>
+              <li><Link to="/services" className="text-body hover:text-ink transition-colors text-sm">{t('footer.services.modernization')}</Link></li>
             </ul>
           </div>
 
@@ -97,7 +100,7 @@ export function Footer() {
               ))}
               <li className="flex items-start text-body text-sm">
                 <MapPin size={18} className="me-3 mt-0.5 text-teal shrink-0" />
-                <span>{company.location[lang]}</span>
+                <span>{company.location[script]}</span>
               </li>
             </ul>
           </div>

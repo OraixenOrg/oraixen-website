@@ -1,44 +1,69 @@
 {
   "seo": {
-    "title": "Our Process — How Oraixen Builds Software",
+    "title": "Our Process: How Oraixen Builds Software",
     "description": "Discovery, design, development, QA, and launch with ongoing support. Transparent delivery with weekly demos from kickoff to go-live."
   },
   "hero": {
     "eyebrow": "How we work",
     "title": "Our process",
-    "subtitle": "Five phases and weekly demos — so you always know what we’re building and why."
+    "subtitle": "Five phases and weekly demos, so you always know what we’re building and why."
   },
   "steps": {
     "items": [
       {
         "number": "01",
         "title": "Discovery & strategy",
-        "description": "We learn your goals, audience, and constraints — then agree on scope, timeline, and how success will be measured.",
-        "items": ["Requirements gathering", "Market research", "Technical feasibility", "Project roadmap"]
+        "description": "We learn your goals, audience, and constraints, then agree on scope, timeline, and how success will be measured.",
+        "items": [
+          "Requirements gathering",
+          "Market research",
+          "Technical feasibility",
+          "Project roadmap"
+        ]
       },
       {
         "number": "02",
         "title": "Design & prototyping",
-        "description": "High-fidelity prototypes and interfaces focused on clarity — useful first, polished throughout.",
-        "items": ["Wireframing", "UI/UX design", "Interactive prototypes", "Design system"]
+        "description": "High-fidelity prototypes and interfaces focused on clarity: useful first, polished throughout.",
+        "items": [
+          "Wireframing",
+          "UI/UX design",
+          "Interactive prototypes",
+          "Design system"
+        ]
       },
       {
         "number": "03",
         "title": "Development",
-        "description": "Modern, scalable engineering with an agile rhythm — progress you can see and steer every week.",
-        "items": ["Frontend & backend", "API integration", "Database design", "Code reviews"]
+        "description": "Modern, scalable engineering with an agile rhythm: progress you can see and steer every week.",
+        "items": [
+          "Frontend & backend",
+          "API integration",
+          "Database design",
+          "Code reviews"
+        ]
       },
       {
         "number": "04",
         "title": "Quality assurance",
-        "description": "Documented QA across automated and manual testing — fewer defects, more stable releases.",
-        "items": ["Automated testing", "Manual testing", "Security audits", "Performance tuning"]
+        "description": "Documented QA across automated and manual testing: fewer defects, more stable releases.",
+        "items": [
+          "Automated testing",
+          "Manual testing",
+          "Security audits",
+          "Performance tuning"
+        ]
       },
       {
         "number": "05",
         "title": "Launch & support",
-        "description": "We handle deployment and stay after go-live — monitoring, maintenance, and a post-launch support window.",
-        "items": ["Deployment", "Monitoring", "Maintenance", "Feature updates"]
+        "description": "We handle deployment and stay after go-live: monitoring, maintenance, and a post-launch support window.",
+        "items": [
+          "Deployment",
+          "Monitoring",
+          "Maintenance",
+          "Feature updates"
+        ]
       }
     ]
   },
@@ -68,7 +93,7 @@
     "items": [
       {
         "q": "How do you price projects?",
-        "a": "We price fixed-scope or as a monthly dedicated team after a short discovery call — you always see a clear estimate before committing."
+        "a": "We price fixed-scope or as a monthly dedicated team after a short discovery call, and you always see a clear estimate before committing."
       },
       {
         "q": "How long does a project take?",
@@ -76,7 +101,7 @@
       },
       {
         "q": "Who owns the code and IP?",
-        "a": "You do — fully. Source code and IP transfer to you on final delivery and payment. No lock-in, no hidden licensing."
+        "a": "You own the custom code and IP we build for you. It transfers on final delivery and payment. Our pre-existing tools, frameworks, and reusable components stay ours and are licensed to you as needed, and third-party or open-source components keep their own licences. No lock-in, no hidden licensing."
       },
       {
         "q": "What happens after launch?",
@@ -88,7 +113,7 @@
       },
       {
         "q": "Where is your team based?",
-        "a": "We’re based in Cairo, Egypt, with delivery across the MENA region — overlapping hours with Europe, the Gulf, and beyond."
+        "a": "We’re based in Cairo, Egypt, with delivery across the MENA region, with overlapping hours with Europe, the Gulf, and beyond."
       },
       {
         "q": "Do you sign NDAs?",
@@ -104,11 +129,11 @@
   "trust": {
     "eyebrow": "Security & ownership",
     "title": "Clear commitments",
-    "subtitle": "Ownership, confidentiality, support, and secure delivery — stated up front.",
+    "subtitle": "Ownership, confidentiality, support, and secure delivery, stated up front.",
     "items": [
       {
         "title": "Code & IP ownership",
-        "desc": "You own 100% of the custom code and IP — full transfer on final payment."
+        "desc": "You own the custom code and IP we build for you after final payment. Our pre-existing tools and frameworks stay ours and are licensed to you as needed."
       },
       {
         "title": "NDA & confidentiality",
@@ -126,7 +151,7 @@
   },
   "cta": {
     "title": "Ready when you are",
-    "subtitle": "Tell us about your project — we reply within one business day with a clear next step.",
+    "subtitle": "Tell us about your project, and we reply within one business day with a clear next step.",
     "primary": "Start a project",
     "secondary": "See our work"
   }

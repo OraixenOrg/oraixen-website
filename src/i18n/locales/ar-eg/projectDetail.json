@@ -1,0 +1,34 @@
+{
+  "seo": {
+    "suffix": "دراسة حالة",
+    "descriptionFallback": "دراسة حالة من أوريكسن: المشكلة، والحل، والنتيجة اللي وصلنا لها."
+  },
+  "backLink": "رجوع للمشاريع",
+  "confidential": "سرّي",
+  "confidentialClient": "عميل سرّي",
+  "labels": {
+    "client": "العميل",
+    "year": "السنة",
+    "category": "التصنيف",
+    "techStack": "التقنيات"
+  },
+  "sections": {
+    "challenge": "المشكلة",
+    "solution": "الحل",
+    "impact": "النتيجة",
+    "keyMetrics": "أرقام مهمة",
+    "highlights": "أبرز النقاط",
+    "availablePlatforms": "المنصات المتاحة"
+  },
+  "platforms": {
+    "website": "موقع إلكتروني",
+    "playStore": "متجر بلاي",
+    "appStore": "آب ستور",
+    "dashboard": "لوحة تحكم"
+  },
+  "cta": {
+    "title": "بتخطط لحاجة زي دي؟",
+    "subtitle": "قول لنا على اللي شغّال عليه، وهنوضّحلك مسار تصميمه وإطلاقه وقياس نتيجته.",
+    "button": "ابدأ مشروع زي ده"
+  }
+}

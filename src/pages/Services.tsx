@@ -39,7 +39,7 @@ type EngagementItem = {
   cta: string;
 };
 
-const serviceIcons = [Smartphone, Code, BrainCircuit, Server, Cpu, RefreshCw];
+const serviceIcons = [Server, Code, Smartphone, BrainCircuit, Cpu, RefreshCw];
 const engagementIcons = [Layers, Users, LifeBuoy];
 
 export function Services() {

@@ -1,18 +1,18 @@
 {
   "seo": {
-    "title": "About Oraixen — Custom Software for Growing Businesses",
-    "description": "Oraixen designs and builds mobile apps, web platforms, corporate software, and hardware + AI solutions. From a freelance team in 2019 to Oraixen in 2025 — transparent delivery and support past launch."
+    "title": "About Oraixen: Custom Software for Growing Businesses",
+    "description": "Oraixen designs and builds mobile apps, web platforms, corporate software, and hardware + AI solutions. From a freelance team in 2019 to Oraixen in 2025: transparent delivery and support past launch."
   },
   "hero": {
     "eyebrow": "About us",
-    "title": "Software built to perform — and grow with your business.",
+    "title": "Software built to perform, and grow with your business.",
     "subtitle": "We help growing businesses turn operational problems and product ideas into reliable custom software."
   },
   "story": {
     "eyebrow": "Our story",
     "title": "How Oraixen came to be",
-    "intro": "Oraixen works across six specialties: mobile app development, web development, AI solutions, business platforms and custom software, hardware, and digital transformation — for startups, SMBs, and enterprises.",
-    "history": "We started as a freelance team in 2019, working closely with early clients to build clean, dependable products. In 2025 we became Oraixen — the same team, the same standards, now under one name.",
+    "intro": "Oraixen works across six service groups: custom business systems, web platforms and e-commerce, mobile applications, AI solutions and automation, hardware and software systems, and system modernization and integrations, for startups, SMBs, and enterprises.",
+    "history": "We started as a freelance team in 2019, working closely with early clients to build clean, dependable products. In 2025 we became Oraixen: the same team, the same standards, now under one name.",
     "p1": {
       "before": "The name reflects how we work. ",
       "ora": "Orai",
@@ -21,14 +21,14 @@
     "p2": {
       "before": "",
       "ixen": "The X",
-      "after": " represents the connection between the markets we serve — Egypt, China, Canada, Europe, MENA, and the USA."
+      "after": " represents the connection between the markets we serve: Egypt, China, Canada, Europe, MENA, and the USA."
     },
     "p3": {
       "before": "",
       "en": "The “en” ending",
       "after": " represents continuity, because our role continues well beyond launch."
     },
-    "closing": "We build for education, healthcare, e-commerce, finance, services, and technology — with full transparency, realistic timelines, and support that doesn't end at delivery.",
+    "closing": "We build for education, healthcare, e-commerce, finance, services, and technology, with full transparency, realistic timelines, and support that doesn't end at delivery.",
     "tagline": "Build the future. Build with Oraixen.",
     "imageAlt": "Oraixen team collaborating in the studio"
   },
@@ -37,10 +37,22 @@
     "title": "How we got here",
     "subtitle": "From a close-knit freelance team to a named studio serving clients across markets.",
     "items": [
-      { "year": "2019", "label": "Started as a freelance team" },
-      { "year": "2022", "label": "Expanded into web, mobile, and platforms" },
-      { "year": "2025", "label": "Became Oraixen" },
-      { "year": "Today", "label": "Building across education, healthcare, commerce, and more" }
+      {
+        "year": "2019",
+        "label": "Started as a freelance team"
+      },
+      {
+        "year": "2022",
+        "label": "Expanded into web, mobile, and platforms"
+      },
+      {
+        "year": "2025",
+        "label": "Became Oraixen"
+      },
+      {
+        "year": "Today",
+        "label": "Building across education, healthcare, commerce, and more"
+      }
     ]
   },
   "foundation": {
@@ -50,7 +62,7 @@
     "items": [
       {
         "title": "Mission",
-        "text": "Turn operational problems and digital product ideas into reliable custom software — with clear communication and realistic timelines."
+        "text": "Turn operational problems and digital product ideas into reliable custom software, with clear communication and realistic timelines."
       },
       {
         "title": "Vision",
@@ -58,7 +70,7 @@
       },
       {
         "title": "Purpose",
-        "text": "Build products that keep delivering after launch — with support that doesn't stop at handover."
+        "text": "Build products that keep delivering after launch, with support that doesn't stop at handover."
       }
     ]
   },
@@ -77,7 +89,7 @@
       },
       {
         "title": "Partnership",
-        "desc": "We work beside you — not at arm's length."
+        "desc": "We work beside you, not at arm's length."
       },
       {
         "title": "Craft",
@@ -89,7 +101,7 @@
       },
       {
         "title": "Continuity",
-        "desc": "Support continues after launch — because products need to keep working."
+        "desc": "Support continues after launch, because products need to keep working."
       }
     ]
   },

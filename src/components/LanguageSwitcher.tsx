@@ -18,7 +18,7 @@ interface LanguageSwitcherProps {
 }
 
 /**
- * How each market presents itself. Written in its own language — these are
+ * How each market presents itself. Written in its own language. These are
  * endonyms, not translated UI copy, so they read identically in every version.
  * English uses a globe rather than a country flag: it is the international
  * default version, not a country-specific market.
@@ -30,12 +30,12 @@ const MARKET_UI: Record<MarketLocale, { label: string; short: string; Mark: () =
     Mark: () => <Globe size={16} aria-hidden="true" className="shrink-0" />,
   },
   'ar-eg': {
-    label: 'مصر — العربية',
+    label: 'مصر · العربية',
     short: 'مصر',
     Mark: () => <EgyptFlag />,
   },
   'ar-sa': {
-    label: 'السعودية — العربية',
+    label: 'السعودية · العربية',
     short: 'السعودية',
     Mark: () => <SaudiFlag />,
   },

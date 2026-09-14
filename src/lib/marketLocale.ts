@@ -10,10 +10,10 @@
  * The URL is authoritative: it decides the language, the document direction and
  * the SEO metadata. Nothing stored in the browser may override it.
  *
- * Both Arabic markets deliberately share the single `ar` translation set — the
- * market is carried by the URL, not by a duplicated locale tree. Future
- * Egypt/Saudi differences belong in small market-scoped overrides, never in a
- * second copy of the Arabic site.
+ * Each market owns a complete, independent content tree — `en`, `ar-eg` and
+ * `ar-sa` are three separate locales, not one Arabic set shown under two URLs.
+ * Egypt and Saudi Arabia are addressed in their own commercial voice, so the
+ * market id in the URL is also the i18next language id.
  *
  * Deliberately dependency-free (no i18next, no router, no React) so it can be
  * reasoned about and tested in isolation.
@@ -26,8 +26,11 @@ export interface MarketConfig {
   locale: MarketLocale;
   /** Public URL prefix, no trailing slash. */
   prefix: string;
-  /** i18next language. Both Arabic markets share one translation set. */
-  language: 'en' | 'ar';
+  /**
+   * i18next language id, identical to the market id: each market resolves to
+   * its own locale tree under src/i18n/locales/<language>/.
+   */
+  language: MarketLocale;
   /** Value for <html lang>. */
   htmlLang: string;
   /** Value for <html dir>. */
@@ -117,27 +120,56 @@ export const MARKETS: Record<MarketLocale, MarketConfig> = {
   'ar-eg': {
     locale: 'ar-eg',
     prefix: '/ar-eg',
-    language: 'ar',
+    language: 'ar-eg',
     htmlLang: 'ar-EG',
     dir: 'rtl',
     hreflang: 'ar-EG',
     ogLocale: 'ar_EG',
-    label: 'العربية — مصر',
+    label: 'العربية · مصر',
   },
   'ar-sa': {
     locale: 'ar-sa',
     prefix: '/ar-sa',
-    language: 'ar',
+    language: 'ar-sa',
     htmlLang: 'ar-SA',
     dir: 'rtl',
     hreflang: 'ar-SA',
     ogLocale: 'ar_SA',
-    label: 'العربية — السعودية',
+    label: 'العربية · السعودية',
   },
 };
 
 export function getMarketConfig(locale: MarketLocale): MarketConfig {
   return MARKETS[locale];
+}
+
+/**
+ * The active market for a live i18next language id.
+ *
+ * MarketConfig.language IS the market id, so this is a validating narrow rather
+ * than a guess. Anything unrecognised falls back to the default market instead
+ * of throwing, because this runs during render.
+ *
+ * Use this instead of inspecting the language string (`startsWith('ar')`) when
+ * selecting MARKET CONTENT: that test cannot tell ar-eg from ar-sa and silently
+ * collapses the two Arabic markets back into one.
+ */
+export function marketFromLanguage(language: string | undefined | null): MarketLocale {
+  return isMarketLocale(language) ? language : DEFAULT_MARKET;
+}
+
+/**
+ * Writing system a market reads in.
+ *
+ * ONLY for factual values that exist in one form per script and carry no market
+ * positioning: the Cairo street address reads identically in Egypt and Saudi
+ * Arabia, so storing it twice would be duplication, not localization. Never use
+ * this to pick marketing copy.
+ */
+export type ContentScript = 'en' | 'ar';
+
+export function getContentScript(locale: MarketLocale): ContentScript {
+  return MARKETS[locale].dir === 'rtl' ? 'ar' : 'en';
 }
 
 export function isMarketLocale(value: unknown): value is MarketLocale {

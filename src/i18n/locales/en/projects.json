@@ -1,12 +1,12 @@
 {
   "seo": {
-    "title": "Projects — Selected Work | Oraixen",
-    "description": "Explore 21+ products across finance, healthcare, education, retail, and more. Selected work from Oraixen."
+    "title": "Projects: Selected Work | Oraixen",
+    "description": "Explore 15+ projects across finance, healthcare, education, retail, and more. Selected work from Oraixen."
   },
   "hero": {
     "eyebrow": "Our work",
     "title": "Selected projects",
-    "subtitle": "Products in production — across finance, healthcare, education, retail, and more."
+    "subtitle": "Products in production, across finance, healthcare, education, retail, and more."
   },
   "loading": "Loading projects…",
   "search": {
@@ -40,7 +40,7 @@
     "confidential": "Confidential",
     "confidentialClient": "Confidential client",
     "more": "+{{count}} more",
-    "ariaLabel": "{{project}} — {{industry}} product by Oraixen",
+    "ariaLabel": "{{project}}: {{industry}} product by Oraixen",
     "platforms": {
       "website": "Website",
       "playStore": "Play Store",
@@ -51,19 +51,51 @@
   "industries": {
     "eyebrow": "Industries",
     "title": "Built across markets",
-    "subtitle": "21+ products across fintech, healthcare, e-commerce, education, and other industries.",
+    "subtitle": "15+ projects across fintech, healthcare, e-commerce, education, and other industries.",
     "projectOne": "{{count}} project",
     "projectTwo": "{{count}} projects",
     "projectOther": "{{count}} projects",
     "items": [
-      { "key": "education", "name": "Education", "count": 2 },
-      { "key": "ecommerce", "name": "E-commerce", "count": 7 },
-      { "key": "finance", "name": "Fintech", "count": 1 },
-      { "key": "food", "name": "Food & logistics", "count": 3 },
-      { "key": "healthcare", "name": "Healthcare", "count": 1 },
-      { "key": "jobs", "name": "Jobs", "count": 1 },
-      { "key": "legal", "name": "Legal", "count": 1 },
-      { "key": "utilities", "name": "Utilities", "count": 1 }
+      {
+        "key": "education",
+        "name": "Education",
+        "count": 2
+      },
+      {
+        "key": "ecommerce",
+        "name": "E-commerce",
+        "count": 7
+      },
+      {
+        "key": "finance",
+        "name": "Fintech",
+        "count": 1
+      },
+      {
+        "key": "food",
+        "name": "Food & logistics",
+        "count": 3
+      },
+      {
+        "key": "healthcare",
+        "name": "Healthcare",
+        "count": 1
+      },
+      {
+        "key": "jobs",
+        "name": "Jobs",
+        "count": 1
+      },
+      {
+        "key": "legal",
+        "name": "Legal",
+        "count": 1
+      },
+      {
+        "key": "utilities",
+        "name": "Utilities",
+        "count": 1
+      }
     ]
   },
   "related": {

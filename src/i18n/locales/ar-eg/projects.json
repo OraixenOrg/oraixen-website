@@ -1,0 +1,104 @@
+{
+  "seo": {
+    "title": "شغلنا: مشاريع مختارة | أوريكسن",
+    "description": "أكتر من 15 مشروع شغّال في التمويل والرعاية الصحية والتعليم والتجارة وغيرها. شوف شغل أوريكسن ونتائجه."
+  },
+  "hero": {
+    "eyebrow": "شغلنا",
+    "title": "مشاريع مختارة",
+    "subtitle": "منتجات شغّالة في السوق في التمويل والرعاية الصحية والتعليم والتجزئة وغيرها."
+  },
+  "loading": "بنحمّل المشاريع…",
+  "search": {
+    "placeholder": "دوّر بالاسم أو العميل أو القطاع أو التقنية…",
+    "ariaLabel": "البحث في المشاريع",
+    "clearAria": "مسح البحث"
+  },
+  "filters": {
+    "all": "الكل",
+    "web": "ويب",
+    "mobile": "موبايل",
+    "platform": "منصة",
+    "clearAll": "امسح التصفية"
+  },
+  "empty": {
+    "title": "مفيش مشاريع",
+    "withFilters": "مفيش نتائج مطابقة للتصفية الحالية.",
+    "noProjects": "مفيش مشاريع متاحة للعرض دلوقتي.",
+    "viewAll": "كل المشاريع"
+  },
+  "pagination": {
+    "page": "صفحة",
+    "of": "من",
+    "previousAria": "الصفحة السابقة",
+    "nextAria": "الصفحة التالية",
+    "navAria": "ترقيم الصفحات",
+    "pageAria": "صفحة {{page}}",
+    "currentPageAria": "صفحة {{page}}، الصفحة الحالية"
+  },
+  "card": {
+    "confidential": "سرّي",
+    "confidentialClient": "عميل سرّي",
+    "more": "+{{count}} أخرى",
+    "ariaLabel": "{{project}}: منتج {{industry}} من أوريكسن",
+    "platforms": {
+      "website": "موقع إلكتروني",
+      "playStore": "متجر بلاي",
+      "appStore": "آب ستور",
+      "dashboard": "لوحة تحكم"
+    }
+  },
+  "industries": {
+    "eyebrow": "القطاعات",
+    "title": "اشتغلنا في قطاعات كتير",
+    "subtitle": "أكتر من 15 مشروع في التقنية المالية والرعاية الصحية والتجارة الإلكترونية والتعليم وقطاعات تانية.",
+    "projectOne": "مشروع واحد",
+    "projectTwo": "مشروعين",
+    "projectOther": "{{count}} مشاريع",
+    "items": [
+      {
+        "key": "education",
+        "name": "التعليم",
+        "count": 2
+      },
+      {
+        "key": "ecommerce",
+        "name": "التجارة الإلكترونية",
+        "count": 7
+      },
+      {
+        "key": "finance",
+        "name": "التقنية المالية",
+        "count": 1
+      },
+      {
+        "key": "food",
+        "name": "الأغذية واللوجستيات",
+        "count": 3
+      },
+      {
+        "key": "healthcare",
+        "name": "الرعاية الصحية",
+        "count": 1
+      },
+      {
+        "key": "jobs",
+        "name": "التوظيف",
+        "count": 1
+      },
+      {
+        "key": "legal",
+        "name": "القانون",
+        "count": 1
+      },
+      {
+        "key": "utilities",
+        "name": "المرافق",
+        "count": 1
+      }
+    ]
+  },
+  "related": {
+    "title": "مشاريع ليها علاقة"
+  }
+}
