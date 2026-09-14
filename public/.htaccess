@@ -58,6 +58,51 @@ GeoIPEnable On
   RewriteRule ^ index.html [L]
 </IfModule>
 
+# ===== Baseline browser security headers =====
+#
+# Guarded: if mod_headers is ever unavailable the site must keep serving, unlike
+# the GeoIP directive above (which is proven on this host and must stay bare so
+# a missing module fails loudly rather than silently routing everyone to /en).
+#
+# Deliberately NOT here: Content-Security-Policy (the platform already sends
+# `upgrade-insecure-requests`, and a real policy needs its own source inventory),
+# Strict-Transport-Security (persistent browser state, needs HTTP->HTTPS and
+# subdomain verification first), and COOP/COEP/CORP (can break third-party
+# integrations for no benefit at this baseline). Each is its own issue.
+<IfModule mod_headers.c>
+  # Stop browsers from MIME-sniffing a response into a different type — the
+  # classic route from "uploaded text file" to "executed script".
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Same-origin navigations keep the full referrer (useful for internal
+  # analytics); cross-origin requests get the origin only, and HTTPS->HTTP
+  # sends nothing. Good privacy without breaking referral attribution.
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Nothing in the site is designed to be embedded by another origin (audited:
+  # no iframes, no postMessage, no embed partners), so refuse external framing.
+  # SAMEORIGIN rather than DENY keeps same-origin framing available if a future
+  # internal tool needs it. CSP frame-ancestors is a separate issue.
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # The site never asks for location, camera or microphone, so deny them
+  # outright — including for anything it might embed. Other features are left
+  # unset on purpose: restricting APIs the code does not use buys nothing and
+  # risks blocking a legitimate future feature.
+  Header always set Permissions-Policy "geolocation=(), camera=(), microphone=()"
+
+  # Explicitly OFF, not on. The legacy XSS auditor is absent from modern
+  # browsers and, where it survives, its filtering has itself been a source of
+  # vulnerabilities. 0 disables it; 1;mode=block would re-enable that risk.
+  Header always set X-XSS-Protection "0"
+
+  # Hostinger's PHP currently advertises its exact version (x-powered-by:
+  # PHP/8.4.21) on every PHP response. Removing it costs nothing and gives
+  # version-specific exploit scanning one less hint. `unset` on a header that
+  # is not present is a no-op, so this is safe everywhere.
+  Header always unset X-Powered-By
+</IfModule>
+
 # Long-cache the fingerprinted build assets (filenames change every build).
 <IfModule mod_expires.c>
   ExpiresActive On
