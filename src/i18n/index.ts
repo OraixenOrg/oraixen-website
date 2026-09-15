@@ -34,6 +34,9 @@ import saContact from './locales/ar-sa/contact.json';
 import enLegal from './locales/en/legal.json';
 import egLegal from './locales/ar-eg/legal.json';
 import saLegal from './locales/ar-sa/legal.json';
+import enSolutionCustomSystems from './locales/en/solutionCustomSystems.json';
+import egSolutionCustomSystems from './locales/ar-eg/solutionCustomSystems.json';
+import saSolutionCustomSystems from './locales/ar-sa/solutionCustomSystems.json';
 import enSections from './locales/en/sections.json';
 import egSections from './locales/ar-eg/sections.json';
 import saSections from './locales/ar-sa/sections.json';
@@ -47,6 +50,7 @@ export const NAMESPACES = [
   'projectDetail',
   'process',
   'contact',
+  'solutionCustomSystems',
   'legal',
   'sections',
 ] as const;
@@ -67,6 +71,7 @@ export const resources = {
     projectDetail: enProjectDetail,
     process: enProcess,
     contact: enContact,
+    solutionCustomSystems: enSolutionCustomSystems,
     legal: enLegal,
     sections: enSections,
   },
@@ -79,6 +84,7 @@ export const resources = {
     projectDetail: egProjectDetail,
     process: egProcess,
     contact: egContact,
+    solutionCustomSystems: egSolutionCustomSystems,
     legal: egLegal,
     sections: egSections,
   },
@@ -91,6 +97,7 @@ export const resources = {
     projectDetail: saProjectDetail,
     process: saProcess,
     contact: saContact,
+    solutionCustomSystems: saSolutionCustomSystems,
     legal: saLegal,
     sections: saSections,
   },

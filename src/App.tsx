@@ -18,6 +18,9 @@ const Projects = lazy(() => import('./pages/Projects').then((m) => ({ default: m
 const ProjectDetail = lazy(() => import('./pages/ProjectDetail').then((m) => ({ default: m.ProjectDetail })));
 const Process = lazy(() => import('./pages/Process').then((m) => ({ default: m.Process })));
 const Contact = lazy(() => import('./pages/Contact').then((m) => ({ default: m.Contact })));
+const SolutionCustomSystems = lazy(() =>
+  import('./pages/SolutionCustomSystems').then((m) => ({ default: m.SolutionCustomSystems }))
+);
 const Privacy = lazy(() => import('./pages/Privacy').then((m) => ({ default: m.Privacy })));
 const Terms = lazy(() => import('./pages/Terms').then((m) => ({ default: m.Terms })));
 const NotFound = lazy(() => import('./pages/NotFound').then((m) => ({ default: m.NotFound })));
@@ -66,6 +69,10 @@ export function App() {
               <Route path="/projects/:slug" element={<ProjectDetail />} />
               <Route path="/process" element={<Process />} />
               <Route path="/contact" element={<Contact />} />
+              <Route
+                path="/solutions/custom-business-systems"
+                element={<SolutionCustomSystems />}
+              />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="*" element={<NotFound />} />

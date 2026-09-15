@@ -5,7 +5,8 @@
 #   /ar-eg/*   Arabic — Egypt
 #   /ar-sa/*   Arabic — Saudi Arabia
 #
-# The eight core routes in each market are served a generated HTML shell that
+# The nine static routes in each market (eight core pages plus the custom
+# business systems solution page) are served a generated HTML shell that
 # already carries that market's <title>/description/canonical/hreflang/OG tags
 # (see scripts/generate-static-seo.mjs), so crawlers and link previews are
 # correct before React runs. Those rewrites are INTERNAL — the visible URL stays
@@ -48,11 +49,24 @@ GeoIPEnable On
   RewriteRule ^(en|ar-eg|ar-sa)/?$                                              __seo/$1/index.html [L]
   RewriteRule ^(en|ar-eg|ar-sa)/(about|services|projects|process|contact|privacy|terms)/?$  __seo/$1/$2.html [L]
 
+  #    Solution landing pages live one level deeper, so they need their own
+  #    anchored rule. The shell filenames are flat (solutions-<slug>.html), so
+  #    the nested public URL maps to a hyphenated file. One exact rule per page,
+  #    anchored with $: nothing else under /solutions/ can match.
+  RewriteRule ^(en|ar-eg|ar-sa)/solutions/custom-business-systems/?$  __seo/$1/solutions-custom-business-systems.html [L]
+
   # 5. Locale-less application routes -> the market router, which reads the
   #    original path from REQUEST_URI and 302s to the same page in the chosen
   #    market. Internal rewrite, so /market-router.php never appears in the
   #    browser. Fragments are client-side and never reach the server.
   RewriteRule ^(about|services|projects|process|contact|privacy|terms)(/.*)?$ market-router.php [L,QSA]
+
+  #    Locale-less solution URLs take the same path. Listed one page at a time
+  #    on purpose: /solutions/* is NOT claimed wholesale, so an unbuilt slug
+  #    falls through to the SPA and renders the 404 route instead of 302ing to
+  #    a page that does not exist. QSA keeps gclid/UTM intact through the 302,
+  #    which is what makes paid landing traffic measurable.
+  RewriteRule ^solutions/custom-business-systems/?$ market-router.php [L,QSA]
 
   # 6. Everything else (incl. /en/projects/:slug) -> the SPA shell.
   RewriteRule ^ index.html [L]

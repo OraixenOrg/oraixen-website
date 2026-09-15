@@ -1,0 +1,242 @@
+{
+  "seo": {
+    "title": "Custom Business Systems Development | Oraixen",
+    "description": "Custom business systems, internal platforms, and workflow automation built around how your company actually operates. Software delivery since 2019."
+  },
+  "hero": {
+    "eyebrow": "Custom business systems",
+    "title": "Custom business systems built around how your company actually works.",
+    "subtitle": "When spreadsheets, disconnected tools, and manual handoffs start slowing the operation down, we build the system your teams need and connect it to the tools worth keeping.",
+    "primaryCta": "Discuss your project",
+    "secondaryCta": "See how we work"
+  },
+  "problems": {
+    "eyebrow": "The operating reality",
+    "title": "When the business outgrows the tools that got it here",
+    "intro": "Most of these tools were the right call at the time. The question is whether they still fit the size and pace of the operation today. If any of this sounds familiar, a custom system is usually the conversation worth having.",
+    "items": [
+      {
+        "title": "Spreadsheets running real workflows",
+        "desc": "A shared sheet became the system of record for orders, approvals, or scheduling, and now one broken formula can stop the day."
+      },
+      {
+        "title": "The same data entered more than once",
+        "desc": "Information is rekeyed between tools, and the version people trust depends on who you ask."
+      },
+      {
+        "title": "Approvals living in messages and email",
+        "desc": "Sign-offs move through chat threads and inboxes, so nobody can say what is waiting on whom."
+      },
+      {
+        "title": "Tools that never talk to each other",
+        "desc": "Each department has software that works well on its own, and nothing connects them end to end."
+      },
+      {
+        "title": "Teams building their own workarounds",
+        "desc": "People invent side processes to get work done, and those workarounds quietly become the real process."
+      }
+    ]
+  },
+  "build": {
+    "eyebrow": "What we can build",
+    "title": "Systems designed around your operation, not a template",
+    "intro": "Six directions we work in. A custom system can combine several of these capabilities around one operation.",
+    "items": [
+      {
+        "title": "Operations and workflow systems",
+        "desc": "The core system your day runs on: records, stages, ownership, and the rules your process actually follows."
+      },
+      {
+        "title": "Internal platforms",
+        "desc": "One place for internal teams to do their work instead of moving between disconnected tools and shared files."
+      },
+      {
+        "title": "Admin and back-office portals",
+        "desc": "Controlled interfaces for the people who manage data, configuration, and exceptions."
+      },
+      {
+        "title": "Customer and partner portals",
+        "desc": "A dedicated surface for the people outside your company, connected to the same records your team works from."
+      },
+      {
+        "title": "Approval and process automation",
+        "desc": "Routing, rules, and status for the steps that currently depend on someone remembering to follow up."
+      },
+      {
+        "title": "Reporting and operational visibility",
+        "desc": "Dashboards and exports built on your live data, so decisions do not wait for a manual weekly summary."
+      }
+    ]
+  },
+  "includes": {
+    "eyebrow": "Inside the system",
+    "title": "What a custom system can include",
+    "intro": "Depending on the operation, a system can include any of the following. Scope is decided together, not assumed.",
+    "items": [
+      {
+        "title": "Role-based permissions",
+        "desc": "Each role sees and changes only what it should."
+      },
+      {
+        "title": "Approval workflows",
+        "desc": "Multi-step routing with clear ownership at every stage."
+      },
+      {
+        "title": "Audit trails and activity history",
+        "desc": "A record of what changed, when, and by whom."
+      },
+      {
+        "title": "Notifications and alerts",
+        "desc": "The right people told at the right moment, on the channel they use."
+      },
+      {
+        "title": "Document handling",
+        "desc": "Files attached to the records they belong to, with versions and access rules."
+      },
+      {
+        "title": "Dashboards",
+        "desc": "Live operational status for the people accountable for it."
+      },
+      {
+        "title": "Exports and reporting",
+        "desc": "Data out in the formats finance and management already work in."
+      },
+      {
+        "title": "APIs and system integrations",
+        "desc": "Connections to the systems you keep, so data is entered once."
+      }
+    ]
+  },
+  "modernization": {
+    "eyebrow": "Existing systems",
+    "title": "We start by assessing what you already run",
+    "p1": "Replacing everything is rarely the right answer. Before any build, we review the systems currently in use: what they do well, where they limit the operation, and what the data and integration picture actually looks like.",
+    "p2": "The review produces a recommendation, not an assumption. Some systems are worth keeping and connecting. Some need a targeted upgrade. Some are better replaced. We say which, and why, before scope is agreed.",
+    "paths": [
+      {
+        "title": "Integrate what is worth keeping",
+        "desc": "If a system does its job, we connect to it rather than rebuild it. Accounting, ERP, and established tools often stay exactly where they are."
+      },
+      {
+        "title": "Modernize or selectively replace",
+        "desc": "Where a tool limits the operation, we replace the part that limits it, not the whole estate."
+      },
+      {
+        "title": "Rebuild where it makes sense",
+        "desc": "A full rebuild needs a business case, not just a technical opinion. We recommend it when the current foundation cannot support where the company is heading."
+      }
+    ]
+  },
+  "outcomes": {
+    "eyebrow": "What changes",
+    "title": "What the operation looks like afterwards",
+    "intro": "Outcomes worth aiming for, described honestly. What a specific system achieves depends on the process it replaces.",
+    "items": [
+      {
+        "title": "Less duplicate data entry",
+        "desc": "Data is entered once and moves with the work, instead of being rekeyed at every step."
+      },
+      {
+        "title": "Clearer process ownership",
+        "desc": "Every stage has a visible owner and a current status, so follow-up stops being a personal skill."
+      },
+      {
+        "title": "Operational visibility",
+        "desc": "Management sees what is actually happening now, not a picture assembled at the end of the month."
+      },
+      {
+        "title": "Room to change",
+        "desc": "A system built around your process can be adjusted when the process changes, without waiting for a vendor roadmap."
+      }
+    ]
+  },
+  "midCta": {
+    "button": "Discuss your project"
+  },
+  "process": {
+    "eyebrow": "How delivery works",
+    "title": "A clear path from scope to launch",
+    "intro": "Five phases, a written scope, realistic timelines, and weekly reviews. You can see where the project stands at any point.",
+    "steps": [
+      {
+        "title": "Discovery",
+        "desc": "We learn how the operation actually works: the workflows, the people, the constraints, and the systems already in place."
+      },
+      {
+        "title": "Scope and design",
+        "desc": "Written scope, agreed priorities, and interface design reviewed before engineering starts."
+      },
+      {
+        "title": "Build",
+        "desc": "Development in stages, with weekly reviews of progress and working increments where applicable."
+      },
+      {
+        "title": "Test and launch",
+        "desc": "Automated and manual testing, followed by a managed release into real use."
+      },
+      {
+        "title": "Support",
+        "desc": "A post-launch support window on every release, with documentation and ongoing options where they make sense."
+      }
+    ]
+  },
+  "trust": {
+    "eyebrow": "Why Oraixen",
+    "title": "A delivery partner that stays involved",
+    "intro": "Three things worth knowing before you hand a business-critical system to anyone."
+  },
+  "ownership": {
+    "eyebrow": "Ownership and support",
+    "title": "You own what we build, and we stay after launch",
+    "cards": [
+      {
+        "title": "Ownership",
+        "body": "You own the custom code and the intellectual property we build specifically for you. It transfers on final delivery and payment. Our pre-existing tools, frameworks, and reusable components stay ours and are licensed to you as needed, and third-party or open-source components keep their own licences."
+      },
+      {
+        "title": "After launch",
+        "body": "Every release includes a post-launch support window, along with the documentation your team needs to operate and extend the system. Ongoing maintenance and support options are available where they make sense. Whatever the question, we reply within one business day."
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Common questions",
+    "items": [
+      {
+        "q": "How is a custom business system different from off-the-shelf software?",
+        "a": "Off-the-shelf software asks your operation to match how the product works. A custom system is built around the process you already run, including the parts that make your business different. Off-the-shelf is often the better answer for standard needs like accounting. Custom software makes sense when standard products cannot support the way the operation actually needs to work."
+      },
+      {
+        "q": "Can you integrate with our current systems?",
+        "a": "Usually, yes. We review what you run before proposing anything, and connect through APIs or the integration methods each system supports. Where a tool does its job well, we connect to it rather than replace it."
+      },
+      {
+        "q": "Can you work with an existing codebase?",
+        "a": "We review its technical condition first, and only take it on when the foundation and the scope are workable. If they are not, we say so and recommend modernization, selective replacement, or a rebuild, whichever the situation calls for. We do not commit to open-ended maintenance of a codebase before that review."
+      },
+      {
+        "q": "How long does a project take?",
+        "a": "Most custom business systems run 3–12 months, depending on scope and how many parts of the operation they cover. Larger programmes can run 6–18 months. We set milestones at the start and review progress weekly."
+      },
+      {
+        "q": "How is scope and pricing handled?",
+        "a": "After a short scoping call, we recommend the model that fits: a fixed scope with a fixed price and timeline, or a monthly dedicated team where the scope will keep evolving. You see a clear estimate before committing to anything."
+      },
+      {
+        "q": "Who owns the code?",
+        "a": "You own the custom code and IP we build for you, transferring on final delivery and payment. Our pre-existing tools, frameworks, and reusable components stay ours and are licensed to you as needed, and third-party or open-source components keep their own licences."
+      },
+      {
+        "q": "What happens after launch?",
+        "a": "Every release includes a post-launch support window for defects found together. After that, you can continue with a maintenance and support plan. Documentation is handed over so your own team can operate and extend the system."
+      }
+    ]
+  },
+  "finalCta": {
+    "eyebrow": "Start the conversation",
+    "title": "Tell us what your operation needs.",
+    "subtitle": "Describe the process that is not working, or the system you have in mind. We reply within one business day.",
+    "button": "Discuss your project"
+  }
+}

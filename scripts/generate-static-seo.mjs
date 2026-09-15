@@ -8,7 +8,7 @@
  * still boots and renders in the browser, and <Seo> takes over for client-side
  * navigation.
  *
- * 8 core routes x 3 markets = 24 localized shells, plus the normalized
+ * 9 routes x 3 markets = 27 localized shells, plus the normalized
  * dist/index.html that remains the SPA fallback for dynamic routes.
  *
  * Titles and descriptions come from the locale files. Each market reads its own
@@ -42,8 +42,12 @@ const MARKET_IDS = ['en', 'ar-eg', 'ar-sa'];
 const DEFAULT_MARKET = 'en';
 
 /**
- * The eight core static routes. `/projects/:slug` is deliberately absent —
- * case-study shells are out of scope and keep using the SPA fallback.
+ * The nine static routes: eight core pages plus the custom business systems
+ * solution page. `/projects/:slug` is deliberately absent — case-study shells
+ * are out of scope and keep using the SPA fallback.
+ *
+ * `name` is the flat output filename under dist/__seo/<market>/, so a nested
+ * route maps to a hyphenated file and .htaccess points the public URL at it.
  */
 const ROUTES = [
   { name: 'index',    route: '/',         file: 'home.json',     pick: (j) => j.seo },
@@ -54,6 +58,7 @@ const ROUTES = [
   { name: 'contact',  route: '/contact',  file: 'contact.json',  pick: (j) => j.seo },
   { name: 'privacy',  route: '/privacy',  file: 'legal.json',    pick: (j) => j.privacy?.seo },
   { name: 'terms',    route: '/terms',    file: 'legal.json',    pick: (j) => j.terms?.seo },
+  { name: 'solutions-custom-business-systems', route: '/solutions/custom-business-systems', file: 'solutionCustomSystems.json', pick: (j) => j.seo },
 ];
 
 /** Escapes text for HTML text nodes and double-quoted attributes. */
