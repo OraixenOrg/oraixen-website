@@ -69,11 +69,19 @@ export function ConsentBanner() {
     setResolved(true);
   }, []);
 
+  /**
+   * `decision`, not localStorage, is the source of truth for the toggle.
+   *
+   * They can disagree: if a grant was applied but the write failed, analytics
+   * is live in this document while readConsent() still returns null. Reading
+   * storage here would show the checkbox OFF while analytics was running, and
+   * saving that state would look like a no-op instead of a revocation.
+   */
   const openDialog = useCallback(() => {
     openerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    setDraftAnalytics(readConsent()?.analytics === true);
+    setDraftAnalytics(decision === true);
     setDialogOpen(true);
-  }, []);
+  }, [decision]);
 
   /** The footer control asks for the dialog without any shared React state. */
   useEffect(() => {
@@ -153,7 +161,11 @@ export function ConsentBanner() {
    * Google unloaded rather than falling back to the stale grant.
    */
   const saveSettings = useCallback(() => {
-    const previous = readConsent()?.analytics === true;
+    // In-memory state, for the same reason as openDialog: what matters is
+    // whether analytics is active in THIS document. Deriving it from storage
+    // would skip the revocation path after a failed grant write, leaving
+    // analytics running while the visitor was told it was off.
+    const previous = decision === true;
 
     if (previous && !draftAnalytics) {
       // Fail closed: drop the stale grant before attempting the new record.
@@ -179,7 +191,7 @@ export function ConsentBanner() {
     if (draftAnalytics) allowAnalytics();
     else rejectAnalytics();
     closeDialog();
-  }, [draftAnalytics, allowAnalytics, rejectAnalytics, closeDialog]);
+  }, [decision, draftAnalytics, allowAnalytics, rejectAnalytics, closeDialog]);
 
   const showBanner = resolved && decision === null && !dialogOpen;
   const revoking = decision === true && !draftAnalytics;
