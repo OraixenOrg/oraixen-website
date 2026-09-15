@@ -32,7 +32,7 @@
       },
       {
         "title": "Mobile applications",
-        "desc": "Native and cross-platform iOS and Android apps built for daily use, not one-time installs."
+        "desc": "Native and cross-platform iOS and Android apps with a polished experience, designed for daily use and to evolve with the product."
       },
       {
         "title": "AI solutions & automation",
@@ -44,14 +44,14 @@
       },
       {
         "title": "System modernization & integrations",
-        "desc": "Replace ageing tools and connect the systems you already run into one working whole."
+        "desc": "We assess, modernize, replace, and connect the systems you already run so data and workflows move cleanly between them."
       }
     ]
   },
   "featured": {
     "eyebrow": "Selected work",
-    "title": "Live products",
-    "subtitle": "Three projects our clients rely on every day.",
+    "title": "Products and systems we've delivered",
+    "subtitle": "A selection of work across customer-facing products and internal business systems.",
     "viewAll": "Browse all projects"
   },
   "whyChoose": {
@@ -65,7 +65,7 @@
       },
       {
         "title": "Architecture that scales",
-        "desc": "Systems designed for the traffic and team you’ll have in a few years, not only next month."
+        "desc": "Systems designed to handle growth in users, traffic, integrations, and operational complexity."
       },
       {
         "title": "Transparent delivery",
@@ -77,7 +77,7 @@
       },
       {
         "title": "Bilingual delivery",
-        "desc": "Native English and Arabic delivery across MENA and international markets."
+        "desc": "English and Arabic delivery across MENA and international markets."
       },
       {
         "title": "Support after launch",

@@ -42,12 +42,12 @@
       },
       {
         "title": "Mobile applications",
-        "description": "Native and cross-platform apps with a polished experience, designed for people who open them every day rather than once.",
+        "description": "Native and cross-platform apps with a polished experience, designed for daily use and to evolve with the product.",
         "deliverables": [
           "iOS and Android apps",
           "React Native / Flutter",
           "UI and UX design",
-          "App store optimization"
+          "App Store & Google Play release"
         ],
         "timeline": "3–6 months",
         "bestFor": "Consumer brands, service platforms, field and staff apps"
@@ -78,7 +78,7 @@
       },
       {
         "title": "System modernization & integrations",
-        "description": "Replace ageing tools and connect the systems you already run, so data stops being re-entered and teams stop working around the software.",
+        "description": "We assess the systems you already run, then integrate, modernize, replace, or rebuild what makes sense so data and workflows move cleanly between them.",
         "deliverables": [
           "Systems assessment",
           "Platform migration",
@@ -86,7 +86,7 @@
           "Rollout and training"
         ],
         "timeline": "3–12 months",
-        "bestFor": "Companies running disconnected or legacy systems"
+        "bestFor": "Companies with disconnected systems, manual workarounds, or tools that no longer fit their operations"
       }
     ]
   },

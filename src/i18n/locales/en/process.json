@@ -16,7 +16,7 @@
         "description": "We learn your goals, audience, and constraints, then agree on scope, timeline, and how success will be measured.",
         "items": [
           "Requirements gathering",
-          "Market research",
+          "Workflow & process mapping",
           "Technical feasibility",
           "Project roadmap"
         ]
@@ -50,7 +50,7 @@
         "items": [
           "Automated testing",
           "Manual testing",
-          "Security audits",
+          "Security reviews",
           "Performance tuning"
         ]
       },
@@ -97,7 +97,7 @@
       },
       {
         "q": "How long does a project take?",
-        "a": "Most mobile apps launch in 3–6 months; web platforms in 2–5 months; larger corporate or hardware+AI systems in 6–18 months. We set milestones up front and demo progress weekly."
+        "a": "Most mobile apps launch in 3–6 months; web platforms in 2–5 months; larger business systems or hardware + software systems in 6–18 months. We set milestones up front and demo progress weekly."
       },
       {
         "q": "Who owns the code and IP?",
@@ -113,7 +113,7 @@
       },
       {
         "q": "Where is your team based?",
-        "a": "We’re based in Cairo, Egypt, with delivery across the MENA region, with overlapping hours with Europe, the Gulf, and beyond."
+        "a": "We’re based in Cairo, Egypt, and work remotely with clients in Saudi Arabia, Egypt, the UAE, Kuwait, the United States, Canada, and other markets."
       },
       {
         "q": "Do you sign NDAs?",
@@ -121,7 +121,7 @@
       },
       {
         "q": "Can you work with our existing team or codebase?",
-        "a": "Yes. We can embed as a dedicated squad, augment your team with specialists, or take ownership of an existing codebase after a technical audit."
+        "a": "Yes. We can work alongside your team and integrate with existing systems. For an existing codebase, we first review its condition and only take it on when the technical foundation and scope are workable. If not, we recommend modernization, selective replacement, or a rebuild where appropriate."
       }
     ],
     "stillHaveQuestion": "Still have a question? Let's talk"
@@ -145,7 +145,7 @@
       },
       {
         "title": "Security practices",
-        "desc": "Secure development with code reviews, automated and manual QA, and security audits."
+        "desc": "Secure development with code reviews, automated and manual QA, and security reviews."
       }
     ]
   },

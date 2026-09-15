@@ -1,57 +1,57 @@
 {
   "seo": {
     "title": "About Oraixen: Custom Software for Growing Businesses",
-    "description": "Oraixen designs and builds mobile apps, web platforms, corporate software, and hardware + AI solutions. From a freelance team in 2019 to Oraixen in 2025: transparent delivery and support past launch."
+    "description": "Oraixen builds custom business systems, web and mobile products, e-commerce, AI, and connected software for growing businesses. Software delivery since 2019; Oraixen founded in 2025."
   },
   "hero": {
     "eyebrow": "About us",
-    "title": "Software built to perform, and grow with your business.",
+    "title": "Software built around how your business works.",
     "subtitle": "We help growing businesses turn operational problems and product ideas into reliable custom software."
   },
   "story": {
     "eyebrow": "Our story",
     "title": "How Oraixen came to be",
-    "intro": "Oraixen works across six service groups: custom business systems, web platforms and e-commerce, mobile applications, AI solutions and automation, hardware and software systems, and system modernization and integrations, for startups, SMBs, and enterprises.",
-    "history": "We started as a freelance team in 2019, working closely with early clients to build clean, dependable products. In 2025 we became Oraixen: the same team, the same standards, now under one name.",
+    "intro": "Oraixen works across six service groups: custom business systems, web platforms and e-commerce, mobile applications, AI solutions and automation, hardware and software systems, and system modernization and integrations, for growing businesses and established companies with real operational or product needs.",
+    "history": "Software delivery began in 2019 through an independent team working closely with early clients. In 2025, Oraixen was founded under its current name: the same team and standards, now under one company.",
     "p1": {
-      "before": "The name reflects how we work. ",
-      "ora": "Orai",
-      "after": ", from \"origin,\" because we aim to be the starting point of each client's success story."
+      "before": "",
+      "ora": "Understand the business before we build",
+      "after": ": We start with your operations, users, workflows, and constraints, not a list of technologies."
     },
     "p2": {
       "before": "",
-      "ixen": "The X",
-      "after": " represents the connection between the markets we serve: Egypt, China, Canada, Europe, MENA, and the USA."
+      "ixen": "Clarity from scope to launch",
+      "after": ": Written scope, realistic timelines, and weekly reviews keep the project visible throughout delivery."
     },
     "p3": {
       "before": "",
-      "en": "The “en” ending",
-      "after": " represents continuity, because our role continues well beyond launch."
+      "en": "Support that continues after go-live",
+      "after": ": Every release includes a post-launch support window, with documentation and maintenance options for what comes next."
     },
-    "closing": "We build for education, healthcare, e-commerce, finance, services, and technology, with full transparency, realistic timelines, and support that doesn't end at delivery.",
+    "closing": "We build across e-commerce, food and restaurants, B2B operations, booking, education, and productivity, with clear communication, realistic timelines, and support that continues after delivery.",
     "tagline": "Build the future. Build with Oraixen.",
     "imageAlt": "Illustrative image of a team planning a software project"
   },
   "timeline": {
     "eyebrow": "Milestones",
     "title": "How we got here",
-    "subtitle": "From a close-knit freelance team to a named studio serving clients across markets.",
+    "subtitle": "From an independent software team to Oraixen, serving growing businesses across multiple markets.",
     "items": [
       {
         "year": "2019",
-        "label": "Started as a freelance team"
+        "label": "Software delivery began through an independent team"
       },
       {
         "year": "2022",
-        "label": "Expanded into web, mobile, and platforms"
+        "label": "Expanded across web, mobile, and business platforms"
       },
       {
         "year": "2025",
-        "label": "Became Oraixen"
+        "label": "Oraixen founded under its current name"
       },
       {
         "year": "Today",
-        "label": "Building across education, healthcare, commerce, and more"
+        "label": "Building business systems and digital products across markets"
       }
     ]
   },
@@ -66,7 +66,7 @@
       },
       {
         "title": "Vision",
-        "text": "Be the starting point of lasting success stories for clients across Egypt, China, Canada, Europe, MENA, and the USA."
+        "text": "Become a trusted software partner for growing companies across Saudi Arabia, Egypt, the UAE, Kuwait, the United States, Canada, and beyond."
       },
       {
         "title": "Purpose",
