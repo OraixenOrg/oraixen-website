@@ -1,0 +1,288 @@
+{
+  "seo": {
+    "title": "Real Estate Management Systems Development | Oraixen",
+    "description": "Custom real estate management systems connecting resident experience, property operations, tenant tools, and the integrations that hold them together."
+  },
+  "hero": {
+    "eyebrow": "Real estate and community systems",
+    "title": "Real estate management systems built around how your community operates.",
+    "subtitle": "A resident app, a management portal, and tenant tools that share one operational foundation, built around the way your properties actually run.",
+    "primaryCta": "Discuss your project",
+    "secondaryCta": "See how we work"
+  },
+  "problems": {
+    "eyebrow": "The operating reality",
+    "title": "When community operations outgrow the channels running them",
+    "intro": "Calls, messages, and spreadsheets can carry a large share of day-to-day property operations. As the operation becomes more complex, it becomes harder to keep requests, responsibilities, and status visible. If any of this sounds familiar, a connected system may be worth evaluating.",
+    "items": [
+      {
+        "title": "Requests arriving through every channel",
+        "desc": "A maintenance request comes by phone, another by message, a third at the front desk, and only some of them end up in a list someone owns."
+      },
+      {
+        "title": "No single view of what is open",
+        "desc": "Work gets done, but it becomes difficult to see how many requests are still open, how long they have been waiting, and who currently owns them."
+      },
+      {
+        "title": "Visitor and access handled manually",
+        "desc": "Gate staff may be working from call-aheads or manual lists, while residents may have no consistent way to register a guest in advance."
+      },
+      {
+        "title": "Announcements scattered across groups",
+        "desc": "Notices go out through whichever channel is closest to hand, so reach depends on which group someone happens to be in."
+      },
+      {
+        "title": "Amenities and bookings tracked separately",
+        "desc": "Facility reservations live in their own sheet or notebook, disconnected from the team that has to prepare and staff them."
+      }
+    ]
+  },
+  "ecosystem": {
+    "eyebrow": "The connected picture",
+    "title": "Separate experiences, one operational foundation",
+    "intro": "Residents, staff, tenants, and management each need a different surface. What they should not need is a different source of truth. The applications can stay separate while the data, workflows, permissions, and integrations underneath stay shared.",
+    "items": [
+      {
+        "title": "Resident experience",
+        "desc": "The app or portal residents use for requests, announcements, bookings, and visitors."
+      },
+      {
+        "title": "Management operations",
+        "desc": "The internal portal where requests are triaged, assigned, tracked, and reported on."
+      },
+      {
+        "title": "Business and tenant tools",
+        "desc": "A dedicated surface for commercial tenants and service providers operating on the property."
+      },
+      {
+        "title": "Staff workflows",
+        "desc": "What the people doing the work see: their queue, their task detail, and the status they update."
+      },
+      {
+        "title": "Integrations and reporting",
+        "desc": "The connections to the systems you keep, and the operational picture assembled from all of it."
+      }
+    ]
+  },
+  "resident": {
+    "eyebrow": "Resident experience",
+    "title": "What residents can do without calling the office",
+    "intro": "Depending on the property and operating model, the resident surface can include any of the following.",
+    "items": [
+      {
+        "title": "Service and maintenance requests",
+        "desc": "Raise a request, add photos and detail, and follow its status without needing to call the management team for every update."
+      },
+      {
+        "title": "Announcements and notifications",
+        "desc": "Community notices delivered to the people they apply to, with a record of what was sent."
+      },
+      {
+        "title": "Visitor invitations and access requests",
+        "desc": "Residents pre-authorize guests, and the gate works from the same list rather than a phone call."
+      },
+      {
+        "title": "Amenity and facility bookings",
+        "desc": "Reservations for shared spaces, visible to the team responsible for preparing them."
+      },
+      {
+        "title": "Documents and community information",
+        "desc": "Rules, forms, contacts, and notices in one place instead of a group chat archive."
+      },
+      {
+        "title": "Account and service status",
+        "desc": "Residents can see relevant account or service status when the existing source system can expose it, while that source system remains the system of record."
+      }
+    ]
+  },
+  "operations": {
+    "eyebrow": "Management and operations",
+    "title": "One place to run the day",
+    "intro": "The internal side connects resident-facing activity to the teams responsible for delivering the work. Scope is set around how your team actually divides responsibilities.",
+    "items": [
+      {
+        "title": "Request queues and assignment",
+        "desc": "Incoming work lands in a queue, gets categorized, and is assigned to a named owner."
+      },
+      {
+        "title": "Status and response visibility",
+        "desc": "Your own internal targets and current status, visible to the people accountable for them."
+      },
+      {
+        "title": "Operational dashboards",
+        "desc": "Open work, ageing, and workload across the properties you operate."
+      },
+      {
+        "title": "Unit and resident records",
+        "desc": "The underlying records that every other part of the system refers to."
+      },
+      {
+        "title": "Roles and permissions",
+        "desc": "Staff, supervisors, tenants, and residents each see only what their role allows."
+      },
+      {
+        "title": "Reports and exports",
+        "desc": "Operational and management reporting, with exports and formats agreed around the needs of your finance and leadership teams."
+      }
+    ]
+  },
+  "tenant": {
+    "eyebrow": "Business and tenant tools",
+    "title": "Commercial tenants are part of the operation too",
+    "intro": "Mixed-use and commercial components have their own workflows. They can run on the same foundation without sharing a resident's view of the community.",
+    "items": [
+      {
+        "title": "Tenant and business portal",
+        "desc": "A dedicated entry point for retail units, offices, and service providers on the property."
+      },
+      {
+        "title": "Service requests and shared facilities",
+        "desc": "Requests for maintenance, access, loading, or shared space, routed to the same operational queue."
+      },
+      {
+        "title": "Approvals and documents",
+        "desc": "Fit-out submissions, internal approvals, contracts, certificates, and related documents handled as a tracked process rather than an email thread."
+      },
+      {
+        "title": "Announcements and communication",
+        "desc": "Operational notices that reach commercial occupants without going to every resident."
+      }
+    ]
+  },
+  "integrations": {
+    "eyebrow": "Existing systems",
+    "title": "We assess what you already run before recommending anything",
+    "p1": "If you already run accounting, ERP, CRM, access-control, payment, facility, or other operational systems, replacing them is not automatically the goal. We first identify what is worth keeping and where a new system needs to connect.",
+    "p2": "Before scope is agreed, we review what is in use, what each system does well, and what it can realistically expose through an API or supported integration method. Compatibility is assessed per system, and we say what is feasible before anyone commits to it.",
+    "paths": [
+      {
+        "title": "Integrate what is worth keeping",
+        "desc": "If a system does its job and can be connected to, we connect to it rather than rebuild it."
+      },
+      {
+        "title": "Modernize or selectively replace",
+        "desc": "Where a tool limits operations, we replace the part that limits it, not the whole estate."
+      },
+      {
+        "title": "Build where there is a genuine gap",
+        "desc": "New components are built where an important workflow has no suitable system behind it or where the current setup cannot support the required process."
+      }
+    ]
+  },
+  "outcomes": {
+    "eyebrow": "What changes",
+    "title": "What the operation looks like afterwards",
+    "intro": "Outcomes worth aiming for, described honestly. What a specific system achieves depends on the operation it supports.",
+    "items": [
+      {
+        "title": "Clearer service ownership",
+        "desc": "Every request has an owner, a category, and a current status, so follow-up stops depending on who remembers."
+      },
+      {
+        "title": "One operational picture",
+        "desc": "Management sees open work across properties from the same source the team is working in."
+      },
+      {
+        "title": "Fewer disconnected handoffs",
+        "desc": "A request raised by a resident reaches the person who will do the work without being retyped along the way."
+      },
+      {
+        "title": "Room to expand",
+        "desc": "The platform can be designed so additional properties or communities can be added without rebuilding the underlying foundation."
+      }
+    ]
+  },
+  "midCta": {
+    "button": "Discuss your project"
+  },
+  "process": {
+    "eyebrow": "How delivery works",
+    "title": "A clear path from scope to launch",
+    "intro": "Five phases, a written scope, realistic timelines, and weekly reviews. You can see where the project stands at any point.",
+    "steps": [
+      {
+        "title": "Discovery",
+        "desc": "We map the workflows, the users and roles involved, and the systems already in place across your properties."
+      },
+      {
+        "title": "Scope and design",
+        "desc": "Written scope, agreed priorities, and the interface design for each audience reviewed before engineering starts."
+      },
+      {
+        "title": "Build",
+        "desc": "Development in stages, with weekly reviews of progress and working increments where applicable."
+      },
+      {
+        "title": "Test and launch",
+        "desc": "Automated and manual testing, then a planned release with the rollout sequence agreed in advance."
+      },
+      {
+        "title": "Support",
+        "desc": "A post-launch support window on every release, with documentation and ongoing options where they make sense."
+      }
+    ]
+  },
+  "trust": {
+    "eyebrow": "Why Oraixen",
+    "title": "A delivery partner that stays involved",
+    "intro": "Three things worth knowing about how we approach long-term software delivery."
+  },
+  "ownership": {
+    "eyebrow": "Ownership and support",
+    "title": "You own what we build, and we stay after launch",
+    "cards": [
+      {
+        "title": "Ownership",
+        "body": "You own the custom code and the intellectual property we build specifically for you. It transfers on final delivery and payment. Our pre-existing tools, frameworks, and reusable components stay ours and are licensed to you as needed, and third-party or open-source components keep their own licences."
+      },
+      {
+        "title": "After launch",
+        "body": "Every release includes a post-launch support window, along with the documentation your team needs to operate and extend the system. Ongoing maintenance and support options are available where they make sense. Whatever the question, we reply within one business day."
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Common questions",
+    "items": [
+      {
+        "q": "Is this an off-the-shelf property-management product?",
+        "a": "No. This is custom software built around how your properties are actually run. Off-the-shelf products are often the better answer where your process matches the product. Custom software makes sense when a standard product cannot support the operating model, user groups, or system connections the property actually needs."
+      },
+      {
+        "q": "Can the resident app and the management portal share the same data?",
+        "a": "Yes. Separate applications for residents, staff, tenants, and management can share the same records, workflows, and permissions, so a request raised in the app is the same request the team works on."
+      },
+      {
+        "q": "Can it support more than one property or community?",
+        "a": "It can be structured that way from the start. Multi-property support is an architectural decision made during scope, covering how properties, units, roles, and reporting are separated and shared. What it can handle depends on the scope agreed, not an unlimited promise."
+      },
+      {
+        "q": "Can you integrate with our existing ERP, CRM, access control, or payment systems?",
+        "a": "It may be possible, depending on the system. During discovery, we review each existing platform and assess what it exposes through an API or other supported integration method. Only integrations confirmed as technically feasible become part of the agreed scope."
+      },
+      {
+        "q": "Can we start with one part and expand later?",
+        "a": "Yes. The platform can be scoped in phases, with one module or audience launched first and the shared foundation designed so later components can connect to it cleanly."
+      },
+      {
+        "q": "How long does a project like this take?",
+        "a": "A connected system spanning several audiences can fall in the 6–18 month range, depending on how many components and integrations are in scope. A smaller, clearly scoped module can be closer to the 3–12 month range for custom business systems. We set milestones at the start and review progress weekly."
+      },
+      {
+        "q": "Who owns the code?",
+        "a": "You own the custom code and IP we build for you, transferring on final delivery and payment. Our pre-existing tools, frameworks, and reusable components stay ours and are licensed to you as needed, and third-party or open-source components keep their own licences."
+      },
+      {
+        "q": "What happens after launch?",
+        "a": "Every release includes a post-launch support window for defects found together. After that, you can continue with a maintenance and support plan. Documentation is handed over so your own team can operate and extend the system."
+      }
+    ]
+  },
+  "finalCta": {
+    "eyebrow": "Start the conversation",
+    "title": "Build the system your property operation needs.",
+    "subtitle": "Tell us how your properties are run today, and where the current setup is holding the team back. We reply within one business day.",
+    "button": "Discuss your project"
+  }
+}

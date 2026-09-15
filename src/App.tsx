@@ -21,6 +21,9 @@ const Contact = lazy(() => import('./pages/Contact').then((m) => ({ default: m.C
 const SolutionCustomSystems = lazy(() =>
   import('./pages/SolutionCustomSystems').then((m) => ({ default: m.SolutionCustomSystems }))
 );
+const SolutionRealEstateSystems = lazy(() =>
+  import('./pages/SolutionRealEstateSystems').then((m) => ({ default: m.SolutionRealEstateSystems }))
+);
 const Privacy = lazy(() => import('./pages/Privacy').then((m) => ({ default: m.Privacy })));
 const Terms = lazy(() => import('./pages/Terms').then((m) => ({ default: m.Terms })));
 const NotFound = lazy(() => import('./pages/NotFound').then((m) => ({ default: m.NotFound })));
@@ -72,6 +75,10 @@ export function App() {
               <Route
                 path="/solutions/custom-business-systems"
                 element={<SolutionCustomSystems />}
+              />
+              <Route
+                path="/solutions/real-estate-systems"
+                element={<SolutionRealEstateSystems />}
               />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />

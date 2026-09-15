@@ -37,6 +37,9 @@ import saLegal from './locales/ar-sa/legal.json';
 import enSolutionCustomSystems from './locales/en/solutionCustomSystems.json';
 import egSolutionCustomSystems from './locales/ar-eg/solutionCustomSystems.json';
 import saSolutionCustomSystems from './locales/ar-sa/solutionCustomSystems.json';
+import enSolutionRealEstateSystems from './locales/en/solutionRealEstateSystems.json';
+import egSolutionRealEstateSystems from './locales/ar-eg/solutionRealEstateSystems.json';
+import saSolutionRealEstateSystems from './locales/ar-sa/solutionRealEstateSystems.json';
 import enSections from './locales/en/sections.json';
 import egSections from './locales/ar-eg/sections.json';
 import saSections from './locales/ar-sa/sections.json';
@@ -51,6 +54,7 @@ export const NAMESPACES = [
   'process',
   'contact',
   'solutionCustomSystems',
+  'solutionRealEstateSystems',
   'legal',
   'sections',
 ] as const;
@@ -72,6 +76,7 @@ export const resources = {
     process: enProcess,
     contact: enContact,
     solutionCustomSystems: enSolutionCustomSystems,
+    solutionRealEstateSystems: enSolutionRealEstateSystems,
     legal: enLegal,
     sections: enSections,
   },
@@ -85,6 +90,7 @@ export const resources = {
     process: egProcess,
     contact: egContact,
     solutionCustomSystems: egSolutionCustomSystems,
+    solutionRealEstateSystems: egSolutionRealEstateSystems,
     legal: egLegal,
     sections: egSections,
   },
@@ -98,6 +104,7 @@ export const resources = {
     process: saProcess,
     contact: saContact,
     solutionCustomSystems: saSolutionCustomSystems,
+    solutionRealEstateSystems: saSolutionRealEstateSystems,
     legal: saLegal,
     sections: saSections,
   },
