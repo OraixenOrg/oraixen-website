@@ -1,0 +1,297 @@
+name: Deploy to production
+
+# Runs only after the CI workflow finishes. CI stays validation-only; this is
+# the single workflow that writes to the Hostinger server.
+#
+# Gating happens twice:
+#   1. the `if` below, so nothing starts for Dev, PRs or failed runs
+#   2. a stale-SHA gate in the job, because two fast pushes can finish CI out of
+#      order and the later-finishing run must not redeploy an older commit
+on:
+  workflow_run:
+    workflows: ['CI']
+    types:
+      - completed
+
+# No write access is needed: the workflow reads the repository and deploys over
+# SSH. It never pushes, tags or comments.
+permissions:
+  contents: read
+
+# Never cancel a deployment in flight. A cancelled run could leave production
+# promoted but unverified, with no rollback.
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build, deploy and verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_branch == 'main'
+
+    environment:
+      name: production
+      url: https://oraixen.com/
+
+    env:
+      DEPLOY_SHA: ${{ github.event.workflow_run.head_sha }}
+      RUN_ID: ${{ github.run_id }}
+      RUN_ATTEMPT: ${{ github.run_attempt }}
+
+    steps:
+      - name: Check out the exact commit that passed CI
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      # If main has already moved on, this CI result is stale. Deploying it
+      # would roll production backwards. Skip cleanly rather than failing: the
+      # newer commit's own run will deploy.
+      - name: Gate on stale main
+        id: gate
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin main
+          current="$(git rev-parse origin/main)"
+          echo "CI commit : ${DEPLOY_SHA}"
+          echo "origin/main: ${current}"
+          if [ "$current" != "$DEPLOY_SHA" ]; then
+            echo 'main has advanced since this CI run; skipping deployment.'
+            echo 'should_deploy=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'should_deploy=true' >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up Node.js
+        if: steps.gate.outputs.should_deploy == 'true'
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        if: steps.gate.outputs.should_deploy == 'true'
+        run: npm ci
+
+      # CI already ran lint and type checking for this exact SHA, so only the
+      # build is repeated here, to produce the artifact from the deployed commit.
+      - name: Build production bundle
+        if: steps.gate.outputs.should_deploy == 'true'
+        run: npm run build
+
+      - name: Validate local dist
+        if: steps.gate.outputs.should_deploy == 'true'
+        run: |
+          set -euo pipefail
+          for f in index.html .htaccess contact.php market-context.php \
+                   market-lib.php market-router.php sitemap.xml robots.txt; do
+            test -f "dist/$f" || { echo "missing dist/$f" >&2; exit 1; }
+          done
+          for d in assets __seo flags; do
+            test -d "dist/$d" || { echo "missing dist/$d" >&2; exit 1; }
+          done
+          shells="$(find dist/__seo -type f -name '*.html' | wc -l | tr -d ' ')"
+          test "$shells" -eq 30 || { echo "expected 30 SEO shells, found $shells" >&2; exit 1; }
+          echo "dist validated: $shells localized SEO shells"
+
+      # Fail before any remote contact if configuration is incomplete.
+      # Only emptiness is reported; no value is ever echoed.
+      - name: Validate deployment configuration
+        if: steps.gate.outputs.should_deploy == 'true'
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+          HOSTINGER_SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          HOSTINGER_KNOWN_HOSTS: ${{ secrets.HOSTINGER_KNOWN_HOSTS }}
+          NEIGHBOR_SMOKE_URL: ${{ vars.NEIGHBOR_SMOKE_URL }}
+        run: |
+          set -euo pipefail
+          missing=0
+          for name in HOSTINGER_HOST HOSTINGER_PORT HOSTINGER_USER \
+                      HOSTINGER_SSH_KEY HOSTINGER_KNOWN_HOSTS; do
+            if [ -z "${!name:-}" ]; then
+              echo "missing production secret: $name" >&2
+              missing=1
+            fi
+          done
+          if [ -z "${NEIGHBOR_SMOKE_URL:-}" ]; then
+            echo 'missing production variable: NEIGHBOR_SMOKE_URL' >&2
+            echo 'It must be a public URL of another project in the shared public_html.' >&2
+            missing=1
+          fi
+          test "$missing" -eq 0 || exit 1
+
+          # The runner builds one remote path string (the staging destination).
+          # Validate the identifiers that feed it with the same strict formats
+          # the remote script enforces, so a malformed value can never be
+          # concatenated into a remote path. The remote script re-validates
+          # independently; this is defence in depth, not a substitute.
+          echo "$DEPLOY_SHA" | grep -Eq '^[0-9a-f]{40}$' \
+            || { echo 'DEPLOY_SHA is not 40 lowercase hex characters' >&2; exit 1; }
+          echo "$RUN_ID" | grep -Eq '^[0-9]+$' \
+            || { echo 'RUN_ID is not digits only' >&2; exit 1; }
+          echo "$RUN_ATTEMPT" | grep -Eq '^[0-9]+$' \
+            || { echo 'RUN_ATTEMPT is not digits only' >&2; exit 1; }
+
+          echo 'deployment configuration present'
+
+      # Host key comes from the secret, verified out of band. Never
+      # accept-new, never StrictHostKeyChecking=no: a fresh key trusted inside
+      # the workflow would defeat the point of pinning it.
+      - name: Configure pinned SSH
+        if: steps.gate.outputs.should_deploy == 'true'
+        env:
+          HOSTINGER_SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          HOSTINGER_KNOWN_HOSTS: ${{ secrets.HOSTINGER_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "$HOSTINGER_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$HOSTINGER_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+          echo 'ssh key and known_hosts installed'
+
+      - name: Remote preflight
+        if: steps.gate.outputs.should_deploy == 'true'
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+        run: |
+          set -euo pipefail
+          ssh -p "$HOSTINGER_PORT" \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile=~/.ssh/known_hosts \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -i ~/.ssh/deploy_key \
+            "${HOSTINGER_USER}@${HOSTINGER_HOST}" \
+            bash -s -- preflight "$DEPLOY_SHA" "$RUN_ID" "$RUN_ATTEMPT" \
+            < scripts/hostinger-deploy.sh
+
+      # Uploads into the release-specific staging directory only, never into
+      # public_html. No --delete: preflight created that directory empty.
+      - name: Upload release to staging
+        if: steps.gate.outputs.should_deploy == 'true'
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+        run: |
+          set -euo pipefail
+          # Fixed literal prefix; only the validated release id varies. This is
+          # inside the Oraixen domain but OUTSIDE public_html, so the runner can
+          # never write into a sibling project or another domain.
+          stage="/home/u396801667/domains/oraixen.com/.oraixen-deploy/staging/${DEPLOY_SHA}-${RUN_ID}-${RUN_ATTEMPT}"
+          rsync -az \
+            -e "ssh -p ${HOSTINGER_PORT} -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts -o BatchMode=yes -o IdentitiesOnly=yes -i $HOME/.ssh/deploy_key" \
+            dist/ "${HOSTINGER_USER}@${HOSTINGER_HOST}:${stage}/"
+          echo "uploaded dist/ to ${stage}/"
+
+      - name: Verify staged release
+        if: steps.gate.outputs.should_deploy == 'true'
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+        run: |
+          set -euo pipefail
+          ssh -p "$HOSTINGER_PORT" \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile=~/.ssh/known_hosts \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -i ~/.ssh/deploy_key \
+            "${HOSTINGER_USER}@${HOSTINGER_HOST}" \
+            bash -s -- verify-stage "$DEPLOY_SHA" "$RUN_ID" "$RUN_ATTEMPT" \
+            < scripts/hostinger-deploy.sh
+
+      # First step that writes to production. Its `id` is what the rollback
+      # condition keys on, so rollback cannot fire for earlier failures.
+      - name: Promote to production
+        id: promote
+        if: steps.gate.outputs.should_deploy == 'true'
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+        run: |
+          set -euo pipefail
+          ssh -p "$HOSTINGER_PORT" \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile=~/.ssh/known_hosts \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -i ~/.ssh/deploy_key \
+            "${HOSTINGER_USER}@${HOSTINGER_HOST}" \
+            bash -s -- promote "$DEPLOY_SHA" "$RUN_ID" "$RUN_ATTEMPT" \
+            < scripts/hostinger-deploy.sh
+
+      - name: Smoke-test production
+        if: steps.gate.outputs.should_deploy == 'true'
+        env:
+          NEIGHBOR_SMOKE_URL: ${{ vars.NEIGHBOR_SMOKE_URL }}
+        run: bash scripts/production-smoke-test.sh "$NEIGHBOR_SMOKE_URL"
+
+      # Only when promotion was actually attempted. `steps.promote.conclusion`
+      # is 'skipped' if the job failed earlier, so build/preflight/stage
+      # failures never reach this step. The remote script itself reports
+      # "no rollback backup available" if promotion failed before backup.
+      - name: Roll back on failure
+        if: >-
+          failure() &&
+          steps.gate.outputs.should_deploy == 'true' &&
+          steps.promote.conclusion != 'skipped'
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+        run: |
+          set -euo pipefail
+          echo '::warning::Deployment failed after promotion was attempted; rolling back.'
+          ssh -p "$HOSTINGER_PORT" \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile=~/.ssh/known_hosts \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -i ~/.ssh/deploy_key \
+            "${HOSTINGER_USER}@${HOSTINGER_HOST}" \
+            bash -s -- rollback "$DEPLOY_SHA" "$RUN_ID" "$RUN_ATTEMPT" \
+            < scripts/hostinger-deploy.sh
+
+      # Diagnostics only. continue-on-error so a failing verification cannot
+      # replace the original deployment failure as the job's headline result.
+      - name: Verify rollback publicly
+        if: >-
+          failure() &&
+          steps.gate.outputs.should_deploy == 'true' &&
+          steps.promote.conclusion != 'skipped'
+        continue-on-error: true
+        env:
+          NEIGHBOR_SMOKE_URL: ${{ vars.NEIGHBOR_SMOKE_URL }}
+        run: bash scripts/production-smoke-test.sh "$NEIGHBOR_SMOKE_URL"
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo '## Production deployment'
+            echo
+            echo "- Commit: \`${DEPLOY_SHA}\`"
+            echo "- Release id: \`${DEPLOY_SHA}-${RUN_ID}-${RUN_ATTEMPT}\`"
+            echo "- Deploy decision: \`${{ steps.gate.outputs.should_deploy }}\`"
+            echo "- Promotion: \`${{ steps.promote.conclusion }}\`"
+            echo "- Target: \`/home/u396801667/domains/oraixen.com/public_html/oraixen-website\`"
+          } >> "$GITHUB_STEP_SUMMARY"
