@@ -120,12 +120,23 @@ export function Contact() {
     // Native validation has already passed, so this is a real attempt.
     trackEvent('lead_form_submit_attempt', { form_id: FORM_ID });
 
+    // Built once so the honeypot can be read locally and the SAME instance is
+    // POSTed: the hidden field must still reach contact.php unchanged.
+    const formData = new FormData(form);
+
+    // The backend deliberately answers a honeypot hit with the normal success
+    // response so bots learn nothing. That means a backend "success" is not
+    // proof of a real enquiry, and only this local check can tell them apart.
+    // Used solely to suppress the conversion event; the visitor still sees the
+    // identical success flow, and nothing about the detection is sent anywhere.
+    const honeypotTriggered = String(formData.get('company_website') ?? '').trim() !== '';
+
     // Classify once, so a single failed attempt produces exactly one event.
     let failure: { type: LeadErrorType; status?: number } | null = null;
     try {
       const res = await fetch('/contact.php', {
         method: 'POST',
-        body: new FormData(form),
+        body: formData,
       });
       const data: { ok?: unknown } | null = await res.json().catch(() => null);
       if (!res.ok) {
@@ -143,8 +154,17 @@ export function Contact() {
       trackLeadFormError(failure.type, failure.status);
       setError(t('form.error'));
     } else {
-      // Backend-confirmed lead only.
-      trackEvent('generate_lead', { form_id: FORM_ID, lead_source: 'website_contact_form' });
+      // Backend-confirmed lead only, and never a submission the backend
+      // discarded as a bot. No event is emitted for the honeypot path: a
+      // dedicated "spam" event would add noise and, if ever observable, teach
+      // bots that the field is watched.
+      if (!honeypotTriggered) {
+        trackEvent('generate_lead', {
+          form_id: FORM_ID,
+          lead_source: 'website_contact_form',
+          market: marketFromLanguage(i18n.language),
+        });
+      }
       form.reset();
       setSubmitted(true);
     }

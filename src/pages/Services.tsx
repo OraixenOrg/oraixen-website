@@ -285,7 +285,8 @@ export function Services() {
       <CTASection
         title={t('cta.title')}
         subtitle={t('cta.subtitle')}
-        primary={{ label: t('cta.button'), href: '/contact' }}
+        ctaLocation="services_bottom"
+        primary={{ label: t('cta.button'), href: '/contact', ctaId: 'discuss_project' }}
       />
     </div>
   );

@@ -300,7 +300,8 @@ export function Process() {
       <CTASection
         title={t('cta.title')}
         subtitle={t('cta.subtitle')}
-        primary={{ label: t('cta.primary'), href: '/contact' }}
+        ctaLocation="process_bottom"
+        primary={{ label: t('cta.primary'), href: '/contact', ctaId: 'discuss_project' }}
         secondary={{ label: t('cta.secondary'), href: '/projects' }}
       />
     </div>

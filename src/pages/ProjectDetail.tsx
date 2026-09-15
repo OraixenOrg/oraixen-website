@@ -279,7 +279,8 @@ export function ProjectDetail() {
       <CTASection
         title={t('cta.title')}
         subtitle={t('cta.subtitle')}
-        primary={{ label: t('cta.button'), href: '/contact' }}
+        ctaLocation="project_detail_bottom"
+        primary={{ label: t('cta.button'), href: '/contact', ctaId: 'start_similar_project' }}
       />
     </div>;
 }
