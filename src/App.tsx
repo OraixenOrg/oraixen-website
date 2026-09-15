@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { ConsentBanner } from './components/ConsentBanner';
 import { MotionProvider } from './components/MotionProvider';
 import { ScrollProgress } from './components/visual';
 import { Home } from './pages/Home';
@@ -87,6 +88,7 @@ export function App() {
           </Suspense>
         </main>
         <Footer />
+        <ConsentBanner />
       </div>
     </MotionProvider>
   );

@@ -1,0 +1,31 @@
+{
+  "banner": {
+    "title": "Your privacy choices",
+    "body": "Oraixen uses site preferences to remember your market, language, and theme. Google Analytics is optional and stays off unless you allow it. Rejecting analytics does not limit any part of this site.",
+    "accept": "Allow analytics",
+    "reject": "Reject analytics",
+    "manage": "Manage settings",
+    "privacyLink": "Privacy Policy"
+  },
+  "dialog": {
+    "title": "Privacy settings",
+    "intro": "Choose what this site may measure. Site preferences are always available. Analytics is optional, and you can change this choice at any time.",
+    "save": "Save choices",
+    "close": "Close",
+    "reloadNote": "Turning analytics off reloads the page so the analytics library is fully removed."
+  },
+  "categories": {
+    "sitePreferences": {
+      "title": "Site preferences",
+      "description": "Remembers the market and language you selected and your light or dark theme. Stored on your device by this site only, and not used for advertising.",
+      "alwaysOnLabel": "Always available"
+    },
+    "analytics": {
+      "title": "Analytics",
+      "description": "Optional Google Analytics, used to understand how the site is used and how it performs. When enabled, it may measure page views, clicks on calls to action, scroll milestones, clicks on contact methods, and whether a contact form was submitted successfully. It does not receive your name, email, phone number, company, or the text of your message. Allowing analytics does not enable advertising storage or personalized advertising."
+    }
+  },
+  "footer": {
+    "settingsLink": "Privacy settings"
+  }
+}

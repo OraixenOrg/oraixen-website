@@ -1,5 +1,12 @@
 export const GA_MEASUREMENT_ID = 'G-JT8H9HJ01C';
 
+/**
+ * Mirror of ANALYTICS_ENABLED_EVENT in src/lib/consent.ts. Declared locally so
+ * this module stays dependency-free: consent.ts imports analytics.ts, and
+ * importing back would create a cycle.
+ */
+const ANALYTICS_ENABLED_EVENT = 'oraixen:analytics-enabled';
+
 declare global {
   interface Window {
     dataLayer: unknown[];
@@ -26,8 +33,33 @@ export type AnalyticsParams = Record<string, string | number | boolean>;
  */
 let lastTrackedPath: string | null = null;
 
-/** Sends a GA4 event, or does nothing when the Google tag is unavailable. */
+/**
+ * Whether the visitor has allowed analytics. Starts false: nothing is sent
+ * until src/lib/consent.ts turns it on, and the Google tag is not even loaded
+ * before then (Basic Consent Mode).
+ *
+ * This must be checked in addition to `window.gtag`, not instead of it. Once
+ * gtag.js has loaded it stays a function for the life of the document, so after
+ * a revocation the gtag check alone would no longer suppress anything.
+ */
+let analyticsEnabled = false;
+
+/** Consent-controlled switch. Called only by src/lib/consent.ts. */
+export function setAnalyticsEnabled(enabled: boolean) {
+  analyticsEnabled = enabled;
+  // Leaving a stale path would make the next grant skip the current route's
+  // pageview as an apparent duplicate.
+  if (!enabled) lastTrackedPath = null;
+}
+
+/** Clears the pageview dedupe so a later grant can report the current route. */
+export function resetPageViewDedupe() {
+  lastTrackedPath = null;
+}
+
+/** Sends a GA4 event, or does nothing when analytics is off or unavailable. */
 export function trackEvent(eventName: string, parameters: AnalyticsParams = {}) {
+  if (!analyticsEnabled) return;
   if (typeof window.gtag !== 'function') return;
   window.gtag('event', eventName, parameters);
 }
@@ -45,6 +77,9 @@ export function trackEvent(eventName: string, parameters: AnalyticsParams = {}) 
  * pageview on every History API change and double-count every route.
  */
 export function trackPageView(path: string) {
+  // Checked before the dedupe: recording a path while analytics is off would
+  // make the post-consent pageview look like a duplicate and be dropped.
+  if (!analyticsEnabled) return;
   if (path === lastTrackedPath) return;
   // No gtag yet (blocked, still loading, SSR-like context): leave the path
   // untracked so a later call for it can still succeed.
@@ -97,13 +132,32 @@ const SCROLL_THRESHOLDS = [25, 50, 75, 90] as const;
 export function startScrollDepthTracking(path: string): () => void {
   const reached = new Set<number>();
 
-  const evaluate = () => {
+  const currentPercent = () => {
     const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-    // Page fits the viewport — there is no depth to report, and dividing by
-    // this would be a divide-by-zero.
-    if (scrollable <= 0) return;
+    // Page fits the viewport: there is no depth to report, and dividing by this
+    // would be a divide-by-zero.
+    if (scrollable <= 0) return null;
+    return (window.scrollY / scrollable) * 100;
+  };
 
-    const percent = (window.scrollY / scrollable) * 100;
+  /**
+   * Marks every threshold already behind the visitor as passed WITHOUT sending
+   * it. Run when analytics turns on, so granting consent after scrolling half
+   * the page reports the milestones that follow rather than back-filling the
+   * ones that came before.
+   */
+  const baseline = () => {
+    const percent = currentPercent();
+    if (percent === null) return;
+    for (const threshold of SCROLL_THRESHOLDS) {
+      if (percent >= threshold) reached.add(threshold);
+    }
+  };
+
+  const evaluate = () => {
+    const percent = currentPercent();
+    if (percent === null) return;
+
     for (const threshold of SCROLL_THRESHOLDS) {
       if (percent < threshold || reached.has(threshold)) continue;
       reached.add(threshold);
@@ -114,6 +168,14 @@ export function startScrollDepthTracking(path: string): () => void {
     }
   };
 
+  // A route mounted while analytics is off has no history worth reporting, so
+  // establish the baseline the moment consent arrives.
+  if (!analyticsEnabled) baseline();
+
+  window.addEventListener(ANALYTICS_ENABLED_EVENT, baseline);
   window.addEventListener('scroll', evaluate, { passive: true });
-  return () => window.removeEventListener('scroll', evaluate);
+  return () => {
+    window.removeEventListener(ANALYTICS_ENABLED_EVENT, baseline);
+    window.removeEventListener('scroll', evaluate);
+  };
 }

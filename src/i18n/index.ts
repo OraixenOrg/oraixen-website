@@ -40,6 +40,9 @@ import saSolutionCustomSystems from './locales/ar-sa/solutionCustomSystems.json'
 import enSolutionRealEstateSystems from './locales/en/solutionRealEstateSystems.json';
 import egSolutionRealEstateSystems from './locales/ar-eg/solutionRealEstateSystems.json';
 import saSolutionRealEstateSystems from './locales/ar-sa/solutionRealEstateSystems.json';
+import enConsent from './locales/en/consent.json';
+import egConsent from './locales/ar-eg/consent.json';
+import saConsent from './locales/ar-sa/consent.json';
 import enSections from './locales/en/sections.json';
 import egSections from './locales/ar-eg/sections.json';
 import saSections from './locales/ar-sa/sections.json';
@@ -55,6 +58,7 @@ export const NAMESPACES = [
   'contact',
   'solutionCustomSystems',
   'solutionRealEstateSystems',
+  'consent',
   'legal',
   'sections',
 ] as const;
@@ -77,6 +81,7 @@ export const resources = {
     contact: enContact,
     solutionCustomSystems: enSolutionCustomSystems,
     solutionRealEstateSystems: enSolutionRealEstateSystems,
+    consent: enConsent,
     legal: enLegal,
     sections: enSections,
   },
@@ -91,6 +96,7 @@ export const resources = {
     contact: egContact,
     solutionCustomSystems: egSolutionCustomSystems,
     solutionRealEstateSystems: egSolutionRealEstateSystems,
+    consent: egConsent,
     legal: egLegal,
     sections: egSections,
   },
@@ -105,6 +111,7 @@ export const resources = {
     contact: saContact,
     solutionCustomSystems: saSolutionCustomSystems,
     solutionRealEstateSystems: saSolutionRealEstateSystems,
+    consent: saConsent,
     legal: saLegal,
     sections: saSections,
   },

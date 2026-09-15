@@ -4,19 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JT8H9HJ01C"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      // Pageviews are owned by React Router (see src/lib/analytics.ts), so the
-      // config call must not send one of its own.
-      gtag('config', 'G-JT8H9HJ01C', {
-        send_page_view: false
-      });
-    </script>
-    
+    <!--
+      No Google Analytics snippet here on purpose. Under Basic Consent Mode the
+      tag is loaded at runtime by src/lib/consent.ts, and only after the visitor
+      allows analytics, so this shell makes no Google request. Pageviews stay
+      owned by React Router (see src/lib/analytics.ts).
+    -->
+
     <!-- Primary Meta Tags -->
     <title>Oraixen: Mobile, Web, AI &amp; Custom Software</title>
     <meta name="title" content="Oraixen: Mobile, Web, AI &amp; Custom Software" />

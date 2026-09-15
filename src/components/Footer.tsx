@@ -3,6 +3,7 @@ import { Linkedin, Github, Facebook, Instagram, Mail, Phone, MapPin } from 'luci
 import { useTranslation } from 'react-i18next';
 import { Logo } from './Logo';
 import company from '../data/company.json';
+import { OPEN_SETTINGS_EVENT } from '../lib/consent';
 import { getContentScript, marketFromLanguage } from '../lib/marketLocale';
 
 // Contact details and social links come from src/data/company.json (easy to edit).
@@ -15,6 +16,7 @@ const socials = [
 
 export function Footer() {
   const { t, i18n } = useTranslation('common');
+  const { t: tConsent } = useTranslation('consent');
   // The Cairo street address is a FACT with one form per writing system, not
   // market copy: it reads identically in /ar-eg and /ar-sa.
   const script = getContentScript(marketFromLanguage(i18n.language));
@@ -111,6 +113,15 @@ export function Footer() {
           <div className="flex gap-8 mt-4 md:mt-0">
             <Link to="/privacy" className="hover:text-ink transition-colors">{t('footer.privacy')}</Link>
             <Link to="/terms" className="hover:text-ink transition-colors">{t('footer.terms')}</Link>
+            {/* A real button: this opens the settings dialog rather than
+                navigating, and ConsentBanner restores focus here on close. */}
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new Event(OPEN_SETTINGS_EVENT))}
+              className="hover:text-ink transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal/30 rounded"
+            >
+              {tConsent('footer.settingsLink')}
+            </button>
           </div>
         </div>
       </div>
