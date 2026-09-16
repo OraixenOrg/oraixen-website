@@ -83,8 +83,8 @@ GeoIPEnable On
 # Deliberately NOT here: COOP/COEP/CORP (they can break third-party integrations
 # for no benefit at this baseline). That is its own issue.
 #
-# Content-Security-Policy IS here now, but only in report-only form. See the
-# canary block at the end of this section.
+# Content-Security-Policy IS here, and it is enforcing. See the block at the end
+# of this section.
 <IfModule mod_headers.c>
   # Stop browsers from MIME-sniffing a response into a different type — the
   # classic route from "uploaded text file" to "executed script".
@@ -130,14 +130,24 @@ GeoIPEnable On
   # is not present is a no-op, so this is safe everywhere.
   Header always unset X-Powered-By
 
-  # ===== Content-Security-Policy — REPORT-ONLY CANARY (Issue 23A) =====
+  # ===== Content-Security-Policy — ENFORCING =====
   #
-  # Report-Only, deliberately. The browser evaluates the whole policy and logs
-  # every violation, but blocks nothing, so a mistake here costs a console
-  # message rather than a broken page. Issue 23B promotes this same policy to
-  # the enforcing `Content-Security-Policy` header once production traffic has
-  # proven it silent. There is no violation-collection endpoint and none is
-  # invented: verification is the browser console plus Tag Assistant.
+  # ENFORCING: a resource outside these sources is BLOCKED, not merely logged.
+  #
+  # The same source allowlists, hashes and restrictions were first deployed as
+  # Content-Security-Policy-Report-Only and verified silent in production —
+  # analytics rejected and accepted, all three markets, both solution pages, the
+  # projects list and a project detail, and the contact form. The enforcing
+  # policy additionally includes upgrade-insecure-requests, which could not be
+  # meaningfully canary-tested because browsers ignore that directive in
+  # report-only mode; Hostinger was already enforcing it separately throughout
+  # the canary. There is no violation-collection endpoint and none is invented.
+  #
+  # Consequence for anyone changing this site: a new third-party asset, font,
+  # endpoint or embed must be added here in the same change that introduces it,
+  # or it silently fails in production. scripts/validate-csp.mjs runs on every
+  # build and fails it if the inline JSON-LD stops matching the hashes below,
+  # which is by far the most likely way to break this policy by accident.
   #
   # Written as ONE physical line on purpose. Apache 2.4 accepts backslash line
   # continuation, but this host serves .htaccess through LiteSpeed, and a policy
@@ -200,21 +210,25 @@ GeoIPEnable On
   #                           are required because GA4 shards collection across
   #                           regionN.google-analytics.com.
   #
-  # upgrade-insecure-requests is deliberately NOT in this policy. Chrome ignores
-  # the directive in a report-only policy and logs that it is ignoring it on
-  # every page load — which is the one thing a canary must not do, because a
-  # warning that is always present is a warning nobody reads. Production
-  # verification found it as the single console entry with consent both
-  # rejected and accepted. Hostinger already sends its own enforcing
-  # `Content-Security-Policy: upgrade-insecure-requests` on the same response,
-  # so leaving it out here changes no HTTPS-upgrade behaviour. Whether the
-  # enforcing application policy should carry it is Issue 23B's decision.
+  #   upgrade-insecure-requests  Present here even though Hostinger already
+  #                           sends its own enforcing
+  #                           `Content-Security-Policy: upgrade-insecure-requests`
+  #                           on the same response. Two CSP headers is valid —
+  #                           browsers enforce every policy they receive — and
+  #                           the redundancy is the point: this policy stays
+  #                           self-contained if the platform ever stops sending
+  #                           its header. Do not edit or try to merge the
+  #                           platform header; this repository owns only the
+  #                           child application's .htaccess. The directive was
+  #                           absent from the report-only canary purely because
+  #                           browsers ignore it in that mode and warn about it
+  #                           on every page load.
   #
   # Google Ads endpoints (doubleclick.net, googleadservices.com,
   # googlesyndication.com) are intentionally ABSENT: no Google Ads tag is
   # configured on this site. Issue 20C must revisit this policy if Ads
   # conversion tracking is connected. Do not pre-open it before then.
-  Header always set Content-Security-Policy-Report-Only "default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'self'; form-action 'self'; worker-src 'none'; manifest-src 'self'; script-src 'self' 'sha256-4a9hKwKBRIE++p4GJpcSHCCt/sfxLyM7F9wYU0kIx4w=' 'sha256-zbQYvYkpG90D+jTAHRF+xdwfg+hifZYq56PagPZw6Qg=' 'sha256-mnRgAQWhjZQMqex8/ZHckZTAaw7SWQH8PufEIx/M+K0=' https://www.googletagmanager.com; script-src-elem 'self' 'sha256-4a9hKwKBRIE++p4GJpcSHCCt/sfxLyM7F9wYU0kIx4w=' 'sha256-zbQYvYkpG90D+jTAHRF+xdwfg+hifZYq56PagPZw6Qg=' 'sha256-mnRgAQWhjZQMqex8/ZHckZTAaw7SWQH8PufEIx/M+K0=' https://www.googletagmanager.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src-elem 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://duvdu.com https://emydiscount.com https://gefires.com https://ibdl.net https://inovara.net https://is1-ssl.mzstatic.com https://maat.vip https://orderfs.com https://play-lh.googleusercontent.com https://saharadvocates.ae https://shopisonic.com https://vending.inovara.net https://www.googletagmanager.com https://*.google-analytics.com; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com"
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'self'; form-action 'self'; worker-src 'none'; manifest-src 'self'; script-src 'self' 'sha256-4a9hKwKBRIE++p4GJpcSHCCt/sfxLyM7F9wYU0kIx4w=' 'sha256-zbQYvYkpG90D+jTAHRF+xdwfg+hifZYq56PagPZw6Qg=' 'sha256-mnRgAQWhjZQMqex8/ZHckZTAaw7SWQH8PufEIx/M+K0=' https://www.googletagmanager.com; script-src-elem 'self' 'sha256-4a9hKwKBRIE++p4GJpcSHCCt/sfxLyM7F9wYU0kIx4w=' 'sha256-zbQYvYkpG90D+jTAHRF+xdwfg+hifZYq56PagPZw6Qg=' 'sha256-mnRgAQWhjZQMqex8/ZHckZTAaw7SWQH8PufEIx/M+K0=' https://www.googletagmanager.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src-elem 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://duvdu.com https://emydiscount.com https://gefires.com https://ibdl.net https://inovara.net https://is1-ssl.mzstatic.com https://maat.vip https://orderfs.com https://play-lh.googleusercontent.com https://saharadvocates.ae https://shopisonic.com https://vending.inovara.net https://www.googletagmanager.com https://*.google-analytics.com; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; upgrade-insecure-requests"
 </IfModule>
 
 # Long-cache the fingerprinted build assets (filenames change every build).
