@@ -199,13 +199,22 @@ GeoIPEnable On
   #                           The Google hosts are GA4 measurement; the wildcards
   #                           are required because GA4 shards collection across
   #                           regionN.google-analytics.com.
-  #   upgrade-insecure-requests  Belt and braces with the platform header.
+  #
+  # upgrade-insecure-requests is deliberately NOT in this policy. Chrome ignores
+  # the directive in a report-only policy and logs that it is ignoring it on
+  # every page load — which is the one thing a canary must not do, because a
+  # warning that is always present is a warning nobody reads. Production
+  # verification found it as the single console entry with consent both
+  # rejected and accepted. Hostinger already sends its own enforcing
+  # `Content-Security-Policy: upgrade-insecure-requests` on the same response,
+  # so leaving it out here changes no HTTPS-upgrade behaviour. Whether the
+  # enforcing application policy should carry it is Issue 23B's decision.
   #
   # Google Ads endpoints (doubleclick.net, googleadservices.com,
   # googlesyndication.com) are intentionally ABSENT: no Google Ads tag is
   # configured on this site. Issue 20C must revisit this policy if Ads
   # conversion tracking is connected. Do not pre-open it before then.
-  Header always set Content-Security-Policy-Report-Only "default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'self'; form-action 'self'; worker-src 'none'; manifest-src 'self'; script-src 'self' 'sha256-4a9hKwKBRIE++p4GJpcSHCCt/sfxLyM7F9wYU0kIx4w=' 'sha256-zbQYvYkpG90D+jTAHRF+xdwfg+hifZYq56PagPZw6Qg=' 'sha256-mnRgAQWhjZQMqex8/ZHckZTAaw7SWQH8PufEIx/M+K0=' https://www.googletagmanager.com; script-src-elem 'self' 'sha256-4a9hKwKBRIE++p4GJpcSHCCt/sfxLyM7F9wYU0kIx4w=' 'sha256-zbQYvYkpG90D+jTAHRF+xdwfg+hifZYq56PagPZw6Qg=' 'sha256-mnRgAQWhjZQMqex8/ZHckZTAaw7SWQH8PufEIx/M+K0=' https://www.googletagmanager.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src-elem 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://duvdu.com https://emydiscount.com https://gefires.com https://ibdl.net https://inovara.net https://is1-ssl.mzstatic.com https://maat.vip https://orderfs.com https://play-lh.googleusercontent.com https://saharadvocates.ae https://shopisonic.com https://vending.inovara.net https://www.googletagmanager.com https://*.google-analytics.com; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; upgrade-insecure-requests"
+  Header always set Content-Security-Policy-Report-Only "default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'self'; form-action 'self'; worker-src 'none'; manifest-src 'self'; script-src 'self' 'sha256-4a9hKwKBRIE++p4GJpcSHCCt/sfxLyM7F9wYU0kIx4w=' 'sha256-zbQYvYkpG90D+jTAHRF+xdwfg+hifZYq56PagPZw6Qg=' 'sha256-mnRgAQWhjZQMqex8/ZHckZTAaw7SWQH8PufEIx/M+K0=' https://www.googletagmanager.com; script-src-elem 'self' 'sha256-4a9hKwKBRIE++p4GJpcSHCCt/sfxLyM7F9wYU0kIx4w=' 'sha256-zbQYvYkpG90D+jTAHRF+xdwfg+hifZYq56PagPZw6Qg=' 'sha256-mnRgAQWhjZQMqex8/ZHckZTAaw7SWQH8PufEIx/M+K0=' https://www.googletagmanager.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src-elem 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://duvdu.com https://emydiscount.com https://gefires.com https://ibdl.net https://inovara.net https://is1-ssl.mzstatic.com https://maat.vip https://orderfs.com https://play-lh.googleusercontent.com https://saharadvocates.ae https://shopisonic.com https://vending.inovara.net https://www.googletagmanager.com https://*.google-analytics.com; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com"
 </IfModule>
 
 # Long-cache the fingerprinted build assets (filenames change every build).
