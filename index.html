@@ -53,14 +53,16 @@
     <meta name="twitter:creator" content="@oraixen" />
     <meta name="twitter:site" content="@oraixen" />
     
-    <!-- Fonts: non-blocking, display=swap, only the weights we use. Arabic font loads on demand. -->
+    <!-- Fonts: display=swap, only the weights we use. Arabic font loads on demand.
+         Loaded as a normal stylesheet on purpose. The previous media-swap trick
+         relied on an inline event-handler attribute, which is inline JavaScript
+         that a strict CSP reports or blocks via script-src-attr 'none'. Trading a
+         small render-blocking cost for a policy with no inline-script exceptions
+         is the right side of that bargain, and it removes the need for the
+         <noscript> duplicate as well. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Aleo:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aleo:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aleo:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
-    </noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aleo:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
     
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">

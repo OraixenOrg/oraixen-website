@@ -80,10 +80,11 @@ GeoIPEnable On
 # the GeoIP directive above (which is proven on this host and must stay bare so
 # a missing module fails loudly rather than silently routing everyone to /en).
 #
-# Deliberately NOT here: Content-Security-Policy (the platform already sends
-# `upgrade-insecure-requests`, and a real policy needs its own source inventory)
-# and COOP/COEP/CORP (can break third-party integrations for no benefit at this
-# baseline). Each is its own issue.
+# Deliberately NOT here: COOP/COEP/CORP (they can break third-party integrations
+# for no benefit at this baseline). That is its own issue.
+#
+# Content-Security-Policy IS here now, but only in report-only form. See the
+# canary block at the end of this section.
 <IfModule mod_headers.c>
   # Stop browsers from MIME-sniffing a response into a different type — the
   # classic route from "uploaded text file" to "executed script".
@@ -128,6 +129,83 @@ GeoIPEnable On
   # version-specific exploit scanning one less hint. `unset` on a header that
   # is not present is a no-op, so this is safe everywhere.
   Header always unset X-Powered-By
+
+  # ===== Content-Security-Policy — REPORT-ONLY CANARY (Issue 23A) =====
+  #
+  # Report-Only, deliberately. The browser evaluates the whole policy and logs
+  # every violation, but blocks nothing, so a mistake here costs a console
+  # message rather than a broken page. Issue 23B promotes this same policy to
+  # the enforcing `Content-Security-Policy` header once production traffic has
+  # proven it silent. There is no violation-collection endpoint and none is
+  # invented: verification is the browser console plus Tag Assistant.
+  #
+  # Written as ONE physical line on purpose. Apache 2.4 accepts backslash line
+  # continuation, but this host serves .htaccess through LiteSpeed, and a policy
+  # that silently lost half its directives to a parser difference would be worse
+  # than an unreadable line. The reasoning lives in this comment instead.
+  #
+  # Every source below is backed by built output, not by source assumptions:
+  #
+  #   default-src 'self'      Anything not named below is same-origin only.
+  #   base-uri 'self'         No <base> element exists in any of the 31 built
+  #                           HTML files; this stops an injected one from
+  #                           re-pointing every relative URL in the SPA.
+  #   object-src 'none'       No <object>, <embed> or applet anywhere.
+  #   frame-src 'none'        No iframes: audited across src/, index.html and
+  #                           all 31 built shells.
+  #   frame-ancestors 'self'  Deliberately matches X-Frame-Options SAMEORIGIN
+  #                           above, so the modern and legacy headers agree.
+  #   form-action 'self'      The contact form submits through fetch() to
+  #                           /contact.php. Nothing posts off-origin.
+  #   worker-src 'none'       dist/assets/*.js contains zero `new Worker` and no
+  #                           service worker registration.
+  #   manifest-src 'self'     /site.webmanifest.
+  #   script-src / -elem      'self' is the Vite module bundle. The three sha256
+  #                           hashes are the three inline application/ld+json
+  #                           blocks (Organization, WebSite, ProfessionalService),
+  #                           byte-identical in all 31 shells and computed from
+  #                           the built output. googletagmanager.com is gtag.js,
+  #                           appended only after an analytics grant
+  #                           (src/lib/consent.ts). No 'unsafe-inline', no
+  #                           'unsafe-eval': the bundle contains neither eval nor
+  #                           new Function.
+  #   script-src-attr 'none'  Zero inline event-handler attributes remain in the
+  #                           built HTML. This is why the Google Fonts media-swap
+  #                           trick was removed from index.html.
+  #   style-src-elem          The built stylesheet plus the two Google Fonts
+  #                           stylesheets: Aleo/Plus Jakarta linked from
+  #                           index.html, and Tajawal injected for RTL markets by
+  #                           src/i18n/index.ts. No inline <style> element exists
+  #                           in the build, so none is allowed.
+  #   style-src-attr          React style props compile to real inline style
+  #                           attributes (13 source files) and cannot be hashed,
+  #                           so 'unsafe-inline' is unavoidable here. It is
+  #                           scoped to ATTRIBUTES only; script never gets it.
+  #   style-src               Fallback for browsers that lack the granular
+  #                           -elem/-attr directives, which is why it has to
+  #                           carry the attribute allowance too.
+  #   font-src                fonts.gstatic.com serves the faces those Google
+  #                           stylesheets reference. 'self' is the same-origin
+  #                           baseline; no face is self-hosted today.
+  #   img-src                 'self'; data: for the inline SVG grain texture in
+  #                           src/components/visual/GrainOverlay.tsx; unsplash
+  #                           for the About hero and the project-card fallback;
+  #                           then the twelve hosts that actually appear in the
+  #                           imageUrl fields of src/data/projects*.json. Issue 32
+  #                           rebuilds that data — self-hosting those twelve
+  #                           images would collapse this list to 'self' data:.
+  #                           The Google hosts are GA4 image beacons.
+  #   connect-src             'self' covers /contact.php and /market-context.php.
+  #                           The Google hosts are GA4 measurement; the wildcards
+  #                           are required because GA4 shards collection across
+  #                           regionN.google-analytics.com.
+  #   upgrade-insecure-requests  Belt and braces with the platform header.
+  #
+  # Google Ads endpoints (doubleclick.net, googleadservices.com,
+  # googlesyndication.com) are intentionally ABSENT: no Google Ads tag is
+  # configured on this site. Issue 20C must revisit this policy if Ads
+  # conversion tracking is connected. Do not pre-open it before then.
+  Header always set Content-Security-Policy-Report-Only "default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'self'; form-action 'self'; worker-src 'none'; manifest-src 'self'; script-src 'self' 'sha256-4a9hKwKBRIE++p4GJpcSHCCt/sfxLyM7F9wYU0kIx4w=' 'sha256-zbQYvYkpG90D+jTAHRF+xdwfg+hifZYq56PagPZw6Qg=' 'sha256-mnRgAQWhjZQMqex8/ZHckZTAaw7SWQH8PufEIx/M+K0=' https://www.googletagmanager.com; script-src-elem 'self' 'sha256-4a9hKwKBRIE++p4GJpcSHCCt/sfxLyM7F9wYU0kIx4w=' 'sha256-zbQYvYkpG90D+jTAHRF+xdwfg+hifZYq56PagPZw6Qg=' 'sha256-mnRgAQWhjZQMqex8/ZHckZTAaw7SWQH8PufEIx/M+K0=' https://www.googletagmanager.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src-elem 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://duvdu.com https://emydiscount.com https://gefires.com https://ibdl.net https://inovara.net https://is1-ssl.mzstatic.com https://maat.vip https://orderfs.com https://play-lh.googleusercontent.com https://saharadvocates.ae https://shopisonic.com https://vending.inovara.net https://www.googletagmanager.com https://*.google-analytics.com; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; upgrade-insecure-requests"
 </IfModule>
 
 # Long-cache the fingerprinted build assets (filenames change every build).
