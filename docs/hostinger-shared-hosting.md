@@ -175,11 +175,10 @@ logical root. The absolute paths on the server, confirmed over SSH, are:
 | Domain root | `/home/u396801667/domains/oraixen.com` |
 | Shared public root | `/home/u396801667/domains/oraixen.com/public_html` |
 | Oraixen target | `/home/u396801667/domains/oraixen.com/public_html/oraixen-website` |
-| Deployment working root | `/home/u396801667/domains/oraixen.com/.oraixen-deploy` |
 
-The deployment working root sits **outside** `public_html`, so staged releases
-and backups are never web-reachable and never share a directory with another
-project.
+Deployment writes to the target and to nothing else. There is no server-side
+staging directory, backup directory or state directory: `dist/` is uploaded
+straight into the target, and no deployment metadata is stored on the server.
 
 ### What triggers a deployment
 
@@ -205,25 +204,29 @@ commit has its own run. Every remote step is gated on `should_deploy == true`.
 ```
 CI success on main
   -> checkout exact SHA -> stale-SHA gate
-  -> npm ci + npm run build -> validate dist (30 SEO shells)
+  -> npm ci + npm run build -> validate dist (30 SEO shells, 10 per market)
   -> validate secrets/variable -> pinned SSH
-  -> remote preflight        (creates staging, snapshots parent .htaccess hash)
-  -> rsync dist/ -> staging  (outside public_html, no --delete)
-  -> verify staged release   (files, dirs, symlinks, 30 shells, 10 per market)
-  -> promote                 (backup, then rsync stage -> target)
+  -> remote preflight          (proves the target; writes nothing)
+  -> read shared router hash   (kept in a workflow step output)
+  -> re-read hash and compare  (abort here if it changed)
+  -> rsync dist/ -> target     (--delay-updates --delete-delay; the only write)
+  -> checksum comparison against dist/
+  -> remote verify             (files, dirs, symlinks, 30 shells, 10 per market)
+  -> re-read router hash and compare
   -> public smoke tests
        pass -> done
-       fail -> automatic rollback -> rollback verification (job still fails)
+       fail -> workflow fails loudly (NO automatic rollback)
 ```
 
 `scripts/hostinger-deploy.sh` is never installed on the server. The runner
-streams it to SSH stdin with a mode and the release identifiers:
+streams it to SSH stdin with a mode:
 
 ```
-ssh ... bash -s -- <mode> <sha> <run-id> <run-attempt> < scripts/hostinger-deploy.sh
+ssh ... bash -s -- <mode> < scripts/hostinger-deploy.sh
 ```
 
-Modes: `preflight`, `verify-stage`, `promote`, `rollback`.
+Modes: `preflight`, `parent-hash`, `verify`. None of them writes to production;
+the single write is the runner's rsync.
 
 ### The deployment sentinel
 
@@ -240,8 +243,8 @@ oraixen-production-target-v1
 ```
 
 Every mode refuses to run if the sentinel is missing, is not a regular file, or
-has different content. It is excluded from upload, backup, promotion and
-rollback, so it survives every deployment.
+has different content. It is excluded from the rsync, so deployment never
+overwrites or deletes it.
 
 **GitHub Actions deliberately never creates this file.** If the target directory
 were ever recreated or mistyped, auto-creating the sentinel would let the
@@ -256,19 +259,16 @@ parent router.
 
 Instead the deployment treats it as a canary:
 
-1. `preflight` records its SHA-256 into the release state directory.
-2. `promote` checks it **before the backup begins**, so a changed router aborts
-   while production is still untouched.
-3. `promote` checks it **again after the backup is verified and immediately
-   before** the stage-to-target rsync. Taking a backup takes time, and an
-   administrator could edit shared routing during that window.
-4. `promote` checks it once more **after** promotion.
-5. `rollback` checks it **before** restoring, and again afterwards, so
-   automation never rewrites files while routing is being edited by hand.
+1. After preflight, the workflow reads its SHA-256 over SSH and keeps the value
+   in a **step output**. Nothing is written to the server.
+2. The workflow reads it **again immediately before the rsync** and compares.
+   A mismatch aborts before any file is written.
+3. The workflow reads it a **third time after deployment** and compares. A
+   mismatch fails the job loudly for investigation.
 
-Any mismatch aborts without further writes. The hash is captured per run and is
-never hardcoded. If the router changes during the backup, the completed backup
-is simply left in place and production is not modified.
+Any mismatch aborts or fails. The hash is captured per run and is never
+hardcoded. The automation never restores or edits the router under any
+circumstance, including failure.
 
 ### Why sibling domains and sibling projects cannot be affected
 
@@ -288,65 +288,51 @@ Protection is structural, not conventional:
   containment), `dirname` of the target must equal the public root and its
   `basename` must be `oraixen-website` (project containment), and the target
   must equal neither the public root nor the domain root.
-- Derived staging, backup and state paths are re-checked after derivation: each
-  must start with the exact `.oraixen-deploy/` prefix, must not contain `..`,
-  and must not equal any production constant.
-- `rsync --delete` appears only in `promote` and `rollback`, and only with the
-  verified target as destination. It is never pointed at `public_html`, at a
-  domain directory, or at `/home/u396801667`.
-- The runner never rsyncs to production at all: its only destination is the
-  release-specific staging directory.
+- The workflow's rsync destination is a fixed literal path held in the
+  workflow's `env`, not assembled from a secret or variable. Only the SSH
+  user, host and port are secrets, and they are connection credentials, not
+  path components.
+- `rsync --delete-delay` is used exactly once, with that fixed target as its
+  destination. It is never pointed at `public_html`, at a domain directory, or
+  at `/home/u396801667`.
+- The remote script performs **no** production writes at all: its three modes
+  only inspect and report.
+- Both rsync commands pass an inline guard via `--rsync-path`, so the **remote
+  rsync process re-validates the destination itself**, immediately before
+  accepting any data. Preflight proves the target earlier in the job; this
+  closes the time-of-check/time-of-use gap between those two moments. The guard
+  re-checks the destination argument against the same literal constant, refuses
+  a symlinked or relocated target, and only then `exec`s rsync with its original
+  server arguments untouched.
 - No command enumerates or references a sibling domain, and no wildcard can
   expand across domains or across `public_html` projects.
 
 Because every path is absolute and verified, the SSH session's starting working
 directory has **no effect** on which files are touched.
 
-### Backups must be verified, not merely present
+### There is no automatic rollback
 
-A backup directory existing is **not** proof that it is a usable restore
-source. An rsync that dies halfway leaves a partial copy of production behind,
-and restoring that would delete live files that were never copied.
+This is deliberate and must not be misread.
 
-So `promote` runs this sequence, and stops at the first failure:
+There is no server-side backup and no rollback step. If the rsync fails, the
+structural verification fails, or the smoke tests fail, the **workflow fails
+loudly and production is left exactly as the deployment left it**. Nothing is
+restored automatically, and the job summary says so.
 
-1. all path guards, sentinel check
-2. parent router hash check
-3. backup directory and completion marker must **not** already exist
-4. create the backup directory
-5. `rsync` target into it, excluding the sentinel, **without** `--delete`
-6. verify the backup against production with a checksum dry run
-7. only if that reports **zero differences**, write the completion marker
-8. parent router hash check **again**
-9. only then promote staging into the target
+Recovery is to fix the problem and redeploy a corrected commit to `main`.
 
-The marker lives in the release state directory, never inside the backup tree:
+Two things reduce the window in which a failure can leave a half-updated site:
 
-```
-.oraixen-deploy/state/<sha>-<run-id>-<run-attempt>/backup-complete
-```
+- `--delay-updates` holds every transferred file in a temporary area on the
+  server and renames them into place only after the whole transfer succeeds.
+- `--delete-delay` defers removal of stale files until the end of the transfer.
 
-with exactly this content:
+`--delete-before` and `--delete-during` are deliberately **not** used: both
+would remove files early, widening exactly the window these options close.
 
-```
-oraixen-backup-complete-v1
-```
-
-`rollback` distinguishes three cases:
-
-| State | Behaviour |
-| --- | --- |
-| No backup directory | Logs `no rollback backup available`, leaves the target untouched, exits **0** (production was never modified) |
-| Directory present, marker missing or invalid | Logs that the backup is incomplete or unverified, leaves the target untouched, exits **non-zero** |
-| Directory present, marker valid | Restores it |
-
-A partial backup is never deleted. It is kept for forensic inspection.
-
-There is **no automatic cleanup yet**. Staged releases, state directories and
-backups (including failed ones) are all retained. The target is ~1.3 MB against
-~9.2 TB free, so retention pressure is negligible, and this keeps recursive
-deletion out of the system entirely. Retention is a separate future
-improvement.
+Even on failure, the guarantees that still hold are the containment ones: no
+sibling project, no sibling domain and no shared router can have been touched,
+because nothing in the system is capable of addressing them.
 
 ### Smoke tests
 
@@ -367,20 +353,6 @@ project offline.
 These tests prove the origin serves the expected routes. They do **not** prove
 Hostinger CDN edge caches were invalidated; there is no documented purge
 mechanism in this repository, so none is attempted.
-
-### Automatic rollback
-
-If promotion or the smoke tests fail, the workflow runs `rollback`, which
-restores the backup for that exact release id. Failures *before* promotion
-(build, secrets, SSH, preflight, upload, stage verification) never trigger a
-rollback, because production was never modified.
-
-If promotion failed before the backup existed, `rollback` reports
-`no rollback backup available` and exits without touching the target.
-
-After rollback the smoke script runs again as verification, with
-`continue-on-error` so its result cannot mask the original failure. **The job
-still fails**, because the attempted deployment did not succeed.
 
 ### GitHub `production` Environment
 
