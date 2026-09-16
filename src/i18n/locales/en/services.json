@@ -1,12 +1,12 @@
 {
   "seo": {
-    "title": "Services — Mobile, Web, AI, Hardware & Digital Transformation | Oraixen",
-    "description": "Oraixen specializes in mobile apps, web development, AI solutions, business platforms and custom software, hardware, and digital transformation."
+    "title": "Services: Custom Business Systems, Web, Mobile & AI | Oraixen",
+    "description": "Custom business systems, web and e-commerce, mobile apps, AI and automation, hardware and software, and system modernization and integrations for growing operations."
   },
   "hero": {
-    "eyebrow": "Specialties",
+    "eyebrow": "What we build",
     "title": "How we can help",
-    "subtitle": "Six specialties that turn clear requirements into reliable, production-ready solutions."
+    "subtitle": "Six service groups that turn your requirements into systems your business can run on."
   },
   "labels": {
     "deliverables": "Deliverables",
@@ -17,56 +17,56 @@
   "services": {
     "items": [
       {
-        "title": "Mobile app development",
-        "description": "Native and cross-platform apps with a polished UX — designed for retention, not one-time installs.",
+        "title": "Custom business systems",
+        "description": "ERP, CRM, internal platforms, and operational tools built around your processes, your people, and the way work actually moves through your company.",
         "deliverables": [
-          "iOS & Android apps",
-          "React Native / Flutter",
-          "UI/UX design",
-          "App Store optimization"
+          "ERP systems",
+          "CRM solutions",
+          "Internal platforms",
+          "APIs and integrations"
         ],
-        "timeline": "3–6 months",
-        "bestFor": "Startups, consumer brands, enterprise tools"
+        "timeline": "3–12 months",
+        "bestFor": "Companies outgrowing spreadsheets and disconnected tools"
       },
       {
-        "title": "Web development",
-        "description": "Modern, high-performance web apps and platforms designed to scale with your traffic.",
+        "title": "Web platforms & e-commerce",
+        "description": "Web apps, SaaS products, and online stores engineered to stay fast and stable as traffic, catalogue, and team all grow.",
         "deliverables": [
           "SaaS platforms",
           "E-commerce",
           "Progressive web apps",
-          "CMS solutions"
+          "Content management"
         ],
         "timeline": "2–5 months",
-        "bestFor": "SaaS, e-commerce, corporate portals"
+        "bestFor": "SaaS, retail and B2B commerce, customer portals"
       },
       {
-        "title": "AI solutions",
-        "description": "Practical AI systems and product features that automate work, surface insights, and support better decisions.",
+        "title": "Mobile applications",
+        "description": "Native and cross-platform apps with a polished experience, designed for daily use and to evolve with the product.",
         "deliverables": [
-          "ML / LLM integrations",
+          "iOS and Android apps",
+          "React Native / Flutter",
+          "UI and UX design",
+          "App Store & Google Play release"
+        ],
+        "timeline": "3–6 months",
+        "bestFor": "Consumer brands, service platforms, field and staff apps"
+      },
+      {
+        "title": "AI solutions & automation",
+        "description": "Practical AI and workflow automation that takes repetitive work off your team and turns the data you already hold into decisions.",
+        "deliverables": [
+          "ML and LLM integration",
           "Computer vision",
           "Predictive analytics",
-          "Intelligent automation"
+          "Workflow automation"
         ],
         "timeline": "2–8 months",
-        "bestFor": "Product teams, operations, data-driven businesses"
+        "bestFor": "Product teams, operations, data-heavy businesses"
       },
       {
-        "title": "Business platforms & custom software",
-        "description": "Custom systems and products built around your operations, users, and goals.",
-        "deliverables": [
-          "ERP systems",
-          "CRM solutions",
-          "Custom platforms",
-          "API & integrations"
-        ],
-        "timeline": "3–12 months",
-        "bestFor": "Startups, SMBs, and enterprises with unique workflows"
-      },
-      {
-        "title": "Hardware",
-        "description": "IoT and embedded systems that connect devices, sensors, and field operations to live software.",
+        "title": "Hardware + software systems",
+        "description": "IoT devices, sensors, and embedded systems connected to live dashboards and the business software your team already uses.",
         "deliverables": [
           "IoT devices",
           "Embedded systems",
@@ -74,30 +74,30 @@
           "Monitoring dashboards"
         ],
         "timeline": "4–12 months",
-        "bestFor": "Manufacturing, logistics, MedTech, smart operations"
+        "bestFor": "Manufacturing, logistics, medtech, smart operations"
       },
       {
-        "title": "Digital transformation",
-        "description": "Modernize legacy tools and fragmented processes into connected systems teams can actually use.",
+        "title": "System modernization & integrations",
+        "description": "We assess the systems you already run, then integrate, modernize, replace, or rebuild what makes sense so data and workflows move cleanly between them.",
         "deliverables": [
-          "Process assessment",
-          "System modernization",
-          "Workflow automation",
-          "Change & training support"
+          "Systems assessment",
+          "Platform migration",
+          "API integrations",
+          "Rollout and training"
         ],
         "timeline": "3–12 months",
-        "bestFor": "Growing companies ready to scale operations"
+        "bestFor": "Companies with disconnected systems, manual workarounds, or tools that no longer fit their operations"
       }
     ]
   },
   "engagement": {
     "eyebrow": "Ways to work together",
-    "subtitle": "Three clear ways to start — each begins with a conversation.",
+    "subtitle": "Three clear ways to start, and each begins with a conversation.",
     "popular": "Most popular",
     "items": [
       {
         "title": "Fixed-scope project",
-        "description": "A defined product with clear requirements — fixed scope, milestones, and price.",
+        "description": "A defined product with clear requirements: fixed scope, milestones, and price.",
         "includes": [
           "Discovery & roadmap",
           "Fixed price & timeline",
@@ -119,7 +119,7 @@
       },
       {
         "title": "Maintenance & support",
-        "description": "Keep a live product healthy — monitoring, updates, and post-launch support.",
+        "description": "Keep a live product healthy: monitoring, updates, and post-launch support.",
         "includes": [
           "Monitoring & uptime",
           "Bug fixes & updates",
@@ -137,11 +137,18 @@
   },
   "tech": {
     "eyebrow": "Stack we build with",
-    "items": ["React", "Next.js", "Flutter", "Laravel", "Node.js", "Firebase"]
+    "items": [
+      "React",
+      "Next.js",
+      "Flutter",
+      "Laravel",
+      "Node.js",
+      "Firebase"
+    ]
   },
   "cta": {
     "title": "Not sure which specialty fits?",
     "subtitle": "Describe the problem. We’ll recommend the right path.",
-    "button": "Start a project"
+    "button": "Discuss your project"
   }
 }

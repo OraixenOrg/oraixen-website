@@ -182,7 +182,8 @@ export function About() {
       {/* Final CTA Banner */}
       <CTASection
         title={t('cta.title')}
-        primary={{ label: t('cta.primary'), href: '/contact' }}
+        ctaLocation="about_bottom"
+        primary={{ label: t('cta.primary'), href: '/contact', ctaId: 'discuss_project' }}
         secondary={{ label: t('cta.secondary'), href: '/projects' }}
       />
     </div>

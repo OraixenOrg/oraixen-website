@@ -39,7 +39,7 @@ type EngagementItem = {
   cta: string;
 };
 
-const serviceIcons = [Smartphone, Code, BrainCircuit, Server, Cpu, RefreshCw];
+const serviceIcons = [Server, Code, Smartphone, BrainCircuit, Cpu, RefreshCw];
 const engagementIcons = [Layers, Users, LifeBuoy];
 
 export function Services() {
@@ -285,7 +285,8 @@ export function Services() {
       <CTASection
         title={t('cta.title')}
         subtitle={t('cta.subtitle')}
-        primary={{ label: t('cta.button'), href: '/contact' }}
+        ctaLocation="services_bottom"
+        primary={{ label: t('cta.button'), href: '/contact', ctaId: 'discuss_project' }}
       />
     </div>
   );

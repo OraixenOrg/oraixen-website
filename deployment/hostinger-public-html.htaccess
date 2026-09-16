@@ -1,0 +1,64 @@
+# =============================================================================
+# REFERENCE / MANUAL DEPLOYMENT ONLY — DO NOT AUTO-DEPLOY, DO NOT BUILD
+# =============================================================================
+#
+# This file is a versioned copy of the PARENT router that lives on the
+# production server at:
+#
+#     public_html/.htaccess
+#
+# It is NOT part of the Oraixen application directory, is NOT produced by
+# `npm run build`, and is NOT copied into dist/. It is kept here only so the
+# shared-hosting architecture cannot be lost, and so changes to it can be
+# reviewed like any other config.
+#
+# It must NEVER be confused with, or used to overwrite, public/.htaccess —
+# that file is Oraixen's own router and deploys to
+# public_html/oraixen-website/.htaccess.
+#
+# public_html/ hosts several independent projects. Installing this file is a
+# deliberate manual step: back up the existing public_html/.htaccess first,
+# upload, then run the smoke tests in docs/hostinger-shared-hosting.md. If
+# anything fails, restore the backup immediately.
+#
+# See docs/hostinger-shared-hosting.md for the full architecture and rules.
+# =============================================================================
+
+# ===== Shared hosting root router =====
+#
+# This public_html contains multiple independent projects.
+#
+# Oraixen is stored in:
+#   /oraixen-website
+#
+# Public requests that belong to another real top-level project directory
+# must remain inside that project, including virtual/deep routes handled by
+# that project's own .htaccess.
+#
+# Requests that do not belong to another top-level project are handled by
+# Oraixen as the primary website for oraixen.com.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Requests already mapped into Oraixen must be left alone.
+  RewriteRule ^oraixen-website(?:/|$) - [L]
+
+  # Bare domain root goes directly to Oraixen's market router.
+  RewriteRule ^$ oraixen-website/market-router.php [L]
+
+  # Protect every other real top-level project directory, including all
+  # virtual/deep routes underneath that project.
+  RewriteCond %{DOCUMENT_ROOT}/$1 -d
+  RewriteRule ^([^/]+)(?:/.*)?$ - [L]
+
+  # Preserve standalone files stored directly in public_html.
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^ - [L]
+
+  # Everything else belongs to Oraixen. Preserve the original public path so
+  # Oraixen's child .htaccess can perform geo routing, SEO-shell routing,
+  # real-file handling and SPA fallback.
+  RewriteRule ^(.+)$ oraixen-website/$1 [L]
+</IfModule>

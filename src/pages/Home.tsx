@@ -20,14 +20,15 @@ import {
 import { SectionHeading, CTASection } from '../components/ui';
 import { trackCtaClick } from '../lib/analytics';
 import statsData from '../data/stats.json';
+import { marketFromLanguage } from '../lib/marketLocale';
 // TODO: Re-enable after testimonial wording is approved by the clients.
 // import testimonialsData from '../data/testimonials.json';
 
 const serviceIcons = [
-  <Smartphone className="text-teal" size={26} />,
-  <Code className="text-teal" size={26} />,
-  <BrainCircuit className="text-teal" size={26} />,
   <Server className="text-teal" size={26} />,
+  <Code className="text-teal" size={26} />,
+  <Smartphone className="text-teal" size={26} />,
+  <BrainCircuit className="text-teal" size={26} />,
   <Cpu className="text-teal" size={26} />,
   <RefreshCw className="text-teal" size={26} />,
 ];
@@ -37,12 +38,13 @@ const whyIcons = [Code2, Layers, Workflow, Target, Globe, LifeBuoy];
 export function Home() {
   const { t, i18n } = useTranslation('home');
   const { t: tc } = useTranslation('common');
-  const lang = i18n.language?.startsWith('ar') ? 'ar' : 'en';
+  const market = marketFromLanguage(i18n.language);
 
-  // Business data lives in src/data/*.json (easy to edit, bilingual). UI copy stays in i18n.
-  const stats = statsData[lang] as Array<{ value: string; label: string }>;
+  // Business data lives in src/data/*.json. Each stat states its VALUE once (a
+  // fact, identical in every market) and carries one label per market.
+  const stats = statsData.items.map((item) => ({ value: item.value, label: item.label[market] }));
   // TODO: Re-enable after testimonial wording is approved by the clients.
-  // const testimonials = testimonialsData[lang] as Array<{ quote: string; name: string; role: string; company: string }>;
+  // const testimonials = testimonialsData.items.map((t) => ({ ...t, quote: t.quote[market] }));
   const services = t('services.items', { returnObjects: true }) as Array<{ title: string; desc: string; tag?: string }>;
   const processSteps = t('process.steps', { returnObjects: true }) as string[];
   const processCard = t('process.card.items', { returnObjects: true }) as Array<{ num: string; title: string; desc: string }>;

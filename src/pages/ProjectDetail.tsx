@@ -27,7 +27,7 @@ export function ProjectDetail() {
   const project = localizeProject(rawProject, i18n.language);
   return <div className="pt-20 min-h-screen bg-surface">
       <Seo
-        title={`${project.title} — ${t('seo.suffix')} | Oraixen`}
+        title={`${project.title}: ${t('seo.suffix')} | Oraixen`}
         description={project.description || t('seo.descriptionFallback')}
       />
       {/* Hero */}
@@ -279,7 +279,8 @@ export function ProjectDetail() {
       <CTASection
         title={t('cta.title')}
         subtitle={t('cta.subtitle')}
-        primary={{ label: t('cta.button'), href: '/contact' }}
+        ctaLocation="project_detail_bottom"
+        primary={{ label: t('cta.button'), href: '/contact', ctaId: 'start_similar_project' }}
       />
     </div>;
 }

@@ -8,12 +8,12 @@
  * still boots and renders in the browser, and <Seo> takes over for client-side
  * navigation.
  *
- * 8 core routes x 3 markets = 24 localized shells, plus the normalized
+ * 10 routes x 3 markets = 30 localized shells, plus the normalized
  * dist/index.html that remains the SPA fallback for dynamic routes.
  *
- * Titles and descriptions come from the existing locale files. Both Arabic
- * markets deliberately share src/i18n/locales/ar — the market lives in the URL,
- * not in a duplicated translation tree.
+ * Titles and descriptions come from the locale files. Each market reads its own
+ * tree — src/i18n/locales/{en,ar-eg,ar-sa} — so Egyptian and Saudi shells carry
+ * independently written metadata and neither can be generated from the other.
  *
  * Runs automatically via the "postbuild" npm script. Node built-ins only.
  */
@@ -34,16 +34,20 @@ const SITE_URL = 'https://oraixen.com';
  * keep these values identical to it.
  */
 const MARKETS = {
-  en:      { prefix: '/en',    localeDir: 'en', htmlLang: 'en',    dir: 'ltr', hreflang: 'en',    ogLocale: 'en_US', metaLanguage: 'English' },
-  'ar-eg': { prefix: '/ar-eg', localeDir: 'ar', htmlLang: 'ar-EG', dir: 'rtl', hreflang: 'ar-EG', ogLocale: 'ar_EG', metaLanguage: 'Arabic' },
-  'ar-sa': { prefix: '/ar-sa', localeDir: 'ar', htmlLang: 'ar-SA', dir: 'rtl', hreflang: 'ar-SA', ogLocale: 'ar_SA', metaLanguage: 'Arabic' },
+  en:      { prefix: '/en',    localeDir: 'en',    htmlLang: 'en',    dir: 'ltr', hreflang: 'en',    ogLocale: 'en_US', metaLanguage: 'English' },
+  'ar-eg': { prefix: '/ar-eg', localeDir: 'ar-eg', htmlLang: 'ar-EG', dir: 'rtl', hreflang: 'ar-EG', ogLocale: 'ar_EG', metaLanguage: 'Arabic' },
+  'ar-sa': { prefix: '/ar-sa', localeDir: 'ar-sa', htmlLang: 'ar-SA', dir: 'rtl', hreflang: 'ar-SA', ogLocale: 'ar_SA', metaLanguage: 'Arabic' },
 };
 const MARKET_IDS = ['en', 'ar-eg', 'ar-sa'];
 const DEFAULT_MARKET = 'en';
 
 /**
- * The eight core static routes. `/projects/:slug` is deliberately absent —
- * case-study shells are out of scope and keep using the SPA fallback.
+ * The ten static routes: eight core pages plus two solution pages.
+ * `/projects/:slug` is deliberately absent — case-study shells
+ * are out of scope and keep using the SPA fallback.
+ *
+ * `name` is the flat output filename under dist/__seo/<market>/, so a nested
+ * route maps to a hyphenated file and .htaccess points the public URL at it.
  */
 const ROUTES = [
   { name: 'index',    route: '/',         file: 'home.json',     pick: (j) => j.seo },
@@ -54,6 +58,8 @@ const ROUTES = [
   { name: 'contact',  route: '/contact',  file: 'contact.json',  pick: (j) => j.seo },
   { name: 'privacy',  route: '/privacy',  file: 'legal.json',    pick: (j) => j.privacy?.seo },
   { name: 'terms',    route: '/terms',    file: 'legal.json',    pick: (j) => j.terms?.seo },
+  { name: 'solutions-custom-business-systems', route: '/solutions/custom-business-systems', file: 'solutionCustomSystems.json', pick: (j) => j.seo },
+  { name: 'solutions-real-estate-systems',     route: '/solutions/real-estate-systems',     file: 'solutionRealEstateSystems.json', pick: (j) => j.seo },
 ];
 
 /** Escapes text for HTML text nodes and double-quoted attributes. */

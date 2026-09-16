@@ -1,0 +1,398 @@
+name: Deploy to production
+
+# Runs only after the CI workflow finishes. CI stays validation-only; this is
+# the single workflow that writes to the Hostinger server.
+#
+# Gating happens twice:
+#   1. the `if` below, so nothing starts for Dev, PRs or failed runs
+#   2. a stale-SHA gate in the job, because two fast pushes can finish CI out of
+#      order and the later-finishing run must not redeploy an older commit
+#
+# There is NO server-side staging, backup or automatic rollback. dist/ is
+# rsynced straight into the fixed production target. If anything fails, the
+# workflow fails loudly and the fix is to redeploy a corrected commit.
+on:
+  workflow_run:
+    workflows: ['CI']
+    types:
+      - completed
+
+# No write access is needed: the workflow reads the repository and deploys over
+# SSH. It never pushes, tags or comments.
+permissions:
+  contents: read
+
+# Never cancel a deployment in flight: without rollback, an interrupted rsync
+# is the worst possible state to leave production in.
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build, deploy and verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_branch == 'main'
+
+    environment:
+      name: production
+      url: https://oraixen.com/
+
+    env:
+      DEPLOY_SHA: ${{ github.event.workflow_run.head_sha }}
+      # Fixed literal production target. Source-controlled on purpose: no
+      # secret, variable or input may influence the remote path. Only the
+      # connection credentials (user/host/port) come from secrets.
+      REMOTE_TARGET: /home/u396801667/domains/oraixen.com/public_html/oraixen-website
+
+      # Guard executed by the REMOTE rsync process, immediately before it
+      # accepts a single byte. Preflight proves the target earlier in the job;
+      # this closes the time-of-check/time-of-use gap between that step and the
+      # transfer, so a target swapped in between is still refused.
+      #
+      # It runs via --rsync-path, so rsync's own server arguments arrive as
+      # positional parameters and are handed through untouched by `exec rsync
+      # "$@"`. The destination is the last positional argument, checked against
+      # the same literal constant before exec.
+      #
+      # It also refuses any symlink already inside the target. A link there
+      # could point at another project or another domain, and rsync writing
+      # through it would escape the boundary. `find -P` does not follow links,
+      # so the scan itself cannot traverse out.
+      #
+      # MUST NOT CONTAIN A SINGLE QUOTE: the steps below wrap this in single
+      # quotes to build the remote command, and a quote here could break out of
+      # that context. The steps assert this at runtime.
+      RSYNC_GUARD_BODY: >-
+        T=/home/u396801667/domains/oraixen.com/public_html/oraixen-website;
+        P=/home/u396801667/domains/oraixen.com/public_html;
+        d="${@: -1}";
+        if [ "$d" != "$T/" ]; then echo "rsync-guard: unexpected destination: $d" >&2; exit 9; fi;
+        if [ ! -e "$T" ]; then echo "rsync-guard: target missing" >&2; exit 9; fi;
+        if [ -L "$T" ]; then echo "rsync-guard: target is a symlink" >&2; exit 9; fi;
+        if [ ! -d "$T" ]; then echo "rsync-guard: target is not a directory" >&2; exit 9; fi;
+        r=$(cd "$T" && pwd -P) || exit 9;
+        if [ "$r" != "$T" ]; then echo "rsync-guard: target resolves elsewhere: $r" >&2; exit 9; fi;
+        if [ "$(dirname "$r")" != "$P" ]; then echo "rsync-guard: target not directly inside public_html" >&2; exit 9; fi;
+        if [ "$(basename "$r")" != "oraixen-website" ]; then echo "rsync-guard: wrong target basename" >&2; exit 9; fi;
+        l=$(find -P "$T" -type l -print -quit) || { echo "rsync-guard: could not safely scan target for symlinks" >&2; exit 9; };
+        if [ -n "$l" ]; then echo "rsync-guard: symlink inside target: $l" >&2; exit 9; fi;
+        exec rsync "$@"
+
+    steps:
+      - name: Check out the exact commit that passed CI
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      # If main has already moved on, this CI result is stale. Deploying it
+      # would roll production backwards. Skip cleanly rather than failing: the
+      # newer commit's own run will deploy.
+      - name: Gate on stale main
+        id: gate
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin main
+          current="$(git rev-parse origin/main)"
+          echo "CI commit  : ${DEPLOY_SHA}"
+          echo "origin/main: ${current}"
+          if [ "$current" != "$DEPLOY_SHA" ]; then
+            echo 'main has advanced since this CI run; skipping deployment.'
+            echo 'should_deploy=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'should_deploy=true' >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up Node.js
+        if: steps.gate.outputs.should_deploy == 'true'
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        if: steps.gate.outputs.should_deploy == 'true'
+        run: npm ci
+
+      # CI already ran lint and type checking for this exact SHA, so only the
+      # build is repeated here, to produce the artifact from the deployed commit.
+      - name: Build production bundle
+        if: steps.gate.outputs.should_deploy == 'true'
+        run: npm run build
+
+      - name: Validate local dist
+        if: steps.gate.outputs.should_deploy == 'true'
+        run: |
+          set -euo pipefail
+          for f in index.html .htaccess contact.php market-context.php \
+                   market-lib.php market-router.php sitemap.xml robots.txt; do
+            test -f "dist/$f" || { echo "missing dist/$f" >&2; exit 1; }
+          done
+          for d in assets __seo flags; do
+            test -d "dist/$d" || { echo "missing dist/$d" >&2; exit 1; }
+          done
+          shells="$(find dist/__seo -type f -name '*.html' | wc -l | tr -d ' ')"
+          test "$shells" -eq 30 || { echo "expected 30 SEO shells, found $shells" >&2; exit 1; }
+          for market in en ar-eg ar-sa; do
+            count="$(find "dist/__seo/$market" -type f -name '*.html' | wc -l | tr -d ' ')"
+            test "$count" -eq 10 || { echo "expected 10 shells in __seo/$market, found $count" >&2; exit 1; }
+          done
+          echo "dist validated: $shells localized SEO shells"
+
+      # Fail before any remote contact if configuration is incomplete.
+      # Only emptiness is reported; no value is ever echoed.
+      - name: Validate deployment configuration
+        if: steps.gate.outputs.should_deploy == 'true'
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+          HOSTINGER_SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          HOSTINGER_KNOWN_HOSTS: ${{ secrets.HOSTINGER_KNOWN_HOSTS }}
+          NEIGHBOR_SMOKE_URL: ${{ vars.NEIGHBOR_SMOKE_URL }}
+        run: |
+          set -euo pipefail
+          missing=0
+          for name in HOSTINGER_HOST HOSTINGER_PORT HOSTINGER_USER \
+                      HOSTINGER_SSH_KEY HOSTINGER_KNOWN_HOSTS; do
+            if [ -z "${!name:-}" ]; then
+              echo "missing production secret: $name" >&2
+              missing=1
+            fi
+          done
+          if [ -z "${NEIGHBOR_SMOKE_URL:-}" ]; then
+            echo 'missing production variable: NEIGHBOR_SMOKE_URL' >&2
+            echo 'It must be a public URL of another project in the shared public_html.' >&2
+            missing=1
+          fi
+          test "$missing" -eq 0 || exit 1
+          echo 'deployment configuration present'
+
+      # Host key comes from the secret, verified out of band. Never
+      # accept-new, never StrictHostKeyChecking=no: a fresh key trusted inside
+      # the workflow would defeat the point of pinning it.
+      - name: Configure pinned SSH
+        if: steps.gate.outputs.should_deploy == 'true'
+        env:
+          HOSTINGER_SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          HOSTINGER_KNOWN_HOSTS: ${{ secrets.HOSTINGER_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "$HOSTINGER_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$HOSTINGER_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+          echo 'ssh key and known_hosts installed'
+
+      # Proves the target is physically the Oraixen application directory,
+      # inside the Oraixen domain, with a valid sentinel. Writes nothing.
+      - name: Remote preflight
+        if: steps.gate.outputs.should_deploy == 'true'
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+        run: |
+          set -euo pipefail
+          ssh -p "$HOSTINGER_PORT" \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile=~/.ssh/known_hosts \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -i ~/.ssh/deploy_key \
+            "${HOSTINGER_USER}@${HOSTINGER_HOST}" \
+            bash -s -- preflight \
+            < scripts/hostinger-deploy.sh
+
+      # The shared parent router is never deployed or modified. It is read here
+      # purely as a canary, and the hash is kept in a step output rather than in
+      # any file on the server.
+      - name: Record shared router hash
+        id: parent
+        if: steps.gate.outputs.should_deploy == 'true'
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+        run: |
+          set -euo pipefail
+          hash="$(ssh -p "$HOSTINGER_PORT" \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile=~/.ssh/known_hosts \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -i ~/.ssh/deploy_key \
+            "${HOSTINGER_USER}@${HOSTINGER_HOST}" \
+            bash -s -- parent-hash \
+            < scripts/hostinger-deploy.sh)"
+          echo "$hash" | grep -Eq '^[0-9a-f]{64}$' \
+            || { echo 'unexpected parent router hash output' >&2; exit 1; }
+          echo "hash=${hash}" >> "$GITHUB_OUTPUT"
+          echo "shared router hash: ${hash}"
+
+      # Re-read immediately before the only write. If an administrator edited
+      # shared routing since preflight, abort before touching production.
+      - name: Re-check shared router before deploying
+        if: steps.gate.outputs.should_deploy == 'true'
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+          EXPECTED_HASH: ${{ steps.parent.outputs.hash }}
+        run: |
+          set -euo pipefail
+          current="$(ssh -p "$HOSTINGER_PORT" \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile=~/.ssh/known_hosts \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -i ~/.ssh/deploy_key \
+            "${HOSTINGER_USER}@${HOSTINGER_HOST}" \
+            bash -s -- parent-hash \
+            < scripts/hostinger-deploy.sh)"
+          if [ "$current" != "$EXPECTED_HASH" ]; then
+            echo 'shared parent router changed since preflight; aborting before any write.' >&2
+            exit 1
+          fi
+          echo 'shared router unchanged; proceeding'
+
+      # THE ONLY WRITE TO PRODUCTION.
+      #
+      # Destination is the fixed literal $REMOTE_TARGET; no secret or variable
+      # contributes to the path. --delay-updates stages transferred files in a
+      # holding area on the server and renames them into place only after the
+      # whole transfer succeeds, and --delete-delay defers removal of stale
+      # files to the end, so a failed or interrupted transfer is far less likely
+      # to leave a half-updated site. The sentinel is excluded so it survives.
+      - name: Deploy to production
+        id: deploy
+        if: steps.gate.outputs.should_deploy == 'true'
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+        run: |
+          set -euo pipefail
+          # The guard body is embedded in single quotes below. A single quote
+          # inside it could escape that context, so refuse outright.
+          case "$RSYNC_GUARD_BODY" in
+            *"'"*) echo 'RSYNC_GUARD_BODY must not contain a single quote' >&2; exit 1 ;;
+          esac
+          guard="bash -c '${RSYNC_GUARD_BODY}' oraixen-rsync-guard"
+
+          rsync -az \
+            --delay-updates \
+            --delete-delay \
+            --exclude='.oraixen-deploy-target' \
+            --rsync-path="$guard" \
+            -e "ssh -p ${HOSTINGER_PORT} -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts -o BatchMode=yes -o IdentitiesOnly=yes -i $HOME/.ssh/deploy_key" \
+            dist/ "${HOSTINGER_USER}@${HOSTINGER_HOST}:${REMOTE_TARGET}/"
+          echo "deployed dist/ to ${REMOTE_TARGET}/"
+
+      # Read-only checksum dry run: any itemized line means the deployed tree
+      # differs from dist/. -n makes this incapable of modifying anything.
+      - name: Compare deployed tree with dist
+        if: steps.gate.outputs.should_deploy == 'true'
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+        run: |
+          set -euo pipefail
+          case "$RSYNC_GUARD_BODY" in
+            *"'"*) echo 'RSYNC_GUARD_BODY must not contain a single quote' >&2; exit 1 ;;
+          esac
+          guard="bash -c '${RSYNC_GUARD_BODY}' oraixen-rsync-guard"
+
+          diff_out="$(rsync -rlptcn --delete --itemize-changes \
+            --exclude='.oraixen-deploy-target' \
+            --rsync-path="$guard" \
+            -e "ssh -p ${HOSTINGER_PORT} -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts -o BatchMode=yes -o IdentitiesOnly=yes -i $HOME/.ssh/deploy_key" \
+            dist/ "${HOSTINGER_USER}@${HOSTINGER_HOST}:${REMOTE_TARGET}/")"
+          if [ -n "$diff_out" ]; then
+            printf '%s\n' "$diff_out" | head -n 20 >&2
+            echo 'deployed tree does not match dist/' >&2
+            exit 1
+          fi
+          echo 'deployed tree matches dist/ (checksum comparison clean)'
+
+      - name: Verify deployed release
+        if: steps.gate.outputs.should_deploy == 'true'
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+        run: |
+          set -euo pipefail
+          ssh -p "$HOSTINGER_PORT" \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile=~/.ssh/known_hosts \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -i ~/.ssh/deploy_key \
+            "${HOSTINGER_USER}@${HOSTINGER_HOST}" \
+            bash -s -- verify \
+            < scripts/hostinger-deploy.sh
+
+      # Third and final canary read. The router must be byte-identical to what
+      # preflight saw. Nothing here ever restores or edits it.
+      - name: Re-check shared router after deploying
+        if: steps.gate.outputs.should_deploy == 'true'
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
+          EXPECTED_HASH: ${{ steps.parent.outputs.hash }}
+        run: |
+          set -euo pipefail
+          current="$(ssh -p "$HOSTINGER_PORT" \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile=~/.ssh/known_hosts \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -i ~/.ssh/deploy_key \
+            "${HOSTINGER_USER}@${HOSTINGER_HOST}" \
+            bash -s -- parent-hash \
+            < scripts/hostinger-deploy.sh)"
+          if [ "$current" != "$EXPECTED_HASH" ]; then
+            echo 'shared parent router changed during deployment; investigate immediately.' >&2
+            exit 1
+          fi
+          echo 'shared router unchanged after deployment'
+
+      - name: Smoke-test production
+        if: steps.gate.outputs.should_deploy == 'true'
+        env:
+          NEIGHBOR_SMOKE_URL: ${{ vars.NEIGHBOR_SMOKE_URL }}
+        run: bash scripts/production-smoke-test.sh "$NEIGHBOR_SMOKE_URL"
+
+      # There is no automatic rollback. Surface that plainly so nobody assumes
+      # production was restored.
+      - name: Report deployment failure
+        if: failure() && steps.gate.outputs.should_deploy == 'true' && steps.deploy.conclusion != 'skipped'
+        run: |
+          echo '::error::Deployment failed after files were written. There is NO automatic rollback; production may be serving the new release. Redeploy a corrected commit.'
+          exit 1
+
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo '## Production deployment'
+            echo
+            echo "- Commit: \`${DEPLOY_SHA}\`"
+            echo "- Deploy decision: \`${{ steps.gate.outputs.should_deploy }}\`"
+            echo "- Upload: \`${{ steps.deploy.conclusion }}\`"
+            echo "- Target: \`${REMOTE_TARGET}\`"
+            echo '- Rollback: none (redeploy a corrected commit on failure)'
+          } >> "$GITHUB_STEP_SUMMARY"

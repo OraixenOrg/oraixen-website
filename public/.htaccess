@@ -5,11 +5,22 @@
 #   /ar-eg/*   Arabic — Egypt
 #   /ar-sa/*   Arabic — Saudi Arabia
 #
-# The eight core routes in each market are served a generated HTML shell that
+# The ten static routes in each market (eight core pages plus two solution
+# pages) are served a generated HTML shell that
 # already carries that market's <title>/description/canonical/hreflang/OG tags
 # (see scripts/generate-static-seo.mjs), so crawlers and link previews are
 # correct before React runs. Those rewrites are INTERNAL — the visible URL stays
 # /ar-sa/about. Dynamic routes such as /en/projects/:slug use the SPA fallback.
+#
+# Locale-less URLs are handed to market-router.php, which picks a market from
+# country + saved preference + Accept-Language and 302s to the same page there.
+
+# Hostinger's mod_geoip, verified working on this production host: it exposes
+# GEOIP_COUNTRY_CODE to PHP from the connecting address. Deliberately not
+# wrapped in <IfModule>: Hostinger publishes no module identifier, and a wrong
+# guess would silently disable country detection and route everyone to English.
+GeoIPEnable On
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
@@ -23,11 +34,12 @@
 
   # 2. The bare root must be handled BEFORE the real-file rule below, because
   #    the document root is itself a real directory and would otherwise be
-  #    served by DirectoryIndex instead of redirecting. TEMPORARY 302 (see 4).
-  RewriteRule ^$ /en [R=302,L]
+  #    served by DirectoryIndex instead of reaching the router.
+  RewriteRule ^$ market-router.php [L]
 
   # 3. Real files and folders win before any localization — /contact.php,
-  #    /assets/*, /sitemap.xml, /robots.txt, /logo.svg, /icon.png.
+  #    /market-router.php, /market-context.php, /assets/*, /flags/*,
+  #    /sitemap.xml, /robots.txt, /logo.svg, /icon.png.
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
@@ -37,14 +49,85 @@
   RewriteRule ^(en|ar-eg|ar-sa)/?$                                              __seo/$1/index.html [L]
   RewriteRule ^(en|ar-eg|ar-sa)/(about|services|projects|process|contact|privacy|terms)/?$  __seo/$1/$2.html [L]
 
-  # 5. TEMPORARY: locale-less application routes go to English. 302, never 301 —
-  #    Issue 13 replaces this with preference/country-aware selection, so the
-  #    destination must not be cached as permanent. Query strings are preserved
-  #    by [R,QSA]; fragments are client-side and never reach Apache.
-  RewriteRule ^(about|services|projects|process|contact|privacy|terms)(/.*)?$ /en/$1$2 [R=302,L,QSA]
+  #    Solution landing pages live one level deeper, so they need their own
+  #    anchored rule. The shell filenames are flat (solutions-<slug>.html), so
+  #    the nested public URL maps to a hyphenated file. One exact rule per page,
+  #    anchored with $: nothing else under /solutions/ can match.
+  RewriteRule ^(en|ar-eg|ar-sa)/solutions/custom-business-systems/?$  __seo/$1/solutions-custom-business-systems.html [L]
+  RewriteRule ^(en|ar-eg|ar-sa)/solutions/real-estate-systems/?$  __seo/$1/solutions-real-estate-systems.html [L]
+
+  # 5. Locale-less application routes -> the market router, which reads the
+  #    original path from REQUEST_URI and 302s to the same page in the chosen
+  #    market. Internal rewrite, so /market-router.php never appears in the
+  #    browser. Fragments are client-side and never reach the server.
+  RewriteRule ^(about|services|projects|process|contact|privacy|terms)(/.*)?$ market-router.php [L,QSA]
+
+  #    Locale-less solution URLs take the same path. Listed one page at a time
+  #    on purpose: /solutions/* is NOT claimed wholesale, so an unbuilt slug
+  #    falls through to the SPA and renders the 404 route instead of 302ing to
+  #    a page that does not exist. QSA keeps gclid/UTM intact through the 302,
+  #    which is what makes paid landing traffic measurable.
+  RewriteRule ^solutions/custom-business-systems/?$ market-router.php [L,QSA]
+  RewriteRule ^solutions/real-estate-systems/?$ market-router.php [L,QSA]
 
   # 6. Everything else (incl. /en/projects/:slug) -> the SPA shell.
   RewriteRule ^ index.html [L]
+</IfModule>
+
+# ===== Baseline browser security headers =====
+#
+# Guarded: if mod_headers is ever unavailable the site must keep serving, unlike
+# the GeoIP directive above (which is proven on this host and must stay bare so
+# a missing module fails loudly rather than silently routing everyone to /en).
+#
+# Deliberately NOT here: Content-Security-Policy (the platform already sends
+# `upgrade-insecure-requests`, and a real policy needs its own source inventory)
+# and COOP/COEP/CORP (can break third-party integrations for no benefit at this
+# baseline). Each is its own issue.
+<IfModule mod_headers.c>
+  # Stop browsers from MIME-sniffing a response into a different type — the
+  # classic route from "uploaded text file" to "executed script".
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Same-origin navigations keep the full referrer (useful for internal
+  # analytics); cross-origin requests get the origin only, and HTTPS->HTTP
+  # sends nothing. Good privacy without breaking referral attribution.
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Nothing in the site is designed to be embedded by another origin (audited:
+  # no iframes, no postMessage, no embed partners), so refuse external framing.
+  # SAMEORIGIN rather than DENY keeps same-origin framing available if a future
+  # internal tool needs it. CSP frame-ancestors is a separate issue.
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # The site never asks for location, camera or microphone, so deny them
+  # outright — including for anything it might embed. Other features are left
+  # unset on purpose: restricting APIs the code does not use buys nothing and
+  # risks blocking a legitimate future feature.
+  Header always set Permissions-Policy "geolocation=(), camera=(), microphone=()"
+
+  # Explicitly OFF, not on. The legacy XSS auditor is absent from modern
+  # browsers and, where it survives, its filtering has itself been a source of
+  # vulnerabilities. 0 disables it; 1;mode=block would re-enable that risk.
+  Header always set X-XSS-Protection "0"
+
+  # HSTS canary — 5 minutes only.
+  # Do not add includeSubDomains: known Oraixen subdomains are not all
+  # HTTPS-safe yet. Do not add preload.
+  #
+  # Audit evidence (Issue 16): ftp.oraixen.com does not currently provide usable
+  # HTTPS, and autodiscover.oraixen.com presents a non-matching certificate while
+  # serving plain HTTP today. The Let's Encrypt certificate covers only oraixen.com
+  # and www.oraixen.com. includeSubDomains would therefore make known subdomains
+  # unreachable for HSTS-aware browsers. Keep max-age at 300s until production
+  # verification succeeds.
+  Header always set Strict-Transport-Security "max-age=300" "expr=%{HTTPS} == 'on'"
+
+  # Hostinger's PHP currently advertises its exact version (x-powered-by:
+  # PHP/8.4.21) on every PHP response. Removing it costs nothing and gives
+  # version-specific exploit scanning one less hint. `unset` on a header that
+  # is not present is a no-op, so this is safe everywhere.
+  Header always unset X-Powered-By
 </IfModule>
 
 # Long-cache the fingerprinted build assets (filenames change every build).

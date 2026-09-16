@@ -4,10 +4,12 @@ import { Check, ChevronDown, Globe } from 'lucide-react';
 import { EgyptFlag, SaudiFlag } from './MarketFlags';
 import {
   DEFAULT_MARKET,
-  MARKET_LOCALES,
   applyLocalePrefix,
+  fetchCountryContext,
   parseMarketFromPath,
   persistMarketPreference,
+  visibleMarkets,
+  type CountryContext,
   type MarketLocale,
 } from '../lib/marketLocale';
 
@@ -16,7 +18,7 @@ interface LanguageSwitcherProps {
 }
 
 /**
- * How each market presents itself. Written in its own language — these are
+ * How each market presents itself. Written in its own language. These are
  * endonyms, not translated UI copy, so they read identically in every version.
  * English uses a globe rather than a country flag: it is the international
  * default version, not a country-specific market.
@@ -28,12 +30,12 @@ const MARKET_UI: Record<MarketLocale, { label: string; short: string; Mark: () =
     Mark: () => <Globe size={16} aria-hidden="true" className="shrink-0" />,
   },
   'ar-eg': {
-    label: 'مصر — العربية',
+    label: 'مصر · العربية',
     short: 'مصر',
     Mark: () => <EgyptFlag />,
   },
   'ar-sa': {
-    label: 'السعودية — العربية',
+    label: 'السعودية · العربية',
     short: 'السعودية',
     Mark: () => <SaudiFlag />,
   },
@@ -59,11 +61,34 @@ export function LanguageSwitcher({ className = '' }: LanguageSwitcherProps) {
   const current: MarketLocale = parseMarketFromPath(window.location.pathname) ?? DEFAULT_MARKET;
 
   const [open, setOpen] = useState(false);
+  // null = the country is still unknown. Deliberately NOT defaulted to 'other':
+  // treating "not loaded yet" as "other" would let an early click write
+  // oraixen_market_other for a visitor who is actually in Egypt or Saudi
+  // Arabia, and would briefly show them all three markets.
+  const [context, setContext] = useState<CountryContext | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const itemRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
-  const currentIndex = Math.max(MARKET_LOCALES.indexOf(current), 0);
+  // Country comes from the server's GeoIP lookup, asked for once on mount.
+  // Never blocks rendering: until it answers — or if it fails — the context
+  // stays 'other', which offers all three markets rather than hiding one.
+  useEffect(() => {
+    const controller = new AbortController();
+    let active = true;
+    fetchCountryContext(controller.signal).then((value) => {
+      if (active) setContext(value);
+    });
+    return () => {
+      active = false;
+      controller.abort();
+    };
+  }, []);
+
+  // Only the markets relevant to this country, plus whatever is active now.
+  const contextLoading = context === null;
+  const options = visibleMarkets(context, current);
+  const currentIndex = Math.max(options.indexOf(current), 0);
 
   const closeAndRestoreFocus = useCallback(() => {
     setOpen(false);
@@ -87,9 +112,14 @@ export function LanguageSwitcher({ className = '' }: LanguageSwitcherProps) {
   }, [open]);
 
   const select = (next: MarketLocale) => {
+    // Belt and braces: the trigger is disabled while loading, but never let a
+    // selection through with an unresolved country either.
+    if (context === null) return;
+
     // Recorded even when the market is unchanged: an explicit confirmation is
-    // still a preference the next visit should honour.
-    persistMarketPreference(next);
+    // still a preference the next visit should honour. Saved against the
+    // current country so the server can honour it on later locale-less visits.
+    persistMarketPreference(next, context);
 
     if (next === current) {
       closeAndRestoreFocus();
@@ -102,6 +132,7 @@ export function LanguageSwitcher({ className = '' }: LanguageSwitcherProps) {
   };
 
   const onTriggerKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+    if (context === null) return;
     if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
       setOpen(true);
@@ -114,7 +145,7 @@ export function LanguageSwitcher({ className = '' }: LanguageSwitcherProps) {
       case 'ArrowUp': {
         event.preventDefault();
         const delta = event.key === 'ArrowDown' ? 1 : -1;
-        const next = (index + delta + MARKET_LOCALES.length) % MARKET_LOCALES.length;
+        const next = (index + delta + options.length) % options.length;
         itemRefs.current[next]?.focus();
         break;
       }
@@ -124,7 +155,7 @@ export function LanguageSwitcher({ className = '' }: LanguageSwitcherProps) {
         break;
       case 'End':
         event.preventDefault();
-        itemRefs.current[MARKET_LOCALES.length - 1]?.focus();
+        itemRefs.current[options.length - 1]?.focus();
         break;
       case 'Escape':
         event.preventDefault();
@@ -148,11 +179,18 @@ export function LanguageSwitcher({ className = '' }: LanguageSwitcherProps) {
         type="button"
         onClick={() => setOpen((prev) => !prev)}
         onKeyDown={onTriggerKeyDown}
+        disabled={contextLoading}
         aria-haspopup="menu"
         aria-expanded={open}
         aria-controls={MENU_ID}
         aria-label={t('lang.selectAria')}
-        className="inline-flex h-9 items-center gap-1.5 rounded-full border border-line px-2.5 text-xs font-medium text-ink/80 transition-colors hover:border-teal/40 hover:bg-surface-subtle hover:text-teal focus:outline-none focus-visible:ring-2 focus-visible:ring-teal/40 md:gap-0 md:px-2 lg:gap-1.5 lg:px-2.5"
+        aria-busy={contextLoading}
+        // Only opacity changes while loading — same box, so no layout shift.
+        className={`inline-flex h-9 items-center gap-1.5 rounded-full border border-line px-2.5 text-xs font-medium text-ink/80 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal/40 md:gap-0 md:px-2 lg:gap-1.5 lg:px-2.5 ${
+          contextLoading
+            ? 'cursor-default opacity-60'
+            : 'hover:border-teal/40 hover:bg-surface-subtle hover:text-teal'
+        }`}
       >
         <CurrentMark />
         {/* The md-lg band is the tightest in the bar: the full desktop nav and
@@ -172,14 +210,14 @@ export function LanguageSwitcher({ className = '' }: LanguageSwitcherProps) {
         />
       </button>
 
-      {open && (
+      {open && !contextLoading && (
         <div
           id={MENU_ID}
           role="menu"
           aria-label={t('lang.selectAria')}
           className="absolute top-full end-0 z-50 mt-2 min-w-[14rem] rounded-xl border border-line bg-card p-1.5 shadow-card"
         >
-          {MARKET_LOCALES.map((locale, index) => {
+          {options.map((locale, index) => {
             const { label, Mark } = MARKET_UI[locale];
             const isActive = locale === current;
             return (
