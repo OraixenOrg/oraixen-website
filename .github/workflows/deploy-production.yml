@@ -80,7 +80,7 @@ jobs:
         if [ "$r" != "$T" ]; then echo "rsync-guard: target resolves elsewhere: $r" >&2; exit 9; fi;
         if [ "$(dirname "$r")" != "$P" ]; then echo "rsync-guard: target not directly inside public_html" >&2; exit 9; fi;
         if [ "$(basename "$r")" != "oraixen-website" ]; then echo "rsync-guard: wrong target basename" >&2; exit 9; fi;
-        l=$(find -P "$T" -type l -print -quit);
+        l=$(find -P "$T" -type l -print -quit) || { echo "rsync-guard: could not safely scan target for symlinks" >&2; exit 9; };
         if [ -n "$l" ]; then echo "rsync-guard: symlink inside target: $l" >&2; exit 9; fi;
         exec rsync "$@"
 
