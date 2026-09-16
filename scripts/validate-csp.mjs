@@ -1,13 +1,13 @@
 /**
  * Build-time Content-Security-Policy validation for the built output.
  *
- * The policy in public/.htaccess authorizes three inline JSON-LD blocks by
- * SHA-256 hash. Hashes are byte-sensitive: a single character added to the
- * structured data in index.html, or to the shell generator that copies it into
- * the 30 localized files, silently invalidates them. In report-only mode that
- * shows up as console noise; once Issue 23B makes the policy enforcing, it
- * shows up as structured data the browser refuses to parse. Neither is visible
- * in a passing build, so this script makes it visible instead.
+ * The policy in public/.htaccess is ENFORCING, and it authorizes three inline
+ * JSON-LD blocks by SHA-256 hash. Hashes are byte-sensitive: a single character
+ * added to the structured data in index.html, or to the shell generator that
+ * copies it into the 30 localized files, silently invalidates them — and now
+ * that the policy enforces, the browser refuses to run the affected block
+ * outright, so the structured data every market's SEO depends on disappears.
+ * None of that is visible in a passing build, so this script makes it visible.
  *
  * Read-only. It never writes or repairs anything in dist/ — a policy that no
  * longer matches the build is a decision for a human, not something a build
@@ -288,21 +288,37 @@ async function main() {
     throw new Error(`dist/.htaccess is missing — the build did not copy public/.htaccess`);
   }
 
-  const reportOnly = findHeaderDirectives(htaccess, REPORT_ONLY_HEADER);
+  // Header names are matched as whole tokens, so the report-only header can
+  // never be counted as the enforcing one. A naive substring test gets this
+  // exactly backwards and reports a canary as an enforced policy.
   const enforcing = findHeaderDirectives(htaccess, ENFORCING_HEADER);
+  const reportOnly = findHeaderDirectives(htaccess, REPORT_ONLY_HEADER);
 
-  if (enforcing.length !== 0) {
-    fail(`found ${enforcing.length} enforcing Content-Security-Policy header(s); Issue 23A is report-only`);
+  if (enforcing.length !== 1) {
+    fail(`expected exactly 1 enforcing Content-Security-Policy header, found ${enforcing.length}`);
   }
-  if (reportOnly.length !== 1) {
-    fail(`expected exactly 1 Content-Security-Policy-Report-Only header, found ${reportOnly.length}`);
+  if (reportOnly.length !== 0) {
+    fail(
+      `found ${reportOnly.length} Content-Security-Policy-Report-Only header(s); ` +
+      'the canary was promoted to an enforcing policy and must not be re-added alongside it'
+    );
   }
 
-  const policyText = reportOnly.length === 1 ? reportOnly[0].value : '';
+  const policyText = enforcing.length === 1 ? enforcing[0].value : '';
   const policy = parsePolicy(policyText);
 
-  if (reportOnly.length === 1 && reportOnly[0].action !== 'set') {
-    fail(`report-only header uses "Header ${reportOnly[0].action}"; only "set" produces a single policy`);
+  if (enforcing.length === 1 && enforcing[0].action !== 'set') {
+    fail(`enforcing header uses "Header ${enforcing[0].action}"; only "set" produces a single policy`);
+  }
+
+  // This file only ever sees the application's own .htaccess. Hostinger adds a
+  // separate enforcing upgrade-insecure-requests header at runtime, which is
+  // not in dist/ and is deliberately neither simulated nor depended on here.
+  const upgradeCount = policyText
+    .split(';')
+    .filter((chunk) => chunk.trim().toLowerCase() === 'upgrade-insecure-requests').length;
+  if (upgradeCount !== 1) {
+    fail(`expected upgrade-insecure-requests exactly once in the application policy, found ${upgradeCount}`);
   }
 
   // --- G/H/I/J: the policy must not defeat itself --------------------------
@@ -402,6 +418,7 @@ async function main() {
   console.log(`- inline event handlers: ${handlerCount}`);
   console.log(`- enforcing CSP headers: ${enforcing.length}`);
   console.log(`- report-only CSP headers: ${reportOnly.length}`);
+  console.log(`- upgrade-insecure-requests: ${upgradeCount === 1 ? 'present' : `${upgradeCount} occurrence(s)`}`);
 
   if (failures.length > 0) {
     console.error('- FAIL');
