@@ -25,26 +25,48 @@ GeoIPEnable On
   RewriteEngine On
   RewriteBase /
 
-  # 1. The generated shells must not be reachable as their own public URLs, or
+  # 1. One canonical host: https://oraixen.com. Without this, www serves a byte
+  #    identical second copy of every page (same ETag, same CSP), which splits
+  #    ranking signals across two hosts.
+  #
+  #    First, so the canonical host is settled before any routing decision and
+  #    every later rule only ever runs on the apex.
+  #
+  #    %{REQUEST_URI} is the path exactly as requested, so the locale prefix is
+  #    carried across untouched and no market decision is made here. The
+  #    substitution contains no "?", so mod_rewrite appends the original query
+  #    string on its own; that is what preserves utm_*/gclid without QSA.
+  #
+  #    The condition is anchored to the www host alone, so a request that is
+  #    already on oraixen.com cannot match and the rule cannot loop. The
+  #    optional port keeps it matching if HTTP_HOST ever arrives with one.
+  #
+  #    HTTP is not handled here on purpose: Hostinger's edge answers plaintext
+  #    with its own 301 to HTTPS before Apache is reached, so .htaccess only
+  #    ever sees HTTPS and a scheme rule here would be unreachable.
+  RewriteCond %{HTTP_HOST} ^www\.oraixen\.com(:[0-9]+)?$ [NC]
+  RewriteRule ^ https://oraixen.com%{REQUEST_URI} [R=301,L]
+
+  # 2. The generated shells must not be reachable as their own public URLs, or
   #    they would be a second indexable copy of every page. THE_REQUEST holds
   #    the ORIGINAL request line, so this matches a browser asking for
   #    /__seo/en/about.html while leaving Apache's internal rewrites alone.
   RewriteCond %{THE_REQUEST} \s/+__seo/ [NC]
   RewriteRule ^ - [R=404,L]
 
-  # 2. The bare root must be handled BEFORE the real-file rule below, because
+  # 3. The bare root must be handled BEFORE the real-file rule below, because
   #    the document root is itself a real directory and would otherwise be
   #    served by DirectoryIndex instead of reaching the router.
   RewriteRule ^$ market-router.php [L]
 
-  # 3. Real files and folders win before any localization — /contact.php,
+  # 4. Real files and folders win before any localization — /contact.php,
   #    /market-router.php, /market-context.php, /assets/*, /flags/*,
   #    /sitemap.xml, /robots.txt, /logo.svg, /icon.png.
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # 4. Exact localized routes -> their generated shell (internal, URL unchanged).
+  # 5. Exact localized routes -> their generated shell (internal, URL unchanged).
   #    Anchored with $ so /en/projects/some-slug does NOT match /en/projects.
   RewriteRule ^(en|ar-eg|ar-sa)/?$                                              __seo/$1/index.html [L]
   RewriteRule ^(en|ar-eg|ar-sa)/(about|services|projects|process|contact|privacy|terms)/?$  __seo/$1/$2.html [L]
@@ -56,7 +78,7 @@ GeoIPEnable On
   RewriteRule ^(en|ar-eg|ar-sa)/solutions/custom-business-systems/?$  __seo/$1/solutions-custom-business-systems.html [L]
   RewriteRule ^(en|ar-eg|ar-sa)/solutions/real-estate-systems/?$  __seo/$1/solutions-real-estate-systems.html [L]
 
-  # 5. Locale-less application routes -> the market router, which reads the
+  # 6. Locale-less application routes -> the market router, which reads the
   #    original path from REQUEST_URI and 302s to the same page in the chosen
   #    market. Internal rewrite, so /market-router.php never appears in the
   #    browser. Fragments are client-side and never reach the server.
@@ -70,7 +92,7 @@ GeoIPEnable On
   RewriteRule ^solutions/custom-business-systems/?$ market-router.php [L,QSA]
   RewriteRule ^solutions/real-estate-systems/?$ market-router.php [L,QSA]
 
-  # 6. Everything else (incl. /en/projects/:slug) -> the SPA shell.
+  # 7. Everything else (incl. /en/projects/:slug) -> the SPA shell.
   RewriteRule ^ index.html [L]
 </IfModule>
 
