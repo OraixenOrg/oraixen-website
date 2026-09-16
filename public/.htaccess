@@ -32,10 +32,14 @@ GeoIPEnable On
   #    First, so the canonical host is settled before any routing decision and
   #    every later rule only ever runs on the apex.
   #
-  #    %{REQUEST_URI} is the path exactly as requested, so the locale prefix is
-  #    carried across untouched and no market decision is made here. The
-  #    substitution contains no "?", so mod_rewrite appends the original query
-  #    string on its own; that is what preserves utm_*/gclid without QSA.
+  #    The path comes from THE_REQUEST, not %{REQUEST_URI}. A parent Hostinger
+  #    rewrite maps the public request into the deployment subdirectory before
+  #    this file runs, so by now REQUEST_URI reads /oraixen-website/en and would
+  #    put that internal prefix in a public Location. THE_REQUEST holds the
+  #    original request line and is untouched by internal rewrites, so %1 is the
+  #    browser-visible path. NE stops an already-encoded path being escaped a
+  #    second time. The substitution adds no "?", so mod_rewrite appends the
+  #    original query string itself, preserving utm_*/gclid without QSA.
   #
   #    The condition is anchored to the www host alone, so a request that is
   #    already on oraixen.com cannot match and the rule cannot loop. The
@@ -44,8 +48,23 @@ GeoIPEnable On
   #    HTTP is not handled here on purpose: Hostinger's edge answers plaintext
   #    with its own 301 to HTTPS before Apache is reached, so .htaccess only
   #    ever sees HTTPS and a scheme rule here would be unreachable.
+  #
+  #    The deployment directory is also reachable as its own public URL
+  #    (/oraixen-website/en served a second copy of every page), so strip it
+  #    when a browser asks for it directly. Matching THE_REQUEST is what makes
+  #    that safe: the parent router's internal mapping into that directory never
+  #    appears there, so a normal "GET /en" is untouched. These run before the
+  #    host rule and already target the apex, so a www request carrying the
+  #    prefix is corrected in one redirect rather than two.
+  RewriteCond %{THE_REQUEST} \s/oraixen-website/?[\s?] [NC]
+  RewriteRule ^ https://oraixen.com/ [R=301,L,NE]
+
+  RewriteCond %{THE_REQUEST} \s/oraixen-website(/[^?\s]+) [NC]
+  RewriteRule ^ https://oraixen.com%1 [R=301,L,NE]
+
   RewriteCond %{HTTP_HOST} ^www\.oraixen\.com(:[0-9]+)?$ [NC]
-  RewriteRule ^ https://oraixen.com%{REQUEST_URI} [R=301,L]
+  RewriteCond %{THE_REQUEST} \s(/[^?\s]*) [NC]
+  RewriteRule ^ https://oraixen.com%1 [R=301,L,NE]
 
   # 2. The generated shells must not be reachable as their own public URLs, or
   #    they would be a second indexable copy of every page. THE_REQUEST holds
