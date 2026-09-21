@@ -10,7 +10,6 @@
   },
   "labels": {
     "deliverables": "Deliverables",
-    "timeline": "Typical timeline",
     "bestFor": "Best for",
     "cta": "Talk through your project"
   },
@@ -25,7 +24,6 @@
           "Internal platforms",
           "APIs and integrations"
         ],
-        "timeline": "3–12 months",
         "bestFor": "Companies outgrowing spreadsheets and disconnected tools"
       },
       {
@@ -37,7 +35,6 @@
           "Progressive web apps",
           "Content management"
         ],
-        "timeline": "2–5 months",
         "bestFor": "SaaS, retail and B2B commerce, customer portals"
       },
       {
@@ -49,7 +46,6 @@
           "UI and UX design",
           "App Store & Google Play release"
         ],
-        "timeline": "3–6 months",
         "bestFor": "Consumer brands, service platforms, field and staff apps"
       },
       {
@@ -61,7 +57,6 @@
           "Predictive analytics",
           "Workflow automation"
         ],
-        "timeline": "2–8 months",
         "bestFor": "Product teams, operations, data-heavy businesses"
       },
       {
@@ -73,7 +68,6 @@
           "Device connectivity",
           "Monitoring dashboards"
         ],
-        "timeline": "4–12 months",
         "bestFor": "Manufacturing, logistics, medtech, smart operations"
       },
       {
@@ -85,7 +79,6 @@
           "API integrations",
           "Rollout and training"
         ],
-        "timeline": "3–12 months",
         "bestFor": "Companies with disconnected systems, manual workarounds, or tools that no longer fit their operations"
       }
     ]
