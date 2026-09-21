@@ -28,7 +28,6 @@ type ServiceItem = {
   badge?: string;
   description: string;
   deliverables: string[];
-  timeline: string;
   bestFor: string;
 };
 
@@ -119,14 +118,6 @@ export function Services() {
                       </div>
 
                       <div className="space-y-6">
-                        <div>
-                          <h4 className="text-xs font-bold text-teal uppercase tracking-wider mb-2">
-                            {t('labels.timeline')}
-                          </h4>
-                          <p className="text-ink text-lg font-semibold">
-                            {service.timeline}
-                          </p>
-                        </div>
                         <div>
                           <h4 className="text-xs font-bold text-teal uppercase tracking-wider mb-2">
                             {t('labels.bestFor')}

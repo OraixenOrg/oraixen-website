@@ -12,7 +12,7 @@
     "eyebrow": "Our story",
     "title": "How Oraixen came to be",
     "intro": "Oraixen works across six service groups: custom business systems, web platforms and e-commerce, mobile applications, AI solutions and automation, hardware and software systems, and system modernization and integrations, for growing businesses and established companies with real operational or product needs.",
-    "history": "Software delivery began in 2019 through an independent team working closely with early clients. In 2025, Oraixen was founded under its current name: the same team and standards, now under one company.",
+    "history": "Our experience in building business systems and digital products dates back to 2019. Today, we continue that work under the Oraixen name, focusing on systems built around real business operations.",
     "p1": {
       "before": "",
       "ora": "Understand the business before we build",
@@ -35,15 +35,11 @@
   "timeline": {
     "eyebrow": "Milestones",
     "title": "How we got here",
-    "subtitle": "From an independent software team to Oraixen, serving growing businesses across multiple markets.",
+    "subtitle": "Experience dating back to 2019, now carried forward through Oraixen.",
     "items": [
       {
         "year": "2019",
-        "label": "Software delivery began through an independent team"
-      },
-      {
-        "year": "2022",
-        "label": "Expanded across web, mobile, and business platforms"
+        "label": "Software delivery experience since 2019"
       },
       {
         "year": "2025",

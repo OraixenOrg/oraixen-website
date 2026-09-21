@@ -110,7 +110,9 @@ export function About() {
             className="hidden lg:block absolute top-6 start-0 end-0 h-px bg-gradient-to-r from-skyblue to-teal"
             aria-hidden="true"
           />
-          <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+          {/* Column count follows the milestone count: markets do not all carry the same
+              number of verified milestones, and a fixed 4-column grid would leave a hole. */}
+          <Stagger className={`grid grid-cols-1 sm:grid-cols-2 ${milestones.length === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4'} gap-8 lg:gap-6`}>
             {milestones.map((item, i) => (
               <Reveal
                 key={i}
