@@ -4,13 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { ArrowUpRight, Lock, ExternalLink } from 'lucide-react';
 import { Project } from '../../types/project';
 import { Card } from '../Card';
-import { localizeProject } from '../../lib/projects';
+import { localizeProject, PROJECT_FALLBACK_IMAGE } from '../../lib/projects';
 
 interface ProjectCardProps {
   project: Project;
 }
-
-const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800';
 
 export function ProjectCard({
   project: rawProject
@@ -19,6 +17,9 @@ export function ProjectCard({
   const [imageError, setImageError] = useState(false);
 
   const project = localizeProject(rawProject, i18n.language);
+  // A project may ship without a brand asset; the neutral placeholder covers both
+  // "never had one" and "the client's logo URL stopped resolving".
+  const imageSrc = imageError || !project.imageUrl ? PROJECT_FALLBACK_IMAGE : project.imageUrl;
 
   return (
     <Card interactive className="group relative h-full flex flex-col overflow-hidden">
@@ -33,7 +34,7 @@ export function ProjectCard({
           project.imageFit === 'contain' ? 'bg-card p-8' : 'bg-surface-subtle p-6'
         }`}>
           <img
-            src={imageError ? FALLBACK_IMAGE : project.imageUrl}
+            src={imageSrc}
             alt={project.title}
             className={`transition-transform duration-500 group-hover:scale-105 ${
               project.imageFit === 'contain'
@@ -132,14 +133,18 @@ export function ProjectCard({
             </div>
           )}
 
-          <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-line">
-            {project.techStack.slice(0, 3).map(tech => <span key={tech} className="text-xs text-body bg-surface-subtle px-2.5 py-1 rounded-md font-medium border border-line">
-                {tech}
-              </span>)}
-            {project.techStack.length > 3 && <span className="text-xs text-muted bg-surface-subtle px-2.5 py-1 rounded-md font-medium">
-                {t('card.more', { count: project.techStack.length - 3 })}
-              </span>}
-          </div>
+          {/* Omitted entirely when no stack is published, so the card never ends on
+              an empty bordered strip. */}
+          {project.techStack.length > 0 && (
+            <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-line">
+              {project.techStack.slice(0, 3).map(tech => <span key={tech} className="text-xs text-body bg-surface-subtle px-2.5 py-1 rounded-md font-medium border border-line">
+                  {tech}
+                </span>)}
+              {project.techStack.length > 3 && <span className="text-xs text-muted bg-surface-subtle px-2.5 py-1 rounded-md font-medium">
+                  {t('card.more', { count: project.techStack.length - 3 })}
+                </span>}
+            </div>
+          )}
         </div>
       </Card>
   );

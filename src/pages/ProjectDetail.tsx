@@ -2,7 +2,12 @@ import { useParams, Navigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, Calendar, Globe2, Layers, Lock, Tag, User } from 'lucide-react';
 import { isCaseStudy } from '../types/project';
-import { projects, localizeProject, hasPlatformLinks } from '../lib/projects';
+import {
+  projects,
+  localizeProject,
+  hasPlatformLinks,
+  PROJECT_FALLBACK_IMAGE,
+} from '../lib/projects';
 import { Section } from '../components/Section';
 import { FadeIn } from '../components/FadeIn';
 import { ProjectCaseStudy } from '../components/projects/ProjectCaseStudy';
@@ -19,6 +24,21 @@ import {
 
 /** A value spanning more than one year ("2024–2026") is a period, not a year. */
 const RANGE = /[-\u2013\u2014]/;
+
+/**
+ * Column count for the overview band, keyed by how many facts the project
+ * actually publishes. A project with no public year or no tech stack renders
+ * fewer cells, and the row tightens instead of leaving a hole at the end.
+ */
+const OVERVIEW_COLUMNS: Record<number, string> = {
+  1: 'md:grid-cols-1 lg:grid-cols-1',
+  2: 'md:grid-cols-2 lg:grid-cols-2',
+  3: 'md:grid-cols-2 lg:grid-cols-3',
+  // 5 keeps four columns so the legacy layout (four facts plus the tech stack)
+  // renders exactly as it did before the count became variable.
+  4: 'md:grid-cols-2 lg:grid-cols-4',
+  5: 'md:grid-cols-2 lg:grid-cols-4',
+};
 
 export function ProjectDetail() {
   const { t, i18n } = useTranslation('projectDetail');
@@ -48,17 +68,29 @@ export function ProjectDetail() {
     ...(project.country
       ? [{ icon: <Globe2 size={20} />, label: t('labels.market'), value: project.country }]
       : []),
-    {
-      icon: <Calendar size={20} />,
-      label: RANGE.test(project.year) ? t('labels.period') : t('labels.year'),
-      value: project.year,
-    },
+    // A project with no publicly confirmed year or period simply drops the row;
+    // the grid reflows, and no placeholder ("N/A") is invented on the page.
+    ...(project.year
+      ? [
+          {
+            icon: <Calendar size={20} />,
+            label: RANGE.test(project.year) ? t('labels.period') : t('labels.year'),
+            value: project.year,
+          },
+        ]
+      : []),
     // On a verified case study the market context earns the fourth slot; the
     // internal category is already encoded in the related-projects rail below.
     caseStudy
       ? { icon: <Layers size={20} />, label: t('labels.industry'), value: project.industry }
       : { icon: <Tag size={20} />, label: t('labels.category'), value: project.category },
   ];
+
+  // The legacy layout adds a fifth cell for the tech stack; the case-study
+  // layout lists technology further down the page instead.
+  const showOverviewTech = !caseStudy && project.techStack.length > 0;
+  const overviewColumns =
+    OVERVIEW_COLUMNS[overviewItems.length + (showOverviewTech ? 1 : 0)] ?? OVERVIEW_COLUMNS[4];
 
   return <div className="pt-20 min-h-screen bg-surface">
       <Seo
@@ -71,7 +103,7 @@ export function ProjectDetail() {
       }`}>
         <div className={`absolute inset-0 ${project.imageFit === 'contain' ? 'flex items-center justify-center bg-surface p-12' : ''}`}>
           <img
-            src={project.imageUrl}
+            src={project.imageUrl ?? PROJECT_FALLBACK_IMAGE}
             alt={project.title}
             fetchPriority="high"
             decoding="async"
@@ -125,7 +157,7 @@ export function ProjectDetail() {
             {project.overview}
           </p>
         )}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className={`grid grid-cols-1 gap-10 ${overviewColumns}`}>
           {overviewItems.map((item, i) => (
           <div key={i}>
               <div className="flex items-center text-teal mb-3">
@@ -142,7 +174,7 @@ export function ProjectDetail() {
 
           {/* A verified case study lists its technology below the business story,
               so it is not the first thing the overview band says about the work. */}
-          {!caseStudy && (
+          {showOverviewTech && (
             <div>
               <div className="text-teal mb-3">
                 <span className="text-xs font-bold uppercase tracking-wider">

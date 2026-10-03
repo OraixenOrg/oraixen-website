@@ -52,7 +52,11 @@ export interface Project {
   title: string;
   client: string;
   industry: string;
-  year: string;
+  /**
+   * Optional: a verified project may have no publicly confirmed year or period.
+   * Never substitute a placeholder here - the overview omits the row instead.
+   */
+  year?: string;
   description: string;
   problem: string;
   solution: string;
@@ -62,7 +66,11 @@ export interface Project {
   techStack: string[];
   /** Optional: verified case studies use `systemComponents` instead. */
   highlights?: string[];
-  imageUrl: string;
+  /**
+   * Optional: a project with no owner-supplied brand asset falls back to the
+   * neutral placeholder in `PROJECT_FALLBACK_IMAGE` rather than a broken image.
+   */
+  imageUrl?: string;
   /** Use 'contain' for logos/SVGs so they display with correct aspect ratio and dimensions */
   imageFit?: 'cover' | 'contain';
   confidential: boolean;

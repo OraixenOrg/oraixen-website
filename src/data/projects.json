@@ -654,5 +654,110 @@
     "platforms": {
       "website": "https://saharadvocates.ae"
     }
+  },
+  {
+    "id": "29",
+    "slug": "nice-one",
+    "title": "Nice One",
+    "client": "Confidential",
+    "country": "Saudi Arabia",
+    "industry": "E-Commerce / Beauty & Cosmetics",
+    "description": "A unified beauty-commerce platform connecting online shopping, multi-channel sales, customer data, and order operations in one system.",
+    "cardDescription": "A beauty-commerce platform bringing online and supported off-platform orders, customer data, and order tracking into one operational system.",
+    "overview": "Nice One brings the customer shopping experience and internal sales operations into one connected platform across web, mobile, backend, and administration. Orders from supported off-platform channels can also be captured inside the same operational workflow.",
+    "headings": {
+      "challenge": "Sales were happening across channels, but the operation had no single source of truth.",
+      "build": "One commerce platform for customers, orders, and operational data.",
+      "outcome": "Nice One brought fragmented sales activity into a more centralized commerce and operations workflow."
+    },
+    "problem": "Customer conversations and sales activity were spread across channels such as WhatsApp and other off-platform interactions.\n\nThat made it difficult for store teams to keep customer records in one place, create orders consistently, and track sales through a unified workflow.\n\nThe business needed more than an online storefront. It needed a connected commerce system that served customers through web and mobile while giving the internal team centralized control over orders and customer data.",
+    "solution": "Oraixen contributed to the design and development of the Nice One commerce platform across web, iOS, Android, backend services, APIs, and administration.\n\nCustomers can browse the product catalog, add products to their cart, complete checkout, and place orders through the digital storefront.\n\nFor store teams, the administration system provides a central place to manage customer records and sales orders.\n\nOrders originating through supported off-platform channels, including WhatsApp-based sales, can also be created manually inside the system so they become part of the same order-management workflow.",
+    "impact": "Instead of keeping online orders, supported off-platform sales, and customer information across disconnected channels, the platform gives the business one system for capturing orders, maintaining customer records, and tracking sales activity.\n\nThis creates a clearer operational view for store teams while giving customers a structured shopping experience across web and mobile.",
+    "workflow": [
+      {
+        "title": "Browse",
+        "description": "Customers explore the product catalog through the web or mobile commerce experience."
+      },
+      {
+        "title": "Order",
+        "description": "Customers add products to their cart, complete checkout, and create an online order."
+      },
+      {
+        "title": "Capture off-platform sales",
+        "description": "Store staff can manually create orders for supported sales originating through channels such as WhatsApp."
+      },
+      {
+        "title": "Unify customer records",
+        "description": "Customer information and purchase activity can be managed centrally instead of remaining distributed across separate sales channels."
+      },
+      {
+        "title": "Track",
+        "description": "Orders captured through supported channels enter one system where teams can follow their status and sales workflow."
+      },
+      {
+        "title": "Operate",
+        "description": "The administration platform gives store teams one operational view of customers and orders across the supported commerce flows."
+      }
+    ],
+    "responsibilities": [
+      {
+        "title": "Business benchmark & technical analysis",
+        "description": "Studying the required commerce and operational flows before defining the system."
+      },
+      {
+        "title": "Technical strategy & architecture",
+        "description": "Structuring the customer storefront, mobile applications, backend, APIs, administration, customer data, and order workflow as one connected platform."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing the customer shopping journey and the operational interfaces used by internal teams."
+      },
+      {
+        "title": "Frontend & backend development",
+        "description": "Building the web experience and the backend services that support commerce and order operations."
+      },
+      {
+        "title": "Mobile applications",
+        "description": "Building the iOS and Android customer experiences."
+      },
+      {
+        "title": "Administration & APIs",
+        "description": "Building the administration capabilities and APIs required to manage customers, orders, and supported multi-channel sales."
+      }
+    ],
+    "systemComponents": [
+      "E-commerce website",
+      "iOS application",
+      "Android application",
+      "Product catalog",
+      "Shopping cart",
+      "Checkout",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Central customer database",
+      "Multi-channel order creation",
+      "WhatsApp / supported off-platform order capture",
+      "Order-status tracking",
+      "Sales operations workflow"
+    ],
+    "proofPoints": [
+      {
+        "value": "100%",
+        "label": "centralized view of supported multi-channel orders and customer records",
+        "description": "Orders captured through the commerce platform and supported off-platform channels can be created, tracked, and associated with customer records in one operational system."
+      }
+    ],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
+    "confidential": true,
+    "featured": true,
+    "category": "Platform",
+    "platforms": {
+      "website": "https://niceonesa.com/",
+      "appStore": "https://apps.apple.com/sa/app/nice-one-%D9%86%D8%A7%D9%8A%D8%B3-%D9%88%D9%86/id1271754138",
+      "playStore": "https://play.google.com/store/apps/details?id=com.NiceOne.App"
+    }
   }
 ]

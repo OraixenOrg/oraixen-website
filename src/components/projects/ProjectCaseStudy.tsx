@@ -60,6 +60,17 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
   const metrics = project.metrics ?? [];
   const showScopeSection = systemComponents.length > 0 || proofPoints.length > 0 || metrics.length > 0;
 
+  // Technology is listed only where a stack has actually been confirmed: a
+  // verified case study may publish none, and an empty heading would read as a
+  // missing section rather than a deliberate omission. Live platforms stand on
+  // their own, so the closing band drops to a single column when alone.
+  const showTechnology = project.techStack.length > 0;
+  // Aliased through a const so the `hasPlatformLinks` type guard still narrows
+  // `platforms` where the links are rendered.
+  const platforms = project.platforms;
+  const showPlatforms = hasPlatformLinks(platforms);
+  const showClosingSection = showTechnology || showPlatforms;
+
   return (
     <>
       <Section>
@@ -217,32 +228,40 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
         </Section>
       )}
 
-      <Section dark className="border-t border-line">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
-          <Reveal>
-            <div className="w-12 h-1 bg-gradient-to-r from-skyblue to-teal rounded-full mb-6" />
-            <PanelHeading>{t('sections.technology')}</PanelHeading>
-            <ul className="flex flex-wrap gap-2">
-              {project.techStack.map((tech) => (
-                <li
-                  key={tech}
-                  className="text-sm bg-card px-3 py-1.5 rounded-lg text-body font-medium border border-line"
-                >
-                  {tech}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
+      {showClosingSection && (
+        <Section dark className="border-t border-line">
+          <div
+            className={`grid grid-cols-1 gap-10 lg:gap-12 ${
+              showTechnology && showPlatforms ? 'lg:grid-cols-2' : ''
+            }`}
+          >
+            {showTechnology && (
+              <Reveal>
+                <div className="w-12 h-1 bg-gradient-to-r from-skyblue to-teal rounded-full mb-6" />
+                <PanelHeading>{t('sections.technology')}</PanelHeading>
+                <ul className="flex flex-wrap gap-2">
+                  {project.techStack.map((tech) => (
+                    <li
+                      key={tech}
+                      className="text-sm bg-card px-3 py-1.5 rounded-lg text-body font-medium border border-line"
+                    >
+                      {tech}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            )}
 
-          {hasPlatformLinks(project.platforms) && (
-            <Reveal>
-              <div className="w-12 h-1 bg-gradient-to-r from-skyblue to-teal rounded-full mb-6" />
-              <PanelHeading>{t('sections.livePlatforms')}</PanelHeading>
-              <ProjectPlatformLinks platforms={project.platforms} />
-            </Reveal>
-          )}
-        </div>
-      </Section>
+            {showPlatforms && (
+              <Reveal>
+                <div className="w-12 h-1 bg-gradient-to-r from-skyblue to-teal rounded-full mb-6" />
+                <PanelHeading>{t('sections.livePlatforms')}</PanelHeading>
+                <ProjectPlatformLinks platforms={platforms} />
+              </Reveal>
+            )}
+          </div>
+        </Section>
+      )}
     </>
   );
 }
