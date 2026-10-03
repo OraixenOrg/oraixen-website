@@ -10,7 +10,10 @@
     "client": "Client",
     "year": "Year",
     "category": "Category",
-    "techStack": "Tech stack"
+    "techStack": "Tech stack",
+    "market": "Market",
+    "period": "Period",
+    "industry": "Industry"
   },
   "sections": {
     "challenge": "The challenge",
@@ -18,8 +21,17 @@
     "impact": "The impact",
     "keyMetrics": "Key metrics",
     "highlights": "Highlights",
-    "availablePlatforms": "Available platforms"
+    "availablePlatforms": "Available platforms",
+    "whatWeBuilt": "What we built",
+    "howItWorks": "How the system works",
+    "outcome": "Outcome",
+    "responsibilities": "What Oraixen delivered",
+    "systemAtGlance": "System at a glance",
+    "verifiedProof": "Verified product proof",
+    "technology": "Technology",
+    "livePlatforms": "Live platforms"
   },
+  "step": "Step",
   "platforms": {
     "website": "Website",
     "playStore": "Play Store",

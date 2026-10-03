@@ -73,8 +73,10 @@ export function ProjectCard({
             </div>
           </div>
 
+          {/* `cardDescription` exists so the grid can say something useful in two
+              lines without shortening the hero line the case study opens with. */}
           <p className="text-body text-sm line-clamp-2 mb-6 flex-1 leading-relaxed">
-            {project.description}
+            {project.cardDescription ?? project.description}
           </p>
 
           {project.platforms && (project.platforms.website || project.platforms.playStore || project.platforms.appStore || project.platforms.dashboard) && (

@@ -29,24 +29,99 @@
   {
     "id": "4",
     "slug": "du-v-du",
-    "title": "DU V DU",
-    "client": "DU V DU",
-    "industry": "Productivity",
-    "year": "2024",
-    "description": "A social networking platform connecting users through innovative features and seamless cross-platform experiences.",
-    "problem": "Users needed a modern social platform with consistent experiences across web and mobile devices.",
-    "solution": "We built a scalable social platform with responsive web design and native mobile apps, featuring real-time messaging and content sharing.",
-    "impact": "Created an engaged community with high user retention and active daily usage.",
-    "metrics": [
-      { "label": "Users", "value": "200k+" },
-      { "label": "Daily Active", "value": "50k+" },
-      { "label": "Messages", "value": "1M+" }
+    "title": "Duvdu",
+    "client": "Confidential",
+    "country": "Egypt",
+    "industry": "Media Production / Freelance Marketplace",
+    "year": "2024–2026",
+    "description": "A connected marketplace for booking and managing media-production projects from agreement to final delivery.",
+    "cardDescription": "A marketplace connecting clients and creative service providers through booking, project milestones, asset delivery, and escrow-backed payments.",
+    "overview": "Duvdu brings clients and creative service providers into one workflow for discovering talent, agreeing on project terms, booking schedules, managing milestones, delivering assets, and releasing payments through escrow.",
+    "headings": {
+      "challenge": "Creative projects involve more than finding the right talent.",
+      "build": "One workflow connecting clients, creators, projects, and payments.",
+      "outcome": "Duvdu turned a fragmented creative-production process into a connected digital workflow."
+    },
+    "problem": "Clients and creative professionals were coordinating requirements, schedules, deliverables, contracts, and payments across disconnected channels. That created several points of risk: unclear expectations, missed delivery dates, payment concerns, and limited visibility into the status of a project once work had started. The client wanted Duvdu to provide a structured marketplace where both sides could manage the full project lifecycle in one place.",
+    "solution": "Oraixen designed and built the platform across web and mobile, supported by a central backend and administration system. Clients can discover service providers, review portfolios, agree on the work, schedule projects, and manage delivery through the platform. Service providers can build their profiles and portfolios, publish previous work, identify collaborators and equipment used, manage bookings, and deliver project assets directly through Duvdu. The platform connects those interactions to project contracts, milestones, deadlines, and an escrow-based payment workflow.",
+    "impact": "Instead of managing discovery, agreements, scheduling, file delivery, and payments through separate channels, clients and service providers can move through the project lifecycle inside one platform. The escrow workflow also connects payment release to project delivery and client approval, reducing payment risk for both sides.",
+    "workflow": [
+      {
+        "title": "Discover",
+        "description": "Clients explore creator portfolios and evaluate previous media-production work."
+      },
+      {
+        "title": "Book",
+        "description": "The parties agree on the project, schedule a start date, and define delivery deadlines."
+      },
+      {
+        "title": "Contract",
+        "description": "The platform generates the project agreement around the agreed scope and milestones."
+      },
+      {
+        "title": "Fund",
+        "description": "A 10% booking payment is made when the project is confirmed, followed by the remaining 90%. The agreed project value enters the escrow workflow."
+      },
+      {
+        "title": "Deliver",
+        "description": "Creators upload completed assets directly through the platform."
+      },
+      {
+        "title": "Approve & release",
+        "description": "Once the client approves the delivered work, the corresponding funds can be released to the service provider through the project workflow."
+      }
     ],
-    "techStack": ["React", "Flutter", "Node.js", "Socket.io", "Real-time APIs"],
-    "highlights": ["Real-time chat", "Cross-platform", "Content sharing"],
+    "responsibilities": [
+      {
+        "title": "Product discovery",
+        "description": "Mapping the user journeys for clients, service providers, bookings, projects, and delivery."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing the marketplace and project lifecycle across web and mobile."
+      },
+      {
+        "title": "Platform engineering",
+        "description": "Frontend, backend, APIs, data flows, and administration capabilities."
+      },
+      {
+        "title": "Mobile applications",
+        "description": "Cross-platform iOS and Android development using Flutter."
+      },
+      {
+        "title": "Payments & escrow integration",
+        "description": "Connecting the project lifecycle to booking payments and escrow-controlled fund release."
+      }
+    ],
+    "systemComponents": [
+      "Client marketplace",
+      "Service-provider profiles and portfolios",
+      "Web platform",
+      "iOS application",
+      "Android application",
+      "Admin dashboard",
+      "Booking and scheduling",
+      "Project deadlines",
+      "Milestone contracts",
+      "Payment gateway integration",
+      "Escrow payment workflow",
+      "In-platform asset delivery",
+      "Client approval and payment release",
+      "APIs"
+    ],
+    "proofPoints": [
+      {
+        "value": "100%",
+        "label": "of the agreed project value enters the escrow workflow",
+        "description": "10% at booking, followed by the remaining 90%, with payment release connected to project delivery and client approval."
+      }
+    ],
+    "metrics": [],
+    "techStack": ["Flutter", "Next.js", "Node.js", "AWS"],
+    "highlights": [],
     "imageUrl": "https://duvdu.com/assets/imgs/theme/logo.svg",
     "imageFit": "contain",
-    "confidential": false,
+    "confidential": true,
     "featured": true,
     "category": "Platform",
     "platforms": {

@@ -1,4 +1,12 @@
-import { Project, ProjectMetric } from "../types/project";
+import {
+  Project,
+  ProjectPlatforms,
+  ProjectHeadings,
+  ProjectMetric,
+  ProjectProofPoint,
+  ProjectResponsibility,
+  ProjectWorkflowStep,
+} from "../types/project";
 import { MarketLocale, marketFromLanguage } from "./marketLocale";
 import projectsData from "../data/projects.json";
 import projectsEgData from "../data/projects.ar-eg.json";
@@ -7,12 +15,20 @@ import projectsSaData from "../data/projects.ar-sa.json";
 /** Fields of a Project that carry human-readable copy and therefore need Arabic translations. */
 interface LocalizedProjectFields {
   industry: string;
+  country: string;
   description: string;
+  cardDescription: string;
+  overview: string;
   problem: string;
   solution: string;
   impact: string;
+  headings: ProjectHeadings;
   metrics: ProjectMetric[];
   highlights: string[];
+  workflow: ProjectWorkflowStep[];
+  responsibilities: ProjectResponsibility[];
+  systemComponents: string[];
+  proofPoints: ProjectProofPoint[];
 }
 
 /**
@@ -35,8 +51,9 @@ type ProjectCopy = Record<string, Partial<LocalizedProjectFields>>;
  * silently collapse both markets onto one prose file.
  *
  * English needs no entry because projects.json already carries the English copy.
- * Facts (client, year, category, URLs, tech stack, metric VALUES, platforms,
- * confidentiality) live only in projects.json and are never overridden here.
+ * Facts (client, year, category, URLs, tech stack, metric and proof-point VALUES,
+ * platforms, confidentiality) live only in projects.json and are never overridden
+ * here; an Arabic entry restates the same fact in its own market register.
  */
 const MARKET_COPY: Partial<Record<MarketLocale, ProjectCopy>> = {
   "ar-eg": projectsEgData as unknown as ProjectCopy,
@@ -55,12 +72,20 @@ export function localizeProject(p: Project, lang: string): Project {
   return {
     ...p,
     industry: ar.industry ?? p.industry,
+    country: ar.country ?? p.country,
     description: ar.description ?? p.description,
+    cardDescription: ar.cardDescription ?? p.cardDescription,
+    overview: ar.overview ?? p.overview,
     problem: ar.problem ?? p.problem,
     solution: ar.solution ?? p.solution,
     impact: ar.impact ?? p.impact,
+    headings: ar.headings ?? p.headings,
     metrics: ar.metrics ?? p.metrics,
     highlights: ar.highlights ?? p.highlights,
+    workflow: ar.workflow ?? p.workflow,
+    responsibilities: ar.responsibilities ?? p.responsibilities,
+    systemComponents: ar.systemComponents ?? p.systemComponents,
+    proofPoints: ar.proofPoints ?? p.proofPoints,
   };
 }
 
@@ -80,4 +105,12 @@ export function matchesIndustryKey(project: Project, key: string): boolean {
   const industry = project.industry.toLowerCase();
   const needles = INDUSTRY_NEEDLES[key.toLowerCase()] ?? [key.toLowerCase()];
   return needles.some((needle) => industry.includes(needle));
+}
+
+/** True when a project has at least one public destination worth linking to. */
+export function hasPlatformLinks(platforms?: ProjectPlatforms): platforms is ProjectPlatforms {
+  return Boolean(
+    platforms &&
+      (platforms.website || platforms.playStore || platforms.appStore || platforms.dashboard)
+  );
 }
