@@ -208,29 +208,95 @@
     "id": "5",
     "slug": "discount-emy",
     "title": "Discount Emy",
-    "client": "Discount Emy",
-    "industry": "Retail",
-    "year": "2024",
-    "description": "A discount and deals platform helping users discover the best offers and savings across various retailers and services.",
-    "problem": "Consumers needed a centralized platform to find and access discounts from multiple retailers.",
-    "solution": "We developed a comprehensive platform with web and mobile apps, featuring deal aggregation, user accounts, and push notifications for new offers.",
-    "impact": "Helped users save money while driving traffic to partner retailers and increasing sales.",
-    "metrics": [
-      { "label": "Deals", "value": "5k+" },
-      { "label": "Users", "value": "150k+" },
-      { "label": "Savings", "value": "$2M+" }
+    "client": "Confidential",
+    "country": "Egypt",
+    "industry": "EdTech / Educational Services & Discount Marketplace",
+    "description": "A mobile marketplace connecting students and parents with active educational discounts from partner schools and universities.",
+    "cardDescription": "A mobile marketplace connecting students and parents with educational discounts from partner schools and universities, backed by centralized request and commission management.",
+    "overview": "Discount Emy transformed an offline partner network and Facebook-group workflow into a structured mobile platform for educational offers, applicant requests, partner listings, and commission tracking.",
+    "headings": {
+      "challenge": "Educational discounts were being managed through social posts instead of a dedicated operating platform.",
+      "build": "A mobile marketplace connecting educational offers, applicants, partners, and administration.",
+      "outcome": "Discount Emy moved an educational-discount operation from Facebook posts into a dedicated mobile marketplace."
+    },
+    "problem": "The business had built an offline network of schools and universities offering contracted discounts, but customers primarily discovered those offers through a Facebook group and manual communication.\n\nThat made it harder to keep active discounts organized, communicate changes quickly, manage growing demand, and maintain a structured view of applicant requests and partner-related commission activity.\n\nThe challenge was to move the business from a social-group workflow into a dedicated digital marketplace that could serve parents and students while giving the internal team central control over educational offers and incoming requests.",
+    "solution": "Oraixen designed and developed Discount Emy across iOS and Android, supported by backend services, APIs, and a central administration platform.\n\nParents, students, and applicants can browse participating educational institutions and view current discount programs related to school and university admissions and fees.\n\nBehind the customer experience, the administration system allows the business to manage educational partner listings, publish and update discount offers, follow incoming requests, and track commission-related activity linked to its partner model.\n\nThe result is a structured digital workflow that replaces dependence on manually maintained social posts.",
+    "impact": "Parents and students can access current educational offers through a purpose-built mobile experience rather than depending on manually maintained social posts.\n\nAt the operational level, the business can manage educational partners, discount programs, applicant requests, and commission-related activity through a central administration system.\n\nThe platform also created a structured foundation for handling growing demand without relying on the original Facebook-group workflow.",
+    "workflow": [
+      {
+        "title": "Discover institutions",
+        "description": "Parents and students explore participating schools, universities, and available educational opportunities through the mobile experience."
+      },
+      {
+        "title": "View active discounts",
+        "description": "Users review currently available partner discount programs for supported educational admissions and fees."
+      },
+      {
+        "title": "Submit a request",
+        "description": "Interested applicants enter the platform's supported request or application workflow."
+      },
+      {
+        "title": "Track the opportunity",
+        "description": "The business can follow incoming requests through the administration system instead of relying only on messages and social posts."
+      },
+      {
+        "title": "Manage partner activity",
+        "description": "Educational partner listings and active discount programs are managed centrally."
+      },
+      {
+        "title": "Track commissions",
+        "description": "The business can maintain commission-related records connected to eligible partner activity through the operational platform."
+      }
     ],
-    "techStack": ["Flutter", "Firebase", "REST API", "Push Notifications"],
-    "highlights": ["Deal aggregation", "Push notifications", "User accounts"],
-    "imageUrl": "https://emydiscount.com/views/images/logo.png",
-    "imageFit": "contain",
-    "confidential": false,
-    "featured": false,
+    "responsibilities": [
+      {
+        "title": "Product & solution architecture",
+        "description": "Turning the offline partner and Facebook-group model into a structured digital marketplace for discounts, applicants, partners, and administration."
+      },
+      {
+        "title": "Mobile UI/UX design",
+        "description": "Designing how parents, students, and applicants discover educational institutions and active discount offers."
+      },
+      {
+        "title": "Mobile applications",
+        "description": "Building the customer-facing experience for iOS and Android."
+      },
+      {
+        "title": "Backend & API development",
+        "description": "Building the central services supporting educational partners, discounts, requests, and operational workflows."
+      },
+      {
+        "title": "Administration platform",
+        "description": "Building the tools used to manage partner listings, current discount programs, applicant requests, and commission-related activity."
+      }
+    ],
+    "systemComponents": [
+      "iOS application",
+      "Android application",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Educational institution directory",
+      "School partner listings",
+      "University partner listings",
+      "Active educational discount programs",
+      "Admission / fee discount offers",
+      "Applicant requests",
+      "Lead / request tracking",
+      "Partner management",
+      "Discount management",
+      "Commission tracking",
+      "Centralized operational administration"
+    ],
+    "proofPoints": [],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
+    "confidential": true,
+    "featured": true,
     "category": "Platform",
     "platforms": {
-      "website": "https://emydiscount.com/",
-      "playStore": "https://play.google.com/store/apps/details?id=com.technospace.emy_discount",
-      "appStore": "https://apps.apple.com/eg/app/discount-emy/id1617326763"
+      "playStore": "https://play.google.com/store/apps/details?id=com.technospace.emy_discount&hl=ar"
     }
   },
   {
