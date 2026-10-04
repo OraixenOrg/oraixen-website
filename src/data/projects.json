@@ -962,28 +962,103 @@
     "id": "19",
     "slug": "rosto",
     "title": "Rosto",
-    "client": "Rosto",
-    "industry": "Food",
-    "year": "2024",
-    "description": "A food service mobile application offering restaurant services, ordering, and delivery options.",
-    "problem": "Customers needed a convenient way to order food and access restaurant services through mobile devices.",
-    "solution": "We developed native mobile applications with menu browsing, ordering, and delivery tracking.",
-    "impact": "Increased orders and improved customer satisfaction with convenient mobile access.",
-    "metrics": [
-      { "label": "Users", "value": "95k+" },
-      { "label": "Orders", "value": "300k+" },
-      { "label": "Rating", "value": "4.7" }
+    "client": "Confidential",
+    "country": "Egypt",
+    "industry": "Food & Beverage / Online Food Ordering & Delivery",
+    "description": "A direct restaurant ordering and delivery platform connecting customers, drivers, and restaurant operations through dedicated mobile experiences.",
+    "cardDescription": "A direct restaurant ordering and delivery platform connecting customers, riders, real-time order status, and centralized restaurant operations.",
+    "overview": "Rosto gives the restaurant its own digital ordering channel, connecting menu discovery, direct orders, real-time order-status updates, delivery operations, and central management in one platform.",
+    "headings": {
+      "challenge": "The restaurant needed its own ordering channel and more control over the delivery journey.",
+      "build": "A connected customer-ordering and delivery ecosystem built around the restaurant's own operation.",
+      "outcome": "Rosto moved direct ordering and delivery operations into one restaurant-owned digital platform."
+    },
+    "problem": "Rosto was already operating as an established restaurant chain, but it did not have a proprietary digital ordering and delivery ecosystem.\n\nCustomer orders depended on traditional channels and third-party delivery options, limiting the restaurant's control over the digital customer experience and its delivery operations.\n\nThe business needed a dedicated channel where customers could browse the menu, order directly, follow order progress, and receive delivery, while management could oversee menus, active orders, and drivers from one operational environment.",
+    "solution": "Oraixen mapped the restaurant's ordering and delivery cycle and built Rosto's digital platform across the customer application, dedicated delivery-driver application, backend services, APIs, and central administration.\n\nCustomers can browse the digital menu, select items, complete their order, and follow real-time order-status updates from preparation through delivery.\n\nDelivery riders receive assigned orders through their own mobile experience, use the information needed to complete the delivery journey, and confirm delivery.\n\nRestaurant management uses the operations dashboard to manage menus, monitor active orders, oversee delivery activity, and review sales analytics.",
+    "impact": "Customers can browse the menu, place orders directly, and follow order progress through Rosto's own mobile experience instead of depending entirely on traditional or third-party ordering channels.\n\nDelivery drivers operate through a dedicated application connected to the same backend, while restaurant management can oversee menu, order, and delivery activity from a central dashboard.\n\nFollowing launch, the client reports continued growth in active app usage and daily order volume.",
+    "workflow": [
+      {
+        "title": "Browse the menu",
+        "description": "Customers explore Rosto's digital menu and select the items they want to order."
+      },
+      {
+        "title": "Create the order",
+        "description": "Selected items move through the restaurant's direct ordering and checkout workflow."
+      },
+      {
+        "title": "Prepare",
+        "description": "The order enters the restaurant's operational cycle and its status is reflected through the customer experience."
+      },
+      {
+        "title": "Assign delivery",
+        "description": "The delivery workflow assigns the relevant order to a driver for fulfillment."
+      },
+      {
+        "title": "Track progress",
+        "description": "Customers receive real-time order-status updates as the order moves from preparation toward delivery."
+      },
+      {
+        "title": "Complete delivery",
+        "description": "The driver follows the assigned delivery workflow and confirms completion while management monitors operations centrally."
+      }
     ],
-    "techStack": ["React", "Flutter", "Laravel", "Firebase", "REST API"],
-    "highlights": ["Menu browsing", "Ordering", "Delivery tracking"],
+    "responsibilities": [
+      {
+        "title": "Operations mapping & product strategy",
+        "description": "Mapping Rosto's customer-ordering and delivery cycle and translating it into connected customer, driver, and management workflows."
+      },
+      {
+        "title": "Customer UI/UX",
+        "description": "Designing the menu, ordering, checkout, and order-status journey for restaurant customers."
+      },
+      {
+        "title": "Driver UI/UX",
+        "description": "Designing the delivery workflow used by riders to receive assignments, navigate deliveries, and confirm completion."
+      },
+      {
+        "title": "Mobile applications",
+        "description": "Building the customer and dedicated delivery-driver mobile experiences."
+      },
+      {
+        "title": "Backend & API development",
+        "description": "Building the services supporting menus, customers, orders, real-time status updates, drivers, and delivery activity."
+      },
+      {
+        "title": "Operations dashboard",
+        "description": "Building the administration environment used to manage menus, active orders, driver operations, and sales analytics."
+      }
+    ],
+    "systemComponents": [
+      "Customer mobile application",
+      "Delivery-driver mobile application",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Digital restaurant menu",
+      "Direct customer ordering",
+      "Shopping / order checkout",
+      "Real-time order-status tracking",
+      "Delivery assignments",
+      "Driver delivery workflow",
+      "Navigation support",
+      "Delivery confirmation",
+      "Menu management",
+      "Active-order management",
+      "Driver operations",
+      "Sales analytics"
+    ],
+    "proofPoints": [],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
     "imageUrl": "https://play-lh.googleusercontent.com/5BD1X9oRKT9aQhtosOcpR37h1TtQNJbVym354kBdSWJfxmGThlEkHKuORBV_x1OZIbU=w480-h960-rw",
     "imageFit": "contain",
-    "confidential": false,
-    "featured": false,
-    "category": "Mobile",
+    "confidential": true,
+    "featured": true,
+    "category": "Platform",
     "platforms": {
-      "playStore": "https://play.google.com/store/apps/details?id=com.rosto.rosto",
-      "appStore": "https://apps.apple.com/eg/app/rosto/id6478112917"
+      "appStore": "https://apps.apple.com/us/app/rosto/id6478112917",
+      "playStore": "https://play.google.com/store/apps/details?id=com.rosto.rosto&hl=ar"
     }
   },
   {
