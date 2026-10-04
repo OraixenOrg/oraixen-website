@@ -640,25 +640,111 @@
     "id": "25",
     "slug": "ibdl",
     "title": "IBDL",
-    "client": "IBDL",
-    "industry": "Education",
-    "year": "2022",
-    "description": "An educational platform providing learning resources and services through modern web technology.",
-    "problem": "The institution needed a professional website to provide educational resources and information.",
-    "solution": "We developed a responsive web platform with resource management and information dissemination.",
-    "impact": "Improved access to educational resources and enhanced institutional communication.",
-    "metrics": [
-      { "label": "Users", "value": "25k+" },
-      { "label": "Resources", "value": "1k+" },
-      { "label": "Uptime", "value": "99.9%" }
+    "client": "Confidential",
+    "country": "International / USA / Egypt",
+    "industry": "Education / Professional Certification & Enterprise Training",
+    "description": "An enterprise training and certification platform replacing a developer-dependent legacy system with self-service ERP, CRM, and administration workflows.",
+    "cardDescription": "An enterprise training platform replacing developer-dependent legacy administration with self-service ERP, CRM, certification, staff, and training-center workflows.",
+    "overview": "IBDL brings training-center operations, trainee records, attendance, certificates, staff administration, CRM activity, course content, and commerce workflows into one enterprise platform.",
+    "headings": {
+      "challenge": "Routine business operations depended on developers instead of the administration team.",
+      "build": "A self-service enterprise platform built around the organization’s real operating workflows.",
+      "outcome": "IBDL replaced a developer-dependent legacy workflow with a self-service enterprise operating platform."
+    },
+    "problem": "The existing platform had become difficult to operate and maintain, with bugs, known security weaknesses, and an administrative interface that did not support routine staff workflows effectively.\n\nBasic operational tasks could require a backend developer to run manual database queries, creating unnecessary dependency on engineering resources for everyday administration.\n\nAt the same time, training centers, trainee records, course content, attendance, certificates, employees, CRM activity, and commerce operations needed to be managed through a more connected enterprise system.\n\nThe challenge was not simply to redesign the website. It was to replace the legacy operational platform and re-engineer how the organization managed its day-to-day work.",
+    "solution": "Oraixen audited the existing system, re-engineered the core business flows, and built a replacement platform spanning the public website, enterprise administration, backend services, APIs, ERP capabilities, CRM workflows, and a new database architecture.\n\nTraining-center teams can manage centers, branches, groups, trainees, course materials, attendance, and certificates through the administrative platform.\n\nInternal teams can also manage employees, roles, permissions, and attendance, while CRM and commerce capabilities support public course offerings and related customer and sales activity.\n\nMost importantly, routine administrative operations that previously required direct database intervention can now be performed by authorized staff through the system itself.",
+    "impact": "Administrative teams can now manage routine training, trainee, certification, staff, CRM, and commerce operations directly through the platform instead of depending on developers for everyday database intervention.\n\nThe rebuild also removed the organization’s reliance on the previous legacy architecture and its known operational and security weaknesses.\n\nThe result is a more maintainable operating model where technical teams can focus on engineering while authorized business users manage routine operations through the product itself.",
+    "workflow": [
+      {
+        "title": "Manage centers",
+        "description": "Administrators manage training centers, branches, groups, and related course operations from one central platform."
+      },
+      {
+        "title": "Manage trainees",
+        "description": "Applicant and trainee profiles bring course participation, progress, attendance, and certification records into one digital workflow."
+      },
+      {
+        "title": "Run training operations",
+        "description": "Staff and instructors work with course content, groups, attendance, and training-related operational records through the platform."
+      },
+      {
+        "title": "Manage certificates",
+        "description": "Official certificate records can be managed as part of the trainee and course lifecycle."
+      },
+      {
+        "title": "Operate internally",
+        "description": "Enterprise administrators manage employees, roles, permissions, and staff attendance through the same administrative environment."
+      },
+      {
+        "title": "Manage customer & commerce activity",
+        "description": "CRM and e-commerce capabilities connect public course offerings, content, leads, and related sales workflows to the enterprise platform."
+      }
     ],
-    "techStack": ["Next.js", "React", "TypeScript", "Laravel", "REST API"],
-    "highlights": ["Resource management", "Responsive design", "Fast performance"],
+    "responsibilities": [
+      {
+        "title": "Technical audit & business-flow re-engineering",
+        "description": "Reviewing the legacy system and redesigning how training, administration, certification, staff, CRM, and commerce workflows should operate."
+      },
+      {
+        "title": "Enterprise architecture",
+        "description": "Designing the backend, database, APIs, administration, ERP, CRM, and public web layers as one connected platform."
+      },
+      {
+        "title": "UI/UX redesign",
+        "description": "Creating self-service administrative interfaces that non-technical staff could use for routine operations."
+      },
+      {
+        "title": "Backend & database development",
+        "description": "Building the custom services and data architecture supporting centers, trainees, courses, attendance, certificates, staff, and commercial workflows."
+      },
+      {
+        "title": "Frontend web development",
+        "description": "Building the public-facing and enterprise administrative web experiences."
+      },
+      {
+        "title": "ERP & CRM implementation",
+        "description": "Connecting training operations, internal administration, customer activity, and commerce workflows inside the new platform."
+      }
+    ],
+    "systemComponents": [
+      "Public website",
+      "Enterprise admin dashboard",
+      "Custom ERP",
+      "CRM capabilities",
+      "Backend services",
+      "APIs",
+      "Custom database architecture",
+      "Training-center management",
+      "Branch management",
+      "Group management",
+      "Course-content management",
+      "Applicant profiles",
+      "Trainee profiles",
+      "Course-progress tracking",
+      "Attendance management",
+      "Certificate management",
+      "Employee management",
+      "Roles and permissions",
+      "Staff attendance",
+      "CRM workflows",
+      "E-commerce operations",
+      "Self-service administration"
+    ],
+    "proofPoints": [
+      {
+        "value": "100%",
+        "label": "of previously developer-dependent routine administration moved into self-service workflows",
+        "description": "Routine database and administrative operations that previously required backend-developer intervention can now be handled directly through the enterprise administration platform."
+      }
+    ],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
     "imageUrl": "https://ibdl.net/site/images/logo.png",
     "imageFit": "contain",
-    "confidential": false,
-    "featured": false,
-    "category": "Web",
+    "confidential": true,
+    "featured": true,
+    "category": "Platform",
     "platforms": {
       "website": "https://ibdl.net/"
     }
