@@ -22,6 +22,12 @@ export const PROJECT_FALLBACK_IMAGE =
 
 /** Fields of a Project that carry human-readable copy and therefore need Arabic translations. */
 interface LocalizedProjectFields {
+  /**
+   * Only for a product that genuinely ships under a different name in Arabic
+   * (e.g. "Ghiras Al Usrah" / "غراس الأسرة"). Omit it and the Latin brand name
+   * is kept, which is what every product with a single global name wants.
+   */
+  title: string;
   industry: string;
   country: string;
   description: string;
@@ -70,7 +76,8 @@ const MARKET_COPY: Partial<Record<MarketLocale, ProjectCopy>> = {
 
 /**
  * Returns a copy of the project with the active market's prose applied.
- * Brand name, client, year, tech stack and links are language-neutral and kept as-is.
+ * Client, year, tech stack and links are language-neutral and kept as-is; the
+ * brand name is too, unless the market file carries its own `title`.
  */
 export function localizeProject(p: Project, lang: string): Project {
   const copy = MARKET_COPY[marketFromLanguage(lang)];
@@ -79,6 +86,7 @@ export function localizeProject(p: Project, lang: string): Project {
   if (!ar) return p;
   return {
     ...p,
+    title: ar.title ?? p.title,
     industry: ar.industry ?? p.industry,
     country: ar.country ?? p.country,
     description: ar.description ?? p.description,

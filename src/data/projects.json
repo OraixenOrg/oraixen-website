@@ -868,5 +868,115 @@
       "appStore": "https://apps.apple.com/in/app/%D8%B3%D9%86%D8%A7%D8%B1-sanar-%D8%B5%D8%AD%D8%A9-%D8%A3%D9%81%D8%B6%D9%84/id1473258160",
       "playStore": "https://play.google.com/store/apps/details?id=com.sanarcare.pro&pli=1"
     }
+  },
+  {
+    "id": "31",
+    "slug": "ghiras-al-usrah",
+    "title": "Ghiras Al Usrah",
+    "client": "Confidential",
+    "country": "Saudi Arabia",
+    "industry": "Family & Psychological Counseling / Telehealth",
+    "description": "A digital counseling platform connecting appointment booking, consultant schedules, payments, and hybrid in-person and video consultations.",
+    "cardDescription": "A counseling platform replacing paper and Excel workflows with digital booking, consultant scheduling, payments, reminders, and hybrid consultations.",
+    "overview": "Ghiras Al Usrah replaced a paper and spreadsheet-based consultation workflow with a connected platform across web and mobile. Clients can book consultations and make payments digitally, while consultants manage availability and appointments through a dedicated app.",
+    "headings": {
+      "challenge": "Consultations were being managed through paper and spreadsheets instead of one operational system.",
+      "build": "One platform for booking, scheduling, payments, and hybrid consultations.",
+      "outcome": "Ghiras Al Usrah replaced a fragmented manual consultation process with one digital operating platform."
+    },
+    "problem": "Bookings, consultant schedules, and client appointments depended on manual records and Excel spreadsheets.\n\nThat created room for scheduling mistakes, conflicting appointments, and missed sessions when clients or consultants did not receive timely reminders.\n\nThe organization also needed to support online payments and virtual consultations without managing those interactions through separate disconnected tools.\n\nThe challenge was to turn the full consultation workflow into one digital operating platform.",
+    "solution": "Oraixen designed and developed Ghiras Al Usrah across web, mobile applications, backend services, APIs, and administration.\n\nClients can book supported consultation services, choose available appointments, request express consultations based on consultant availability, make payments through Moyasar, and attend supported virtual sessions through Zoom.\n\nConsultants use a dedicated mobile application to manage schedules, set availability, review appointments, and access virtual consultations.\n\nThe administration platform centralizes the operational workflow that had previously depended on paper records and spreadsheets.",
+    "impact": "Booking, consultant availability, appointment management, reminders, payments, and supported virtual consultations can now be managed through a connected system instead of paper records and spreadsheets.\n\nThis gives clients, consultants, and administrators clearer visibility into appointments and reduces the operational risk created by manual scheduling and missing reminders.",
+    "workflow": [
+      {
+        "title": "Choose a consultation",
+        "description": "Clients select the consultation type or specialized service they need."
+      },
+      {
+        "title": "Check availability",
+        "description": "The system presents appointments based on consultant schedules and available time slots."
+      },
+      {
+        "title": "Book & pay",
+        "description": "Clients confirm the appointment and complete supported online payments through Moyasar."
+      },
+      {
+        "title": "Notify",
+        "description": "Digital reminders and notifications help clients and consultants keep track of upcoming appointments."
+      },
+      {
+        "title": "Attend",
+        "description": "The consultation takes place either in person or through a supported Zoom video session."
+      },
+      {
+        "title": "Manage",
+        "description": "Consultants and administrators use their respective interfaces to manage schedules, appointments, availability, and operational workflows."
+      }
+    ],
+    "responsibilities": [
+      {
+        "title": "Workflow analysis & digital transformation strategy",
+        "description": "Mapping the manual consultation process and defining how booking, scheduling, payments, reminders, and virtual sessions would operate digitally."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing the client, consultant, and operational journeys across web and mobile."
+      },
+      {
+        "title": "Backend & API development",
+        "description": "Building the central services and APIs supporting booking, schedules, payments, users, and consultations."
+      },
+      {
+        "title": "Client & consultant mobile applications",
+        "description": "Building separate mobile experiences for clients and consultants using Flutter."
+      },
+      {
+        "title": "Web platform",
+        "description": "Developing the web experience using Next.js."
+      },
+      {
+        "title": "Third-party integrations",
+        "description": "Connecting Moyasar for payments and Zoom for supported virtual consultations."
+      }
+    ],
+    "systemComponents": [
+      "Web platform",
+      "Client mobile application",
+      "Consultant mobile application",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Consultation booking",
+      "Consultant availability management",
+      "Appointment scheduling",
+      "Automated reminders and notifications",
+      "In-person consultation workflow",
+      "Zoom video consultations",
+      "Express consultation requests",
+      "Specialized consultation categories",
+      "Services for people with special needs",
+      "Moyasar payment integration"
+    ],
+    "proofPoints": [
+      {
+        "value": "100%",
+        "label": "digitization of the previously manual consultation workflow",
+        "description": "Booking, consultant availability, appointment management, reminders, payments, and supported virtual consultations moved from paper and spreadsheet-based processes into the digital platform."
+      }
+    ],
+    "metrics": [],
+    "techStack": [
+      "PHP / Laravel",
+      "Flutter",
+      "Next.js"
+    ],
+    "highlights": [],
+    "confidential": true,
+    "featured": true,
+    "category": "Platform",
+    "platforms": {
+      "website": "https://ghirasalusrah.com/",
+      "playStore": "https://play.google.com/store/apps/details?id=com.oraixen.ghirasalusrah"
+    }
   }
 ]
