@@ -118,7 +118,9 @@ export function localizeProject(p: Project, lang: string): Project {
 }
 
 const INDUSTRY_NEEDLES: Record<string, string[]> = {
-  education: ["education"],
+  // "EdTech" is the industry a learning product is usually labelled with and does
+  // not contain the substring "education", so it needs its own needle here.
+  education: ["education", "edtech"],
   ecommerce: ["e-commerce", "ecommerce", "e commerce"],
   finance: ["finance", "fintech"],
   food: ["food"],

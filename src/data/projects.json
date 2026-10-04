@@ -2,28 +2,102 @@
   {
     "id": "3",
     "slug": "dar-alkahraba",
-    "title": "Dar Alkahraba",
-    "client": "Dar Alkahraba",
-    "industry": "Utilities",
-    "year": "2021",
-    "description": "A mobile application for electricity services, enabling users to manage their accounts, pay bills, and access utility services on the go.",
-    "problem": "Customers needed convenient access to electricity services and bill management without visiting physical locations.",
-    "solution": "We created an intuitive iOS application with secure payment processing, bill management, and service request features.",
-    "impact": "Reduced customer service visits and improved user satisfaction with convenient mobile access.",
-    "metrics": [
-      { "label": "Users", "value": "100k+" },
-      { "label": "Transactions", "value": "500k+" },
-      { "label": "Rating", "value": "4.7" }
+    "title": "Dar Al Kahrbaa",
+    "client": "Confidential",
+    "country": "Egypt",
+    "industry": "EdTech / Electrical Engineering Training",
+    "description": "A specialized learning platform for electrical-engineering training across web and Android.",
+    "cardDescription": "A custom electrical-engineering LMS connecting course discovery, student enrollment, video learning, payments, and administration across web and Android.",
+    "overview": "Dar Al Kahrbaa turns a specialized electrical-engineering training concept into a custom LMS connecting course discovery, student enrollment, video learning, payments, and platform administration.",
+    "headings": {
+      "challenge": "Specialized engineering education needed a learning platform built around its own courses and students.",
+      "build": "A custom LMS connecting students, courses, content, payments, and administration.",
+      "outcome": "Dar Al Kahrbaa turned an early education concept into a complete specialized learning platform."
+    },
+    "problem": "The client wanted to create a dedicated digital learning experience for electrical-engineering students, trainees, and professionals rather than rely on a generic content platform.\n\nThe system needed to support student registration, structured course enrollment, video lessons, educational materials, electronic payments, and centralized administration.\n\nIt also needed an architecture capable of supporting a growing student base as the education offering expanded.\n\nThe challenge was to turn an early product concept into a complete learning-management system across web and mobile.",
+    "solution": "Oraixen designed and developed Dar Al Kahrbaa from the platform strategy and LMS architecture through the web experience, Android application, backend services, APIs, payment integration, video delivery, and administration.\n\nStudents can register, explore specialized electrical-engineering courses, enroll, and access video lessons and educational materials through the platform.\n\nThe course catalog includes specialized training designed for electrical-engineering students and field professionals, including accredited courses.\n\nAdministrators manage users, courses, content, and learning-platform activity from a central dashboard.",
+    "impact": "Students can discover courses, enroll, pay, and access learning content through connected web and Android experiences instead of relying on disconnected tools.\n\nAt the operational level, the administration team can manage users, courses, content, and platform activity from one central environment.\n\nThe custom LMS architecture was designed to support continued growth in the student base and expansion of the electrical-engineering training offering.",
+    "workflow": [
+      {
+        "title": "Register",
+        "description": "Students and trainees create accounts to access the learning platform."
+      },
+      {
+        "title": "Discover courses",
+        "description": "Users explore the specialized electrical-engineering course catalog and available training."
+      },
+      {
+        "title": "Enroll",
+        "description": "Students select and enroll in the courses they want to take."
+      },
+      {
+        "title": "Complete payment",
+        "description": "Supported course purchases are processed through the integrated electronic payment workflow."
+      },
+      {
+        "title": "Learn",
+        "description": "Students access video lessons and educational materials through the web or Android learning experience."
+      },
+      {
+        "title": "Manage the platform",
+        "description": "Administrators manage users, courses, content, enrollment-related activity, and platform operations from the central administration system."
+      }
     ],
-    "techStack": ["Flutter", "Firebase", "Firebase Auth", "Cloud Firestore", "FCM", "REST API"],
-    "highlights": ["Secure payments", "Bill management", "Service requests"],
-    "imageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/97/c0/25/97c0257a-32ae-00fc-5969-8aa20af2ce85/AppIcon-1x_U007emarketing-0-10-0-85-220.png/400x400ia-75.webp",
-    "imageFit": "contain",
-    "confidential": false,
-    "featured": false,
-    "category": "Mobile",
+    "responsibilities": [
+      {
+        "title": "Product strategy & LMS architecture",
+        "description": "Turning the original education concept into structured journeys for students, courses, enrollment, content delivery, payments, and administration."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing the learning and course-discovery experience across web and Android."
+      },
+      {
+        "title": "Backend & API development",
+        "description": "Building the central services supporting users, courses, enrollment, educational content, payments, and administration."
+      },
+      {
+        "title": "Frontend web development",
+        "description": "Building the web learning experience and course-discovery journey."
+      },
+      {
+        "title": "Android application",
+        "description": "Building the Android learning experience for students and trainees."
+      },
+      {
+        "title": "Administration platform",
+        "description": "Building the tools used to manage users, courses, educational content, and day-to-day platform activity."
+      }
+    ],
+    "systemComponents": [
+      "Custom Learning Management System",
+      "Web learning platform",
+      "Android application",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Student registration",
+      "Course enrollment",
+      "Electrical-engineering course catalog",
+      "Accredited course offerings",
+      "Video lessons",
+      "Educational materials",
+      "Video-streaming integration",
+      "Electronic payments",
+      "User management",
+      "Course management",
+      "Content management"
+    ],
+    "proofPoints": [],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
+    "confidential": true,
+    "featured": true,
+    "category": "Platform",
     "platforms": {
-      "appStore": "https://apps.apple.com/eg/app/dar-alkahrba/id1597367206"
+      "website": "https://daralkahrbaa.training/",
+      "playStore": "https://play.google.com/store/apps/details?id=com.kimcamacademy.daralkarhbaa&hl=ar"
     }
   },
   {
