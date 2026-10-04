@@ -1313,26 +1313,100 @@
   {
     "id": "27",
     "slug": "govet",
-    "title": "Govet",
-    "client": "Govet",
-    "industry": "Services",
-    "year": "2024",
-    "description": "A service platform mobile application connecting users with service providers for various needs.",
-    "problem": "Users needed a convenient mobile application to find and book services.",
-    "solution": "We developed an Android application with service search, booking, and provider management features.",
-    "impact": "Facilitated service bookings and improved user access to services.",
-    "metrics": [
-      { "label": "Users", "value": "75k+" },
-      { "label": "Services", "value": "400+" },
-      { "label": "Bookings", "value": "150k+" }
+    "title": "GoVet",
+    "client": "Confidential",
+    "country": "Egypt",
+    "industry": "Pet Care / Veterinary Services & E-Commerce",
+    "description": "A pet-care platform combining e-commerce, home veterinary visit booking, and clinic discovery across iOS and Android.",
+    "cardDescription": "A pet-care platform combining product ordering, home veterinary visit booking, and clinic discovery across iOS and Android.",
+    "overview": "GoVet brings pet supplies, home veterinary appointments, branch and clinic discovery, orders, and platform operations into one connected mobile ecosystem.",
+    "headings": {
+      "challenge": "Pet owners needed one digital experience for both everyday supplies and veterinary services.",
+      "build": "One mobile ecosystem connecting pet commerce and veterinary-service booking.",
+      "outcome": "GoVet brought pet-product ordering and veterinary-service booking into one connected mobile platform."
+    },
+    "problem": "The client had a concept for bringing pet-product shopping and veterinary service booking into one mobile platform.\n\nPet owners needed a simpler way to buy food, accessories, and everyday pet-care items while also arranging home veterinary visits for examinations and routine vaccinations.\n\nThe product also needed to help customers discover GoVet branches and partner clinic locations without treating commerce and veterinary services as completely separate journeys.\n\nBehind the customer experience, the business needed centralized administration for products, orders, fulfillment, and veterinary appointments.",
+    "solution": "Oraixen designed and developed GoVet from the solution architecture and UI/UX through the iOS and Android applications, backend services, APIs, and administration platform.\n\nCustomers can browse and order pet-care products, arrange supported veterinary visits at home, and find GoVet branches or partner clinic locations through the same mobile experience.\n\nVeterinary visit workflows support scheduling for services such as examinations, health checkups, and routine vaccinations.\n\nThe administration platform gives the operations team central control over catalog data, customer orders, fulfillment activity, veterinary bookings, and location information.",
+    "impact": "Pet owners can use one customer experience to shop for everyday pet-care products, arrange supported home veterinary visits, and discover physical branches and partner clinics.\n\nAt the operational level, the business can manage products, orders, fulfillment activity, veterinary bookings, and location information through a centralized administration environment.\n\nThe result is a unified pet-care journey that reduces the fragmentation between buying supplies and arranging veterinary services.",
+    "workflow": [
+      {
+        "title": "Choose what your pet needs",
+        "description": "Customers enter either the pet-product shopping journey or the veterinary-service journey through the mobile application."
+      },
+      {
+        "title": "Shop for supplies",
+        "description": "Pet owners browse available food, accessories, collars, and other supported pet-care products."
+      },
+      {
+        "title": "Book a home visit",
+        "description": "Customers can schedule supported at-home veterinary services such as examinations, checkups, and routine vaccinations."
+      },
+      {
+        "title": "Find a location",
+        "description": "Customers can look up GoVet branches and partner clinic locations through the platform."
+      },
+      {
+        "title": "Manage the request",
+        "description": "Product orders and veterinary appointments enter the relevant operational workflow in the backend."
+      },
+      {
+        "title": "Operate centrally",
+        "description": "Admins manage products, fulfillment activity, veterinary bookings, locations, and platform operations from the central dashboard."
+      }
     ],
-    "techStack": ["Flutter", "Firebase", "REST API"],
-    "highlights": ["Service search", "Booking", "Provider management"],
+    "responsibilities": [
+      {
+        "title": "Solution architecture",
+        "description": "Turning the pet-care concept into connected commerce, veterinary appointment, location, and administration workflows."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing the customer experience for pet-product shopping, home veterinary booking, and clinic discovery."
+      },
+      {
+        "title": "Mobile applications",
+        "description": "Building the iOS and Android customer experiences."
+      },
+      {
+        "title": "Backend & API development",
+        "description": "Building the services supporting products, customers, orders, veterinary appointments, locations, and platform operations."
+      },
+      {
+        "title": "Administration platform",
+        "description": "Building the central tools used to manage catalog data, order fulfillment, veterinary bookings, locations, and day-to-day operations."
+      }
+    ],
+    "systemComponents": [
+      "iOS application",
+      "Android application",
+      "Admin dashboard",
+      "Backend services",
+      "RESTful APIs",
+      "Pet-care product catalog",
+      "Pet food",
+      "Pet supplies",
+      "Accessories",
+      "Collars",
+      "Product ordering",
+      "Order fulfillment workflow",
+      "Home veterinary visit booking",
+      "Examination scheduling",
+      "Health-checkup scheduling",
+      "Routine vaccination scheduling",
+      "GoVet branch locator",
+      "Partner clinic locator",
+      "Veterinary appointment management",
+      "Central operations management"
+    ],
+    "proofPoints": [],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
     "imageUrl": "https://play-lh.googleusercontent.com/Fyo65Hfdqr2fCNRrnxmtFx6J4ER5cuARvErQPuQGahz6T050NECbT-pAmp2yBXCVupBo=w240-h480-rw",
     "imageFit": "contain",
-    "confidential": false,
-    "featured": false,
-    "category": "Mobile",
+    "confidential": true,
+    "featured": true,
+    "category": "Platform",
     "platforms": {
       "playStore": "https://play.google.com/store/apps/details?id=com.technospace.govet"
     }
