@@ -404,28 +404,103 @@
   {
     "id": "7",
     "slug": "maat",
-    "title": "MAAT",
-    "client": "MAAT",
-    "industry": "Business",
-    "year": "2024",
-    "description": "A professional business platform providing services and solutions to clients with modern web technology.",
-    "problem": "The client needed a professional online presence to showcase services and connect with potential clients.",
-    "solution": "We developed a sleek, modern website with responsive design, service showcases, and contact integration.",
-    "impact": "Enhanced brand visibility and improved client acquisition through professional online presence.",
-    "metrics": [
-      { "label": "Visitors", "value": "50k+" },
-      { "label": "Conversion", "value": "5%" },
-      { "label": "Uptime", "value": "99.9%" }
+    "title": "Maat VIP",
+    "client": "Maat",
+    "country": "China",
+    "industry": "Supply Chain / Global Sourcing & Logistics",
+    "description": "A digital sourcing portal connecting international business requirements with China-based procurement, custom manufacturing, quality control, and logistics.",
+    "cardDescription": "A China sourcing portal connecting international procurement and custom-manufacturing requests with factory sourcing, QA, and logistics.",
+    "overview": "Oraixen built Maat’s digital entry point for global sourcing inquiries and established a strategic partnership connecting technology delivery with Maat’s factory, manufacturing, QA, and logistics capabilities in China.",
+    "headings": {
+      "challenge": "A strong China sourcing operation needed a digital entry point for international business demand.",
+      "build": "A sourcing portal and partnership model connecting digital demand with physical supply-chain execution.",
+      "outcome": "Maat gained a digital gateway for global sourcing demand, while the partnership connected Oraixen’s technology work with supply-chain capability in China."
+    },
+    "problem": "Maat already operated a sourcing and logistics network in China covering factory procurement, manufacturing coordination, quality-control workflows, and shipping.\n\nWhat it lacked was a dedicated digital platform that clearly presented those capabilities and gave importers and enterprises a structured way to submit sourcing and custom-manufacturing requirements.\n\nThe opportunity also extended beyond the website itself. Oraixen and Maat wanted to establish a working model that connected Oraixen’s technology capability with direct access to China-based sourcing and manufacturing operations.",
+    "solution": "Oraixen designed and developed Maat’s public web experience, sourcing inquiry journey, backend services, APIs, and administration tools.\n\nBusinesses can submit procurement, sourcing, sample-based manufacturing, and custom-production requirements through the platform.\n\nThose inquiries can then enter Maat’s sourcing operation in China, where relevant workflows may include factory sourcing, manufacturing coordination, sample verification, quality-control processes, and logistics.\n\nAlongside the platform, Oraixen and Maat established a strategic technology and sourcing partnership that connects suitable digital and enterprise projects with Maat’s China supply-chain capability.",
+    "impact": "International businesses can submit sourcing and manufacturing requirements through a structured digital journey instead of relying only on informal inquiry channels.\n\nMaat’s team receives those requirements through a platform connected to its China-based sourcing, manufacturing, quality-control, and logistics operation.\n\nFor Oraixen, the partnership also creates a direct route to physical sourcing and manufacturing capability for suitable enterprise projects that require both technology and supply-chain execution.",
+    "workflow": [
+      {
+        "title": "Submit a requirement",
+        "description": "An importer or enterprise submits a sourcing, procurement, or custom-manufacturing request through the web portal."
+      },
+      {
+        "title": "Review the request",
+        "description": "Maat’s sourcing team reviews the product requirements, specifications, quantities, or authorized samples provided by the client."
+      },
+      {
+        "title": "Source or manufacture",
+        "description": "Relevant Chinese factories can be evaluated for procurement or custom-production requirements."
+      },
+      {
+        "title": "Validate",
+        "description": "Where applicable, samples and production requirements move through verification and quality-control workflows."
+      },
+      {
+        "title": "Arrange logistics",
+        "description": "Approved orders move into the relevant shipping and logistics process, including door-to-door delivery where applicable."
+      },
+      {
+        "title": "Connect technology & supply",
+        "description": "The Oraixen-Maat partnership enables suitable projects to combine digital-system delivery with China-based sourcing and manufacturing capability."
+      }
     ],
-    "techStack": ["Next.js", "React", "TypeScript", "Laravel", "REST API"],
-    "highlights": ["Responsive design", "SEO optimized", "Fast loading"],
+    "responsibilities": [
+      {
+        "title": "Digital positioning & UI/UX",
+        "description": "Turning Maat’s China sourcing and logistics capability into a clear web experience for international businesses."
+      },
+      {
+        "title": "Web platform development",
+        "description": "Building the public landing page and sourcing-request journey."
+      },
+      {
+        "title": "Backend & inquiry integration",
+        "description": "Building the services that capture procurement, sourcing, sample-based, and custom-manufacturing requirements."
+      },
+      {
+        "title": "Administration platform",
+        "description": "Providing the internal tools used to receive and manage incoming sourcing inquiries."
+      },
+      {
+        "title": "Technology & sourcing partnership",
+        "description": "Creating a working model that connects Oraixen’s technology capability with Maat’s China sourcing, manufacturing coordination, QA, and logistics operation."
+      }
+    ],
+    "systemComponents": [
+      "Public sourcing website",
+      "Sourcing inquiry portal",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Lead / inquiry capture",
+      "Procurement requests",
+      "Custom-manufacturing requests",
+      "Sample-based manufacturing inquiries",
+      "Factory sourcing workflow",
+      "Manufacturing coordination",
+      "Sample verification workflow",
+      "Quality-control processes",
+      "Shipping coordination",
+      "Door-to-door logistics capability"
+    ],
+    "proofPoints": [
+      {
+        "value": "Direct",
+        "label": "China factory sourcing and logistics access",
+        "description": "The partnership connects Oraixen and suitable enterprise requirements with Maat’s China-based sourcing, manufacturing coordination, QA, and door-to-door logistics capabilities."
+      }
+    ],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
     "imageUrl": "https://maat.vip/assets/logo-256-B-nat6oH.png",
     "imageFit": "contain",
     "confidential": false,
-    "featured": false,
+    "featured": true,
     "category": "Web",
     "platforms": {
-      "website": "https://maat.vip"
+      "website": "https://maat.vip/"
     }
   },
   {
