@@ -28,6 +28,12 @@ interface LocalizedProjectFields {
    * is kept, which is what every product with a single global name wants.
    */
   title: string;
+  /**
+   * Only for a period whose wording is not language-neutral: "2024-2026" reads
+   * the same everywhere, "Late 2025 - Early 2026" does not. The period itself is
+   * still the single fact stated in projects.json; this restates it in-market.
+   */
+  year: string;
   industry: string;
   country: string;
   description: string;
@@ -76,8 +82,8 @@ const MARKET_COPY: Partial<Record<MarketLocale, ProjectCopy>> = {
 
 /**
  * Returns a copy of the project with the active market's prose applied.
- * Client, year, tech stack and links are language-neutral and kept as-is; the
- * brand name is too, unless the market file carries its own `title`.
+ * Client, tech stack and links are language-neutral and kept as-is; so are the
+ * brand name and period, unless the market file carries its own `title`/`year`.
  */
 export function localizeProject(p: Project, lang: string): Project {
   const copy = MARKET_COPY[marketFromLanguage(lang)];
@@ -87,6 +93,7 @@ export function localizeProject(p: Project, lang: string): Project {
   return {
     ...p,
     title: ar.title ?? p.title,
+    year: ar.year ?? p.year,
     industry: ar.industry ?? p.industry,
     country: ar.country ?? p.country,
     description: ar.description ?? p.description,

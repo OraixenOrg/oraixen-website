@@ -218,29 +218,118 @@
   {
     "id": "8",
     "slug": "maqdia",
-    "title": "Maqdia",
-    "client": "Maqdia",
-    "industry": "E-commerce",
-    "year": "2025",
-    "description": "An e-commerce platform with mobile applications and comprehensive admin dashboard for managing products, orders, and customers.",
-    "problem": "The business needed a complete e-commerce solution with mobile apps for customers and a powerful dashboard for management.",
-    "solution": "We created mobile applications for iOS and Android, along with a comprehensive admin dashboard for inventory and order management.",
-    "impact": "Increased sales through mobile channels and improved operational efficiency with centralized management.",
-    "metrics": [
-      { "label": "Products", "value": "5k+" },
-      { "label": "Orders", "value": "50k+" },
-      { "label": "Users", "value": "30k+" }
+    "title": "Maqdya",
+    "client": "Confidential",
+    "country": "Egypt",
+    "industry": "Home Services & Contracting Marketplace",
+    "year": "Late 2025 – Early 2026",
+    "description": "A home-services marketplace connecting homeowners with verified craftsmen, contractors, and engineering supervision through one digital platform.",
+    "cardDescription": "A home-services marketplace connecting homeowners with verified craftsmen, contractors, payments, job tracking, and engineering supervision.",
+    "overview": "Maqdya brings service discovery, provider portfolios, customer reviews, direct communication, payments, job tracking, and engineering follow-up into one connected experience across web and mobile.",
+    "headings": {
+      "challenge": "Finding and managing home-service work required more structure, trust, and visibility.",
+      "build": "One marketplace connecting homeowners, service providers, payments, and project follow-up.",
+      "outcome": "Maqdya turned an informal home-services hiring process into a structured digital marketplace."
+    },
+    "problem": "Homeowners could find it difficult to evaluate craftsmen and contractors before starting maintenance, finishing, or renovation work.\n\nService quality, pricing expectations, communication, and project follow-up could vary significantly when the entire process happened through informal offline channels.\n\nFor larger renovation and construction work, the client also wanted professional engineering supervision to provide more structured follow-up across project phases.\n\nThe goal was to turn an informal hiring process into a marketplace where customers could discover providers, review previous work, communicate, pay, and follow the job through a structured digital workflow.",
+    "solution": "Oraixen built Maqdya from the ground up across web, iOS, Android, backend services, APIs, and administration.\n\nCustomers can explore service categories, review provider profiles and portfolios, read customer reviews, communicate directly with service providers, and manage service requests through the platform.\n\nService providers can present their experience and previous work and participate in a structured job workflow rather than relying entirely on informal offline communication.\n\nThe system also connects supported electronic payments, order and job tracking, and engineering-supervision workflows for projects that require professional oversight.",
+    "impact": "Customers can discover providers, review previous work, communicate, create service requests, complete supported payments, and follow jobs through one connected platform.\n\nService providers gain a structured digital presence for presenting their work and managing customer opportunities.\n\nFor projects that need additional oversight, engineering supervision adds a professional follow-up layer across the work lifecycle.",
+    "workflow": [
+      {
+        "title": "Choose a service",
+        "description": "Customers browse more than 12 construction, maintenance, finishing, and engineering-supervision specialties."
+      },
+      {
+        "title": "Evaluate providers",
+        "description": "Customers review service-provider profiles, portfolios, and customer reviews before deciding who to work with."
+      },
+      {
+        "title": "Connect",
+        "description": "The platform enables direct communication between customers and service providers to discuss the required work."
+      },
+      {
+        "title": "Create the job",
+        "description": "The service request or project enters a structured marketplace workflow where the work can be managed and followed."
+      },
+      {
+        "title": "Pay & track",
+        "description": "Supported electronic payments can be completed through the platform, while the job status can be followed through delivery."
+      },
+      {
+        "title": "Review & supervise",
+        "description": "Completed work can move through final review, while projects requiring professional oversight can include engineering supervision across project phases."
+      }
     ],
-    "techStack": ["React", "Flutter", "Laravel", "MySQL", "REST API"],
-    "highlights": ["Admin dashboard", "Mobile apps", "Order management"],
-    "imageUrl": "https://play-lh.googleusercontent.com/8c_accW6PO-NNx1sgDv6KRAeNRtyyQqkiaUsHCC9tUtrLAGdtZy3o9FjBE_SGnFkutQ8-RoCiPV4ZggsoaO5EA=w480-h960-rw",
-    "imageFit": "contain",
-    "confidential": false,
+    "responsibilities": [
+      {
+        "title": "End-to-end product creation",
+        "description": "Turning the original marketplace idea into a complete web, mobile, backend, and operational platform."
+      },
+      {
+        "title": "Product discovery & workflow design",
+        "description": "Designing the journeys for homeowners, service providers, administrators, and engineering-supervision teams."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing customer and provider experiences across web and mobile."
+      },
+      {
+        "title": "Platform engineering",
+        "description": "Building the frontend, backend, APIs, and administration capabilities supporting the marketplace."
+      },
+      {
+        "title": "Mobile applications",
+        "description": "Building the iOS and Android marketplace experience using Flutter."
+      },
+      {
+        "title": "Payment integration",
+        "description": "Connecting supported electronic payment methods to the marketplace workflow."
+      }
+    ],
+    "systemComponents": [
+      "Home-services marketplace",
+      "Website",
+      "iOS application",
+      "Android application",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Customer accounts",
+      "Service-provider profiles",
+      "Provider portfolios",
+      "Verified providers",
+      "Customer reviews",
+      "12+ service specialties",
+      "Direct customer-provider communication",
+      "Service / job requests",
+      "Electronic payments",
+      "Bank-card payments",
+      "Mobile-wallet payments",
+      "Job-status tracking",
+      "Final review workflow",
+      "Engineering supervision"
+    ],
+    "proofPoints": [
+      {
+        "value": "12+",
+        "label": "construction and finishing specialties available through the marketplace",
+        "description": "The service directory spans multiple home-maintenance, finishing, contracting, and engineering-supervision specialties."
+      }
+    ],
+    "metrics": [],
+    "techStack": [
+      "PHP / Laravel",
+      "Next.js",
+      "Flutter"
+    ],
+    "highlights": [],
+    "confidential": true,
     "featured": false,
     "category": "Platform",
     "platforms": {
-      "playStore": "https://play.google.com/store/apps/details?id=com.maqdyya.maqdyya",
-      "appStore": "https://apps.apple.com/eg/app/maqdia/id6753150399"
+      "website": "https://www.maqdya.com/",
+      "appStore": "https://apps.apple.com/eg/app/maqdia/id6753150399",
+      "playStore": "https://play.google.com/store/apps/details?id=com.sarh.maqdia"
     }
   },
   {
