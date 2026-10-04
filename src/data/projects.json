@@ -856,25 +856,104 @@
     "id": "18",
     "slug": "gefires",
     "title": "Gefires",
-    "client": "Gefires",
-    "industry": "Business",
-    "year": "2024",
-    "description": "A professional business platform providing services and solutions with modern web technology.",
-    "problem": "The client needed a professional website to showcase services and connect with clients.",
-    "solution": "We developed a modern, responsive website with service showcases and contact integration.",
-    "impact": "Enhanced brand visibility and improved client acquisition.",
-    "metrics": [
-      { "label": "Visitors", "value": "35k+" },
-      { "label": "Conversion", "value": "4%" },
-      { "label": "Uptime", "value": "99.9%" }
+    "client": "Confidential",
+    "country": "Saudi Arabia / China",
+    "industry": "B2B E-Commerce / Fire Safety & Firefighting Equipment Sourcing",
+    "description": "A B2B procurement platform connecting Saudi commercial buyers with fire-safety equipment sourcing, RFQs, quotations, and cross-border logistics from China.",
+    "cardDescription": "A B2B procurement platform connecting Saudi commercial buyers with fire-safety equipment, custom RFQs, China sourcing, and freight-aware quotations.",
+    "overview": "Gefires digitizes the commercial procurement journey for fire-alarm, firefighting, and safety equipment, connecting product discovery and bulk quotation requests with China-based sourcing and freight-aware fulfillment workflows.",
+    "headings": {
+      "challenge": "Cross-border fire-safety procurement needed a structured digital workflow from product discovery to quotation and fulfillment.",
+      "build": "A B2B catalog and RFQ platform connecting commercial demand with sourcing and logistics.",
+      "outcome": "Gefires turned a traditional cross-border procurement process into one connected B2B quotation and sourcing workflow."
+    },
+    "problem": "The business was already supplying fire-alarm and firefighting equipment from Chinese factories to commercial buyers in Saudi Arabia, but the procurement process did not have a dedicated B2B digital portal.\n\nHotels, restaurants, contractors, commercial developers, and enterprise facilities needed a clearer way to browse available equipment and submit bulk purchasing requirements.\n\nThe operation also needed quotation workflows that could bring product requirements, sourcing costs, and applicable China-to-Saudi freight considerations into one process.\n\nThe challenge was to turn a traditional procurement operation into a connected B2B portal without reducing a complex commercial purchase to a consumer-style checkout flow.",
+    "solution": "Oraixen designed and developed Gefires as a web-based procurement platform with a B2B product catalog, custom RFQ engine, backend services, APIs, and central administration.\n\nCommercial buyers can browse relevant fire-safety and firefighting equipment, define bulk requirements, and submit quotation requests through a structured digital journey.\n\nThe quotation workflow can account for applicable sourcing and freight components associated with supplying equipment from China to Saudi Arabia.\n\nOn the operational side, Gefires teams can manage catalogs, review incoming RFQs, prepare custom proposals, and follow sourcing and shipment-related activity through the administration platform.",
+    "impact": "Commercial buyers can now move from equipment discovery to bulk RFQ submission through a dedicated digital portal instead of relying entirely on offline procurement communication.\n\nGefires teams can manage product information, quotation requests, proposals, and sourcing-related operational follow-up from a central administration environment.\n\nThe platform connects Saudi commercial demand with China-based sourcing and freight considerations while keeping the complex commercial purchase centered around quotation rather than generic consumer checkout.",
+    "workflow": [
+      {
+        "title": "Browse equipment",
+        "description": "Commercial buyers explore the B2B catalog of fire-alarm, firefighting, and related safety equipment."
+      },
+      {
+        "title": "Define requirements",
+        "description": "The buyer selects the required products and provides the quantities or commercial requirements needed for the procurement request."
+      },
+      {
+        "title": "Submit an RFQ",
+        "description": "The buyer sends a structured Request for Quotation through the platform."
+      },
+      {
+        "title": "Build the quotation",
+        "description": "Gefires reviews the request and prepares a customized commercial proposal based on the relevant product and sourcing requirements."
+      },
+      {
+        "title": "Account for freight",
+        "description": "Applicable China-to-Saudi shipping and freight components can be incorporated into the quotation workflow."
+      },
+      {
+        "title": "Follow fulfillment",
+        "description": "Once a commercial order proceeds, the operations team can follow sourcing and cross-border fulfillment activity through the centralized system."
+      }
     ],
-    "techStack": ["Next.js", "React", "TypeScript", "Laravel", "REST API"],
-    "highlights": ["Responsive design", "SEO optimized", "Fast loading"],
-    "imageUrl": "https://gefires.com//assets/logo-BEEtURtm.png",
-    "imageFit": "contain",
-    "confidential": false,
-    "featured": false,
-    "category": "Web",
+    "responsibilities": [
+      {
+        "title": "B2B workflow & platform architecture",
+        "description": "Turning the existing procurement operation into digital journeys for product discovery, RFQs, quotations, sourcing, and operational follow-up."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing a commercial procurement experience focused on equipment discovery and bulk quotation requests."
+      },
+      {
+        "title": "Full-stack web development",
+        "description": "Building the procurement portal, backend services, APIs, and operational interfaces."
+      },
+      {
+        "title": "RFQ engine",
+        "description": "Building the workflow used to collect bulk product requirements and manage customized quotation requests."
+      },
+      {
+        "title": "Administration platform",
+        "description": "Building the tools used to manage the catalog, incoming RFQs, quotations, proposals, and operational follow-up."
+      },
+      {
+        "title": "Logistics workflow integration",
+        "description": "Connecting quotation activity with the freight and shipping considerations required for sourcing from China into Saudi Arabia."
+      }
+    ],
+    "systemComponents": [
+      "B2B procurement website",
+      "Fire-safety equipment catalog",
+      "Fire-alarm equipment catalog",
+      "Firefighting equipment catalog",
+      "Custom RFQ engine",
+      "Bulk procurement requests",
+      "Custom quotation workflow",
+      "Freight-aware quotation workflow",
+      "China sourcing workflow",
+      "Saudi commercial buyer journey",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Catalog management",
+      "RFQ management",
+      "Proposal management",
+      "Cross-border fulfillment follow-up"
+    ],
+    "proofPoints": [
+      {
+        "value": "100%",
+        "label": "digitization of the B2B quote-to-fulfillment workflow",
+        "description": "Product selection, RFQ intake, quotation handling, freight considerations, and cross-border fulfillment follow-up moved into one connected workflow supporting sourcing from China for Saudi commercial buyers."
+      }
+    ],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
+    "confidential": true,
+    "featured": true,
+    "category": "Platform",
     "platforms": {
       "website": "https://gefires.com/"
     }
