@@ -53,6 +53,13 @@ export function ProjectCard({
             {project.confidential && <span className="px-3 py-1.5 text-xs font-semibold bg-teal/90 text-onaccent backdrop-blur-md rounded-full flex items-center gap-1.5 border border-teal/30">
                 <Lock size={10} /> {t('card.confidential')}
               </span>}
+            {/* Only projects that declare a status badge one, so the grid stays
+                uncluttered for the products that are simply running. */}
+            {project.status && (
+              <span className="px-3 py-1.5 text-xs font-semibold bg-card/90 text-muted backdrop-blur-md rounded-full border border-line">
+                {t(`card.status.${project.status}`)}
+              </span>
+            )}
           </div>
 
           {/* Hover Overlay */}

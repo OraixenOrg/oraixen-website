@@ -37,6 +37,23 @@ export interface ProjectProofPoint {
 }
 
 /**
+ * Work the architecture was prepared for but that did NOT ship. Rendered in its
+ * own clearly labelled block, deliberately apart from `systemComponents`, so a
+ * planned module can never be read as a delivered one.
+ */
+export interface ProjectPlannedExpansion {
+  description: string;
+  items?: string[];
+}
+
+/**
+ * Whether the product is still running. Optional: most projects say nothing and
+ * render no status at all. An `inactive` project also drops the "Live platforms"
+ * wording for its outbound links, which would otherwise promise availability.
+ */
+export type ProjectStatus = 'live' | 'inactive';
+
+/**
  * The narrative sentence that opens each story section. The section LABEL
  * ("The challenge") comes from i18n; this is the project-specific claim under it.
  */
@@ -92,6 +109,10 @@ export interface Project {
   cardDescription?: string;
   /** Supporting paragraph under the hero, in the overview band. */
   overview?: string;
+  status?: ProjectStatus;
+  /** One sentence on why, shown under the status. Required reading beside `inactive`. */
+  statusNote?: string;
+  plannedExpansion?: ProjectPlannedExpansion;
   headings?: ProjectHeadings;
   workflow?: ProjectWorkflowStep[];
   responsibilities?: ProjectResponsibility[];

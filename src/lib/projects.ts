@@ -2,6 +2,7 @@ import {
   Project,
   ProjectPlatforms,
   ProjectHeadings,
+  ProjectPlannedExpansion,
   ProjectMetric,
   ProjectProofPoint,
   ProjectResponsibility,
@@ -39,6 +40,8 @@ interface LocalizedProjectFields {
   description: string;
   cardDescription: string;
   overview: string;
+  statusNote: string;
+  plannedExpansion: ProjectPlannedExpansion;
   problem: string;
   solution: string;
   impact: string;
@@ -99,6 +102,8 @@ export function localizeProject(p: Project, lang: string): Project {
     description: ar.description ?? p.description,
     cardDescription: ar.cardDescription ?? p.cardDescription,
     overview: ar.overview ?? p.overview,
+    statusNote: ar.statusNote ?? p.statusNote,
+    plannedExpansion: ar.plannedExpansion ?? p.plannedExpansion,
     problem: ar.problem ?? p.problem,
     solution: ar.solution ?? p.solution,
     impact: ar.impact ?? p.impact,

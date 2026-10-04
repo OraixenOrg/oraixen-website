@@ -78,6 +78,11 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
   // verified case study may publish none, and an empty heading would read as a
   // missing section rather than a deliberate omission. Live platforms stand on
   // their own, so the closing band drops to a single column when alone.
+  const plannedExpansion = project.plannedExpansion;
+  // An inactive product's outbound links are a reference, not an invitation:
+  // "Live platforms" would promise availability the project no longer has.
+  const linksHeading =
+    project.status === 'inactive' ? t('sections.productLinks') : t('sections.livePlatforms');
   const showTechnology = project.techStack.length > 0;
   // Aliased through a const so the `hasPlatformLinks` type guard still narrows
   // `platforms` where the links are rendered.
@@ -246,6 +251,33 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
         </Section>
       )}
 
+      {plannedExpansion && (
+        <Section className="border-t border-line">
+          <Reveal>
+            <div className="w-12 h-1 bg-gradient-to-r from-skyblue to-teal rounded-full mb-6" />
+            {/* Deliberately its own section, after the delivered system and before
+                the technology band, so a planned module is never read as shipped. */}
+            <PanelHeading>{t('sections.plannedExpansion')}</PanelHeading>
+            <p className="text-body leading-relaxed text-lg max-w-3xl whitespace-pre-line">
+              {plannedExpansion.description}
+            </p>
+            {plannedExpansion.items && plannedExpansion.items.length > 0 && (
+              <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 max-w-3xl">
+                {plannedExpansion.items.map((item) => (
+                  <li key={item} className="flex items-start text-body leading-relaxed">
+                    <span
+                      className="w-2 h-2 rounded-full border border-teal/50 mt-2 me-3 shrink-0"
+                      aria-hidden="true"
+                    />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Reveal>
+        </Section>
+      )}
+
       {showClosingSection && (
         <Section dark className="border-t border-line">
           <div
@@ -273,7 +305,7 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             {showPlatforms && (
               <Reveal>
                 <div className="w-12 h-1 bg-gradient-to-r from-skyblue to-teal rounded-full mb-6" />
-                <PanelHeading>{t('sections.livePlatforms')}</PanelHeading>
+                <PanelHeading>{linksHeading}</PanelHeading>
                 <ProjectPlatformLinks platforms={platforms} />
               </Reveal>
             )}

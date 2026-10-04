@@ -13,7 +13,12 @@
     "techStack": "التقنيات",
     "market": "السوق",
     "period": "الفترة",
-    "industry": "المجال"
+    "industry": "المجال",
+    "status": "الحالة"
+  },
+  "status": {
+    "live": "شغال",
+    "inactive": "متوقف حالياً"
   },
   "sections": {
     "challenge": "المشكلة",
@@ -29,7 +34,9 @@
     "systemAtGlance": "مكونات المنظومة",
     "verifiedProof": "معلومة موثقة من النظام",
     "technology": "التقنيات",
-    "livePlatforms": "المنصات المتاحة"
+    "livePlatforms": "المنصات المتاحة",
+    "productLinks": "روابط المنتج",
+    "plannedExpansion": "توسعات كان مخطط لها"
   },
   "step": "خطوة",
   "platforms": {

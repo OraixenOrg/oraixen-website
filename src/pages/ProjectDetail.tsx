@@ -1,6 +1,6 @@
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowLeft, Calendar, Globe2, Layers, Lock, Tag, User } from 'lucide-react';
+import { Activity, ArrowLeft, Calendar, Globe2, Layers, Lock, Tag, User } from 'lucide-react';
 import { isCaseStudy } from '../types/project';
 import {
   projects,
@@ -59,7 +59,13 @@ export function ProjectDetail() {
   const metrics = project.metrics ?? [];
   const highlights = project.highlights ?? [];
 
-  const overviewItems = [
+  const overviewItems: Array<{
+    icon: JSX.Element;
+    label: string;
+    value: string;
+    /** Small print under the value - currently the reason a project is inactive. */
+    note?: string;
+  }> = [
     {
       icon: <User size={20} />,
       label: t('labels.client'),
@@ -84,6 +90,17 @@ export function ProjectDetail() {
     caseStudy
       ? { icon: <Layers size={20} />, label: t('labels.industry'), value: project.industry }
       : { icon: <Tag size={20} />, label: t('labels.category'), value: project.category },
+    // Only projects that declare a status show one; the rest render no row at all.
+    ...(project.status
+      ? [
+          {
+            icon: <Activity size={20} />,
+            label: t('labels.status'),
+            value: t(`status.${project.status}`),
+            note: project.statusNote,
+          },
+        ]
+      : []),
   ];
 
   // The legacy layout adds a fifth cell for the tech stack; the case-study
@@ -135,6 +152,13 @@ export function ProjectDetail() {
               {project.confidential && <span className="px-4 py-2 text-sm font-semibold bg-teal text-onaccent rounded-full flex items-center gap-2 border border-teal/30">
                   <Lock size={14} /> {t('confidential')}
                 </span>}
+              {/* Surfaced beside the title so availability is clear before a
+                  reader reaches the overview band or the outbound links. */}
+              {project.status && (
+                <span className="px-4 py-2 text-sm font-semibold bg-surface-subtle text-body rounded-full flex items-center gap-2 border border-line">
+                  <Activity size={14} /> {t(`status.${project.status}`)}
+                </span>
+              )}
             </div>
 
             <h1 className="page-hero-title mb-4 font-bold text-ink sm:mb-6">
@@ -169,6 +193,9 @@ export function ProjectDetail() {
               <div className="text-ink font-semibold text-lg">
                 {item.value}
               </div>
+              {item.note && (
+                <p className="text-sm text-muted leading-relaxed mt-2">{item.note}</p>
+              )}
             </div>
           ))}
 
@@ -276,7 +303,9 @@ export function ProjectDetail() {
                   <SpotlightCard className="h-full">
                     <div className="p-8">
                       <h3 className="text-xl font-bold text-ink mb-8">
-                        {t('sections.availablePlatforms')}
+                        {project.status === 'inactive'
+                          ? t('sections.productLinks')
+                          : t('sections.availablePlatforms')}
                       </h3>
                       <ProjectPlatformLinks platforms={project.platforms} />
                     </div>

@@ -13,7 +13,12 @@
     "techStack": "Tech stack",
     "market": "Market",
     "period": "Period",
-    "industry": "Industry"
+    "industry": "Industry",
+    "status": "Status"
+  },
+  "status": {
+    "live": "Live",
+    "inactive": "Inactive"
   },
   "sections": {
     "challenge": "The challenge",
@@ -29,7 +34,9 @@
     "systemAtGlance": "System at a glance",
     "verifiedProof": "Verified product proof",
     "technology": "Technology",
-    "livePlatforms": "Live platforms"
+    "livePlatforms": "Live platforms",
+    "productLinks": "Product links",
+    "plannedExpansion": "Planned expansion architecture"
   },
   "step": "Step",
   "platforms": {

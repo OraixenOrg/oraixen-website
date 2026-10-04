@@ -420,27 +420,119 @@
     "id": "13",
     "slug": "waffar-cash",
     "title": "Waffar Cash",
-    "client": "Waffar Cash",
-    "industry": "Finance",
-    "year": "2024",
-    "description": "A financial services mobile application offering cashback rewards, payment solutions, and financial management tools.",
-    "problem": "Users needed a convenient way to earn rewards and manage financial transactions through mobile devices.",
-    "solution": "We developed native mobile applications with secure payment processing, reward tracking, and financial management features.",
-    "impact": "Increased user engagement and provided convenient financial services with attractive rewards.",
-    "metrics": [
-      { "label": "Users", "value": "120k+" },
-      { "label": "Transactions", "value": "1M+" },
-      { "label": "Rewards", "value": "$500k+" }
+    "client": "Confidential",
+    "country": "Egypt / Al-Qantarah, Sinai",
+    "industry": "On-Demand Delivery / Hyperlocal Super App / Multi-Vendor Marketplace",
+    "description": "A hyperlocal Super App connecting customers, merchants, and delivery riders through multi-vendor ordering and single-trip delivery.",
+    "cardDescription": "A hyperlocal multi-vendor platform connecting customers, merchants, and riders, with eligible nearby-store orders combined into a single delivery trip.",
+    "overview": "Waffar Cash was designed for local commerce in Al-Qantarah, Sinai, bringing restaurants, supermarkets, pharmacies, cafes, customers, and delivery riders into one operating platform. Its multi-store model allows eligible nearby orders to be combined into a single delivery trip.",
+    "status": "inactive",
+    "statusNote": "Project halted due to local regulatory and security conditions.",
+    "headings": {
+      "challenge": "Local delivery was fragmented across merchants, riders, and separate customer orders.",
+      "build": "A multi-vendor Super App built around local ordering and delivery operations.",
+      "outcome": "Waffar Cash brought fragmented hyperlocal ordering and delivery into one multi-sided operating platform."
+    },
+    "problem": "Restaurants and other local merchants in Al-Qantarah could struggle to coordinate delivery riders, contributing to delayed, incorrect, or cold deliveries.\n\nCustomers ordering from more than one nearby store also faced separate delivery flows and duplicated delivery costs when each merchant had to be handled independently.\n\nAt the same time, restaurants, supermarkets, pharmacies, and cafes had no single local digital platform connecting commerce and delivery operations.\n\nThe challenge was to create one hyperlocal ecosystem where customers, merchants, riders, and administrators could operate through the same platform.",
+    "solution": "Oraixen designed and developed Waffar Cash as a connected platform spanning separate customer, merchant, and rider applications, together with backend services, APIs, merchant operations, and administration.\n\nCustomers can order across multiple local categories, including restaurants, supermarkets, pharmacies, and cafes, as well as submit supported custom errand requests.\n\nThe platform's distinctive multi-store workflow allows eligible orders from nearby participating stores to be combined into one delivery trip instead of generating separate delivery trips for each merchant.\n\nMerchants manage incoming order activity through their dedicated tools, while delivery riders participate through a separate delivery application and administrators oversee the wider platform operation.",
+    "impact": "Customers could order across several local commerce categories while merchants and delivery riders worked through dedicated operational experiences connected to the same backend.\n\nFor eligible nearby multi-store orders, the batching workflow reduced the need for separate delivery trips and duplicated delivery charges by combining the order into one delivery journey.\n\nThe product also established an architecture capable of supporting a broader local Super App model, although the project was later halted due to local regulatory and security conditions.",
+    "workflow": [
+      {
+        "title": "Choose what you need",
+        "description": "Customers browse supported local categories including restaurants, supermarkets, pharmacies, cafes, and eligible custom errand requests."
+      },
+      {
+        "title": "Build the order",
+        "description": "Customers select items and, when the participating stores meet the supported proximity and batching rules, can combine eligible multi-store purchases within one ordering flow."
+      },
+      {
+        "title": "Send to merchants",
+        "description": "Participating merchants receive and manage their portions of the combined order through the merchant operational system."
+      },
+      {
+        "title": "Coordinate pickup",
+        "description": "The delivery workflow brings the eligible nearby pickups together for the assigned rider."
+      },
+      {
+        "title": "Deliver in one trip",
+        "description": "Eligible batched orders from nearby stores are delivered through one trip instead of separate trips for each store."
+      },
+      {
+        "title": "Operate the network",
+        "description": "Administration tools connect merchants, orders, riders, and delivery activity in one operational platform."
+      }
     ],
-    "techStack": ["Flutter", "Firebase", "OneSignal", "REST API"],
-    "highlights": ["Cashback rewards", "Secure payments", "Financial tools"],
-    "imageUrl": "https://play-lh.googleusercontent.com/zIQoPb68PqYMyU6676usZaLc1yubCr4T37Fa6ffO67th-YUNHIs1AuKxxjGV3flVgg=w480-h960-rw",
-    "imageFit": "contain",
-    "confidential": false,
+    "responsibilities": [
+      {
+        "title": "Product strategy & ecosystem design",
+        "description": "Defining how customers, merchants, riders, multi-category ordering, and hyperlocal delivery should work together."
+      },
+      {
+        "title": "Super App architecture",
+        "description": "Designing the customer, merchant, rider, backend, API, and administration layers as one connected platform."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing separate user journeys for customers, merchants, delivery riders, and administrators."
+      },
+      {
+        "title": "Backend & API development",
+        "description": "Building the central services supporting merchants, orders, multi-store batching, delivery workflows, and platform operations."
+      },
+      {
+        "title": "Mobile applications",
+        "description": "Building separate Flutter applications for customers, merchants, and delivery riders."
+      },
+      {
+        "title": "Merchant & administration systems",
+        "description": "Building the tools used to manage merchant orders, delivery operations, and the wider marketplace."
+      }
+    ],
+    "systemComponents": [
+      "Customer mobile application",
+      "Merchant mobile application",
+      "Delivery-rider application",
+      "Merchant operational interfaces",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Multi-vendor marketplace",
+      "Restaurants",
+      "Supermarkets",
+      "Pharmacies",
+      "Cafes",
+      "Multi-category ordering",
+      "Multi-store cart",
+      "Nearby-store order batching",
+      "Single-trip delivery workflow",
+      "Rider delivery workflow",
+      "Custom errand requests",
+      "Order and delivery operations"
+    ],
+    "plannedExpansion": {
+      "description": "The platform architecture was designed to support additional local-service modules in the future. These modules were planned, not launched.",
+      "items": [
+        "Student-housing rentals (planned)",
+        "Local ride-hailing (planned)"
+      ]
+    },
+    "proofPoints": [
+      {
+        "value": "100%",
+        "label": "of eligible nearby multi-store orders consolidated into a single delivery trip",
+        "description": "When stores fall within the supported proximity and batching rules, the combined order is handled through one delivery trip instead of separate trips for each store."
+      }
+    ],
+    "metrics": [],
+    "techStack": [
+      "PHP / Laravel",
+      "Flutter"
+    ],
+    "highlights": [],
+    "confidential": true,
     "featured": true,
-    "category": "Mobile",
+    "category": "Platform",
     "platforms": {
-      "playStore": "https://play.google.com/store/apps/details?id=com.gao.waffar_cash&hl=en",
       "appStore": "https://apps.apple.com/eg/app/waffar-cash/id1626369167"
     }
   },
