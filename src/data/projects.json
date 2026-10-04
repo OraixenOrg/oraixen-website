@@ -1153,5 +1153,112 @@
       "website": "https://ghirasalusrah.com/",
       "playStore": "https://play.google.com/store/apps/details?id=com.oraixen.ghirasalusrah"
     }
+  },
+  {
+    "id": "32",
+    "slug": "delora",
+    "title": "Delora",
+    "client": "Confidential",
+    "country": "Egypt",
+    "industry": "E-Commerce / Cosmetics & Makeup",
+    "description": "A cosmetics e-commerce platform connecting product discovery, checkout, payments, and store operations across web and mobile.",
+    "cardDescription": "A cosmetics commerce platform connecting product discovery, checkout, payments, and centralized store operations across web, iOS, and Android.",
+    "overview": "Delora gives customers a dedicated beauty-shopping experience across web, iOS, and Android, while store teams manage products, orders, and customers through a centralized administration platform.",
+    "headings": {
+      "challenge": "A cosmetics brand needed more than a generic online store.",
+      "build": "A connected beauty-commerce platform across web, mobile, and administration.",
+      "outcome": "Delora launched a dedicated cosmetics commerce experience across web and mobile."
+    },
+    "problem": "The client wanted to build a digital commerce experience specifically around makeup and cosmetics in Egypt.\n\nThe product needed to make beauty products easy to discover through clear categories, search, and filtering, while supporting a structured cart, checkout, and electronic payment journey.\n\nThe client also wanted to benchmark successful regional beauty-commerce experiences, including Nice One, while building a platform and brand experience tailored to Delora’s own market and customers.\n\nBehind the customer experience, store teams needed one administration system for managing products, orders, and customer records.",
+    "solution": "Oraixen designed and developed Delora across the e-commerce website, iOS application, Android application, backend services, APIs, payment integrations, and administration.\n\nCustomers can browse a cosmetics-focused catalog, move through categories, search and filter products, add items to their cart, complete checkout, and use supported electronic payment methods.\n\nStore managers use the administration platform to manage products, customer records, and orders from one central environment.\n\nThe customer experience was informed by benchmarking established regional commerce patterns while being designed around Delora’s own cosmetics offering.",
+    "impact": "Customers can discover beauty products, shop, complete checkout, and place orders through web, iOS, and Android experiences built around one commerce platform.\n\nAt the operational level, store teams can manage products, customers, and orders from one administration environment instead of operating each customer channel independently.\n\nThe result is a connected customer and store-management experience designed specifically around Delora’s cosmetics business.",
+    "workflow": [
+      {
+        "title": "Discover",
+        "description": "Customers browse beauty and makeup products through structured categories, search, and filtering."
+      },
+      {
+        "title": "Evaluate",
+        "description": "The product catalog helps customers navigate and explore the items available through Delora."
+      },
+      {
+        "title": "Add to cart",
+        "description": "Customers add selected products to their shopping cart and prepare the order."
+      },
+      {
+        "title": "Checkout",
+        "description": "The customer completes the digital checkout flow and uses a supported electronic payment method."
+      },
+      {
+        "title": "Manage the order",
+        "description": "The order enters the central commerce system where store teams can manage customer and order information."
+      },
+      {
+        "title": "Operate",
+        "description": "Administrators manage products, orders, customers, and day-to-day commerce activity through the central dashboard."
+      }
+    ],
+    "responsibilities": [
+      {
+        "title": "Commerce discovery & benchmarking",
+        "description": "Studying established regional beauty-commerce journeys, including Nice One, and defining the flows required for Delora."
+      },
+      {
+        "title": "Platform architecture",
+        "description": "Designing the web, mobile, backend, APIs, administration, product catalog, checkout, and payment layers as one commerce platform."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing a cosmetics-focused customer journey across web and mobile."
+      },
+      {
+        "title": "Backend & API development",
+        "description": "Building the services supporting products, customers, orders, checkout, payments, and administration."
+      },
+      {
+        "title": "Frontend web development",
+        "description": "Building the public e-commerce experience for the web."
+      },
+      {
+        "title": "Mobile applications",
+        "description": "Building the iOS and Android customer experiences."
+      }
+    ],
+    "systemComponents": [
+      "E-commerce website",
+      "iOS application",
+      "Android application",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Cosmetics product catalog",
+      "Product categories",
+      "Product search",
+      "Product filtering",
+      "Shopping cart",
+      "Digital checkout",
+      "Electronic payments",
+      "Product management",
+      "Order management",
+      "Customer management"
+    ],
+    "proofPoints": [
+      {
+        "value": "100%",
+        "label": "digital customer experience delivered across web, iOS, and Android",
+        "description": "The Delora commerce experience was launched across the approved customer channels: website, iOS application, and Android application."
+      }
+    ],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
+    "confidential": true,
+    "featured": true,
+    "category": "Platform",
+    "platforms": {
+      "website": "https://www.deloraeg.com/",
+      "appStore": "https://apps.apple.com/eg/app/delora/id6774976410?l=ar",
+      "playStore": "https://play.google.com/store/apps/details?id=com.blink.delora"
+    }
   }
 ]
