@@ -43,6 +43,20 @@ function PanelHeading({ children }: { children: ReactNode }) {
 }
 
 /**
+ * A proof point's value is whatever the owner verified, which is not always a
+ * figure: "100%" is a quantity, "Multiple" is a qualifier. A qualifier set at
+ * the numeral's display size reads as a mis-sized stat, so word values step
+ * down a scale while quantities keep the headline size they had.
+ *
+ * The test is deliberately "contains a digit" rather than a full number parse:
+ * "100%", "10x" and "3 markets" are all quantities, and nothing without a
+ * digit is.
+ */
+function isQuantitative(value: string): boolean {
+  return /\d/.test(value);
+}
+
+/**
  * Business-first case-study layout for owner-verified projects.
  *
  * Section order is deliberate: challenge, what we built, how the system works and
@@ -183,7 +197,11 @@ export function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                       <div className="space-y-8">
                         {proofPoints.map((proof) => (
                           <div key={proof.label}>
-                            <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-skyblue to-teal mb-2">
+                            <div
+                              className={`font-bold text-transparent bg-clip-text bg-gradient-to-r from-skyblue to-teal mb-2 ${
+                                isQuantitative(proof.value) ? 'text-4xl' : 'text-2xl md:text-3xl'
+                              }`}
+                            >
                               <AnimatedCounter value={proof.value} />
                             </div>
                             <div className="text-sm text-body font-medium leading-relaxed">

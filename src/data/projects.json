@@ -759,5 +759,114 @@
       "appStore": "https://apps.apple.com/sa/app/nice-one-%D9%86%D8%A7%D9%8A%D8%B3-%D9%88%D9%86/id1271754138",
       "playStore": "https://play.google.com/store/apps/details?id=com.NiceOne.App"
     }
+  },
+  {
+    "id": "30",
+    "slug": "sanar",
+    "title": "Sanar",
+    "client": "Confidential",
+    "country": "Saudi Arabia",
+    "industry": "Healthcare / Telemedicine & At-Home Care",
+    "description": "A connected healthcare platform for telemedicine and on-demand medical services delivered at home.",
+    "cardDescription": "A healthcare ecosystem connecting telemedicine, at-home medical services, real-time booking, payments, and insurance workflows.",
+    "overview": "Sanar connects patients, healthcare providers, administrators, payments, and insurance workflows through one digital ecosystem spanning web and mobile. Patients can book remote consultations and at-home healthcare services based on provider availability and appointment schedules.",
+    "headings": {
+      "challenge": "Accessing healthcare at home required a more connected service and booking model.",
+      "build": "One healthcare ecosystem connecting remote consultations and care delivered at home.",
+      "outcome": "Sanar turned separate healthcare journeys into one connected digital ecosystem."
+    },
+    "problem": "Patients needed a convenient way to access services such as home laboratory tests, nursing visits, physical therapy, child vaccinations, and remote medical consultations without relying on a hospital or clinic visit for every interaction.\n\nThe platform also needed to coordinate healthcare-provider availability, appointment scheduling, payments, and insurance coverage through a single digital journey.\n\nThe challenge was not simply to build an appointment app. It was to connect patients, healthcare providers, home-care services, telemedicine, administration, payments, and insurance workflows into one operating ecosystem.",
+    "solution": "Oraixen contributed to the design and development of Sanar across web, iOS, Android, backend services, APIs, and administration.\n\nPatients can browse available healthcare services, choose appointments based on provider availability, book home-care visits, schedule remote consultations, and complete payments through the platform.\n\nThe system also connects healthcare workflows with integrated insurance providers, enabling eligible services to operate within insurance-supported coverage and claim-processing flows.\n\nAdministrators manage the platform centrally while healthcare providers participate in scheduled appointments and service delivery.",
+    "impact": "Patients can access telemedicine and at-home healthcare services through one platform instead of coordinating appointments, service availability, payments, and insurance through separate channels.\n\nHealthcare providers, administrators, insurance integrations, and patient-facing services operate through the same connected platform architecture.\n\nThe ecosystem also supports multiple insurance and corporate partner relationships as part of its operating model.",
+    "workflow": [
+      {
+        "title": "Choose a service",
+        "description": "Patients select from available telemedicine or at-home healthcare services, including home lab tests, nursing visits, IV vitamin therapy, physical therapy, and child vaccinations."
+      },
+      {
+        "title": "Check availability",
+        "description": "The platform presents available appointment times based on healthcare-provider availability."
+      },
+      {
+        "title": "Book",
+        "description": "Patients select an appointment and confirm the healthcare service through the platform."
+      },
+      {
+        "title": "Connect coverage & payment",
+        "description": "Eligible services can pass through connected insurance workflows, while supported payments are processed digitally through integrated payment gateways."
+      },
+      {
+        "title": "Receive care",
+        "description": "The patient attends the remote consultation or receives the booked healthcare service at home."
+      },
+      {
+        "title": "Manage the ecosystem",
+        "description": "Administrators use the central platform to coordinate services, providers, appointments, and connected operational workflows."
+      }
+    ],
+    "responsibilities": [
+      {
+        "title": "Product discovery & ecosystem design",
+        "description": "Mapping the journeys between patients, healthcare providers, services, appointments, payments, administration, and insurance workflows."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing the patient and operational journeys across web and mobile."
+      },
+      {
+        "title": "Platform engineering",
+        "description": "Building the frontend, backend, APIs, and administration capabilities supporting the healthcare ecosystem."
+      },
+      {
+        "title": "Mobile applications",
+        "description": "Developing the iOS and Android patient experience."
+      },
+      {
+        "title": "Insurance integrations",
+        "description": "Connecting supported healthcare workflows with health insurance providers."
+      },
+      {
+        "title": "Payment integrations",
+        "description": "Connecting digital payment processing to service booking and appointments."
+      }
+    ],
+    "systemComponents": [
+      "Healthcare service marketplace",
+      "Website",
+      "iOS application",
+      "Android application",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Telemedicine consultations",
+      "Provider availability",
+      "Real-time appointment scheduling",
+      "Home laboratory-test booking",
+      "Nurse-visit booking",
+      "IV vitamin-therapy booking",
+      "Physical-therapy booking",
+      "Child-vaccination booking",
+      "Payment-gateway integration",
+      "Health-insurance integrations",
+      "Insurance-supported service workflows"
+    ],
+    "proofPoints": [
+      {
+        "value": "Multiple",
+        "label": "health insurance and corporate partners integrated",
+        "description": "The platform connects healthcare booking and service delivery with multiple insurance and corporate partner workflows."
+      }
+    ],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
+    "confidential": true,
+    "featured": true,
+    "category": "Platform",
+    "platforms": {
+      "website": "https://www.sanar.sa/home",
+      "appStore": "https://apps.apple.com/in/app/%D8%B3%D9%86%D8%A7%D8%B1-sanar-%D8%B5%D8%AD%D8%A9-%D8%A3%D9%81%D8%B6%D9%84/id1473258160",
+      "playStore": "https://play.google.com/store/apps/details?id=com.sanarcare.pro&pli=1"
+    }
   }
 ]
