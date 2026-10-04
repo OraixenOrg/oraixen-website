@@ -303,29 +303,102 @@
     "id": "6",
     "slug": "order-fs",
     "title": "Order FS",
-    "client": "Order FS",
-    "industry": "Food Service",
-    "year": "2022",
-    "description": "A complete food service management platform with customer-facing apps, restaurant dashboard, and order management system.",
-    "problem": "Restaurants needed an integrated solution for online ordering, delivery management, and business analytics.",
-    "solution": "We built a comprehensive platform including customer mobile apps, restaurant dashboard, order management, and real-time tracking.",
-    "impact": "Streamlined operations, increased order volume, and improved customer satisfaction with faster service.",
-    "metrics": [
-      { "label": "Orders", "value": "500k+" },
-      { "label": "Restaurants", "value": "1k+" },
-      { "label": "Users", "value": "200k+" }
+    "client": "Confidential",
+    "country": "Kuwait",
+    "industry": "E-Commerce / Single-Vendor Retail",
+    "description": "A custom single-vendor commerce platform connecting shopping, orders, customer data, and store operations across web and mobile.",
+    "cardDescription": "A custom single-vendor commerce platform connecting shopping, orders, customers, and centralized store operations across web, iOS, and Android.",
+    "overview": "Order FS was built around the requirements of a retail business in Kuwait, connecting the customer journey across responsive web, iOS, and Android with a centralized backend and administration platform.",
+    "headings": {
+      "challenge": "The retailer needed a commerce platform built around its own operating model rather than a generic storefront.",
+      "build": "One custom commerce platform connecting customers and retail operations.",
+      "outcome": "Order FS turned a retail concept into one connected commerce and operations platform for the Kuwaiti market."
+    },
+    "problem": "The client had a clear business concept for launching a custom single-vendor e-commerce operation in Kuwait.\n\nThe platform needed to support a connected customer experience across responsive web, iOS, and Android while giving the internal team central control over products, customers, orders, fulfillment-related workflows, and commerce analytics.\n\nThe challenge was to turn those business requirements into one tailored commerce system where the customer-facing channels and internal operations worked from the same platform foundation.",
+    "solution": "Oraixen mapped the business requirements, designed the product experience, and developed Order FS across responsive web, iOS, Android, backend services, APIs, integrations, and administration.\n\nCustomers can browse the retailer’s product catalog, add items to their cart, move through checkout, and place orders through the digital shopping experience.\n\nStore teams use the centralized administration platform to manage catalog information, customer records, orders, fulfillment-related activity, and available commerce analytics.\n\nThe platform was designed specifically around a single retailer’s operating model and Kuwaiti market requirements rather than a multi-vendor marketplace structure.",
+    "impact": "Customers can move from product discovery through cart, checkout, and ordering across web and mobile experiences connected to the same platform foundation.\n\nAt the operational level, store teams can manage products, customers, orders, and fulfillment-related activity from a central administration environment.\n\nThe result is a tailored single-vendor system built around the retailer’s own operating requirements instead of a generic or multi-vendor commerce model.",
+    "workflow": [
+      {
+        "title": "Discover products",
+        "description": "Customers browse the retailer’s product catalog through the web or mobile shopping experience."
+      },
+      {
+        "title": "Build the cart",
+        "description": "Customers select products and add them to a centralized shopping cart."
+      },
+      {
+        "title": "Checkout",
+        "description": "The customer moves through the platform’s structured checkout flow and confirms the order."
+      },
+      {
+        "title": "Create the order",
+        "description": "The order enters the central backend and administration environment for operational handling."
+      },
+      {
+        "title": "Manage fulfillment",
+        "description": "Store teams follow the order through the relevant fulfillment-related operational workflow."
+      },
+      {
+        "title": "Operate the store",
+        "description": "Management uses the admin dashboard to oversee products, customers, orders, and available commerce analytics from one environment."
+      }
     ],
-    "techStack": ["React", "Flutter", "Laravel", "MySQL", "REST API"],
-    "highlights": ["Order management", "Real-time tracking", "Analytics dashboard"],
+    "responsibilities": [
+      {
+        "title": "Market research & requirements mapping",
+        "description": "Understanding the retailer’s Kuwait-market requirements and translating them into the platform’s commerce and operational workflows."
+      },
+      {
+        "title": "Commerce architecture",
+        "description": "Designing the web, mobile, backend, APIs, catalog, order, customer, and administration layers as one single-vendor platform."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing the shopping experience across web, iOS, and Android together with the internal administration journey."
+      },
+      {
+        "title": "Backend & API development",
+        "description": "Building the services supporting products, customers, carts, orders, checkout, operations, and platform integrations."
+      },
+      {
+        "title": "Web & mobile development",
+        "description": "Building the responsive web experience and the iOS and Android customer applications."
+      },
+      {
+        "title": "Administration platform",
+        "description": "Building the tools used to manage catalog data, customer records, orders, fulfillment-related workflows, and commerce analytics."
+      }
+    ],
+    "systemComponents": [
+      "Single-vendor e-commerce platform",
+      "Responsive web application",
+      "iOS application",
+      "Android application",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Product catalog",
+      "Product management",
+      "Shopping cart",
+      "Checkout",
+      "Order management",
+      "Customer management",
+      "Fulfillment-related workflows",
+      "Commerce analytics",
+      "Supporting platform integrations"
+    ],
+    "proofPoints": [],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
     "imageUrl": "https://orderfs.com/static/media/logor.f2b420ef445a9b76a69c.png",
     "imageFit": "contain",
-    "confidential": false,
+    "confidential": true,
     "featured": true,
     "category": "Platform",
     "platforms": {
-      "website": "https://www.orderfs.com",
-      "playStore": "https://play.google.com/store/apps/details?id=com.order.order",
-      "appStore": "https://apps.apple.com/eg/app/order-fs/id6450720518"
+      "website": "https://www.orderfs.com/",
+      "appStore": "https://apps.apple.com/us/app/order-fs/id6450720518"
     }
   },
   {
