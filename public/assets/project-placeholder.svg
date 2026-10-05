@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-hidden="true">
+  <!--
+    Neutral stand-in for a project that ships no brand asset, and for an asset
+    that fails to load. Deliberately unbranded: anything resembling a mark would
+    read as the client's own logo on the card it replaces.
+
+    Stroke-only on a transparent canvas, so the card's own background shows
+    through and the placeholder suits the light and the dark theme alike without
+    needing to know which one is active - an <img> cannot see the document's
+    .dark class, so a painted background would be wrong half the time.
+
+    3:2 to match the grid card's frame, which keeps the glyph centred whether the
+    project is rendered with object-contain or object-cover.
+  -->
+  <g fill="none" stroke="#96A0B2" stroke-opacity="0.75" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="460" y="290" width="280" height="220" rx="24" />
+    <circle cx="538" cy="358" r="22" />
+    <path d="M472 482 L556 396 L620 452 L676 408 L728 482" />
+  </g>
+</svg>

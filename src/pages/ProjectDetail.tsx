@@ -6,11 +6,11 @@ import {
   projects,
   localizeProject,
   hasPlatformLinks,
-  PROJECT_FALLBACK_IMAGE,
 } from '../lib/projects';
 import { Section } from '../components/Section';
 import { FadeIn } from '../components/FadeIn';
 import { ProjectCaseStudy } from '../components/projects/ProjectCaseStudy';
+import { useProjectImage } from '../components/projects/useProjectImage';
 import { ProjectPlatformLinks } from '../components/projects/ProjectPlatformLinks';
 import { RelatedProjects } from '../components/projects/RelatedProjects';
 import { CTASection } from '../components/ui';
@@ -48,6 +48,10 @@ export function ProjectDetail() {
     slug: string;
   }>();
   const rawProject = projects.find(p => p.slug === slug);
+  // Resolved from the un-localized record and ABOVE the redirect below, because
+  // a hook cannot sit after a conditional return. The market prose files carry
+  // no `imageUrl`, so the localized record would resolve to the same asset.
+  const heroImage = useProjectImage(rawProject?.imageUrl);
   if (!rawProject) {
     return <Navigate to="/projects" replace />;
   }
@@ -120,8 +124,9 @@ export function ProjectDetail() {
       }`}>
         <div className={`absolute inset-0 ${project.imageFit === 'contain' ? 'flex items-center justify-center bg-surface p-12' : ''}`}>
           <img
-            src={project.imageUrl ?? PROJECT_FALLBACK_IMAGE}
+            src={heroImage.src}
             alt={project.title}
+            onError={heroImage.onError}
             fetchPriority="high"
             decoding="async"
             className={

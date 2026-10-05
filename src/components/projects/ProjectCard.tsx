@@ -1,10 +1,10 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowUpRight, Lock, ExternalLink } from 'lucide-react';
 import { Project } from '../../types/project';
 import { Card } from '../Card';
-import { localizeProject, PROJECT_FALLBACK_IMAGE } from '../../lib/projects';
+import { localizeProject } from '../../lib/projects';
+import { useProjectImage } from './useProjectImage';
 
 interface ProjectCardProps {
   project: Project;
@@ -14,12 +14,12 @@ export function ProjectCard({
   project: rawProject
 }: ProjectCardProps) {
   const { t, i18n } = useTranslation('projects');
-  const [imageError, setImageError] = useState(false);
 
   const project = localizeProject(rawProject, i18n.language);
-  // A project may ship without a brand asset; the neutral placeholder covers both
-  // "never had one" and "the client's logo URL stopped resolving".
-  const imageSrc = imageError || !project.imageUrl ? PROJECT_FALLBACK_IMAGE : project.imageUrl;
+  // A project may ship without a brand asset; the neutral placeholder covers
+  // "never had one", "its PNG is not in public/assets/projects/ yet" and "the
+  // image stopped resolving" alike.
+  const image = useProjectImage(project.imageUrl);
 
   return (
     <Card interactive className="group relative h-full flex flex-col overflow-hidden">
@@ -34,14 +34,14 @@ export function ProjectCard({
           project.imageFit === 'contain' ? 'bg-card p-8' : 'bg-surface-subtle p-6'
         }`}>
           <img
-            src={imageSrc}
+            src={image.src}
             alt={project.title}
             className={`transition-transform duration-500 group-hover:scale-105 ${
               project.imageFit === 'contain'
                 ? 'object-contain w-full h-full max-h-[200px] max-w-[280px]'
                 : 'w-full h-full object-cover group-hover:scale-110'
             }`}
-            onError={() => setImageError(true)}
+            onError={image.onError}
             loading="lazy"
             decoding="async"
           />

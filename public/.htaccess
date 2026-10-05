@@ -240,12 +240,14 @@ GeoIPEnable On
   #                           baseline; no face is self-hosted today.
   #   img-src                 'self'; data: for the inline SVG grain texture in
   #                           src/components/visual/GrainOverlay.tsx; unsplash
-  #                           for the About hero and the project-card fallback;
+  #                           for the About hero ONLY - the project-card fallback
+  #                           is now the local /assets/project-placeholder.svg;
   #                           then the twelve hosts that actually appear in the
-  #                           imageUrl fields of src/data/projects*.json. Issue 32
-  #                           rebuilds that data — self-hosting those twelve
-  #                           images would collapse this list to 'self' data:.
-  #                           The Google hosts are GA4 image beacons.
+  #                           imageUrl fields of src/data/projects*.json. Those
+  #                           twelve are being migrated to local PNGs under
+  #                           public/assets/projects/, and each host may be
+  #                           dropped from the list below once no imageUrl names
+  #                           it. The Google hosts are GA4 image beacons.
   #   connect-src             'self' covers /contact.php and /market-context.php.
   #                           The Google hosts are GA4 measurement; the wildcards
   #                           are required because GA4 shards collection across

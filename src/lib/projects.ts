@@ -17,9 +17,13 @@ import projectsSaData from "../data/projects.ar-sa.json";
  * Neutral stand-in shown when a project carries no owner-supplied brand asset.
  * Shared by the grid card and the case-study hero so both degrade identically,
  * and never replaced by a guessed logo URL scraped from a client's site.
+ *
+ * Served from `public/`, so the portfolio no longer depends on a third-party
+ * host to render a project that is simply waiting for its artwork. Resolve it
+ * through `useProjectImage` rather than reading it directly, so every surface
+ * degrades the same way.
  */
-export const PROJECT_FALLBACK_IMAGE =
-  'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800';
+export const PROJECT_FALLBACK_IMAGE = '/assets/project-placeholder.svg';
 
 /** Fields of a Project that carry human-readable copy and therefore need Arabic translations. */
 interface LocalizedProjectFields {
