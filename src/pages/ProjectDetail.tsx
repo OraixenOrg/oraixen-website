@@ -1,6 +1,6 @@
-import { useParams, Navigate, Link } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Activity, ArrowLeft, Calendar, Globe2, Layers, Lock, Tag, User } from 'lucide-react';
+import { Activity, Calendar, Globe2, Layers, Tag, User } from 'lucide-react';
 import { isCaseStudy } from '../types/project';
 import {
   projects,
@@ -8,8 +8,8 @@ import {
   hasPlatformLinks,
 } from '../lib/projects';
 import { Section } from '../components/Section';
-import { FadeIn } from '../components/FadeIn';
 import { ProjectCaseStudy } from '../components/projects/ProjectCaseStudy';
+import { ProjectHero } from '../components/projects/ProjectHero';
 import { useProjectImage } from '../components/projects/useProjectImage';
 import { ProjectPlatformLinks } from '../components/projects/ProjectPlatformLinks';
 import { RelatedProjects } from '../components/projects/RelatedProjects';
@@ -118,64 +118,7 @@ export function ProjectDetail() {
         title={`${project.title}: ${t('seo.suffix')} | Oraixen`}
         description={project.description || t('seo.descriptionFallback')}
       />
-      {/* Hero */}
-      <div className={`relative h-[70vh] w-full overflow-hidden ${
-        project.imageFit === 'contain' ? 'bg-surface' : 'bg-surface-muted'
-      }`}>
-        <div className={`absolute inset-0 ${project.imageFit === 'contain' ? 'flex items-center justify-center bg-surface p-12' : ''}`}>
-          <img
-            src={heroImage.src}
-            alt={project.title}
-            onError={heroImage.onError}
-            fetchPriority="high"
-            decoding="async"
-            className={
-              project.imageFit === 'contain'
-                ? 'object-contain w-auto h-auto max-h-[50vh] max-w-[85vw] sm:max-w-[500px]'
-                : 'w-full h-full object-cover'
-            }
-          />
-        </div>
-        {/* Soft light gradient keeps the chrome readable over contain logos / cover images */}
-        <div className={`absolute inset-0 pointer-events-none ${
-          project.imageFit === 'contain'
-            ? 'bg-gradient-to-t from-surface via-surface/70 to-transparent'
-            : 'bg-gradient-to-t from-surface via-surface/70 to-surface/10'
-        }`} />
-
-        <div className="container mx-auto px-4 h-full flex flex-col justify-end pb-20 relative z-10">
-          <FadeIn>
-            <Link to="/projects" className="inline-flex items-center text-teal hover:text-teal-light mb-8 transition-colors font-medium group">
-              <ArrowLeft size={20} className="me-2 group-hover:-translate-x-1 transition-transform rtl-flip" />
-              {t('backLink')}
-            </Link>
-
-            <div className="flex flex-wrap gap-3 mb-6">
-              <span className="px-4 py-2 text-sm font-semibold bg-teal/5 text-teal rounded-full border border-teal/15">
-                {project.industry}
-              </span>
-              {project.confidential && <span className="px-4 py-2 text-sm font-semibold bg-teal text-onaccent rounded-full flex items-center gap-2 border border-teal/30">
-                  <Lock size={14} /> {t('confidential')}
-                </span>}
-              {/* Surfaced beside the title so availability is clear before a
-                  reader reaches the overview band or the outbound links. */}
-              {project.status && (
-                <span className="px-4 py-2 text-sm font-semibold bg-surface-subtle text-body rounded-full flex items-center gap-2 border border-line">
-                  <Activity size={14} /> {t(`status.${project.status}`)}
-                </span>
-              )}
-            </div>
-
-            <h1 className="page-hero-title mb-4 font-bold text-ink sm:mb-6">
-              {project.title}
-            </h1>
-
-            <p className="text-xl md:text-2xl text-body max-w-3xl leading-relaxed">
-              {project.description}
-            </p>
-          </FadeIn>
-        </div>
-      </div>
+      <ProjectHero project={project} image={heroImage} />
 
       {/* Overview Grid */}
       <section className="relative border-b border-line bg-surface-subtle py-16 md:py-24 lg:py-32 w-full overflow-hidden">

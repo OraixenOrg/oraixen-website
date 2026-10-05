@@ -84,7 +84,15 @@ export function Home() {
             <h1 className="hero-title mb-4 font-extrabold tracking-tight text-ink text-balance sm:mb-6">
                 {t('hero.headlineLead')}{' '}
                 <span className="relative inline-block">
-                  <span className="relative z-10 bg-gradient-to-r from-skyblue via-teal to-azure bg-clip-text text-transparent">
+                  {/* The vertical padding is load-bearing. With background-clip:text the
+                      gradient paints only inside this INLINE box's content area, which the
+                      browser derives from the font's declared ascent/descent - not from
+                      line-height. Tajawal's Arabic ink rises above that ascent (the dots of
+                      the sheen, the ascender of the kaf), so without the extra box height
+                      those strokes receive no paint and read as sheared flat. Padding on a
+                      non-replaced inline grows the background box WITHOUT affecting line
+                      layout, so this costs no vertical space and shifts nothing. */}
+                  <span className="relative z-10 bg-gradient-to-r from-skyblue via-teal to-azure bg-clip-text py-[0.25em] text-transparent">
                     {t('hero.headlineHighlight')}
                   </span>
                   <span
