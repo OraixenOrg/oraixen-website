@@ -54,6 +54,15 @@
     "subtitle": "A selection of work across customer-facing products and internal business systems.",
     "viewAll": "Browse all projects"
   },
+  "partnerships": {
+    "eyebrow": "Partnerships",
+    "title": "Stronger capabilities through the right partnerships",
+    "subtitle": "We work with selected partners to extend what we can deliver across technology, sourcing, operations, and business execution.",
+    "cta": "Visit partner",
+    "ctaAria": "Visit {{partner}}, opens in a new tab",
+    "logoAlt": "{{partner}} logo",
+    "since": "Partner since {{year}}"
+  },
   "whyChoose": {
     "eyebrow": "Why Oraixen",
     "title": "A partner who stays after launch",
