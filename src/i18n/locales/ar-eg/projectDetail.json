@@ -10,7 +10,15 @@
     "client": "العميل",
     "year": "السنة",
     "category": "التصنيف",
-    "techStack": "التقنيات"
+    "techStack": "التقنيات",
+    "market": "السوق",
+    "period": "الفترة",
+    "industry": "المجال",
+    "status": "الحالة"
+  },
+  "status": {
+    "live": "شغال",
+    "inactive": "متوقف حالياً"
   },
   "sections": {
     "challenge": "المشكلة",
@@ -18,8 +26,19 @@
     "impact": "النتيجة",
     "keyMetrics": "أرقام مهمة",
     "highlights": "أبرز النقاط",
-    "availablePlatforms": "المنصات المتاحة"
+    "availablePlatforms": "المنصات المتاحة",
+    "whatWeBuilt": "اللي بنيناه",
+    "howItWorks": "دورة المشروع",
+    "outcome": "النتيجة",
+    "responsibilities": "مسؤولية أوريكسن",
+    "systemAtGlance": "مكونات المنظومة",
+    "verifiedProof": "معلومة موثقة من النظام",
+    "technology": "التقنيات",
+    "livePlatforms": "المنصات المتاحة",
+    "productLinks": "روابط المنتج",
+    "plannedExpansion": "توسعات كان مخطط لها"
   },
+  "step": "خطوة",
   "platforms": {
     "website": "موقع إلكتروني",
     "playStore": "متجر بلاي",

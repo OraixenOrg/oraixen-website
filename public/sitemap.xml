@@ -151,22 +151,47 @@
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://oraixen.com/projects/zewail-city</loc>
+    <loc>https://oraixen.com/projects/du-v-du</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://oraixen.com/projects/alkanz</loc>
+    <loc>https://oraixen.com/projects/nice-one</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://oraixen.com/projects/sanar</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://oraixen.com/projects/ghiras-al-usrah</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://oraixen.com/projects/maqdia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://oraixen.com/projects/delora</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://oraixen.com/projects/ibdl</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://oraixen.com/projects/waffar-cash</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://oraixen.com/projects/dar-alkahraba</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://oraixen.com/projects/du-v-du</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -186,56 +211,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://oraixen.com/projects/maqdia</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://oraixen.com/projects/m6lob</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://oraixen.com/projects/goffa</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://oraixen.com/projects/teens-hangouts</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://oraixen.com/projects/inovara</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://oraixen.com/projects/waffar-cash</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://oraixen.com/projects/uzex</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://oraixen.com/projects/teb-aafya</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://oraixen.com/projects/shotreed</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://oraixen.com/projects/woodex</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://oraixen.com/projects/gefires</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -246,47 +221,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://oraixen.com/projects/vooo-menu</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://oraixen.com/projects/vending</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://oraixen.com/projects/shopisonic</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://oraixen.com/projects/m3lesh</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://oraixen.com/projects/elmongez</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://oraixen.com/projects/ibdl</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://oraixen.com/projects/hafawa</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://oraixen.com/projects/govet</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://oraixen.com/projects/saharad</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

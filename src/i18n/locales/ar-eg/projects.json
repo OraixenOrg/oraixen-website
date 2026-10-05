@@ -46,6 +46,10 @@
       "playStore": "متجر بلاي",
       "appStore": "آب ستور",
       "dashboard": "لوحة تحكم"
+    },
+    "status": {
+      "live": "شغال",
+      "inactive": "متوقف حالياً"
     }
   },
   "industries": {

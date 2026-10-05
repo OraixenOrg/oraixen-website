@@ -1,24 +1,25 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowUpRight, Lock, ExternalLink } from 'lucide-react';
 import { Project } from '../../types/project';
 import { Card } from '../Card';
 import { localizeProject } from '../../lib/projects';
+import { useProjectImage } from './useProjectImage';
 
 interface ProjectCardProps {
   project: Project;
 }
 
-const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800';
-
 export function ProjectCard({
   project: rawProject
 }: ProjectCardProps) {
   const { t, i18n } = useTranslation('projects');
-  const [imageError, setImageError] = useState(false);
 
   const project = localizeProject(rawProject, i18n.language);
+  // A project may ship without a brand asset; the neutral placeholder covers
+  // "never had one", "its PNG is not in public/assets/projects/ yet" and "the
+  // image stopped resolving" alike.
+  const image = useProjectImage(project.imageUrl);
 
   return (
     <Card interactive className="group relative h-full flex flex-col overflow-hidden">
@@ -33,14 +34,14 @@ export function ProjectCard({
           project.imageFit === 'contain' ? 'bg-card p-8' : 'bg-surface-subtle p-6'
         }`}>
           <img
-            src={imageError ? FALLBACK_IMAGE : project.imageUrl}
+            src={image.src}
             alt={project.title}
             className={`transition-transform duration-500 group-hover:scale-105 ${
               project.imageFit === 'contain'
                 ? 'object-contain w-full h-full max-h-[200px] max-w-[280px]'
                 : 'w-full h-full object-cover group-hover:scale-110'
             }`}
-            onError={() => setImageError(true)}
+            onError={image.onError}
             loading="lazy"
             decoding="async"
           />
@@ -52,6 +53,13 @@ export function ProjectCard({
             {project.confidential && <span className="px-3 py-1.5 text-xs font-semibold bg-teal/90 text-onaccent backdrop-blur-md rounded-full flex items-center gap-1.5 border border-teal/30">
                 <Lock size={10} /> {t('card.confidential')}
               </span>}
+            {/* Only projects that declare a status badge one, so the grid stays
+                uncluttered for the products that are simply running. */}
+            {project.status && (
+              <span className="px-3 py-1.5 text-xs font-semibold bg-card/90 text-muted backdrop-blur-md rounded-full border border-line">
+                {t(`card.status.${project.status}`)}
+              </span>
+            )}
           </div>
 
           {/* Hover Overlay */}
@@ -73,8 +81,10 @@ export function ProjectCard({
             </div>
           </div>
 
+          {/* `cardDescription` exists so the grid can say something useful in two
+              lines without shortening the hero line the case study opens with. */}
           <p className="text-body text-sm line-clamp-2 mb-6 flex-1 leading-relaxed">
-            {project.description}
+            {project.cardDescription ?? project.description}
           </p>
 
           {project.platforms && (project.platforms.website || project.platforms.playStore || project.platforms.appStore || project.platforms.dashboard) && (
@@ -130,14 +140,18 @@ export function ProjectCard({
             </div>
           )}
 
-          <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-line">
-            {project.techStack.slice(0, 3).map(tech => <span key={tech} className="text-xs text-body bg-surface-subtle px-2.5 py-1 rounded-md font-medium border border-line">
-                {tech}
-              </span>)}
-            {project.techStack.length > 3 && <span className="text-xs text-muted bg-surface-subtle px-2.5 py-1 rounded-md font-medium">
-                {t('card.more', { count: project.techStack.length - 3 })}
-              </span>}
-          </div>
+          {/* Omitted entirely when no stack is published, so the card never ends on
+              an empty bordered strip. */}
+          {project.techStack.length > 0 && (
+            <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-line">
+              {project.techStack.slice(0, 3).map(tech => <span key={tech} className="text-xs text-body bg-surface-subtle px-2.5 py-1 rounded-md font-medium border border-line">
+                  {tech}
+                </span>)}
+              {project.techStack.length > 3 && <span className="text-xs text-muted bg-surface-subtle px-2.5 py-1 rounded-md font-medium">
+                  {t('card.more', { count: project.techStack.length - 3 })}
+                </span>}
+            </div>
+          )}
         </div>
       </Card>
   );

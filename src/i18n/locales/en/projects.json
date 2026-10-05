@@ -46,6 +46,10 @@
       "playStore": "Play Store",
       "appStore": "App Store",
       "dashboard": "Dashboard"
+    },
+    "status": {
+      "live": "Live",
+      "inactive": "Inactive"
     }
   },
   "industries": {

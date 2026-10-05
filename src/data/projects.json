@@ -2,51 +2,202 @@
   {
     "id": "3",
     "slug": "dar-alkahraba",
-    "title": "Dar Alkahraba",
-    "client": "Dar Alkahraba",
-    "industry": "Utilities",
-    "year": "2021",
-    "description": "A mobile application for electricity services, enabling users to manage their accounts, pay bills, and access utility services on the go.",
-    "problem": "Customers needed convenient access to electricity services and bill management without visiting physical locations.",
-    "solution": "We created an intuitive iOS application with secure payment processing, bill management, and service request features.",
-    "impact": "Reduced customer service visits and improved user satisfaction with convenient mobile access.",
-    "metrics": [
-      { "label": "Users", "value": "100k+" },
-      { "label": "Transactions", "value": "500k+" },
-      { "label": "Rating", "value": "4.7" }
+    "title": "Dar Al Kahrbaa",
+    "client": "Confidential",
+    "country": "Egypt",
+    "industry": "EdTech / Electrical Engineering Training",
+    "description": "A specialized learning platform for electrical-engineering training across web and Android.",
+    "cardDescription": "A custom electrical-engineering LMS connecting course discovery, student enrollment, video learning, payments, and administration across web and Android.",
+    "overview": "Dar Al Kahrbaa turns a specialized electrical-engineering training concept into a custom LMS connecting course discovery, student enrollment, video learning, payments, and platform administration.",
+    "headings": {
+      "challenge": "Specialized engineering education needed a learning platform built around its own courses and students.",
+      "build": "A custom LMS connecting students, courses, content, payments, and administration.",
+      "outcome": "Dar Al Kahrbaa turned an early education concept into a complete specialized learning platform."
+    },
+    "problem": "The client wanted to create a dedicated digital learning experience for electrical-engineering students, trainees, and professionals rather than rely on a generic content platform.\n\nThe system needed to support student registration, structured course enrollment, video lessons, educational materials, electronic payments, and centralized administration.\n\nIt also needed an architecture capable of supporting a growing student base as the education offering expanded.\n\nThe challenge was to turn an early product concept into a complete learning-management system across web and mobile.",
+    "solution": "Oraixen designed and developed Dar Al Kahrbaa from the platform strategy and LMS architecture through the web experience, Android application, backend services, APIs, payment integration, video delivery, and administration.\n\nStudents can register, explore specialized electrical-engineering courses, enroll, and access video lessons and educational materials through the platform.\n\nThe course catalog includes specialized training designed for electrical-engineering students and field professionals, including accredited courses.\n\nAdministrators manage users, courses, content, and learning-platform activity from a central dashboard.",
+    "impact": "Students can discover courses, enroll, pay, and access learning content through connected web and Android experiences instead of relying on disconnected tools.\n\nAt the operational level, the administration team can manage users, courses, content, and platform activity from one central environment.\n\nThe custom LMS architecture was designed to support continued growth in the student base and expansion of the electrical-engineering training offering.",
+    "workflow": [
+      {
+        "title": "Register",
+        "description": "Students and trainees create accounts to access the learning platform."
+      },
+      {
+        "title": "Discover courses",
+        "description": "Users explore the specialized electrical-engineering course catalog and available training."
+      },
+      {
+        "title": "Enroll",
+        "description": "Students select and enroll in the courses they want to take."
+      },
+      {
+        "title": "Complete payment",
+        "description": "Supported course purchases are processed through the integrated electronic payment workflow."
+      },
+      {
+        "title": "Learn",
+        "description": "Students access video lessons and educational materials through the web or Android learning experience."
+      },
+      {
+        "title": "Manage the platform",
+        "description": "Administrators manage users, courses, content, enrollment-related activity, and platform operations from the central administration system."
+      }
     ],
-    "techStack": ["Flutter", "Firebase", "Firebase Auth", "Cloud Firestore", "FCM", "REST API"],
-    "highlights": ["Secure payments", "Bill management", "Service requests"],
-    "imageUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/97/c0/25/97c0257a-32ae-00fc-5969-8aa20af2ce85/AppIcon-1x_U007emarketing-0-10-0-85-220.png/400x400ia-75.webp",
-    "imageFit": "contain",
-    "confidential": false,
-    "featured": false,
-    "category": "Mobile",
+    "responsibilities": [
+      {
+        "title": "Product strategy & LMS architecture",
+        "description": "Turning the original education concept into structured journeys for students, courses, enrollment, content delivery, payments, and administration."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing the learning and course-discovery experience across web and Android."
+      },
+      {
+        "title": "Backend & API development",
+        "description": "Building the central services supporting users, courses, enrollment, educational content, payments, and administration."
+      },
+      {
+        "title": "Frontend web development",
+        "description": "Building the web learning experience and course-discovery journey."
+      },
+      {
+        "title": "Android application",
+        "description": "Building the Android learning experience for students and trainees."
+      },
+      {
+        "title": "Administration platform",
+        "description": "Building the tools used to manage users, courses, educational content, and day-to-day platform activity."
+      }
+    ],
+    "systemComponents": [
+      "Custom Learning Management System",
+      "Web learning platform",
+      "Android application",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Student registration",
+      "Course enrollment",
+      "Electrical-engineering course catalog",
+      "Accredited course offerings",
+      "Video lessons",
+      "Educational materials",
+      "Video-streaming integration",
+      "Electronic payments",
+      "User management",
+      "Course management",
+      "Content management"
+    ],
+    "proofPoints": [],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
+    "imageUrl": "/assets/projects/dar-alkahraba.png",
+    "imageFit": "cover",
+    "confidential": true,
+    "featured": true,
+    "category": "Platform",
     "platforms": {
-      "appStore": "https://apps.apple.com/eg/app/dar-alkahrba/id1597367206"
+      "website": "https://daralkahrbaa.training/",
+      "playStore": "https://play.google.com/store/apps/details?id=com.kimcamacademy.daralkarhbaa&hl=ar"
     }
   },
   {
     "id": "4",
     "slug": "du-v-du",
-    "title": "DU V DU",
-    "client": "DU V DU",
-    "industry": "Productivity",
-    "year": "2024",
-    "description": "A social networking platform connecting users through innovative features and seamless cross-platform experiences.",
-    "problem": "Users needed a modern social platform with consistent experiences across web and mobile devices.",
-    "solution": "We built a scalable social platform with responsive web design and native mobile apps, featuring real-time messaging and content sharing.",
-    "impact": "Created an engaged community with high user retention and active daily usage.",
-    "metrics": [
-      { "label": "Users", "value": "200k+" },
-      { "label": "Daily Active", "value": "50k+" },
-      { "label": "Messages", "value": "1M+" }
+    "title": "Duvdu",
+    "client": "Confidential",
+    "country": "Egypt",
+    "industry": "Media Production / Freelance Marketplace",
+    "year": "2024–2026",
+    "description": "A connected marketplace for booking and managing media-production projects from agreement to final delivery.",
+    "cardDescription": "A marketplace connecting clients and creative service providers through booking, project milestones, asset delivery, and escrow-backed payments.",
+    "overview": "Duvdu brings clients and creative service providers into one workflow for discovering talent, agreeing on project terms, booking schedules, managing milestones, delivering assets, and releasing payments through escrow.",
+    "headings": {
+      "challenge": "Creative projects involve more than finding the right talent.",
+      "build": "One workflow connecting clients, creators, projects, and payments.",
+      "outcome": "Duvdu turned a fragmented creative-production process into a connected digital workflow."
+    },
+    "problem": "Clients and creative professionals were coordinating requirements, schedules, deliverables, contracts, and payments across disconnected channels. That created several points of risk: unclear expectations, missed delivery dates, payment concerns, and limited visibility into the status of a project once work had started. The client wanted Duvdu to provide a structured marketplace where both sides could manage the full project lifecycle in one place.",
+    "solution": "Oraixen designed and built the platform across web and mobile, supported by a central backend and administration system. Clients can discover service providers, review portfolios, agree on the work, schedule projects, and manage delivery through the platform. Service providers can build their profiles and portfolios, publish previous work, identify collaborators and equipment used, manage bookings, and deliver project assets directly through Duvdu. The platform connects those interactions to project contracts, milestones, deadlines, and an escrow-based payment workflow.",
+    "impact": "Instead of managing discovery, agreements, scheduling, file delivery, and payments through separate channels, clients and service providers can move through the project lifecycle inside one platform. The escrow workflow also connects payment release to project delivery and client approval, reducing payment risk for both sides.",
+    "workflow": [
+      {
+        "title": "Discover",
+        "description": "Clients explore creator portfolios and evaluate previous media-production work."
+      },
+      {
+        "title": "Book",
+        "description": "The parties agree on the project, schedule a start date, and define delivery deadlines."
+      },
+      {
+        "title": "Contract",
+        "description": "The platform generates the project agreement around the agreed scope and milestones."
+      },
+      {
+        "title": "Fund",
+        "description": "A 10% booking payment is made when the project is confirmed, followed by the remaining 90%. The agreed project value enters the escrow workflow."
+      },
+      {
+        "title": "Deliver",
+        "description": "Creators upload completed assets directly through the platform."
+      },
+      {
+        "title": "Approve & release",
+        "description": "Once the client approves the delivered work, the corresponding funds can be released to the service provider through the project workflow."
+      }
     ],
-    "techStack": ["React", "Flutter", "Node.js", "Socket.io", "Real-time APIs"],
-    "highlights": ["Real-time chat", "Cross-platform", "Content sharing"],
-    "imageUrl": "https://duvdu.com/assets/imgs/theme/logo.svg",
-    "imageFit": "contain",
-    "confidential": false,
+    "responsibilities": [
+      {
+        "title": "Product discovery",
+        "description": "Mapping the user journeys for clients, service providers, bookings, projects, and delivery."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing the marketplace and project lifecycle across web and mobile."
+      },
+      {
+        "title": "Platform engineering",
+        "description": "Frontend, backend, APIs, data flows, and administration capabilities."
+      },
+      {
+        "title": "Mobile applications",
+        "description": "Cross-platform iOS and Android development using Flutter."
+      },
+      {
+        "title": "Payments & escrow integration",
+        "description": "Connecting the project lifecycle to booking payments and escrow-controlled fund release."
+      }
+    ],
+    "systemComponents": [
+      "Client marketplace",
+      "Service-provider profiles and portfolios",
+      "Web platform",
+      "iOS application",
+      "Android application",
+      "Admin dashboard",
+      "Booking and scheduling",
+      "Project deadlines",
+      "Milestone contracts",
+      "Payment gateway integration",
+      "Escrow payment workflow",
+      "In-platform asset delivery",
+      "Client approval and payment release",
+      "APIs"
+    ],
+    "proofPoints": [
+      {
+        "value": "100%",
+        "label": "of the agreed project value enters the escrow workflow",
+        "description": "10% at booking, followed by the remaining 90%, with payment release connected to project delivery and client approval."
+      }
+    ],
+    "metrics": [],
+    "techStack": ["Flutter", "Next.js", "Node.js", "AWS"],
+    "highlights": [],
+    "imageUrl": "/assets/projects/du-v-du.png",
+    "imageFit": "cover",
+    "confidential": true,
     "featured": true,
     "category": "Platform",
     "platforms": {
@@ -59,113 +210,420 @@
     "id": "5",
     "slug": "discount-emy",
     "title": "Discount Emy",
-    "client": "Discount Emy",
-    "industry": "Retail",
-    "year": "2024",
-    "description": "A discount and deals platform helping users discover the best offers and savings across various retailers and services.",
-    "problem": "Consumers needed a centralized platform to find and access discounts from multiple retailers.",
-    "solution": "We developed a comprehensive platform with web and mobile apps, featuring deal aggregation, user accounts, and push notifications for new offers.",
-    "impact": "Helped users save money while driving traffic to partner retailers and increasing sales.",
-    "metrics": [
-      { "label": "Deals", "value": "5k+" },
-      { "label": "Users", "value": "150k+" },
-      { "label": "Savings", "value": "$2M+" }
+    "client": "Confidential",
+    "country": "Egypt",
+    "industry": "EdTech / Educational Services & Discount Marketplace",
+    "description": "A mobile marketplace connecting students and parents with active educational discounts from partner schools and universities.",
+    "cardDescription": "A mobile marketplace connecting students and parents with educational discounts from partner schools and universities, backed by centralized request and commission management.",
+    "overview": "Discount Emy transformed an offline partner network and Facebook-group workflow into a structured mobile platform for educational offers, applicant requests, partner listings, and commission tracking.",
+    "headings": {
+      "challenge": "Educational discounts were being managed through social posts instead of a dedicated operating platform.",
+      "build": "A mobile marketplace connecting educational offers, applicants, partners, and administration.",
+      "outcome": "Discount Emy moved an educational-discount operation from Facebook posts into a dedicated mobile marketplace."
+    },
+    "problem": "The business had built an offline network of schools and universities offering contracted discounts, but customers primarily discovered those offers through a Facebook group and manual communication.\n\nThat made it harder to keep active discounts organized, communicate changes quickly, manage growing demand, and maintain a structured view of applicant requests and partner-related commission activity.\n\nThe challenge was to move the business from a social-group workflow into a dedicated digital marketplace that could serve parents and students while giving the internal team central control over educational offers and incoming requests.",
+    "solution": "Oraixen designed and developed Discount Emy across iOS and Android, supported by backend services, APIs, and a central administration platform.\n\nParents, students, and applicants can browse participating educational institutions and view current discount programs related to school and university admissions and fees.\n\nBehind the customer experience, the administration system allows the business to manage educational partner listings, publish and update discount offers, follow incoming requests, and track commission-related activity linked to its partner model.\n\nThe result is a structured digital workflow that replaces dependence on manually maintained social posts.",
+    "impact": "Parents and students can access current educational offers through a purpose-built mobile experience rather than depending on manually maintained social posts.\n\nAt the operational level, the business can manage educational partners, discount programs, applicant requests, and commission-related activity through a central administration system.\n\nThe platform also created a structured foundation for handling growing demand without relying on the original Facebook-group workflow.",
+    "workflow": [
+      {
+        "title": "Discover institutions",
+        "description": "Parents and students explore participating schools, universities, and available educational opportunities through the mobile experience."
+      },
+      {
+        "title": "View active discounts",
+        "description": "Users review currently available partner discount programs for supported educational admissions and fees."
+      },
+      {
+        "title": "Submit a request",
+        "description": "Interested applicants enter the platform's supported request or application workflow."
+      },
+      {
+        "title": "Track the opportunity",
+        "description": "The business can follow incoming requests through the administration system instead of relying only on messages and social posts."
+      },
+      {
+        "title": "Manage partner activity",
+        "description": "Educational partner listings and active discount programs are managed centrally."
+      },
+      {
+        "title": "Track commissions",
+        "description": "The business can maintain commission-related records connected to eligible partner activity through the operational platform."
+      }
     ],
-    "techStack": ["Flutter", "Firebase", "REST API", "Push Notifications"],
-    "highlights": ["Deal aggregation", "Push notifications", "User accounts"],
-    "imageUrl": "https://emydiscount.com/views/images/logo.png",
-    "imageFit": "contain",
-    "confidential": false,
-    "featured": false,
+    "responsibilities": [
+      {
+        "title": "Product & solution architecture",
+        "description": "Turning the offline partner and Facebook-group model into a structured digital marketplace for discounts, applicants, partners, and administration."
+      },
+      {
+        "title": "Mobile UI/UX design",
+        "description": "Designing how parents, students, and applicants discover educational institutions and active discount offers."
+      },
+      {
+        "title": "Mobile applications",
+        "description": "Building the customer-facing experience for iOS and Android."
+      },
+      {
+        "title": "Backend & API development",
+        "description": "Building the central services supporting educational partners, discounts, requests, and operational workflows."
+      },
+      {
+        "title": "Administration platform",
+        "description": "Building the tools used to manage partner listings, current discount programs, applicant requests, and commission-related activity."
+      }
+    ],
+    "systemComponents": [
+      "iOS application",
+      "Android application",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Educational institution directory",
+      "School partner listings",
+      "University partner listings",
+      "Active educational discount programs",
+      "Admission / fee discount offers",
+      "Applicant requests",
+      "Lead / request tracking",
+      "Partner management",
+      "Discount management",
+      "Commission tracking",
+      "Centralized operational administration"
+    ],
+    "proofPoints": [],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
+    "imageUrl": "/assets/projects/discount-emy.png",
+    "imageFit": "cover",
+    "confidential": true,
+    "featured": true,
     "category": "Platform",
     "platforms": {
-      "website": "https://emydiscount.com/",
-      "playStore": "https://play.google.com/store/apps/details?id=com.technospace.emy_discount",
-      "appStore": "https://apps.apple.com/eg/app/discount-emy/id1617326763"
+      "playStore": "https://play.google.com/store/apps/details?id=com.technospace.emy_discount&hl=ar"
     }
   },
   {
     "id": "6",
     "slug": "order-fs",
     "title": "Order FS",
-    "client": "Order FS",
-    "industry": "Food Service",
-    "year": "2022",
-    "description": "A complete food service management platform with customer-facing apps, restaurant dashboard, and order management system.",
-    "problem": "Restaurants needed an integrated solution for online ordering, delivery management, and business analytics.",
-    "solution": "We built a comprehensive platform including customer mobile apps, restaurant dashboard, order management, and real-time tracking.",
-    "impact": "Streamlined operations, increased order volume, and improved customer satisfaction with faster service.",
-    "metrics": [
-      { "label": "Orders", "value": "500k+" },
-      { "label": "Restaurants", "value": "1k+" },
-      { "label": "Users", "value": "200k+" }
+    "client": "Confidential",
+    "country": "Kuwait",
+    "industry": "E-Commerce / Single-Vendor Retail",
+    "description": "A custom single-vendor commerce platform connecting shopping, orders, customer data, and store operations across web and mobile.",
+    "cardDescription": "A custom single-vendor commerce platform connecting shopping, orders, customers, and centralized store operations across web, iOS, and Android.",
+    "overview": "Order FS was built around the requirements of a retail business in Kuwait, connecting the customer journey across responsive web, iOS, and Android with a centralized backend and administration platform.",
+    "headings": {
+      "challenge": "The retailer needed a commerce platform built around its own operating model rather than a generic storefront.",
+      "build": "One custom commerce platform connecting customers and retail operations.",
+      "outcome": "Order FS turned a retail concept into one connected commerce and operations platform for the Kuwaiti market."
+    },
+    "problem": "The client had a clear business concept for launching a custom single-vendor e-commerce operation in Kuwait.\n\nThe platform needed to support a connected customer experience across responsive web, iOS, and Android while giving the internal team central control over products, customers, orders, fulfillment-related workflows, and commerce analytics.\n\nThe challenge was to turn those business requirements into one tailored commerce system where the customer-facing channels and internal operations worked from the same platform foundation.",
+    "solution": "Oraixen mapped the business requirements, designed the product experience, and developed Order FS across responsive web, iOS, Android, backend services, APIs, integrations, and administration.\n\nCustomers can browse the retailer’s product catalog, add items to their cart, move through checkout, and place orders through the digital shopping experience.\n\nStore teams use the centralized administration platform to manage catalog information, customer records, orders, fulfillment-related activity, and available commerce analytics.\n\nThe platform was designed specifically around a single retailer’s operating model and Kuwaiti market requirements rather than a multi-vendor marketplace structure.",
+    "impact": "Customers can move from product discovery through cart, checkout, and ordering across web and mobile experiences connected to the same platform foundation.\n\nAt the operational level, store teams can manage products, customers, orders, and fulfillment-related activity from a central administration environment.\n\nThe result is a tailored single-vendor system built around the retailer’s own operating requirements instead of a generic or multi-vendor commerce model.",
+    "workflow": [
+      {
+        "title": "Discover products",
+        "description": "Customers browse the retailer’s product catalog through the web or mobile shopping experience."
+      },
+      {
+        "title": "Build the cart",
+        "description": "Customers select products and add them to a centralized shopping cart."
+      },
+      {
+        "title": "Checkout",
+        "description": "The customer moves through the platform’s structured checkout flow and confirms the order."
+      },
+      {
+        "title": "Create the order",
+        "description": "The order enters the central backend and administration environment for operational handling."
+      },
+      {
+        "title": "Manage fulfillment",
+        "description": "Store teams follow the order through the relevant fulfillment-related operational workflow."
+      },
+      {
+        "title": "Operate the store",
+        "description": "Management uses the admin dashboard to oversee products, customers, orders, and available commerce analytics from one environment."
+      }
     ],
-    "techStack": ["React", "Flutter", "Laravel", "MySQL", "REST API"],
-    "highlights": ["Order management", "Real-time tracking", "Analytics dashboard"],
-    "imageUrl": "https://orderfs.com/static/media/logor.f2b420ef445a9b76a69c.png",
-    "imageFit": "contain",
-    "confidential": false,
+    "responsibilities": [
+      {
+        "title": "Market research & requirements mapping",
+        "description": "Understanding the retailer’s Kuwait-market requirements and translating them into the platform’s commerce and operational workflows."
+      },
+      {
+        "title": "Commerce architecture",
+        "description": "Designing the web, mobile, backend, APIs, catalog, order, customer, and administration layers as one single-vendor platform."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing the shopping experience across web, iOS, and Android together with the internal administration journey."
+      },
+      {
+        "title": "Backend & API development",
+        "description": "Building the services supporting products, customers, carts, orders, checkout, operations, and platform integrations."
+      },
+      {
+        "title": "Web & mobile development",
+        "description": "Building the responsive web experience and the iOS and Android customer applications."
+      },
+      {
+        "title": "Administration platform",
+        "description": "Building the tools used to manage catalog data, customer records, orders, fulfillment-related workflows, and commerce analytics."
+      }
+    ],
+    "systemComponents": [
+      "Single-vendor e-commerce platform",
+      "Responsive web application",
+      "iOS application",
+      "Android application",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Product catalog",
+      "Product management",
+      "Shopping cart",
+      "Checkout",
+      "Order management",
+      "Customer management",
+      "Fulfillment-related workflows",
+      "Commerce analytics",
+      "Supporting platform integrations"
+    ],
+    "proofPoints": [],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
+    "imageUrl": "/assets/projects/order-fs.png",
+    "imageFit": "cover",
+    "confidential": true,
     "featured": true,
     "category": "Platform",
     "platforms": {
-      "website": "https://www.orderfs.com",
-      "playStore": "https://play.google.com/store/apps/details?id=com.order.order",
-      "appStore": "https://apps.apple.com/eg/app/order-fs/id6450720518"
+      "website": "https://www.orderfs.com/",
+      "appStore": "https://apps.apple.com/us/app/order-fs/id6450720518"
     }
   },
   {
     "id": "7",
     "slug": "maat",
-    "title": "MAAT",
-    "client": "MAAT",
-    "industry": "Business",
-    "year": "2024",
-    "description": "A professional business platform providing services and solutions to clients with modern web technology.",
-    "problem": "The client needed a professional online presence to showcase services and connect with potential clients.",
-    "solution": "We developed a sleek, modern website with responsive design, service showcases, and contact integration.",
-    "impact": "Enhanced brand visibility and improved client acquisition through professional online presence.",
-    "metrics": [
-      { "label": "Visitors", "value": "50k+" },
-      { "label": "Conversion", "value": "5%" },
-      { "label": "Uptime", "value": "99.9%" }
+    "title": "Maat VIP",
+    "client": "Maat",
+    "country": "China",
+    "industry": "Supply Chain / Global Sourcing & Logistics",
+    "description": "A digital sourcing portal connecting international business requirements with China-based procurement, custom manufacturing, quality control, and logistics.",
+    "cardDescription": "A China sourcing portal connecting international procurement and custom-manufacturing requests with factory sourcing, QA, and logistics.",
+    "overview": "Oraixen built Maat’s digital entry point for global sourcing inquiries and established a strategic partnership connecting technology delivery with Maat’s factory, manufacturing, QA, and logistics capabilities in China.",
+    "headings": {
+      "challenge": "A strong China sourcing operation needed a digital entry point for international business demand.",
+      "build": "A sourcing portal and partnership model connecting digital demand with physical supply-chain execution.",
+      "outcome": "Maat gained a digital gateway for global sourcing demand, while the partnership connected Oraixen’s technology work with supply-chain capability in China."
+    },
+    "problem": "Maat already operated a sourcing and logistics network in China covering factory procurement, manufacturing coordination, quality-control workflows, and shipping.\n\nWhat it lacked was a dedicated digital platform that clearly presented those capabilities and gave importers and enterprises a structured way to submit sourcing and custom-manufacturing requirements.\n\nThe opportunity also extended beyond the website itself. Oraixen and Maat wanted to establish a working model that connected Oraixen’s technology capability with direct access to China-based sourcing and manufacturing operations.",
+    "solution": "Oraixen designed and developed Maat’s public web experience, sourcing inquiry journey, backend services, APIs, and administration tools.\n\nBusinesses can submit procurement, sourcing, sample-based manufacturing, and custom-production requirements through the platform.\n\nThose inquiries can then enter Maat’s sourcing operation in China, where relevant workflows may include factory sourcing, manufacturing coordination, sample verification, quality-control processes, and logistics.\n\nAlongside the platform, Oraixen and Maat established a strategic technology and sourcing partnership that connects suitable digital and enterprise projects with Maat’s China supply-chain capability.",
+    "impact": "International businesses can submit sourcing and manufacturing requirements through a structured digital journey instead of relying only on informal inquiry channels.\n\nMaat’s team receives those requirements through a platform connected to its China-based sourcing, manufacturing, quality-control, and logistics operation.\n\nFor Oraixen, the partnership also creates a direct route to physical sourcing and manufacturing capability for suitable enterprise projects that require both technology and supply-chain execution.",
+    "workflow": [
+      {
+        "title": "Submit a requirement",
+        "description": "An importer or enterprise submits a sourcing, procurement, or custom-manufacturing request through the web portal."
+      },
+      {
+        "title": "Review the request",
+        "description": "Maat’s sourcing team reviews the product requirements, specifications, quantities, or authorized samples provided by the client."
+      },
+      {
+        "title": "Source or manufacture",
+        "description": "Relevant Chinese factories can be evaluated for procurement or custom-production requirements."
+      },
+      {
+        "title": "Validate",
+        "description": "Where applicable, samples and production requirements move through verification and quality-control workflows."
+      },
+      {
+        "title": "Arrange logistics",
+        "description": "Approved orders move into the relevant shipping and logistics process, including door-to-door delivery where applicable."
+      },
+      {
+        "title": "Connect technology & supply",
+        "description": "The Oraixen-Maat partnership enables suitable projects to combine digital-system delivery with China-based sourcing and manufacturing capability."
+      }
     ],
-    "techStack": ["Next.js", "React", "TypeScript", "Laravel", "REST API"],
-    "highlights": ["Responsive design", "SEO optimized", "Fast loading"],
-    "imageUrl": "https://maat.vip/assets/logo-256-B-nat6oH.png",
-    "imageFit": "contain",
+    "responsibilities": [
+      {
+        "title": "Digital positioning & UI/UX",
+        "description": "Turning Maat’s China sourcing and logistics capability into a clear web experience for international businesses."
+      },
+      {
+        "title": "Web platform development",
+        "description": "Building the public landing page and sourcing-request journey."
+      },
+      {
+        "title": "Backend & inquiry integration",
+        "description": "Building the services that capture procurement, sourcing, sample-based, and custom-manufacturing requirements."
+      },
+      {
+        "title": "Administration platform",
+        "description": "Providing the internal tools used to receive and manage incoming sourcing inquiries."
+      },
+      {
+        "title": "Technology & sourcing partnership",
+        "description": "Creating a working model that connects Oraixen’s technology capability with Maat’s China sourcing, manufacturing coordination, QA, and logistics operation."
+      }
+    ],
+    "systemComponents": [
+      "Public sourcing website",
+      "Sourcing inquiry portal",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Lead / inquiry capture",
+      "Procurement requests",
+      "Custom-manufacturing requests",
+      "Sample-based manufacturing inquiries",
+      "Factory sourcing workflow",
+      "Manufacturing coordination",
+      "Sample verification workflow",
+      "Quality-control processes",
+      "Shipping coordination",
+      "Door-to-door logistics capability"
+    ],
+    "proofPoints": [
+      {
+        "value": "Direct",
+        "label": "China factory sourcing and logistics access",
+        "description": "The partnership connects Oraixen and suitable enterprise requirements with Maat’s China-based sourcing, manufacturing coordination, QA, and door-to-door logistics capabilities."
+      }
+    ],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
+    "imageUrl": "/assets/projects/maat.png",
+    "imageFit": "cover",
     "confidential": false,
-    "featured": false,
+    "featured": true,
     "category": "Web",
     "platforms": {
-      "website": "https://maat.vip"
+      "website": "https://maat.vip/"
     }
   },
   {
     "id": "8",
     "slug": "maqdia",
-    "title": "Maqdia",
-    "client": "Maqdia",
-    "industry": "E-commerce",
-    "year": "2025",
-    "description": "An e-commerce platform with mobile applications and comprehensive admin dashboard for managing products, orders, and customers.",
-    "problem": "The business needed a complete e-commerce solution with mobile apps for customers and a powerful dashboard for management.",
-    "solution": "We created mobile applications for iOS and Android, along with a comprehensive admin dashboard for inventory and order management.",
-    "impact": "Increased sales through mobile channels and improved operational efficiency with centralized management.",
-    "metrics": [
-      { "label": "Products", "value": "5k+" },
-      { "label": "Orders", "value": "50k+" },
-      { "label": "Users", "value": "30k+" }
+    "title": "Maqdya",
+    "client": "Confidential",
+    "country": "Egypt",
+    "industry": "Home Services & Contracting Marketplace",
+    "year": "Late 2025 – Early 2026",
+    "description": "A home-services marketplace connecting homeowners with verified craftsmen, contractors, and engineering supervision through one digital platform.",
+    "cardDescription": "A home-services marketplace connecting homeowners with verified craftsmen, contractors, payments, job tracking, and engineering supervision.",
+    "overview": "Maqdya brings service discovery, provider portfolios, customer reviews, direct communication, payments, job tracking, and engineering follow-up into one connected experience across web and mobile.",
+    "headings": {
+      "challenge": "Finding and managing home-service work required more structure, trust, and visibility.",
+      "build": "One marketplace connecting homeowners, service providers, payments, and project follow-up.",
+      "outcome": "Maqdya turned an informal home-services hiring process into a structured digital marketplace."
+    },
+    "problem": "Homeowners could find it difficult to evaluate craftsmen and contractors before starting maintenance, finishing, or renovation work.\n\nService quality, pricing expectations, communication, and project follow-up could vary significantly when the entire process happened through informal offline channels.\n\nFor larger renovation and construction work, the client also wanted professional engineering supervision to provide more structured follow-up across project phases.\n\nThe goal was to turn an informal hiring process into a marketplace where customers could discover providers, review previous work, communicate, pay, and follow the job through a structured digital workflow.",
+    "solution": "Oraixen built Maqdya from the ground up across web, iOS, Android, backend services, APIs, and administration.\n\nCustomers can explore service categories, review provider profiles and portfolios, read customer reviews, communicate directly with service providers, and manage service requests through the platform.\n\nService providers can present their experience and previous work and participate in a structured job workflow rather than relying entirely on informal offline communication.\n\nThe system also connects supported electronic payments, order and job tracking, and engineering-supervision workflows for projects that require professional oversight.",
+    "impact": "Customers can discover providers, review previous work, communicate, create service requests, complete supported payments, and follow jobs through one connected platform.\n\nService providers gain a structured digital presence for presenting their work and managing customer opportunities.\n\nFor projects that need additional oversight, engineering supervision adds a professional follow-up layer across the work lifecycle.",
+    "workflow": [
+      {
+        "title": "Choose a service",
+        "description": "Customers browse more than 12 construction, maintenance, finishing, and engineering-supervision specialties."
+      },
+      {
+        "title": "Evaluate providers",
+        "description": "Customers review service-provider profiles, portfolios, and customer reviews before deciding who to work with."
+      },
+      {
+        "title": "Connect",
+        "description": "The platform enables direct communication between customers and service providers to discuss the required work."
+      },
+      {
+        "title": "Create the job",
+        "description": "The service request or project enters a structured marketplace workflow where the work can be managed and followed."
+      },
+      {
+        "title": "Pay & track",
+        "description": "Supported electronic payments can be completed through the platform, while the job status can be followed through delivery."
+      },
+      {
+        "title": "Review & supervise",
+        "description": "Completed work can move through final review, while projects requiring professional oversight can include engineering supervision across project phases."
+      }
     ],
-    "techStack": ["React", "Flutter", "Laravel", "MySQL", "REST API"],
-    "highlights": ["Admin dashboard", "Mobile apps", "Order management"],
-    "imageUrl": "https://play-lh.googleusercontent.com/8c_accW6PO-NNx1sgDv6KRAeNRtyyQqkiaUsHCC9tUtrLAGdtZy3o9FjBE_SGnFkutQ8-RoCiPV4ZggsoaO5EA=w480-h960-rw",
-    "imageFit": "contain",
-    "confidential": false,
+    "responsibilities": [
+      {
+        "title": "End-to-end product creation",
+        "description": "Turning the original marketplace idea into a complete web, mobile, backend, and operational platform."
+      },
+      {
+        "title": "Product discovery & workflow design",
+        "description": "Designing the journeys for homeowners, service providers, administrators, and engineering-supervision teams."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing customer and provider experiences across web and mobile."
+      },
+      {
+        "title": "Platform engineering",
+        "description": "Building the frontend, backend, APIs, and administration capabilities supporting the marketplace."
+      },
+      {
+        "title": "Mobile applications",
+        "description": "Building the iOS and Android marketplace experience using Flutter."
+      },
+      {
+        "title": "Payment integration",
+        "description": "Connecting supported electronic payment methods to the marketplace workflow."
+      }
+    ],
+    "systemComponents": [
+      "Home-services marketplace",
+      "Website",
+      "iOS application",
+      "Android application",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Customer accounts",
+      "Service-provider profiles",
+      "Provider portfolios",
+      "Verified providers",
+      "Customer reviews",
+      "12+ service specialties",
+      "Direct customer-provider communication",
+      "Service / job requests",
+      "Electronic payments",
+      "Bank-card payments",
+      "Mobile-wallet payments",
+      "Job-status tracking",
+      "Final review workflow",
+      "Engineering supervision"
+    ],
+    "proofPoints": [
+      {
+        "value": "12+",
+        "label": "construction and finishing specialties available through the marketplace",
+        "description": "The service directory spans multiple home-maintenance, finishing, contracting, and engineering-supervision specialties."
+      }
+    ],
+    "metrics": [],
+    "techStack": [
+      "PHP / Laravel",
+      "Next.js",
+      "Flutter"
+    ],
+    "highlights": [],
+    "imageUrl": "/assets/projects/maqdia.png",
+    "imageFit": "cover",
+    "confidential": true,
     "featured": false,
     "category": "Platform",
     "platforms": {
-      "playStore": "https://play.google.com/store/apps/details?id=com.maqdyya.maqdyya",
-      "appStore": "https://apps.apple.com/eg/app/maqdia/id6753150399"
+      "website": "https://www.maqdya.com/",
+      "appStore": "https://apps.apple.com/eg/app/maqdia/id6753150399",
+      "playStore": "https://play.google.com/store/apps/details?id=com.sarh.maqdia"
     }
   },
   {
@@ -187,7 +645,7 @@
     "techStack": ["React", "Flutter", "Laravel", "MySQL", "REST API"],
     "highlights": ["Job search", "Application tracking", "Employer tools"],
     "imageUrl": "https://play-lh.googleusercontent.com/2mmBUfMFOMQ9EIw4rHAaz_cCBLenGmKGLbRRvu2Rw2ZQxY0UgSoWhC-nr3JRPuRxEkt3=w480-h960-rw",
-    "imageFit": "contain",
+    "imageFit": "cover",
     "confidential": false,
     "featured": true,
     "category": "Platform",
@@ -216,7 +674,7 @@
     "techStack": ["React", "Flutter", "Laravel", "Firebase", "REST API"],
     "highlights": ["Safety features", "Content moderation", "Age-appropriate"],
     "imageUrl": "https://play-lh.googleusercontent.com/WPBUYhTvE-HOyTC8F74P-oZa3ICCfgzNNXmiWXVB9d9zaRltxk2eJzVkqaGlxu39hto=w480-h960-rw",
-    "imageFit": "contain",
+    "imageFit": "cover",
     "confidential": false,
     "featured": false,
     "category": "Mobile",
@@ -244,7 +702,7 @@
     "techStack": ["Next.js", "React", "TypeScript", "Laravel", "REST API"],
     "highlights": ["Service showcases", "Case studies", "Lead generation"],
     "imageUrl": "https://inovara.net/inovara.svg",
-    "imageFit": "contain",
+    "imageFit": "cover",
     "confidential": false,
     "featured": false,
     "category": "Web",
@@ -256,27 +714,121 @@
     "id": "13",
     "slug": "waffar-cash",
     "title": "Waffar Cash",
-    "client": "Waffar Cash",
-    "industry": "Finance",
-    "year": "2024",
-    "description": "A financial services mobile application offering cashback rewards, payment solutions, and financial management tools.",
-    "problem": "Users needed a convenient way to earn rewards and manage financial transactions through mobile devices.",
-    "solution": "We developed native mobile applications with secure payment processing, reward tracking, and financial management features.",
-    "impact": "Increased user engagement and provided convenient financial services with attractive rewards.",
-    "metrics": [
-      { "label": "Users", "value": "120k+" },
-      { "label": "Transactions", "value": "1M+" },
-      { "label": "Rewards", "value": "$500k+" }
+    "client": "Confidential",
+    "country": "Egypt / Al-Qantarah, Sinai",
+    "industry": "On-Demand Delivery / Hyperlocal Super App / Multi-Vendor Marketplace",
+    "description": "A hyperlocal Super App connecting customers, merchants, and delivery riders through multi-vendor ordering and single-trip delivery.",
+    "cardDescription": "A hyperlocal multi-vendor platform connecting customers, merchants, and riders, with eligible nearby-store orders combined into a single delivery trip.",
+    "overview": "Waffar Cash was designed for local commerce in Al-Qantarah, Sinai, bringing restaurants, supermarkets, pharmacies, cafes, customers, and delivery riders into one operating platform. Its multi-store model allows eligible nearby orders to be combined into a single delivery trip.",
+    "status": "inactive",
+    "statusNote": "Project halted due to local regulatory and security conditions.",
+    "headings": {
+      "challenge": "Local delivery was fragmented across merchants, riders, and separate customer orders.",
+      "build": "A multi-vendor Super App built around local ordering and delivery operations.",
+      "outcome": "Waffar Cash brought fragmented hyperlocal ordering and delivery into one multi-sided operating platform."
+    },
+    "problem": "Restaurants and other local merchants in Al-Qantarah could struggle to coordinate delivery riders, contributing to delayed, incorrect, or cold deliveries.\n\nCustomers ordering from more than one nearby store also faced separate delivery flows and duplicated delivery costs when each merchant had to be handled independently.\n\nAt the same time, restaurants, supermarkets, pharmacies, and cafes had no single local digital platform connecting commerce and delivery operations.\n\nThe challenge was to create one hyperlocal ecosystem where customers, merchants, riders, and administrators could operate through the same platform.",
+    "solution": "Oraixen designed and developed Waffar Cash as a connected platform spanning separate customer, merchant, and rider applications, together with backend services, APIs, merchant operations, and administration.\n\nCustomers can order across multiple local categories, including restaurants, supermarkets, pharmacies, and cafes, as well as submit supported custom errand requests.\n\nThe platform's distinctive multi-store workflow allows eligible orders from nearby participating stores to be combined into one delivery trip instead of generating separate delivery trips for each merchant.\n\nMerchants manage incoming order activity through their dedicated tools, while delivery riders participate through a separate delivery application and administrators oversee the wider platform operation.",
+    "impact": "Customers could order across several local commerce categories while merchants and delivery riders worked through dedicated operational experiences connected to the same backend.\n\nFor eligible nearby multi-store orders, the batching workflow reduced the need for separate delivery trips and duplicated delivery charges by combining the order into one delivery journey.\n\nThe product also established an architecture capable of supporting a broader local Super App model, although the project was later halted due to local regulatory and security conditions.",
+    "workflow": [
+      {
+        "title": "Choose what you need",
+        "description": "Customers browse supported local categories including restaurants, supermarkets, pharmacies, cafes, and eligible custom errand requests."
+      },
+      {
+        "title": "Build the order",
+        "description": "Customers select items and, when the participating stores meet the supported proximity and batching rules, can combine eligible multi-store purchases within one ordering flow."
+      },
+      {
+        "title": "Send to merchants",
+        "description": "Participating merchants receive and manage their portions of the combined order through the merchant operational system."
+      },
+      {
+        "title": "Coordinate pickup",
+        "description": "The delivery workflow brings the eligible nearby pickups together for the assigned rider."
+      },
+      {
+        "title": "Deliver in one trip",
+        "description": "Eligible batched orders from nearby stores are delivered through one trip instead of separate trips for each store."
+      },
+      {
+        "title": "Operate the network",
+        "description": "Administration tools connect merchants, orders, riders, and delivery activity in one operational platform."
+      }
     ],
-    "techStack": ["Flutter", "Firebase", "OneSignal", "REST API"],
-    "highlights": ["Cashback rewards", "Secure payments", "Financial tools"],
-    "imageUrl": "https://play-lh.googleusercontent.com/zIQoPb68PqYMyU6676usZaLc1yubCr4T37Fa6ffO67th-YUNHIs1AuKxxjGV3flVgg=w480-h960-rw",
-    "imageFit": "contain",
-    "confidential": false,
+    "responsibilities": [
+      {
+        "title": "Product strategy & ecosystem design",
+        "description": "Defining how customers, merchants, riders, multi-category ordering, and hyperlocal delivery should work together."
+      },
+      {
+        "title": "Super App architecture",
+        "description": "Designing the customer, merchant, rider, backend, API, and administration layers as one connected platform."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing separate user journeys for customers, merchants, delivery riders, and administrators."
+      },
+      {
+        "title": "Backend & API development",
+        "description": "Building the central services supporting merchants, orders, multi-store batching, delivery workflows, and platform operations."
+      },
+      {
+        "title": "Mobile applications",
+        "description": "Building separate Flutter applications for customers, merchants, and delivery riders."
+      },
+      {
+        "title": "Merchant & administration systems",
+        "description": "Building the tools used to manage merchant orders, delivery operations, and the wider marketplace."
+      }
+    ],
+    "systemComponents": [
+      "Customer mobile application",
+      "Merchant mobile application",
+      "Delivery-rider application",
+      "Merchant operational interfaces",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Multi-vendor marketplace",
+      "Restaurants",
+      "Supermarkets",
+      "Pharmacies",
+      "Cafes",
+      "Multi-category ordering",
+      "Multi-store cart",
+      "Nearby-store order batching",
+      "Single-trip delivery workflow",
+      "Rider delivery workflow",
+      "Custom errand requests",
+      "Order and delivery operations"
+    ],
+    "plannedExpansion": {
+      "description": "The platform architecture was designed to support additional local-service modules in the future. These modules were planned, not launched.",
+      "items": [
+        "Student-housing rentals (planned)",
+        "Local ride-hailing (planned)"
+      ]
+    },
+    "proofPoints": [
+      {
+        "value": "100%",
+        "label": "of eligible nearby multi-store orders consolidated into a single delivery trip",
+        "description": "When stores fall within the supported proximity and batching rules, the combined order is handled through one delivery trip instead of separate trips for each store."
+      }
+    ],
+    "metrics": [],
+    "techStack": [
+      "PHP / Laravel",
+      "Flutter"
+    ],
+    "highlights": [],
+    "imageUrl": "/assets/projects/waffar-cash.png",
+    "imageFit": "cover",
+    "confidential": true,
     "featured": true,
-    "category": "Mobile",
+    "category": "Platform",
     "platforms": {
-      "playStore": "https://play.google.com/store/apps/details?id=com.gao.waffar_cash&hl=en",
       "appStore": "https://apps.apple.com/eg/app/waffar-cash/id1626369167"
     }
   },
@@ -299,7 +851,7 @@
     "techStack": ["React", "Flutter", "Laravel", "MySQL", "REST API"],
     "highlights": ["Multi-platform", "Consistent UX", "Service management"],
     "imageUrl": "https://play-lh.googleusercontent.com/D7_A9DYkzkoS9jR0YcAkLuZApBH1zJHq2yY1hUgakRWKF0YIWq3XugZQV4dLUyCq9w=w480-h960-rw",
-    "imageFit": "contain",
+    "imageFit": "cover",
     "confidential": false,
     "featured": false,
     "category": "Platform",
@@ -312,25 +864,106 @@
     "id": "18",
     "slug": "gefires",
     "title": "Gefires",
-    "client": "Gefires",
-    "industry": "Business",
-    "year": "2024",
-    "description": "A professional business platform providing services and solutions with modern web technology.",
-    "problem": "The client needed a professional website to showcase services and connect with clients.",
-    "solution": "We developed a modern, responsive website with service showcases and contact integration.",
-    "impact": "Enhanced brand visibility and improved client acquisition.",
-    "metrics": [
-      { "label": "Visitors", "value": "35k+" },
-      { "label": "Conversion", "value": "4%" },
-      { "label": "Uptime", "value": "99.9%" }
+    "client": "Confidential",
+    "country": "Saudi Arabia / China",
+    "industry": "B2B E-Commerce / Fire Safety & Firefighting Equipment Sourcing",
+    "description": "A B2B procurement platform connecting Saudi commercial buyers with fire-safety equipment sourcing, RFQs, quotations, and cross-border logistics from China.",
+    "cardDescription": "A B2B procurement platform connecting Saudi commercial buyers with fire-safety equipment, custom RFQs, China sourcing, and freight-aware quotations.",
+    "overview": "Gefires digitizes the commercial procurement journey for fire-alarm, firefighting, and safety equipment, connecting product discovery and bulk quotation requests with China-based sourcing and freight-aware fulfillment workflows.",
+    "headings": {
+      "challenge": "Cross-border fire-safety procurement needed a structured digital workflow from product discovery to quotation and fulfillment.",
+      "build": "A B2B catalog and RFQ platform connecting commercial demand with sourcing and logistics.",
+      "outcome": "Gefires turned a traditional cross-border procurement process into one connected B2B quotation and sourcing workflow."
+    },
+    "problem": "The business was already supplying fire-alarm and firefighting equipment from Chinese factories to commercial buyers in Saudi Arabia, but the procurement process did not have a dedicated B2B digital portal.\n\nHotels, restaurants, contractors, commercial developers, and enterprise facilities needed a clearer way to browse available equipment and submit bulk purchasing requirements.\n\nThe operation also needed quotation workflows that could bring product requirements, sourcing costs, and applicable China-to-Saudi freight considerations into one process.\n\nThe challenge was to turn a traditional procurement operation into a connected B2B portal without reducing a complex commercial purchase to a consumer-style checkout flow.",
+    "solution": "Oraixen designed and developed Gefires as a web-based procurement platform with a B2B product catalog, custom RFQ engine, backend services, APIs, and central administration.\n\nCommercial buyers can browse relevant fire-safety and firefighting equipment, define bulk requirements, and submit quotation requests through a structured digital journey.\n\nThe quotation workflow can account for applicable sourcing and freight components associated with supplying equipment from China to Saudi Arabia.\n\nOn the operational side, Gefires teams can manage catalogs, review incoming RFQs, prepare custom proposals, and follow sourcing and shipment-related activity through the administration platform.",
+    "impact": "Commercial buyers can now move from equipment discovery to bulk RFQ submission through a dedicated digital portal instead of relying entirely on offline procurement communication.\n\nGefires teams can manage product information, quotation requests, proposals, and sourcing-related operational follow-up from a central administration environment.\n\nThe platform connects Saudi commercial demand with China-based sourcing and freight considerations while keeping the complex commercial purchase centered around quotation rather than generic consumer checkout.",
+    "workflow": [
+      {
+        "title": "Browse equipment",
+        "description": "Commercial buyers explore the B2B catalog of fire-alarm, firefighting, and related safety equipment."
+      },
+      {
+        "title": "Define requirements",
+        "description": "The buyer selects the required products and provides the quantities or commercial requirements needed for the procurement request."
+      },
+      {
+        "title": "Submit an RFQ",
+        "description": "The buyer sends a structured Request for Quotation through the platform."
+      },
+      {
+        "title": "Build the quotation",
+        "description": "Gefires reviews the request and prepares a customized commercial proposal based on the relevant product and sourcing requirements."
+      },
+      {
+        "title": "Account for freight",
+        "description": "Applicable China-to-Saudi shipping and freight components can be incorporated into the quotation workflow."
+      },
+      {
+        "title": "Follow fulfillment",
+        "description": "Once a commercial order proceeds, the operations team can follow sourcing and cross-border fulfillment activity through the centralized system."
+      }
     ],
-    "techStack": ["Next.js", "React", "TypeScript", "Laravel", "REST API"],
-    "highlights": ["Responsive design", "SEO optimized", "Fast loading"],
-    "imageUrl": "https://gefires.com//assets/logo-BEEtURtm.png",
-    "imageFit": "contain",
-    "confidential": false,
-    "featured": false,
-    "category": "Web",
+    "responsibilities": [
+      {
+        "title": "B2B workflow & platform architecture",
+        "description": "Turning the existing procurement operation into digital journeys for product discovery, RFQs, quotations, sourcing, and operational follow-up."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing a commercial procurement experience focused on equipment discovery and bulk quotation requests."
+      },
+      {
+        "title": "Full-stack web development",
+        "description": "Building the procurement portal, backend services, APIs, and operational interfaces."
+      },
+      {
+        "title": "RFQ engine",
+        "description": "Building the workflow used to collect bulk product requirements and manage customized quotation requests."
+      },
+      {
+        "title": "Administration platform",
+        "description": "Building the tools used to manage the catalog, incoming RFQs, quotations, proposals, and operational follow-up."
+      },
+      {
+        "title": "Logistics workflow integration",
+        "description": "Connecting quotation activity with the freight and shipping considerations required for sourcing from China into Saudi Arabia."
+      }
+    ],
+    "systemComponents": [
+      "B2B procurement website",
+      "Fire-safety equipment catalog",
+      "Fire-alarm equipment catalog",
+      "Firefighting equipment catalog",
+      "Custom RFQ engine",
+      "Bulk procurement requests",
+      "Custom quotation workflow",
+      "Freight-aware quotation workflow",
+      "China sourcing workflow",
+      "Saudi commercial buyer journey",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Catalog management",
+      "RFQ management",
+      "Proposal management",
+      "Cross-border fulfillment follow-up"
+    ],
+    "proofPoints": [
+      {
+        "value": "100%",
+        "label": "digitization of the B2B quote-to-fulfillment workflow",
+        "description": "Product selection, RFQ intake, quotation handling, freight considerations, and cross-border fulfillment follow-up moved into one connected workflow supporting sourcing from China for Saudi commercial buyers."
+      }
+    ],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
+    "imageUrl": "/assets/projects/gefires.png",
+    "imageFit": "cover",
+    "confidential": true,
+    "featured": true,
+    "category": "Platform",
     "platforms": {
       "website": "https://gefires.com/"
     }
@@ -339,28 +972,103 @@
     "id": "19",
     "slug": "rosto",
     "title": "Rosto",
-    "client": "Rosto",
-    "industry": "Food",
-    "year": "2024",
-    "description": "A food service mobile application offering restaurant services, ordering, and delivery options.",
-    "problem": "Customers needed a convenient way to order food and access restaurant services through mobile devices.",
-    "solution": "We developed native mobile applications with menu browsing, ordering, and delivery tracking.",
-    "impact": "Increased orders and improved customer satisfaction with convenient mobile access.",
-    "metrics": [
-      { "label": "Users", "value": "95k+" },
-      { "label": "Orders", "value": "300k+" },
-      { "label": "Rating", "value": "4.7" }
+    "client": "Confidential",
+    "country": "Egypt",
+    "industry": "Food & Beverage / Online Food Ordering & Delivery",
+    "description": "A direct restaurant ordering and delivery platform connecting customers, drivers, and restaurant operations through dedicated mobile experiences.",
+    "cardDescription": "A direct restaurant ordering and delivery platform connecting customers, riders, real-time order status, and centralized restaurant operations.",
+    "overview": "Rosto gives the restaurant its own digital ordering channel, connecting menu discovery, direct orders, real-time order-status updates, delivery operations, and central management in one platform.",
+    "headings": {
+      "challenge": "The restaurant needed its own ordering channel and more control over the delivery journey.",
+      "build": "A connected customer-ordering and delivery ecosystem built around the restaurant's own operation.",
+      "outcome": "Rosto moved direct ordering and delivery operations into one restaurant-owned digital platform."
+    },
+    "problem": "Rosto was already operating as an established restaurant chain, but it did not have a proprietary digital ordering and delivery ecosystem.\n\nCustomer orders depended on traditional channels and third-party delivery options, limiting the restaurant's control over the digital customer experience and its delivery operations.\n\nThe business needed a dedicated channel where customers could browse the menu, order directly, follow order progress, and receive delivery, while management could oversee menus, active orders, and drivers from one operational environment.",
+    "solution": "Oraixen mapped the restaurant's ordering and delivery cycle and built Rosto's digital platform across the customer application, dedicated delivery-driver application, backend services, APIs, and central administration.\n\nCustomers can browse the digital menu, select items, complete their order, and follow real-time order-status updates from preparation through delivery.\n\nDelivery riders receive assigned orders through their own mobile experience, use the information needed to complete the delivery journey, and confirm delivery.\n\nRestaurant management uses the operations dashboard to manage menus, monitor active orders, oversee delivery activity, and review sales analytics.",
+    "impact": "Customers can browse the menu, place orders directly, and follow order progress through Rosto's own mobile experience instead of depending entirely on traditional or third-party ordering channels.\n\nDelivery drivers operate through a dedicated application connected to the same backend, while restaurant management can oversee menu, order, and delivery activity from a central dashboard.\n\nFollowing launch, the client reports continued growth in active app usage and daily order volume.",
+    "workflow": [
+      {
+        "title": "Browse the menu",
+        "description": "Customers explore Rosto's digital menu and select the items they want to order."
+      },
+      {
+        "title": "Create the order",
+        "description": "Selected items move through the restaurant's direct ordering and checkout workflow."
+      },
+      {
+        "title": "Prepare",
+        "description": "The order enters the restaurant's operational cycle and its status is reflected through the customer experience."
+      },
+      {
+        "title": "Assign delivery",
+        "description": "The delivery workflow assigns the relevant order to a driver for fulfillment."
+      },
+      {
+        "title": "Track progress",
+        "description": "Customers receive real-time order-status updates as the order moves from preparation toward delivery."
+      },
+      {
+        "title": "Complete delivery",
+        "description": "The driver follows the assigned delivery workflow and confirms completion while management monitors operations centrally."
+      }
     ],
-    "techStack": ["React", "Flutter", "Laravel", "Firebase", "REST API"],
-    "highlights": ["Menu browsing", "Ordering", "Delivery tracking"],
-    "imageUrl": "https://play-lh.googleusercontent.com/5BD1X9oRKT9aQhtosOcpR37h1TtQNJbVym354kBdSWJfxmGThlEkHKuORBV_x1OZIbU=w480-h960-rw",
-    "imageFit": "contain",
-    "confidential": false,
-    "featured": false,
-    "category": "Mobile",
+    "responsibilities": [
+      {
+        "title": "Operations mapping & product strategy",
+        "description": "Mapping Rosto's customer-ordering and delivery cycle and translating it into connected customer, driver, and management workflows."
+      },
+      {
+        "title": "Customer UI/UX",
+        "description": "Designing the menu, ordering, checkout, and order-status journey for restaurant customers."
+      },
+      {
+        "title": "Driver UI/UX",
+        "description": "Designing the delivery workflow used by riders to receive assignments, navigate deliveries, and confirm completion."
+      },
+      {
+        "title": "Mobile applications",
+        "description": "Building the customer and dedicated delivery-driver mobile experiences."
+      },
+      {
+        "title": "Backend & API development",
+        "description": "Building the services supporting menus, customers, orders, real-time status updates, drivers, and delivery activity."
+      },
+      {
+        "title": "Operations dashboard",
+        "description": "Building the administration environment used to manage menus, active orders, driver operations, and sales analytics."
+      }
+    ],
+    "systemComponents": [
+      "Customer mobile application",
+      "Delivery-driver mobile application",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Digital restaurant menu",
+      "Direct customer ordering",
+      "Shopping / order checkout",
+      "Real-time order-status tracking",
+      "Delivery assignments",
+      "Driver delivery workflow",
+      "Navigation support",
+      "Delivery confirmation",
+      "Menu management",
+      "Active-order management",
+      "Driver operations",
+      "Sales analytics"
+    ],
+    "proofPoints": [],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
+    "imageUrl": "/assets/projects/rosto.png",
+    "imageFit": "cover",
+    "confidential": true,
+    "featured": true,
+    "category": "Platform",
     "platforms": {
-      "playStore": "https://play.google.com/store/apps/details?id=com.rosto.rosto",
-      "appStore": "https://apps.apple.com/eg/app/rosto/id6478112917"
+      "appStore": "https://apps.apple.com/us/app/rosto/id6478112917",
+      "playStore": "https://play.google.com/store/apps/details?id=com.rosto.rosto&hl=ar"
     }
   },
   {
@@ -382,7 +1090,7 @@
     "techStack": ["React", "Flutter", "Laravel", "MySQL", "REST API"],
     "highlights": ["Digital menus", "Ordering", "Restaurant integration"],
     "imageUrl": "https://play-lh.googleusercontent.com/jF_jM__SZpmUoAAqT-SDm3KbWN9pz7MYvE1XbIS4V-Y7qrD2h6COM0Ijjj8pAQTElw=w480-h960-rw",
-    "imageFit": "contain",
+    "imageFit": "cover",
     "confidential": false,
     "featured": false,
     "category": "Mobile",
@@ -410,7 +1118,7 @@
     "techStack": ["React", "Laravel", "MySQL", "REST API"],
     "highlights": ["Machine monitoring", "Inventory tracking", "Sales analytics"],
     "imageUrl": "https://vending.inovara.net/assets/logo-CdXygyIl.svg",
-    "imageFit": "contain",
+    "imageFit": "cover",
     "confidential": false,
     "featured": false,
     "category": "Web",
@@ -437,7 +1145,7 @@
     "techStack": ["Next.js", "React", "Laravel", "MySQL", "REST API"],
     "highlights": ["Product catalog", "Secure checkout", "Order management"],
     "imageUrl": "https://shopisonic.com/icon.svg",
-    "imageFit": "contain",
+    "imageFit": "cover",
     "confidential": false,
     "featured": false,
     "category": "Web",
@@ -464,7 +1172,7 @@
     "techStack": ["Flutter", "Firebase", "REST API"],
     "highlights": ["Service search", "Booking", "Provider management"],
     "imageUrl": "https://play-lh.googleusercontent.com/2augLqz59Qd0UGRtAcbCcDahOedBixj-y_K8ekEe7bU3tPDuAHpW9MSVDW9DVmxcVA=w480-h960-rw",
-    "imageFit": "contain",
+    "imageFit": "cover",
     "confidential": false,
     "featured": false,
     "category": "Mobile",
@@ -476,25 +1184,111 @@
     "id": "25",
     "slug": "ibdl",
     "title": "IBDL",
-    "client": "IBDL",
-    "industry": "Education",
-    "year": "2022",
-    "description": "An educational platform providing learning resources and services through modern web technology.",
-    "problem": "The institution needed a professional website to provide educational resources and information.",
-    "solution": "We developed a responsive web platform with resource management and information dissemination.",
-    "impact": "Improved access to educational resources and enhanced institutional communication.",
-    "metrics": [
-      { "label": "Users", "value": "25k+" },
-      { "label": "Resources", "value": "1k+" },
-      { "label": "Uptime", "value": "99.9%" }
+    "client": "Confidential",
+    "country": "International / USA / Egypt",
+    "industry": "Education / Professional Certification & Enterprise Training",
+    "description": "An enterprise training and certification platform replacing a developer-dependent legacy system with self-service ERP, CRM, and administration workflows.",
+    "cardDescription": "An enterprise training platform replacing developer-dependent legacy administration with self-service ERP, CRM, certification, staff, and training-center workflows.",
+    "overview": "IBDL brings training-center operations, trainee records, attendance, certificates, staff administration, CRM activity, course content, and commerce workflows into one enterprise platform.",
+    "headings": {
+      "challenge": "Routine business operations depended on developers instead of the administration team.",
+      "build": "A self-service enterprise platform built around the organization’s real operating workflows.",
+      "outcome": "IBDL replaced a developer-dependent legacy workflow with a self-service enterprise operating platform."
+    },
+    "problem": "The existing platform had become difficult to operate and maintain, with bugs, known security weaknesses, and an administrative interface that did not support routine staff workflows effectively.\n\nBasic operational tasks could require a backend developer to run manual database queries, creating unnecessary dependency on engineering resources for everyday administration.\n\nAt the same time, training centers, trainee records, course content, attendance, certificates, employees, CRM activity, and commerce operations needed to be managed through a more connected enterprise system.\n\nThe challenge was not simply to redesign the website. It was to replace the legacy operational platform and re-engineer how the organization managed its day-to-day work.",
+    "solution": "Oraixen audited the existing system, re-engineered the core business flows, and built a replacement platform spanning the public website, enterprise administration, backend services, APIs, ERP capabilities, CRM workflows, and a new database architecture.\n\nTraining-center teams can manage centers, branches, groups, trainees, course materials, attendance, and certificates through the administrative platform.\n\nInternal teams can also manage employees, roles, permissions, and attendance, while CRM and commerce capabilities support public course offerings and related customer and sales activity.\n\nMost importantly, routine administrative operations that previously required direct database intervention can now be performed by authorized staff through the system itself.",
+    "impact": "Administrative teams can now manage routine training, trainee, certification, staff, CRM, and commerce operations directly through the platform instead of depending on developers for everyday database intervention.\n\nThe rebuild also removed the organization’s reliance on the previous legacy architecture and its known operational and security weaknesses.\n\nThe result is a more maintainable operating model where technical teams can focus on engineering while authorized business users manage routine operations through the product itself.",
+    "workflow": [
+      {
+        "title": "Manage centers",
+        "description": "Administrators manage training centers, branches, groups, and related course operations from one central platform."
+      },
+      {
+        "title": "Manage trainees",
+        "description": "Applicant and trainee profiles bring course participation, progress, attendance, and certification records into one digital workflow."
+      },
+      {
+        "title": "Run training operations",
+        "description": "Staff and instructors work with course content, groups, attendance, and training-related operational records through the platform."
+      },
+      {
+        "title": "Manage certificates",
+        "description": "Official certificate records can be managed as part of the trainee and course lifecycle."
+      },
+      {
+        "title": "Operate internally",
+        "description": "Enterprise administrators manage employees, roles, permissions, and staff attendance through the same administrative environment."
+      },
+      {
+        "title": "Manage customer & commerce activity",
+        "description": "CRM and e-commerce capabilities connect public course offerings, content, leads, and related sales workflows to the enterprise platform."
+      }
     ],
-    "techStack": ["Next.js", "React", "TypeScript", "Laravel", "REST API"],
-    "highlights": ["Resource management", "Responsive design", "Fast performance"],
-    "imageUrl": "https://ibdl.net/site/images/logo.png",
-    "imageFit": "contain",
-    "confidential": false,
-    "featured": false,
-    "category": "Web",
+    "responsibilities": [
+      {
+        "title": "Technical audit & business-flow re-engineering",
+        "description": "Reviewing the legacy system and redesigning how training, administration, certification, staff, CRM, and commerce workflows should operate."
+      },
+      {
+        "title": "Enterprise architecture",
+        "description": "Designing the backend, database, APIs, administration, ERP, CRM, and public web layers as one connected platform."
+      },
+      {
+        "title": "UI/UX redesign",
+        "description": "Creating self-service administrative interfaces that non-technical staff could use for routine operations."
+      },
+      {
+        "title": "Backend & database development",
+        "description": "Building the custom services and data architecture supporting centers, trainees, courses, attendance, certificates, staff, and commercial workflows."
+      },
+      {
+        "title": "Frontend web development",
+        "description": "Building the public-facing and enterprise administrative web experiences."
+      },
+      {
+        "title": "ERP & CRM implementation",
+        "description": "Connecting training operations, internal administration, customer activity, and commerce workflows inside the new platform."
+      }
+    ],
+    "systemComponents": [
+      "Public website",
+      "Enterprise admin dashboard",
+      "Custom ERP",
+      "CRM capabilities",
+      "Backend services",
+      "APIs",
+      "Custom database architecture",
+      "Training-center management",
+      "Branch management",
+      "Group management",
+      "Course-content management",
+      "Applicant profiles",
+      "Trainee profiles",
+      "Course-progress tracking",
+      "Attendance management",
+      "Certificate management",
+      "Employee management",
+      "Roles and permissions",
+      "Staff attendance",
+      "CRM workflows",
+      "E-commerce operations",
+      "Self-service administration"
+    ],
+    "proofPoints": [
+      {
+        "value": "100%",
+        "label": "of previously developer-dependent routine administration moved into self-service workflows",
+        "description": "Routine database and administrative operations that previously required backend-developer intervention can now be handled directly through the enterprise administration platform."
+      }
+    ],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
+    "imageUrl": "/assets/projects/ibdl.png",
+    "imageFit": "cover",
+    "confidential": true,
+    "featured": true,
+    "category": "Platform",
     "platforms": {
       "website": "https://ibdl.net/"
     }
@@ -518,7 +1312,7 @@
     "techStack": ["Flutter", "React", "Node.js", "MongoDB", "REST API"],
     "highlights": ["Service browsing", "Request management", "User accounts"],
     "imageUrl": "https://saharadvocates.ae/img/logo/logo.svg",
-    "imageFit": "contain",
+    "imageFit": "cover",
     "confidential": false,
     "featured": false,
     "category": "Mobile",
@@ -529,26 +1323,100 @@
   {
     "id": "27",
     "slug": "govet",
-    "title": "Govet",
-    "client": "Govet",
-    "industry": "Services",
-    "year": "2024",
-    "description": "A service platform mobile application connecting users with service providers for various needs.",
-    "problem": "Users needed a convenient mobile application to find and book services.",
-    "solution": "We developed an Android application with service search, booking, and provider management features.",
-    "impact": "Facilitated service bookings and improved user access to services.",
-    "metrics": [
-      { "label": "Users", "value": "75k+" },
-      { "label": "Services", "value": "400+" },
-      { "label": "Bookings", "value": "150k+" }
+    "title": "GoVet",
+    "client": "Confidential",
+    "country": "Egypt",
+    "industry": "Pet Care / Veterinary Services & E-Commerce",
+    "description": "A pet-care platform combining e-commerce, home veterinary visit booking, and clinic discovery across iOS and Android.",
+    "cardDescription": "A pet-care platform combining product ordering, home veterinary visit booking, and clinic discovery across iOS and Android.",
+    "overview": "GoVet brings pet supplies, home veterinary appointments, branch and clinic discovery, orders, and platform operations into one connected mobile ecosystem.",
+    "headings": {
+      "challenge": "Pet owners needed one digital experience for both everyday supplies and veterinary services.",
+      "build": "One mobile ecosystem connecting pet commerce and veterinary-service booking.",
+      "outcome": "GoVet brought pet-product ordering and veterinary-service booking into one connected mobile platform."
+    },
+    "problem": "The client had a concept for bringing pet-product shopping and veterinary service booking into one mobile platform.\n\nPet owners needed a simpler way to buy food, accessories, and everyday pet-care items while also arranging home veterinary visits for examinations and routine vaccinations.\n\nThe product also needed to help customers discover GoVet branches and partner clinic locations without treating commerce and veterinary services as completely separate journeys.\n\nBehind the customer experience, the business needed centralized administration for products, orders, fulfillment, and veterinary appointments.",
+    "solution": "Oraixen designed and developed GoVet from the solution architecture and UI/UX through the iOS and Android applications, backend services, APIs, and administration platform.\n\nCustomers can browse and order pet-care products, arrange supported veterinary visits at home, and find GoVet branches or partner clinic locations through the same mobile experience.\n\nVeterinary visit workflows support scheduling for services such as examinations, health checkups, and routine vaccinations.\n\nThe administration platform gives the operations team central control over catalog data, customer orders, fulfillment activity, veterinary bookings, and location information.",
+    "impact": "Pet owners can use one customer experience to shop for everyday pet-care products, arrange supported home veterinary visits, and discover physical branches and partner clinics.\n\nAt the operational level, the business can manage products, orders, fulfillment activity, veterinary bookings, and location information through a centralized administration environment.\n\nThe result is a unified pet-care journey that reduces the fragmentation between buying supplies and arranging veterinary services.",
+    "workflow": [
+      {
+        "title": "Choose what your pet needs",
+        "description": "Customers enter either the pet-product shopping journey or the veterinary-service journey through the mobile application."
+      },
+      {
+        "title": "Shop for supplies",
+        "description": "Pet owners browse available food, accessories, collars, and other supported pet-care products."
+      },
+      {
+        "title": "Book a home visit",
+        "description": "Customers can schedule supported at-home veterinary services such as examinations, checkups, and routine vaccinations."
+      },
+      {
+        "title": "Find a location",
+        "description": "Customers can look up GoVet branches and partner clinic locations through the platform."
+      },
+      {
+        "title": "Manage the request",
+        "description": "Product orders and veterinary appointments enter the relevant operational workflow in the backend."
+      },
+      {
+        "title": "Operate centrally",
+        "description": "Admins manage products, fulfillment activity, veterinary bookings, locations, and platform operations from the central dashboard."
+      }
     ],
-    "techStack": ["Flutter", "Firebase", "REST API"],
-    "highlights": ["Service search", "Booking", "Provider management"],
-    "imageUrl": "https://play-lh.googleusercontent.com/Fyo65Hfdqr2fCNRrnxmtFx6J4ER5cuARvErQPuQGahz6T050NECbT-pAmp2yBXCVupBo=w240-h480-rw",
-    "imageFit": "contain",
-    "confidential": false,
-    "featured": false,
-    "category": "Mobile",
+    "responsibilities": [
+      {
+        "title": "Solution architecture",
+        "description": "Turning the pet-care concept into connected commerce, veterinary appointment, location, and administration workflows."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing the customer experience for pet-product shopping, home veterinary booking, and clinic discovery."
+      },
+      {
+        "title": "Mobile applications",
+        "description": "Building the iOS and Android customer experiences."
+      },
+      {
+        "title": "Backend & API development",
+        "description": "Building the services supporting products, customers, orders, veterinary appointments, locations, and platform operations."
+      },
+      {
+        "title": "Administration platform",
+        "description": "Building the central tools used to manage catalog data, order fulfillment, veterinary bookings, locations, and day-to-day operations."
+      }
+    ],
+    "systemComponents": [
+      "iOS application",
+      "Android application",
+      "Admin dashboard",
+      "Backend services",
+      "RESTful APIs",
+      "Pet-care product catalog",
+      "Pet food",
+      "Pet supplies",
+      "Accessories",
+      "Collars",
+      "Product ordering",
+      "Order fulfillment workflow",
+      "Home veterinary visit booking",
+      "Examination scheduling",
+      "Health-checkup scheduling",
+      "Routine vaccination scheduling",
+      "GoVet branch locator",
+      "Partner clinic locator",
+      "Veterinary appointment management",
+      "Central operations management"
+    ],
+    "proofPoints": [],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
+    "imageUrl": "/assets/projects/govet.png",
+    "imageFit": "cover",
+    "confidential": true,
+    "featured": true,
+    "category": "Platform",
     "platforms": {
       "playStore": "https://play.google.com/store/apps/details?id=com.technospace.govet"
     }
@@ -572,12 +1440,451 @@
     "techStack": ["Next.js", "React", "TypeScript", "Node.js", "REST API"],
     "highlights": ["Professional design", "Service showcases", "Client resources"],
     "imageUrl": "https://saharadvocates.ae/img/logo/logo.svg",
-    "imageFit": "contain",
+    "imageFit": "cover",
     "confidential": false,
     "featured": false,
     "category": "Web",
     "platforms": {
       "website": "https://saharadvocates.ae"
+    }
+  },
+  {
+    "id": "29",
+    "slug": "nice-one",
+    "title": "Nice One",
+    "client": "Confidential",
+    "country": "Saudi Arabia",
+    "industry": "E-Commerce / Beauty & Cosmetics",
+    "description": "A unified beauty-commerce platform connecting online shopping, multi-channel sales, customer data, and order operations in one system.",
+    "cardDescription": "A beauty-commerce platform bringing online and supported off-platform orders, customer data, and order tracking into one operational system.",
+    "overview": "Nice One brings the customer shopping experience and internal sales operations into one connected platform across web, mobile, backend, and administration. Orders from supported off-platform channels can also be captured inside the same operational workflow.",
+    "headings": {
+      "challenge": "Sales were happening across channels, but the operation had no single source of truth.",
+      "build": "One commerce platform for customers, orders, and operational data.",
+      "outcome": "Nice One brought fragmented sales activity into a more centralized commerce and operations workflow."
+    },
+    "problem": "Customer conversations and sales activity were spread across channels such as WhatsApp and other off-platform interactions.\n\nThat made it difficult for store teams to keep customer records in one place, create orders consistently, and track sales through a unified workflow.\n\nThe business needed more than an online storefront. It needed a connected commerce system that served customers through web and mobile while giving the internal team centralized control over orders and customer data.",
+    "solution": "Oraixen contributed to the design and development of the Nice One commerce platform across web, iOS, Android, backend services, APIs, and administration.\n\nCustomers can browse the product catalog, add products to their cart, complete checkout, and place orders through the digital storefront.\n\nFor store teams, the administration system provides a central place to manage customer records and sales orders.\n\nOrders originating through supported off-platform channels, including WhatsApp-based sales, can also be created manually inside the system so they become part of the same order-management workflow.",
+    "impact": "Instead of keeping online orders, supported off-platform sales, and customer information across disconnected channels, the platform gives the business one system for capturing orders, maintaining customer records, and tracking sales activity.\n\nThis creates a clearer operational view for store teams while giving customers a structured shopping experience across web and mobile.",
+    "workflow": [
+      {
+        "title": "Browse",
+        "description": "Customers explore the product catalog through the web or mobile commerce experience."
+      },
+      {
+        "title": "Order",
+        "description": "Customers add products to their cart, complete checkout, and create an online order."
+      },
+      {
+        "title": "Capture off-platform sales",
+        "description": "Store staff can manually create orders for supported sales originating through channels such as WhatsApp."
+      },
+      {
+        "title": "Unify customer records",
+        "description": "Customer information and purchase activity can be managed centrally instead of remaining distributed across separate sales channels."
+      },
+      {
+        "title": "Track",
+        "description": "Orders captured through supported channels enter one system where teams can follow their status and sales workflow."
+      },
+      {
+        "title": "Operate",
+        "description": "The administration platform gives store teams one operational view of customers and orders across the supported commerce flows."
+      }
+    ],
+    "responsibilities": [
+      {
+        "title": "Business benchmark & technical analysis",
+        "description": "Studying the required commerce and operational flows before defining the system."
+      },
+      {
+        "title": "Technical strategy & architecture",
+        "description": "Structuring the customer storefront, mobile applications, backend, APIs, administration, customer data, and order workflow as one connected platform."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing the customer shopping journey and the operational interfaces used by internal teams."
+      },
+      {
+        "title": "Frontend & backend development",
+        "description": "Building the web experience and the backend services that support commerce and order operations."
+      },
+      {
+        "title": "Mobile applications",
+        "description": "Building the iOS and Android customer experiences."
+      },
+      {
+        "title": "Administration & APIs",
+        "description": "Building the administration capabilities and APIs required to manage customers, orders, and supported multi-channel sales."
+      }
+    ],
+    "systemComponents": [
+      "E-commerce website",
+      "iOS application",
+      "Android application",
+      "Product catalog",
+      "Shopping cart",
+      "Checkout",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Central customer database",
+      "Multi-channel order creation",
+      "WhatsApp / supported off-platform order capture",
+      "Order-status tracking",
+      "Sales operations workflow"
+    ],
+    "proofPoints": [
+      {
+        "value": "100%",
+        "label": "centralized view of supported multi-channel orders and customer records",
+        "description": "Orders captured through the commerce platform and supported off-platform channels can be created, tracked, and associated with customer records in one operational system."
+      }
+    ],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
+    "imageUrl": "/assets/projects/nice-one.png",
+    "imageFit": "cover",
+    "confidential": true,
+    "featured": true,
+    "category": "Platform",
+    "platforms": {
+      "website": "https://niceonesa.com/",
+      "appStore": "https://apps.apple.com/sa/app/nice-one-%D9%86%D8%A7%D9%8A%D8%B3-%D9%88%D9%86/id1271754138",
+      "playStore": "https://play.google.com/store/apps/details?id=com.NiceOne.App"
+    }
+  },
+  {
+    "id": "30",
+    "slug": "sanar",
+    "title": "Sanar",
+    "client": "Confidential",
+    "country": "Saudi Arabia",
+    "industry": "Healthcare / Telemedicine & At-Home Care",
+    "description": "A connected healthcare platform for telemedicine and on-demand medical services delivered at home.",
+    "cardDescription": "A healthcare ecosystem connecting telemedicine, at-home medical services, real-time booking, payments, and insurance workflows.",
+    "overview": "Sanar connects patients, healthcare providers, administrators, payments, and insurance workflows through one digital ecosystem spanning web and mobile. Patients can book remote consultations and at-home healthcare services based on provider availability and appointment schedules.",
+    "headings": {
+      "challenge": "Accessing healthcare at home required a more connected service and booking model.",
+      "build": "One healthcare ecosystem connecting remote consultations and care delivered at home.",
+      "outcome": "Sanar turned separate healthcare journeys into one connected digital ecosystem."
+    },
+    "problem": "Patients needed a convenient way to access services such as home laboratory tests, nursing visits, physical therapy, child vaccinations, and remote medical consultations without relying on a hospital or clinic visit for every interaction.\n\nThe platform also needed to coordinate healthcare-provider availability, appointment scheduling, payments, and insurance coverage through a single digital journey.\n\nThe challenge was not simply to build an appointment app. It was to connect patients, healthcare providers, home-care services, telemedicine, administration, payments, and insurance workflows into one operating ecosystem.",
+    "solution": "Oraixen contributed to the design and development of Sanar across web, iOS, Android, backend services, APIs, and administration.\n\nPatients can browse available healthcare services, choose appointments based on provider availability, book home-care visits, schedule remote consultations, and complete payments through the platform.\n\nThe system also connects healthcare workflows with integrated insurance providers, enabling eligible services to operate within insurance-supported coverage and claim-processing flows.\n\nAdministrators manage the platform centrally while healthcare providers participate in scheduled appointments and service delivery.",
+    "impact": "Patients can access telemedicine and at-home healthcare services through one platform instead of coordinating appointments, service availability, payments, and insurance through separate channels.\n\nHealthcare providers, administrators, insurance integrations, and patient-facing services operate through the same connected platform architecture.\n\nThe ecosystem also supports multiple insurance and corporate partner relationships as part of its operating model.",
+    "workflow": [
+      {
+        "title": "Choose a service",
+        "description": "Patients select from available telemedicine or at-home healthcare services, including home lab tests, nursing visits, IV vitamin therapy, physical therapy, and child vaccinations."
+      },
+      {
+        "title": "Check availability",
+        "description": "The platform presents available appointment times based on healthcare-provider availability."
+      },
+      {
+        "title": "Book",
+        "description": "Patients select an appointment and confirm the healthcare service through the platform."
+      },
+      {
+        "title": "Connect coverage & payment",
+        "description": "Eligible services can pass through connected insurance workflows, while supported payments are processed digitally through integrated payment gateways."
+      },
+      {
+        "title": "Receive care",
+        "description": "The patient attends the remote consultation or receives the booked healthcare service at home."
+      },
+      {
+        "title": "Manage the ecosystem",
+        "description": "Administrators use the central platform to coordinate services, providers, appointments, and connected operational workflows."
+      }
+    ],
+    "responsibilities": [
+      {
+        "title": "Product discovery & ecosystem design",
+        "description": "Mapping the journeys between patients, healthcare providers, services, appointments, payments, administration, and insurance workflows."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing the patient and operational journeys across web and mobile."
+      },
+      {
+        "title": "Platform engineering",
+        "description": "Building the frontend, backend, APIs, and administration capabilities supporting the healthcare ecosystem."
+      },
+      {
+        "title": "Mobile applications",
+        "description": "Developing the iOS and Android patient experience."
+      },
+      {
+        "title": "Insurance integrations",
+        "description": "Connecting supported healthcare workflows with health insurance providers."
+      },
+      {
+        "title": "Payment integrations",
+        "description": "Connecting digital payment processing to service booking and appointments."
+      }
+    ],
+    "systemComponents": [
+      "Healthcare service marketplace",
+      "Website",
+      "iOS application",
+      "Android application",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Telemedicine consultations",
+      "Provider availability",
+      "Real-time appointment scheduling",
+      "Home laboratory-test booking",
+      "Nurse-visit booking",
+      "IV vitamin-therapy booking",
+      "Physical-therapy booking",
+      "Child-vaccination booking",
+      "Payment-gateway integration",
+      "Health-insurance integrations",
+      "Insurance-supported service workflows"
+    ],
+    "proofPoints": [
+      {
+        "value": "Multiple",
+        "label": "health insurance and corporate partners integrated",
+        "description": "The platform connects healthcare booking and service delivery with multiple insurance and corporate partner workflows."
+      }
+    ],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
+    "imageUrl": "/assets/projects/sanar.png",
+    "imageFit": "cover",
+    "confidential": true,
+    "featured": true,
+    "category": "Platform",
+    "platforms": {
+      "website": "https://www.sanar.sa/home",
+      "appStore": "https://apps.apple.com/in/app/%D8%B3%D9%86%D8%A7%D8%B1-sanar-%D8%B5%D8%AD%D8%A9-%D8%A3%D9%81%D8%B6%D9%84/id1473258160",
+      "playStore": "https://play.google.com/store/apps/details?id=com.sanarcare.pro&pli=1"
+    }
+  },
+  {
+    "id": "31",
+    "slug": "ghiras-al-usrah",
+    "title": "Ghiras Al Usrah",
+    "client": "Confidential",
+    "country": "Saudi Arabia",
+    "industry": "Family & Psychological Counseling / Telehealth",
+    "description": "A digital counseling platform connecting appointment booking, consultant schedules, payments, and hybrid in-person and video consultations.",
+    "cardDescription": "A counseling platform replacing paper and Excel workflows with digital booking, consultant scheduling, payments, reminders, and hybrid consultations.",
+    "overview": "Ghiras Al Usrah replaced a paper and spreadsheet-based consultation workflow with a connected platform across web and mobile. Clients can book consultations and make payments digitally, while consultants manage availability and appointments through a dedicated app.",
+    "headings": {
+      "challenge": "Consultations were being managed through paper and spreadsheets instead of one operational system.",
+      "build": "One platform for booking, scheduling, payments, and hybrid consultations.",
+      "outcome": "Ghiras Al Usrah replaced a fragmented manual consultation process with one digital operating platform."
+    },
+    "problem": "Bookings, consultant schedules, and client appointments depended on manual records and Excel spreadsheets.\n\nThat created room for scheduling mistakes, conflicting appointments, and missed sessions when clients or consultants did not receive timely reminders.\n\nThe organization also needed to support online payments and virtual consultations without managing those interactions through separate disconnected tools.\n\nThe challenge was to turn the full consultation workflow into one digital operating platform.",
+    "solution": "Oraixen designed and developed Ghiras Al Usrah across web, mobile applications, backend services, APIs, and administration.\n\nClients can book supported consultation services, choose available appointments, request express consultations based on consultant availability, make payments through Moyasar, and attend supported virtual sessions through Zoom.\n\nConsultants use a dedicated mobile application to manage schedules, set availability, review appointments, and access virtual consultations.\n\nThe administration platform centralizes the operational workflow that had previously depended on paper records and spreadsheets.",
+    "impact": "Booking, consultant availability, appointment management, reminders, payments, and supported virtual consultations can now be managed through a connected system instead of paper records and spreadsheets.\n\nThis gives clients, consultants, and administrators clearer visibility into appointments and reduces the operational risk created by manual scheduling and missing reminders.",
+    "workflow": [
+      {
+        "title": "Choose a consultation",
+        "description": "Clients select the consultation type or specialized service they need."
+      },
+      {
+        "title": "Check availability",
+        "description": "The system presents appointments based on consultant schedules and available time slots."
+      },
+      {
+        "title": "Book & pay",
+        "description": "Clients confirm the appointment and complete supported online payments through Moyasar."
+      },
+      {
+        "title": "Notify",
+        "description": "Digital reminders and notifications help clients and consultants keep track of upcoming appointments."
+      },
+      {
+        "title": "Attend",
+        "description": "The consultation takes place either in person or through a supported Zoom video session."
+      },
+      {
+        "title": "Manage",
+        "description": "Consultants and administrators use their respective interfaces to manage schedules, appointments, availability, and operational workflows."
+      }
+    ],
+    "responsibilities": [
+      {
+        "title": "Workflow analysis & digital transformation strategy",
+        "description": "Mapping the manual consultation process and defining how booking, scheduling, payments, reminders, and virtual sessions would operate digitally."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing the client, consultant, and operational journeys across web and mobile."
+      },
+      {
+        "title": "Backend & API development",
+        "description": "Building the central services and APIs supporting booking, schedules, payments, users, and consultations."
+      },
+      {
+        "title": "Client & consultant mobile applications",
+        "description": "Building separate mobile experiences for clients and consultants using Flutter."
+      },
+      {
+        "title": "Web platform",
+        "description": "Developing the web experience using Next.js."
+      },
+      {
+        "title": "Third-party integrations",
+        "description": "Connecting Moyasar for payments and Zoom for supported virtual consultations."
+      }
+    ],
+    "systemComponents": [
+      "Web platform",
+      "Client mobile application",
+      "Consultant mobile application",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Consultation booking",
+      "Consultant availability management",
+      "Appointment scheduling",
+      "Automated reminders and notifications",
+      "In-person consultation workflow",
+      "Zoom video consultations",
+      "Express consultation requests",
+      "Specialized consultation categories",
+      "Services for people with special needs",
+      "Moyasar payment integration"
+    ],
+    "proofPoints": [
+      {
+        "value": "100%",
+        "label": "digitization of the previously manual consultation workflow",
+        "description": "Booking, consultant availability, appointment management, reminders, payments, and supported virtual consultations moved from paper and spreadsheet-based processes into the digital platform."
+      }
+    ],
+    "metrics": [],
+    "techStack": [
+      "PHP / Laravel",
+      "Flutter",
+      "Next.js"
+    ],
+    "highlights": [],
+    "imageUrl": "/assets/projects/ghiras-al-usrah.png",
+    "imageFit": "cover",
+    "confidential": true,
+    "featured": true,
+    "category": "Platform",
+    "platforms": {
+      "website": "https://ghirasalusrah.com/",
+      "playStore": "https://play.google.com/store/apps/details?id=com.oraixen.ghirasalusrah"
+    }
+  },
+  {
+    "id": "32",
+    "slug": "delora",
+    "title": "Delora",
+    "client": "Confidential",
+    "country": "Egypt",
+    "industry": "E-Commerce / Cosmetics & Makeup",
+    "description": "A cosmetics e-commerce platform connecting product discovery, checkout, payments, and store operations across web and mobile.",
+    "cardDescription": "A cosmetics commerce platform connecting product discovery, checkout, payments, and centralized store operations across web, iOS, and Android.",
+    "overview": "Delora gives customers a dedicated beauty-shopping experience across web, iOS, and Android, while store teams manage products, orders, and customers through a centralized administration platform.",
+    "headings": {
+      "challenge": "A cosmetics brand needed more than a generic online store.",
+      "build": "A connected beauty-commerce platform across web, mobile, and administration.",
+      "outcome": "Delora launched a dedicated cosmetics commerce experience across web and mobile."
+    },
+    "problem": "The client wanted to build a digital commerce experience specifically around makeup and cosmetics in Egypt.\n\nThe product needed to make beauty products easy to discover through clear categories, search, and filtering, while supporting a structured cart, checkout, and electronic payment journey.\n\nThe client also wanted to benchmark successful regional beauty-commerce experiences, including Nice One, while building a platform and brand experience tailored to Delora’s own market and customers.\n\nBehind the customer experience, store teams needed one administration system for managing products, orders, and customer records.",
+    "solution": "Oraixen designed and developed Delora across the e-commerce website, iOS application, Android application, backend services, APIs, payment integrations, and administration.\n\nCustomers can browse a cosmetics-focused catalog, move through categories, search and filter products, add items to their cart, complete checkout, and use supported electronic payment methods.\n\nStore managers use the administration platform to manage products, customer records, and orders from one central environment.\n\nThe customer experience was informed by benchmarking established regional commerce patterns while being designed around Delora’s own cosmetics offering.",
+    "impact": "Customers can discover beauty products, shop, complete checkout, and place orders through web, iOS, and Android experiences built around one commerce platform.\n\nAt the operational level, store teams can manage products, customers, and orders from one administration environment instead of operating each customer channel independently.\n\nThe result is a connected customer and store-management experience designed specifically around Delora’s cosmetics business.",
+    "workflow": [
+      {
+        "title": "Discover",
+        "description": "Customers browse beauty and makeup products through structured categories, search, and filtering."
+      },
+      {
+        "title": "Evaluate",
+        "description": "The product catalog helps customers navigate and explore the items available through Delora."
+      },
+      {
+        "title": "Add to cart",
+        "description": "Customers add selected products to their shopping cart and prepare the order."
+      },
+      {
+        "title": "Checkout",
+        "description": "The customer completes the digital checkout flow and uses a supported electronic payment method."
+      },
+      {
+        "title": "Manage the order",
+        "description": "The order enters the central commerce system where store teams can manage customer and order information."
+      },
+      {
+        "title": "Operate",
+        "description": "Administrators manage products, orders, customers, and day-to-day commerce activity through the central dashboard."
+      }
+    ],
+    "responsibilities": [
+      {
+        "title": "Commerce discovery & benchmarking",
+        "description": "Studying established regional beauty-commerce journeys, including Nice One, and defining the flows required for Delora."
+      },
+      {
+        "title": "Platform architecture",
+        "description": "Designing the web, mobile, backend, APIs, administration, product catalog, checkout, and payment layers as one commerce platform."
+      },
+      {
+        "title": "UI/UX design",
+        "description": "Designing a cosmetics-focused customer journey across web and mobile."
+      },
+      {
+        "title": "Backend & API development",
+        "description": "Building the services supporting products, customers, orders, checkout, payments, and administration."
+      },
+      {
+        "title": "Frontend web development",
+        "description": "Building the public e-commerce experience for the web."
+      },
+      {
+        "title": "Mobile applications",
+        "description": "Building the iOS and Android customer experiences."
+      }
+    ],
+    "systemComponents": [
+      "E-commerce website",
+      "iOS application",
+      "Android application",
+      "Admin dashboard",
+      "Backend services",
+      "APIs",
+      "Cosmetics product catalog",
+      "Product categories",
+      "Product search",
+      "Product filtering",
+      "Shopping cart",
+      "Digital checkout",
+      "Electronic payments",
+      "Product management",
+      "Order management",
+      "Customer management"
+    ],
+    "proofPoints": [
+      {
+        "value": "100%",
+        "label": "digital customer experience delivered across web, iOS, and Android",
+        "description": "The Delora commerce experience was launched across the approved customer channels: website, iOS application, and Android application."
+      }
+    ],
+    "metrics": [],
+    "techStack": [],
+    "highlights": [],
+    "imageUrl": "/assets/projects/delora.png",
+    "imageFit": "cover",
+    "confidential": true,
+    "featured": true,
+    "category": "Platform",
+    "platforms": {
+      "website": "https://www.deloraeg.com/",
+      "appStore": "https://apps.apple.com/eg/app/delora/id6774976410?l=ar",
+      "playStore": "https://play.google.com/store/apps/details?id=com.blink.delora"
     }
   }
 ]
