@@ -8,6 +8,7 @@ import { Button } from '../components/Button';
 import { Seo } from '../components/Seo';
 import { FeaturedProjects } from '../components/projects/FeaturedProjects';
 import { ProjectLogoStrip } from '../components/projects/ProjectLogoStrip';
+import { PartnershipsSection } from '../components/partnerships/PartnershipsSection';
 import { Stagger } from '../components/Stagger';
 import {
   AuroraBackground,
@@ -208,6 +209,13 @@ export function Home() {
 
       {/* ===================== Featured Projects ===================== */}
       <FeaturedProjects />
+
+      {/* ===================== Partnerships =====================
+          Commercial relationships, not delivered work: the page reads selected
+          work, then who we deliver it with, then why clients choose us. Its own
+          data and card live under src/data/partnerships.ts and
+          src/components/partnerships/, entirely apart from the project data. */}
+      <PartnershipsSection />
 
       {/* ===================== Why Choose Oraixen ===================== */}
       <Section>
