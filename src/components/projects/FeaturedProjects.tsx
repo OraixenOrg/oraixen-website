@@ -8,7 +8,11 @@ import { FadeIn } from '../FadeIn';
 
 export function FeaturedProjects() {
   const { t } = useTranslation('home');
-  const featured = projects.filter(p => p.featured).slice(0, 3);
+  // The first six of the approved public order, so the home page opens with the
+  // same projects - in the same sequence - that the grid leads with. Deliberately
+  // NOT the `featured` flags in projects.json: those are a second, independently
+  // edited ordering that can drift out of agreement with PROJECT_DISPLAY_ORDER.
+  const selectedProjects = projects.slice(0, 6);
   return <Section className="bg-surface-subtle">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
         <FadeIn>
@@ -30,7 +34,7 @@ export function FeaturedProjects() {
       </div>
 
       <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {featured.map(project => <div key={project.id}>
+        {selectedProjects.map(project => <div key={project.id}>
             <ProjectCard project={project} />
           </div>)}
       </Stagger>
